@@ -285,6 +285,11 @@ async function getClientPropertyId(req) {
         return process.env.GA_PROPERTY_ID || '476231264';
     }
 
+    // 1b. Dev token bypass (local development without Clerk)
+    if (req.headers.authorization === 'Bearer dev_token') {
+        return process.env.GA_PROPERTY_ID || '476231264';
+    }
+
     // 2. Extract Clerk User ID
     const userId = req.auth ? req.auth.userId : (req.session ? req.session.userId : null);
     if (!userId) {
