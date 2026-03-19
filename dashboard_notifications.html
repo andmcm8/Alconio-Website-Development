@@ -377,70 +377,60 @@
 <div class="sidebar-divider-line"></div>
 <aside class="dashboard-sidebar relative z-50 w-20 h-full glass-panel flex flex-col border-r-0 hidden md:flex shrink-0 items-center transition-all duration-300 !border-l-transparent border-l-0">
     <!-- Header Area -->
-    <div class="sidebar-header-area relative h-18 px-4 w-full flex items-center shrink-0 transition-all duration-300 overflow-hidden">
+    <div class="sidebar-header-area relative w-full flex items-center shrink-0 transition-all duration-300 overflow-hidden" style="height: 72px; padding: 0 16px;">
         <div class="header-inner flex items-center w-full h-full transition-all duration-300">
-            <!-- Logo (fixed position, always visible) -->
-            <img src="logo.png" alt="Alconio" class="sidebar-logo-img w-7 h-7 object-contain flex-shrink-0 ml-1" />
-            <!-- Brand text (hidden in condensed) -->
-            <h1 class="logo-text text-xl font-bold tracking-tighter text-white transition-all duration-300 opacity-100 uppercase ml-3">ALCONIO</h1>
-            <!-- Spacer -->
+            <img src="logo.png" alt="Alconio" class="sidebar-logo-img object-contain flex-shrink-0" style="width: 42px; height: 42px;" />
+            <span class="logo-text font-bold text-white uppercase tracking-wide transition-all duration-300" style="font-size: 22px; margin-left: 8px; letter-spacing: 0.04em;">ALCONIO</span>
             <div class="flex-1"></div>
-            <!-- Toggle button (always visible) -->
-            <button class="side-bar-toggle w-7 h-7 rounded-lg flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition-all border border-white/10 group flex-shrink-0">
-                <span class="toggle-icon material-symbols-outlined text-sm transition-colors group-hover:text-electric-blue">keyboard_tab_rtl</span>
+            <button class="side-bar-toggle flex items-center justify-center text-slate-400 hover:text-white transition-all flex-shrink-0" style="width: 28px; height: 28px;">
+                <span class="toggle-icon material-symbols-outlined transition-colors" style="font-size: 20px;">keyboard_tab_rtl</span>
             </button>
         </div>
     </div>
-
-    <!-- Navigation -->
-    <nav class="flex-1 px-2 space-y-1 relative z-10 pt-6 w-full flex flex-col items-center overflow-x-hidden sidebar-scroll-hide transition-all duration-300">
-        <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400" href="dashboard_overview.html" data-tooltip="Overview">
-            <span class="material-symbols-outlined group-hover:text-electric-blue transition-colors text-2xl nav-icon flex-shrink-0">dashboard</span>
-            <span class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Overview</span>
+    <div style="width: calc(100% - 32px); height: 1px; background: rgba(255,255,255,0.06); margin: 0 auto;"></div>
+    <nav class="flex-1 w-full flex flex-col overflow-x-hidden sidebar-scroll-hide transition-all duration-300" style="padding: 20px 12px 0;">
+        <a class="nav-link-btn flex items-center rounded-lg group transition-all duration-200 relative hover:bg-white/5 text-slate-400 hover:text-white" href="dashboard_overview.html" data-tooltip="Overview" style="height: 48px; padding: 0 16px; margin-bottom: 2px;">
+            <span class="material-symbols-outlined group-hover:text-electric-blue transition-colors nav-icon flex-shrink-0" style="font-size: 24px;">dashboard</span>
+            <span class="md-label text-sm font-medium tracking-wide whitespace-nowrap" style="margin-left: 16px;">Overview</span>
         </a>
-        <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400" href="dashboard_analytics.html" data-tooltip="Analytics">
-            <span class="material-symbols-outlined group-hover:text-electric-blue transition-colors text-2xl nav-icon flex-shrink-0">pie_chart</span>
-            <span class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Analytics</span>
+        <a class="nav-link-btn flex items-center rounded-lg group transition-all duration-200 relative hover:bg-white/5 text-slate-400 hover:text-white" href="dashboard_analytics.html" data-tooltip="Analytics" style="height: 48px; padding: 0 16px; margin-bottom: 2px;">
+            <span class="material-symbols-outlined group-hover:text-electric-blue transition-colors nav-icon flex-shrink-0" style="font-size: 24px;">pie_chart</span>
+            <span class="md-label text-sm font-medium tracking-wide whitespace-nowrap" style="margin-left: 16px;">Analytics</span>
         </a>
-        <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400" href="dashboard_performance.html" data-tooltip="Performance">
-            <span class="material-symbols-outlined group-hover:text-electric-blue transition-colors text-2xl nav-icon flex-shrink-0">trending_up</span>
-            <span class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Performance</span>
+        <a class="nav-link-btn flex items-center rounded-lg group transition-all duration-200 relative hover:bg-white/5 text-slate-400 hover:text-white" href="dashboard_performance.html" data-tooltip="Performance" style="height: 48px; padding: 0 16px; margin-bottom: 2px;">
+            <span class="material-symbols-outlined group-hover:text-electric-blue transition-colors nav-icon flex-shrink-0" style="font-size: 24px;">trending_up</span>
+            <span class="md-label text-sm font-medium tracking-wide whitespace-nowrap" style="margin-left: 16px;">Performance</span>
         </a>
-        <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400" href="dashboard_modifications.html" data-tooltip="Modifications">
-            <span class="material-symbols-outlined group-hover:text-electric-blue transition-colors text-2xl nav-icon flex-shrink-0">edit_note</span>
-            <span class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Modifications</span>
+        <a class="nav-link-btn flex items-center rounded-lg group transition-all duration-200 relative hover:bg-white/5 text-slate-400 hover:text-white" href="dashboard_modifications.html" data-tooltip="Modifications" style="height: 48px; padding: 0 16px; margin-bottom: 2px;">
+            <span class="material-symbols-outlined group-hover:text-electric-blue transition-colors nav-icon flex-shrink-0" style="font-size: 24px;">edit_note</span>
+            <span class="md-label text-sm font-medium tracking-wide whitespace-nowrap" style="margin-left: 16px;">Modifications</span>
         </a>
-        <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400" href="dashboard_activity_log.html" data-tooltip="Activity Log">
-            <span class="material-symbols-outlined group-hover:text-electric-blue transition-colors text-2xl nav-icon flex-shrink-0">schedule</span>
-            <span class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Activity Log</span>
+        <a class="nav-link-btn flex items-center rounded-lg group transition-all duration-200 relative hover:bg-white/5 text-slate-400 hover:text-white" href="dashboard_activity_log.html" data-tooltip="Activity Log" style="height: 48px; padding: 0 16px; margin-bottom: 2px;">
+            <span class="material-symbols-outlined group-hover:text-electric-blue transition-colors nav-icon flex-shrink-0" style="font-size: 24px;">schedule</span>
+            <span class="md-label text-sm font-medium tracking-wide whitespace-nowrap" style="margin-left: 16px;">Activity Log</span>
         </a>
-        <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400" href="dashboard_resources.html" data-tooltip="Resources">
-            <span class="material-symbols-outlined group-hover:text-electric-blue transition-colors text-2xl nav-icon flex-shrink-0">folder_open</span>
-            <span class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Resources</span>
+        <a class="nav-link-btn flex items-center rounded-lg group transition-all duration-200 relative hover:bg-white/5 text-slate-400 hover:text-white" href="dashboard_resources.html" data-tooltip="Resources" style="height: 48px; padding: 0 16px; margin-bottom: 2px;">
+            <span class="material-symbols-outlined group-hover:text-electric-blue transition-colors nav-icon flex-shrink-0" style="font-size: 24px;">folder_open</span>
+            <span class="md-label text-sm font-medium tracking-wide whitespace-nowrap" style="margin-left: 16px;">Resources</span>
         </a>
-        <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400" href="dashboard_settings.html" data-tooltip="Settings">
-            <span class="material-symbols-outlined group-hover:text-electric-blue transition-colors text-2xl nav-icon flex-shrink-0">settings</span>
-            <span class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Settings</span>
+        <a class="nav-link-btn flex items-center rounded-lg group transition-all duration-200 relative hover:bg-white/5 text-slate-400 hover:text-white" href="dashboard_settings.html" data-tooltip="Settings" style="height: 48px; padding: 0 16px; margin-bottom: 2px;">
+            <span class="material-symbols-outlined group-hover:text-electric-blue transition-colors nav-icon flex-shrink-0" style="font-size: 24px;">settings</span>
+            <span class="md-label text-sm font-medium tracking-wide whitespace-nowrap" style="margin-left: 16px;">Settings</span>
         </a>
     </nav>
-
-    <!-- Footer Area -->
-    <div class="sidebar-footer-area p-4 relative z-10 border-t border-white/5 w-full flex justify-center mb-4 transition-all duration-300">
-        <button class="logout-btn w-12 h-12 flex items-center justify-center bg-gradient-to-r from-electric-blue to-blue-800 hover:from-blue-600 hover:to-blue-700 text-white rounded-lg shadow-[0_0_25px_rgba(0,82,255,0.4)] border border-white/10 transition-all transform active:scale-95 group relative" data-tooltip="Logout">
-            <span class="material-symbols-outlined text-lg group-hover:animate-pulse flex-shrink-0">logout</span>
-            <span class="md-label hidden font-bold text-sm tracking-wide ml-3 transition-opacity whitespace-nowrap">Logout</span>
+    <div class="sidebar-footer-area relative z-10 w-full transition-all duration-300" style="padding: 16px 12px 24px;">
+        <button class="logout-btn w-full flex items-center justify-center bg-gradient-to-r from-electric-blue to-blue-800 hover:from-blue-600 hover:to-blue-700 text-white shadow-[0_0_25px_rgba(0,82,255,0.4)] border border-white/10 transition-all transform active:scale-95 group relative" style="height: 48px; border-radius: 10px; padding: 0 16px;" data-tooltip="Logout">
+            <span class="material-symbols-outlined group-hover:animate-pulse flex-shrink-0" style="font-size: 20px;">logout</span>
+            <span class="md-label font-bold text-sm tracking-wide whitespace-nowrap" style="margin-left: 12px;">Logout</span>
         </button>
     </div>
 </aside>
 
-<!-- Sidebar Logic & Interaction -->
 <script id="sidebar-core-logic">
     (function () {
         const sidebar = document.querySelector('aside.dashboard-sidebar');
         if (!sidebar) return;
-        
         const toggleBtn = document.querySelector('.side-bar-toggle');
-        const headerInner = document.querySelector('.header-inner');
         const headerArea = document.querySelector('.sidebar-header-area');
         const logoText = document.querySelector('.logo-text');
         const logoImg = document.querySelector('.sidebar-logo-img');
@@ -448,124 +438,60 @@
         const dividerLine = document.querySelector('.sidebar-divider-line');
         const logoutBtn = document.querySelector('.logout-btn');
         const sidebarNav = sidebar.querySelector('nav');
+        const labels = document.querySelectorAll('.md-label');
 
-        // Set Active State based on current URL
         const currentPath = window.location.pathname.split('/').pop() || 'dashboard_overview.html';
         navLinks.forEach(link => {
             if (link.getAttribute('href') === currentPath) {
                 link.classList.add('active-nav-item', 'text-electric-blue', 'neon-text-blue');
                 link.classList.remove('text-slate-400');
+                link.style.background = 'rgba(0, 82, 255, 0.08)';
                 const icon = link.querySelector('.nav-icon');
                 if (icon) icon.classList.add('text-electric-blue', 'neon-text-blue');
             }
         });
 
-        // Toggle functionality
         if (toggleBtn) {
             toggleBtn.addEventListener('click', () => {
-                const isCurrentlyExpanded = sidebar.classList.contains('w-72');
-                const newState = !isCurrentlyExpanded;
-                localStorage.setItem('sidebarExpanded', newState);
-                applySidebarState(newState);
+                const isExpanded = sidebar.classList.contains('sidebar-expanded');
+                localStorage.setItem('sidebarExpanded', !isExpanded);
+                applySidebarState(!isExpanded);
             });
         }
 
         function applySidebarState(expanded) {
             const icon = toggleBtn?.querySelector('.toggle-icon');
             if (expanded) {
-                // --- EXPANDED STATE ---
                 sidebar.classList.remove('w-20', 'items-center');
-                sidebar.classList.add('w-72');
-
-                // Show "ALCONIO" text
-                if (logoText) {
-                    logoText.classList.remove('hidden', 'opacity-0', 'w-0', 'ml-0');
-                    logoText.classList.add('opacity-100', 'ml-3');
-                }
-
-                // Arrow points LEFT (click to collapse)
+                sidebar.classList.add('sidebar-expanded');
+                sidebar.style.width = '280px';
+                if (logoText) { logoText.style.display = ''; logoText.style.opacity = '1'; logoText.style.marginLeft = '8px'; }
                 if (icon) icon.textContent = 'keyboard_tab_rtl';
-                
-                // Header padding
-                if (headerArea) {
-                    headerArea.style.paddingLeft = '1rem';
-                    headerArea.style.paddingRight = '1rem';
-                }
-
-                sidebarNav?.classList.replace('items-center', 'items-stretch');
-                if (dividerLine) dividerLine.style.left = '18rem';
-
-                // Nav links: show text labels
-                navLinks.forEach(link => {
-                    link.classList.remove('w-12', 'h-12', 'justify-center');
-                    link.classList.add('w-full', 'h-12', 'justify-start', 'pl-5');
-                    const label = link.querySelector('.md-label');
-                    if (label) { label.classList.remove('hidden'); label.classList.add('inline'); }
-                });
-
-                // Logout: full width with text
-                if (logoutBtn) {
-                    logoutBtn.classList.remove('w-12');
-                    logoutBtn.classList.add('w-full', 'justify-start', 'pl-5');
-                    const label = logoutBtn.querySelector('.md-label');
-                    if (label) { label.classList.remove('hidden'); label.classList.add('inline'); }
-                }
+                if (headerArea) headerArea.style.padding = '0 16px';
+                if (dividerLine) dividerLine.style.left = '280px';
+                navLinks.forEach(link => { link.style.justifyContent = 'flex-start'; link.style.width = '100%'; link.style.padding = '0 16px'; });
+                labels.forEach(l => { l.style.display = ''; l.style.opacity = '1'; });
+                if (logoutBtn) { logoutBtn.style.width = '100%'; logoutBtn.style.justifyContent = 'center'; const ll = logoutBtn.querySelector('.md-label'); if(ll) ll.style.display = ''; }
             } else {
-                // --- CONDENSED STATE ---
-                sidebar.classList.remove('w-72');
+                sidebar.classList.remove('sidebar-expanded');
                 sidebar.classList.add('w-20', 'items-center');
-
-                // Hide "ALCONIO" text
-                if (logoText) {
-                    logoText.classList.remove('opacity-100', 'ml-3');
-                    logoText.classList.add('hidden', 'opacity-0', 'w-0', 'ml-0');
-                }
-
-                // Arrow points RIGHT (click to expand)
+                sidebar.style.width = '';
+                if (logoText) { logoText.style.display = 'none'; logoText.style.opacity = '0'; logoText.style.marginLeft = '0'; }
                 if (icon) icon.textContent = 'keyboard_tab';
-
-                // Header: center content
-                if (headerArea) {
-                    headerArea.style.paddingLeft = '0';
-                    headerArea.style.paddingRight = '0';
-                }
-
-                sidebarNav?.classList.replace('items-stretch', 'items-center');
+                if (headerArea) headerArea.style.padding = '0 0 0 10px';
                 if (dividerLine) dividerLine.style.left = '5rem';
-
-                // Nav links: icon only
-                navLinks.forEach(link => {
-                    link.classList.add('w-12', 'h-12', 'justify-center');
-                    link.classList.remove('w-full', 'justify-start', 'pl-5');
-                    const label = link.querySelector('.md-label');
-                    if (label) { label.classList.add('hidden'); label.classList.remove('inline'); }
-                });
-
-                // Logout: icon only
-                if (logoutBtn) {
-                    logoutBtn.classList.add('w-12', 'justify-center');
-                    logoutBtn.classList.remove('w-full', 'pl-5');
-                    const label = logoutBtn.querySelector('.md-label');
-                    if (label) { label.classList.add('hidden'); label.classList.remove('inline'); }
-                }
+                navLinks.forEach(link => { link.style.justifyContent = 'center'; link.style.width = '48px'; link.style.padding = '0'; });
+                labels.forEach(l => { l.style.display = 'none'; l.style.opacity = '0'; });
+                if (logoutBtn) { logoutBtn.style.width = '48px'; logoutBtn.style.justifyContent = 'center'; const ll = logoutBtn.querySelector('.md-label'); if(ll) ll.style.display = 'none'; }
             }
         }
 
-        // Initial State — default to EXPANDED
         const stored = localStorage.getItem('sidebarExpanded');
         const isExpanded = stored === null ? true : stored !== 'false';
-        
-        // Anti-FOUC (Kill transitions for first load)
-        const transitionEls = [sidebar, headerArea, headerInner, sidebarNav, dividerLine, toggleBtn, logoText, logoImg, ...navLinks, logoutBtn].filter(Boolean);
-        transitionEls.forEach(el => el.style.transition = 'none');
-        
+        const els = [sidebar, headerArea, sidebarNav, dividerLine, toggleBtn, logoText, logoImg, ...navLinks, logoutBtn].filter(Boolean);
+        els.forEach(el => el.style.transition = 'none');
         applySidebarState(isExpanded);
-
-        requestAnimationFrame(() => {
-            requestAnimationFrame(() => {
-                transitionEls.forEach(el => el.style.transition = '');
-            });
-        });
+        requestAnimationFrame(() => { requestAnimationFrame(() => { els.forEach(el => el.style.transition = ''); }); });
     })();
 </script>
 <div class="flex-1 flex flex-col h-full relative z-10 overflow-hidden">
