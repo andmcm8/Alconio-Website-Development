@@ -1,0 +1,6 @@
+[dotenv@17.3.1] injecting env (3) from .env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+Analytics API proxy server running on http://localhost:3000
+[SERVER] Performance analysis for: https://arcaico.vercel.app (desktop)
+[SERVER] PSI Error: TypeError: Cannot read properties of undefined (reading 'numericValue')
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:457:41
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)

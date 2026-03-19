@@ -1,0 +1,1076 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Alconio Dashboard - Condensed View Refined</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "electric-blue": "#0052FF",
+                        "electric-blue-light": "#3374ff",
+                        "obsidian": "#000000",
+                        "obsidian-panel": "#050508",
+                        "glass-border": "rgba(0, 82, 255, 0.3)",
+                        "glass-highlight": "rgba(255, 255, 255, 0.15)",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Space Grotesk", "sans-serif"]
+                    },
+                    boxShadow: {
+                        'neon-blue': '0 0 20px rgba(0, 82, 255, 0.4), inset 0 0 10px rgba(0, 82, 255, 0.1)',
+                        'neon-white': '0 0 15px rgba(255, 255, 255, 0.3)',
+                        'glass-edge': 'inset 1px 1px 0 0 rgba(255, 255, 255, 0.2), inset -1px -1px 0 0 rgba(0, 0, 0, 0.5)',
+                        'header-glow': '0 4px 30px rgba(0, 0, 0, 0.8), 0 1px 0 rgba(0, 82, 255, 0.5)',
+                        'icon-glass': '0 4px 12px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.15)',
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar {
+            width: 0px;
+            height: 0px;
+            background: transparent;
+        }
+
+        .sidebar-scroll-hide::-webkit-scrollbar {
+            display: none;
+        }
+
+        .sidebar-scroll-hide {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+
+        .glass-panel {
+            background: linear-gradient(160deg, rgba(10, 10, 15, 0.85) 0%, rgba(0, 0, 0, 0.95) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 82, 255, 0.15);
+            border-top: 1px solid rgba(100, 150, 255, 0.3);
+            border-left: 1px solid rgba(100, 150, 255, 0.3);
+            box-shadow:
+                0 0 30px rgba(0, 0, 0, 0.8),
+                inset 0 0 20px rgba(0, 82, 255, 0.03);
+            position: relative;
+
+        }
+
+        .glass-panel::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+            filter: blur(20px);
+            opacity: 0.6;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .glass-panel::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(0, 82, 255, 0.15) 0%, transparent 70%);
+            filter: blur(30px);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .glass-card {
+            background: linear-gradient(135deg, rgba(15, 20, 35, 0.9) 0%, rgba(5, 5, 8, 0.95) 100%);
+            border: 1px solid rgba(0, 82, 255, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.9), inset 0 0 30px rgba(0, 82, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            box-shadow: 0 0 25px rgba(0, 82, 255, 0.25), inset 0 0 20px rgba(0, 82, 255, 0.1);
+            border-color: rgba(0, 82, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .active-nav-item {
+            background: linear-gradient(135deg, rgba(0, 82, 255, 0.3) 0%, rgba(0, 0, 0, 0) 100%);
+            border-left: 0;
+            border: 1px solid rgba(0, 82, 255, 0.2);
+            box-shadow: inset 0 0 20px -5px rgba(0, 82, 255, 0.4);
+        }
+
+        .neon-text {
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(0, 82, 255, 0.5);
+        }
+
+        .neon-text-blue {
+            color: #0052FF;
+            text-shadow: 0 0 10px rgba(0, 82, 255, 0.8);
+        }
+
+        .neon-border-top {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 82, 255, 1), transparent);
+            opacity: 0.6;
+        }
+
+        tr.group:hover td {
+            background: rgba(0, 82, 255, 0.05);
+        }
+
+        .header-glass {
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
+        }
+
+        .sidebar-header-area {
+            height: 72px;
+            display: flex;
+            align-items: center;
+        }
+
+        .pill-tag {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(5px);
+        }
+
+        .icon-glass-container {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(0, 82, 255, 0.1);
+            backdrop-filter: blur(8px);
+        }
+
+        .icon-glass-container:hover {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.05) 100%);
+            box-shadow: 0 0 15px rgba(0, 82, 255, 0.3), inset 0 0 20px rgba(0, 82, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .profile-glass-pill {
+            background: linear-gradient(135deg, rgba(20, 20, 25, 0.8) 0%, rgba(5, 5, 8, 0.9) 100%);
+            border: 1px solid rgba(0, 82, 255, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6), inset 0 0 15px rgba(0, 82, 255, 0.15);
+            backdrop-filter: blur(12px);
+        }
+
+        .profile-glass-pill:hover {
+            background: linear-gradient(135deg, rgba(30, 30, 40, 0.9) 0%, rgba(10, 10, 15, 0.95) 100%);
+            box-shadow: 0 0 20px rgba(0, 82, 255, 0.3), inset 0 0 25px rgba(0, 82, 255, 0.2);
+            border-color: rgba(0, 82, 255, 0.5);
+        }
+
+        .mini-spark {
+            filter: drop-shadow(0 0 4px rgba(0, 82, 255, 0.6));
+        }
+
+        .micro-card {
+            background: linear-gradient(135deg, rgba(15, 20, 35, 0.7) 0%, rgba(5, 5, 8, 0.8) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 1px solid rgba(255, 255, 255, 0.15);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .micro-card:hover {
+            background: linear-gradient(135deg, rgba(20, 25, 45, 0.8) 0%, rgba(10, 10, 15, 0.9) 100%);
+            border-color: rgba(0, 82, 255, 0.4);
+            box-shadow: 0 0 15px rgba(0, 82, 255, 0.15);
+        }
+
+        .tooltip-custom {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+        }
+
+        .group:hover .tooltip-custom {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .progress-ring__circle {
+            transition: stroke-dashoffset 0.35s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+
+        .device-box {
+            background: linear-gradient(145deg, rgba(10, 10, 15, 0.9) 0%, rgba(5, 5, 10, 0.95) 100%);
+            box-shadow: 0 0 25px rgba(0, 82, 255, 0.15), inset 0 0 40px rgba(0, 82, 255, 0.1);
+        }
+
+        .housed-profile-container {
+            display: flex;
+            align-items: center;
+            background: rgba(10, 10, 14, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 9999px;
+            padding: 4px;
+            padding-right: 16px;
+            backdrop-filter: blur(8px);
+            transition: border-color 0.2s;
+        }
+
+        .housed-profile-container:hover {
+            border-color: rgba(0, 82, 255, 0.3);
+            background: rgba(15, 15, 22, 0.8);
+        }
+
+        .unified-header-line {
+            position: fixed;
+            top: 72px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: rgba(0, 82, 255, 0.15);
+            box-shadow: 0 0 2px rgba(0, 82, 255, 0.1);
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+        .sidebar-divider-line {
+            position: fixed;
+            top: 0;
+            left: 5rem;
+            width: 1px;
+            height: 100vh;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.05), rgba(0, 82, 255, 0.9), rgba(255, 255, 255, 0.05));
+            box-shadow: 0 0 12px rgba(0, 82, 255, 0.5);
+            z-index: 40;
+            pointer-events: none;
+        }
+    </style>
+    <!-- Clerk JS SDK -->
+    <script async crossorigin="anonymous"
+        data-clerk-publishable-key="pk_test_d2FudGVkLWRhbmUtODQuY2xlcmsuYWNjb3VudHMuZGV2JA"
+        src="https://wanted-dane-84.clerk.accounts.dev/npm/@clerk/clerk-js@5/dist/clerk.browser.js"
+        type="text/javascript">
+        </script>
+
+
+
+
+
+
+</head>
+
+<body
+    class="bg-obsidian text-slate-200 font-display antialiased overflow-x-hidden selection:bg-electric-blue selection:text-white">
+    <div class="flex h-screen w-full overflow-hidden relative">
+        <div class="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
+            <div
+                class="absolute top-[-20%] left-[20%] w-[60%] h-[60%] bg-[#0052FF] opacity-[0.06] rounded-full blur-[150px]">
+            </div>
+            <div
+                class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-[#0052FF] opacity-[0.04] rounded-full blur-[120px]">
+            </div>
+        </div>
+        <div class="unified-header-line"></div>
+        <div class="sidebar-divider-line"></div>
+        <aside
+            class="dashboard-sidebar relative z-50 w-20 h-full glass-panel flex flex-col border-r-0 hidden md:flex shrink-0 items-center transition-all duration-300 !border-l-transparent border-l-0">
+            <div
+                class="sidebar-header-area relative h-16 px-0 w-full flex justify-end pr-4 shrink-0 transition-all duration-300">
+                <div class="header-inner flex items-center justify-end w-full h-full gap-4 transition-all duration-300">
+                    <h1 class="logo-text text-2xl font-bold tracking-tight text-white neon-text-blue transition-all duration-300"
+                        style="letter-spacing: -0.02em;"></h1>
+                    <img src="logo.png" alt="Logo"
+                        class="sidebar-logo-img w-12 h-12 object-contain transition-all duration-300 absolute top-1/2 -translate-y-1/2 z-10">
+                    <button
+                        class="side-bar-toggle w-6 h-6 rounded flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition-all border border-transparent hover:border-white/10 group">
+                        <span
+                            class="toggle-icon material-symbols-outlined text-sm group-hover:text-electric-blue transition-colors">start</span>
+                    </button>
+                </div>
+            </div>
+            <nav
+                class="flex-1 px-2 space-y-1 relative z-10 pt-6 w-full flex flex-col items-center overflow-x-hidden sidebar-scroll-hide transition-all duration-300">
+                <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400"
+                    href="dashboard_overview.html" data-tooltip="Overview">
+                    <span
+                        class="material-symbols-outlined group-hover:text-electric-blue transition-colors text-2xl nav-icon flex-shrink-0">dashboard</span>
+                    <span
+                        class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Overview</span>
+                </a>
+                <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400"
+                    href="dashboard_analytics.html" data-tooltip="Analytics">
+                    <span
+                        class="material-symbols-outlined group-hover:text-electric-blue transition-colors text-2xl nav-icon flex-shrink-0">pie_chart</span>
+                    <span
+                        class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Analytics</span>
+                </a>
+                <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400"
+                    href="dashboard_performance.html" data-tooltip="Performance">
+                    <span
+                        class="material-symbols-outlined group-hover:text-electric-blue transition-colors text-2xl nav-icon flex-shrink-0">trending_up</span>
+                    <span
+                        class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Performance</span>
+                </a>
+                <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400"
+                    href="dashboard_activity_log.html" data-tooltip="Activity Log">
+                    <span
+                        class="material-symbols-outlined group-hover:text-electric-blue transition-colors text-2xl nav-icon flex-shrink-0">schedule</span>
+                    <span
+                        class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Activity
+                        Log</span>
+                </a>
+                <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400"
+                    href="dashboard_resources.html" data-tooltip="Resources">
+                    <span
+                        class="material-symbols-outlined group-hover:text-electric-blue transition-colors text-2xl nav-icon flex-shrink-0">folder_open</span>
+                    <span
+                        class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Resources</span>
+                </a>
+                <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400"
+                    href="dashboard_settings.html" data-tooltip="Settings">
+                    <span
+                        class="material-symbols-outlined group-hover:text-electric-blue transition-colors text-2xl nav-icon flex-shrink-0">settings</span>
+                    <span
+                        class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Settings</span>
+                </a>
+            </nav>
+            <div
+                class="sidebar-footer-area p-4 relative z-10 border-t border-white/5 w-full flex justify-center mb-4 transition-all duration-300">
+                <button
+                    class="logout-btn w-12 h-12 flex items-center justify-center bg-gradient-to-r from-electric-blue to-blue-800 hover:from-blue-600 hover:to-blue-700 text-white rounded-lg shadow-[0_0_25px_rgba(0,82,255,0.4)] border border-white/10 transition-all transform active:scale-95 group relative"
+                    data-tooltip="Logout">
+                    <span
+                        class="material-symbols-outlined text-lg group-hover:animate-pulse flex-shrink-0">logout</span>
+                    <span
+                        class="md-label hidden font-bold text-sm tracking-wide ml-3 transition-opacity whitespace-nowrap">Logout</span>
+                </button>
+            </div>
+
+        </aside>
+        <!-- Sync Sidebar Anti-FOUC Script -->
+        <script>
+                (function () {
+                    var sidebar = document.querySelector('aside.dashboard-sidebar');
+                    if (!sidebar) return;
+                    var toggleBtn = document.querySelector('.side-bar-toggle');
+                    var headerInner = document.querySelector('.header-inner');
+                    var headerArea = document.querySelector('.sidebar-header-area');
+                    var logoText = document.querySelector('.logo-text');
+                    var logoImg = document.querySelector('.sidebar-logo-img');
+                    var navLinks = document.querySelectorAll('.nav-link-btn');
+                    var dividerLine = document.querySelector('.sidebar-divider-line');
+                    var logoutBtn = document.querySelector('.logout-btn');
+                    var sidebarNav = document.querySelector('aside.dashboard-sidebar nav');
+
+                    var isExpanded = localStorage.getItem('sidebarExpanded') !== 'false';
+
+                    // Kill ALL transitions instantly
+                    var transitionEls = [sidebar, headerArea, headerInner, sidebarNav, dividerLine, toggleBtn, logoText, logoImg].filter(Boolean);
+                    navLinks.forEach(function (l) { transitionEls.push(l); });
+                    if (logoutBtn) transitionEls.push(logoutBtn);
+                    transitionEls.forEach(function (el) { el.style.transition = 'none'; });
+
+                    if (isExpanded) {
+                        sidebar.classList.remove('w-20', 'items-center');
+                        sidebar.classList.add('w-72');
+
+                        if (logoText) {
+                            logoText.classList.remove('hidden', 'opacity-0');
+                            logoText.classList.add('opacity-100');
+                            logoText.textContent = "ALCONIO";
+                            logoText.classList.remove('neon-text-blue', 'pl-1');
+                            logoText.classList.add('pl-12');
+                        }
+
+                        if (logoImg) {
+                            logoImg.classList.remove('left-1/2', '-translate-x-1/2');
+                            logoImg.classList.add('left-4');
+                        }
+
+                        var icon = toggleBtn ? toggleBtn.querySelector('.toggle-icon') : null;
+                        if (icon) icon.textContent = 'keyboard_tab_rtl';
+                        if (toggleBtn) {
+                            toggleBtn.classList.remove('w-6', 'h-6', 'absolute', 'right-[2px]', 'translate-x-[2px]');
+                            toggleBtn.classList.add('w-8', 'h-8', 'rounded-lg', 'relative');
+                        }
+
+                        if (headerArea) {
+                            headerArea.classList.remove('px-0', 'justify-end', 'pr-4');
+                            headerArea.classList.add('px-6', 'justify-between');
+                        }
+                        if (headerInner) {
+                            headerInner.classList.remove('justify-center', 'justify-end');
+                            headerInner.classList.add('justify-between');
+                        }
+                        if (sidebarNav) {
+                            sidebarNav.classList.remove('items-center');
+                            sidebarNav.classList.add('items-stretch');
+                            sidebarNav.classList.remove('space-y-1');
+                            sidebarNav.classList.add('space-y-1');
+                        }
+                        if (dividerLine) dividerLine.style.left = '18rem';
+
+                        navLinks.forEach(function (link) {
+                            link.classList.remove('w-12', 'h-12', 'justify-center');
+                            link.classList.add('w-full', 'h-12', 'justify-start', 'pl-5');
+                            var label = link.querySelector('.md-label');
+                            if (label) { label.classList.remove('hidden'); label.classList.add('inline'); }
+                        });
+
+                        if (logoutBtn) {
+                            logoutBtn.classList.remove('w-12');
+                            logoutBtn.classList.add('w-full');
+                            var lLabel = logoutBtn.querySelector('.md-label');
+                            if (lLabel) { lLabel.classList.remove('hidden'); lLabel.classList.add('inline'); }
+                        }
+                    } else {
+                        // Collapsed state
+                        sidebar.classList.remove('w-72');
+                        sidebar.classList.add('w-20', 'items-center');
+
+                        if (logoText) {
+                            logoText.classList.remove('opacity-100', 'pl-12');
+                            logoText.classList.add('hidden', 'opacity-0', 'neon-text-blue', 'pl-1');
+                            logoText.textContent = "A";
+                        }
+
+                        if (logoImg) {
+                            logoImg.classList.remove('left-4');
+                            logoImg.classList.add('left-1/2', '-translate-x-1/2');
+                        }
+
+                        var icon = toggleBtn ? toggleBtn.querySelector('.toggle-icon') : null;
+                        if (icon) icon.textContent = 'start';
+                        if (toggleBtn) {
+                            toggleBtn.classList.remove('w-8', 'h-8', 'rounded-lg', 'relative');
+                            toggleBtn.classList.add('w-6', 'h-6', 'absolute', 'right-[2px]', 'translate-x-[2px]');
+                        }
+
+                        if (headerArea) {
+                            headerArea.classList.remove('px-6', 'justify-between');
+                            headerArea.classList.add('px-0', 'justify-end', 'pr-4');
+                        }
+                        if (headerInner) {
+                            headerInner.classList.remove('justify-between', 'justify-end');
+                            headerInner.classList.add('justify-center');
+                        }
+                        if (sidebarNav) {
+                            sidebarNav.classList.remove('items-stretch');
+                            sidebarNav.classList.add('items-center');
+                        }
+                        if (dividerLine) dividerLine.style.left = '5rem';
+
+                        navLinks.forEach(function (link) {
+                            link.classList.remove('w-full', 'justify-start', 'pl-5');
+                            link.classList.add('w-12', 'h-12', 'justify-center');
+                            var label = link.querySelector('.md-label');
+                            if (label) { label.classList.remove('inline'); label.classList.add('hidden'); }
+                        });
+
+                        if (logoutBtn) {
+                            logoutBtn.classList.remove('w-full');
+                            logoutBtn.classList.add('w-12');
+                            var lLabel = logoutBtn.querySelector('.md-label');
+                            if (lLabel) { lLabel.classList.remove('inline'); lLabel.classList.add('hidden'); }
+                        }
+                    }
+
+                    // Re-enable transitions
+                    requestAnimationFrame(function () {
+                        requestAnimationFrame(function () {
+                            transitionEls.forEach(function (el) { el.style.transition = ''; });
+                        });
+                    });
+                })();
+        </script>
+
+        <div class="flex-1 flex flex-col h-full relative z-10 overflow-hidden">
+            <header class="w-full h-[72px] z-50 header-glass flex items-center justify-between px-8 shrink-0 relative">
+                <div class="flex items-center gap-6">
+                    <div class="flex items-center">
+                        <div
+                            class="pill-tag px-3 py-1.5 rounded-full text-[11px] font-medium text-slate-400 tracking-wide flex items-center gap-2 hover:border-white/20 transition-colors cursor-pointer group">
+                            <span
+                                class="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_6px_rgba(16,185,129,0.8)] animate-pulse"></span>
+                            ClientSite.com
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute left-[30%] transform -translate-x-1/2">
+                    <h2 class="text-xl font-bold text-white tracking-wide"
+                        style="text-shadow: 0 0 20px rgba(255,255,255,0.2);">Dashboard</h2>
+                </div>
+                <div class="flex items-center gap-4">
+                    <span class="text-xs text-slate-500 font-medium hidden lg:block tracking-wide mr-2">Last updated:
+                        <span class="text-slate-300">2h ago</span></span>
+                    <div class="housed-profile-container group">
+                        <button
+                            class="w-8 h-8 flex items-center justify-center rounded-full text-slate-400 hover:text-white hover:bg-white/10 transition-all relative mr-2">
+                            <span class="material-symbols-outlined text-[20px]">notifications</span>
+                            <span
+                                class="absolute top-1.5 right-1.5 w-1.5 h-1.5 bg-electric-blue rounded-full shadow-[0_0_8px_#0052ff]"></span>
+                        </button>
+                        <div class="w-[1px] h-6 bg-white/10 mr-3"></div>
+                        <div class="flex items-center gap-3 cursor-pointer">
+                            <div
+                                class="w-8 h-8 rounded-full bg-slate-900 overflow-hidden ring-1 ring-white/10 group-hover:ring-electric-blue/50 transition-all shadow-lg relative">
+                                <img alt="User avatar" class="w-full h-full object-cover"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-n-gT0hmTLr68Q785q7si3dFoLMf7H3GynEF6Z2J24-oBY6nDcs61FaN_0-30RLylxw003MUNZjpmJEexdEOJj6EEIbz0kZyi3H7h8vYFqMgF4VyTUf3tatWeOJc4rj5wEdq1c8r291KAyy2Koyp1ed59PBohstiFLTdn9RH0JY9xz4enWsYbeYg0rREdlR6xdaOfvqCBbaSbgP_7p5ElqBZWky_f-ZvrE4SNxQiwFsigcG5W4EJdfdSofsdUwfj2bTUS2j4nyW6y" />
+                            </div>
+                            <div class="flex flex-col text-left">
+                                <span
+                                    class="text-[9px] text-slate-400 uppercase tracking-widest leading-none mb-0.5">Admin</span>
+                                <p
+                                    class="text-xs font-bold text-white group-hover:text-electric-blue transition-colors leading-none">
+                                    Administrator</p>
+                            </div>
+                            <span
+                                class="material-symbols-outlined text-slate-500 text-lg group-hover:text-white transition-colors ml-1">expand_more</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <main class="flex-1 overflow-y-auto h-full p-4 md:p-6 scroll-smooth">
+                <div class="max-w-[1600px] mx-auto flex flex-col gap-6">
+                    <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-2">
+                        <div class="micro-card rounded-xl p-4 relative group flex flex-col justify-between h-[120px]">
+                            <div class="flex justify-between items-start">
+                                <div class="flex flex-col">
+                                    <span
+                                        class="text-slate-400 text-[11px] uppercase font-bold tracking-wider mb-1">Total
+                                        Visitors</span>
+                                    <h3 class="text-2xl font-bold text-white neon-text" data-metric="totalVisitors">--
+                                    </h3>
+                                </div>
+                                <div class="flex flex-col items-end">
+                                    <span
+                                        class="text-emerald-400 flex items-center text-[10px] font-bold bg-emerald-900/40 border border-emerald-500/30 px-1.5 py-0.5 rounded shadow-[0_0_8px_rgba(16,185,129,0.2)] mb-1"
+                                        data-trend="chartTotal">--%</span>
+                                    <span class="text-slate-500 text-[10px]">vs last week</span>
+                                </div>
+                            </div>
+                            <div class="w-full h-8 relative mt-2">
+                                <svg class="w-full h-full overflow-visible" preserveAspectRatio="none"
+                                    viewBox="0 0 100 30">
+                                    <path class="mini-spark drop-shadow-[0_0_5px_rgba(0,82,255,0.5)]"
+                                        d="M0,30 L10,25 L20,28 L30,15 L40,20 L50,10 L60,18 L70,5 L80,12 L90,8 L100,15"
+                                        fill="none" stroke="#0052FF" stroke-width="2"></path>
+                                    <path
+                                        d="M0,30 L10,25 L20,28 L30,15 L40,20 L50,10 L60,18 L70,5 L80,12 L90,8 L100,15 V 30 H 0 Z"
+                                        fill="url(#miniGradient1)" opacity="0.2"></path>
+                                    <defs>
+                                        <linearGradient id="miniGradient1" x1="0" x2="0" y1="0" y2="1">
+                                            <stop offset="0%" stop-color="#0052FF" stop-opacity="0.5"></stop>
+                                            <stop offset="100%" stop-color="#0052FF" stop-opacity="0"></stop>
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="micro-card rounded-xl p-4 relative group flex flex-col justify-between h-[120px]">
+                            <div class="flex justify-between items-start">
+                                <div class="flex flex-col">
+                                    <span
+                                        class="text-slate-400 text-[11px] uppercase font-bold tracking-wider mb-1">Active
+                                        Users</span>
+                                    <h3 class="text-2xl font-bold text-white" data-metric="activeUsers">--</h3>
+                                </div>
+                                <div class="flex flex-col items-end">
+                                    <span
+                                        class="text-emerald-400 flex items-center text-[10px] font-bold bg-emerald-900/40 border border-emerald-500/30 px-1.5 py-0.5 rounded shadow-[0_0_8px_rgba(16,185,129,0.2)] mb-1"
+                                        data-trend="activeUsers">--%</span>
+                                    <span class="text-slate-500 text-[10px]">vs last week</span>
+                                </div>
+                            </div>
+                            <div class="w-full h-8 relative mt-2">
+                                <svg class="w-full h-full overflow-visible" preserveAspectRatio="none"
+                                    viewBox="0 0 100 30">
+                                    <path class="mini-spark drop-shadow-[0_0_5px_rgba(0,82,255,0.5)]"
+                                        d="M0,25 L15,22 L30,26 L45,18 L60,20 L75,10 L90,14 L100,5" fill="none"
+                                        stroke="#0052FF" stroke-width="2"></path>
+                                    <path d="M0,25 L15,22 L30,26 L45,18 L60,20 L75,10 L90,14 L100,5 V 30 H 0 Z"
+                                        fill="url(#miniGradient2)" opacity="0.2"></path>
+                                    <defs>
+                                        <linearGradient id="miniGradient2" x1="0" x2="0" y1="0" y2="1">
+                                            <stop offset="0%" stop-color="#0052FF" stop-opacity="0.5"></stop>
+                                            <stop offset="100%" stop-color="#0052FF" stop-opacity="0"></stop>
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="micro-card rounded-xl p-4 relative group flex flex-col justify-between h-[120px]">
+                            <div class="flex justify-between items-start">
+                                <div class="flex flex-col">
+                                    <span
+                                        class="text-slate-400 text-[11px] uppercase font-bold tracking-wider mb-1">Bounce
+                                        Rate</span>
+                                    <h3 class="text-2xl font-bold text-white" data-metric="bounceRate">--%</h3>
+                                </div>
+                                <div class="flex flex-col items-end">
+                                    <span
+                                        class="text-rose-400 flex items-center text-[10px] font-bold bg-rose-900/40 border border-rose-500/30 px-1.5 py-0.5 rounded shadow-[0_0_8px_rgba(244,63,94,0.2)] mb-1"
+                                        data-trend="bounceRate">--%</span>
+                                    <span class="text-slate-500 text-[10px]">vs last week</span>
+                                </div>
+                            </div>
+                            <div class="w-full h-8 relative mt-2">
+                                <svg class="w-full h-full overflow-visible" preserveAspectRatio="none"
+                                    viewBox="0 0 100 30">
+                                    <path class="mini-spark drop-shadow-[0_0_5px_rgba(0,82,255,0.5)]"
+                                        d="M0,10 L15,15 L30,12 L45,20 L60,18 L75,25 L90,22 L100,28" fill="none"
+                                        stroke="#0052FF" stroke-width="2"></path>
+                                    <path d="M0,10 L15,15 L30,12 L45,20 L60,18 L75,25 L90,22 L100,28 V 30 H 0 Z"
+                                        fill="url(#miniGradient3)" opacity="0.2"></path>
+                                    <defs>
+                                        <linearGradient id="miniGradient3" x1="0" x2="0" y1="0" y2="1">
+                                            <stop offset="0%" stop-color="#0052FF" stop-opacity="0.5"></stop>
+                                            <stop offset="100%" stop-color="#0052FF" stop-opacity="0"></stop>
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                            </div>
+                        </div>
+                        <div class="micro-card rounded-xl p-4 relative group flex flex-col justify-between h-[120px]">
+                            <div class="flex justify-between items-start">
+                                <div class="flex flex-col">
+                                    <span
+                                        class="text-slate-400 text-[11px] uppercase font-bold tracking-wider mb-1">Avg.
+                                        Session</span>
+                                    <h3 class="text-2xl font-bold text-white" data-metric="avgSession">--</h3>
+                                </div>
+                                <div class="flex flex-col items-end">
+                                    <span
+                                        class="text-emerald-400 flex items-center text-[10px] font-bold bg-emerald-900/40 border border-emerald-500/30 px-1.5 py-0.5 rounded shadow-[0_0_8px_rgba(16,185,129,0.2)] mb-1"
+                                        data-trend="avgSession">--%</span>
+                                    <span class="text-slate-500 text-[10px]">vs last week</span>
+                                </div>
+                            </div>
+                            <div class="w-full h-8 relative mt-2">
+                                <svg class="w-full h-full overflow-visible" preserveAspectRatio="none"
+                                    viewBox="0 0 100 30">
+                                    <path class="mini-spark drop-shadow-[0_0_5px_rgba(0,82,255,0.5)]"
+                                        d="M0,28 L12,24 L24,26 L36,18 L48,22 L60,15 L72,20 L84,10 L100,5" fill="none"
+                                        stroke="#0052FF" stroke-width="2"></path>
+                                    <path d="M0,28 L12,24 L24,26 L36,18 L48,22 L60,15 L72,20 L84,10 L100,5 V 30 H 0 Z"
+                                        fill="url(#miniGradient4)" opacity="0.2"></path>
+                                    <defs>
+                                        <linearGradient id="miniGradient4" x1="0" x2="0" y1="0" y2="1">
+                                            <stop offset="0%" stop-color="#0052FF" stop-opacity="0.5"></stop>
+                                            <stop offset="100%" stop-color="#0052FF" stop-opacity="0"></stop>
+                                        </linearGradient>
+                                    </defs>
+                                </svg>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+                        <div
+                            class="glass-panel lg:col-span-2 rounded-2xl p-6 border border-white/10 shadow-[0_0_30px_rgba(0,0,0,0.8)] relative">
+                            <div class="neon-border-top"></div>
+                            <div class="flex justify-between items-start mb-6 relative z-10">
+                                <div>
+                                    <div class="flex items-center gap-3 mb-1">
+                                        <h3 class="text-lg font-bold text-white">Visitors &amp; Traffic Trends</h3>
+                                        <span
+                                            class="bg-blue-900/30 text-blue-300 text-[10px] px-2 py-0.5 rounded border border-blue-500/20">Live
+                                            Data</span>
+                                    </div>
+                                    <div class="flex items-baseline gap-3">
+                                        <span data-metric="chartTotal"
+                                            class="text-3xl font-bold text-white tracking-tight neon-text">--</span>
+                                        <span class="text-emerald-400 text-sm font-bold flex items-center gap-1">
+                                            <span class="material-symbols-outlined text-sm"
+                                                data-trend-icon="chartTotal"></span> <span
+                                                data-trend="chartTotal">--%</span>
+                                        </span>
+                                        <span class="text-slate-500 text-xs">vs. previous period</span>
+                                    </div>
+                                </div>
+                                <div class="flex flex-col items-end gap-3">
+                                    <div class="flex gap-1 p-0.5 bg-black/40 rounded-lg border border-white/10">
+                                        <button
+                                            class="px-3 py-1 text-[10px] font-medium rounded hover:bg-white/10 text-slate-400 hover:text-white transition-colors">Daily</button>
+                                        <button
+                                            class="px-3 py-1 text-[10px] font-bold rounded bg-electric-blue text-white shadow-[0_0_10px_rgba(0,82,255,0.4)]">Weekly</button>
+                                        <button
+                                            class="px-3 py-1 text-[10px] font-medium rounded hover:bg-white/10 text-slate-400 hover:text-white transition-colors">Monthly</button>
+                                    </div>
+                                    <div class="flex items-center gap-4 text-[10px]">
+                                        <div class="flex items-center gap-1.5">
+                                            <span
+                                                class="w-2 h-2 rounded-full bg-electric-blue shadow-[0_0_5px_#0052ff]"></span>
+                                            <span class="text-slate-300">Current Period</span>
+                                        </div>
+                                        <div class="flex items-center gap-1.5">
+                                            <span class="w-2 h-2 rounded-full bg-white/30"></span>
+                                            <span class="text-slate-500">Previous Period</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="relative h-[340px] w-full mt-2 group z-10">
+                                <div
+                                    class="absolute inset-0 flex flex-col justify-between pointer-events-none pb-8 pl-8">
+                                    <div class="flex w-full items-center"><span
+                                            class="text-[10px] text-slate-600 w-8 -ml-8 text-right pr-2"></span>
+                                        <div class="w-full h-px bg-white/5 dashed"></div>
+                                    </div>
+                                    <div class="flex w-full items-center"><span
+                                            class="text-[10px] text-slate-600 w-8 -ml-8 text-right pr-2"></span>
+                                        <div class="w-full h-px bg-white/5 dashed"></div>
+                                    </div>
+                                    <div class="flex w-full items-center"><span
+                                            class="text-[10px] text-slate-600 w-8 -ml-8 text-right pr-2"></span>
+                                        <div class="w-full h-px bg-white/5 dashed"></div>
+                                    </div>
+                                    <div class="flex w-full items-center"><span
+                                            class="text-[10px] text-slate-600 w-8 -ml-8 text-right pr-2"></span>
+                                        <div class="w-full h-px bg-white/5 dashed"></div>
+                                    </div>
+                                    <div class="flex w-full items-center"><span
+                                            class="text-[10px] text-slate-600 w-8 -ml-8 text-right pr-2"></span>
+                                        <div class="w-full h-px bg-white/5 dashed"></div>
+                                    </div>
+                                </div>
+                                <svg class="w-full h-full overflow-visible pl-8 pb-8" preserveAspectRatio="none"
+                                    viewBox="0 0 1000 300">
+                                    <defs>
+                                        <linearGradient id="gradientArea" x1="0" x2="0" y1="0" y2="1">
+                                            <stop offset="0%" stop-color="#0052FF" stop-opacity="0.4"></stop>
+                                            <stop offset="100%" stop-color="#0052FF" stop-opacity="0"></stop>
+                                        </linearGradient>
+                                        <filter height="200%" id="glow" width="200%" x="-50%" y="-50%">
+                                            <feGaussianBlur result="blur" stdDeviation="6"></feGaussianBlur>
+                                            <feComposite in="SourceGraphic" in2="blur" operator="over"></feComposite>
+                                        </filter>
+                                    </defs>
+                                    <path
+                                        d="M0,280 C100,270 150,220 200,240 C250,260 300,180 400,200 C500,220 550,160 650,180 C750,200 800,250 900,220 C950,200 1000,150 1000,150"
+                                        fill="none" stroke="rgba(255,255,255,0.2)" stroke-dasharray="5,5"
+                                        stroke-width="2"></path>
+                                    <path
+                                        d="M0,250 C100,240 150,150 200,180 C250,210 300,100 400,120 C500,140 550,60 650,80 C750,100 800,200 900,150 C950,125 1000,50 1000,50 V300 H0 Z"
+                                        fill="url(#gradientArea)"></path>
+                                    <path
+                                        d="M0,250 C100,240 150,150 200,180 C250,210 300,100 400,120 C500,140 550,60 650,80 C750,100 800,200 900,150 C950,125 1000,50 1000,50"
+                                        fill="none" filter="url(#glow)" stroke="#0052FF" stroke-opacity="0.6"
+                                        stroke-width="4"></path>
+                                    <path
+                                        d="M0,250 C100,240 150,150 200,180 C250,210 300,100 400,120 C500,140 550,60 650,80 C750,100 800,200 900,150 C950,125 1000,50 1000,50"
+                                        fill="none" stroke="#60a5fa" stroke-width="3"></path>
+                                    <circle class="opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                                        cx="200" cy="180" fill="#000" r="4" stroke="#60a5fa" stroke-width="2"></circle>
+                                    <circle class="opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                                        cx="400" cy="120" fill="#000" r="4" stroke="#60a5fa" stroke-width="2"></circle>
+                                    <circle class="shadow-[0_0_15px_#0052ff]" cx="650" cy="80" fill="#fff" r="6"
+                                        stroke="#0052ff" stroke-width="3"></circle>
+                                </svg>
+                                <div
+                                    class="absolute top-[20%] left-[62%] bg-black/80 backdrop-blur-md border border-electric-blue/50 p-3 rounded-lg shadow-[0_0_20px_rgba(0,82,255,0.3)] z-30 transform -translate-x-1/2 -translate-y-full mb-2 tooltip-custom">
+                                    <p class="text-[10px] text-slate-400 mb-1">Oct 26, 2023</p>
+                                    <div class="flex items-center gap-2">
+                                        <span class="w-2 h-2 rounded-full bg-electric-blue"></span>
+                                        <span class="text-white font-bold text-lg"></span>
+                                    </div>
+                                    <p class="text-emerald-400 text-xs font-medium mt-1">+12% vs avg</p>
+                                    <div
+                                        class="absolute bottom-[-5px] left-1/2 -translate-x-1/2 w-3 h-3 bg-black/80 border-r border-b border-electric-blue/50 transform rotate-45">
+                                    </div>
+                                </div>
+                                <div
+                                    class="flex justify-between pl-8 mt-[-20px] text-[10px] font-medium text-slate-500 uppercase tracking-widest relative z-10 w-full">
+                                    <span>Mon</span><span>Tue</span><span>Wed</span><span>Thu</span><span>Fri</span><span>Sat</span><span>Sun</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="flex flex-col gap-6 h-full">
+                            <div
+                                class="device-box glass-panel rounded-2xl p-5 flex-1 flex flex-col relative overflow-hidden h-[240px]">
+                                <div class="absolute inset-0 bg-electric-blue/5 z-0"></div>
+                                <div
+                                    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-32 h-32 bg-electric-blue/20 rounded-full blur-[50px] z-0">
+                                </div>
+                                <div class="flex justify-between items-center mb-2 z-10">
+                                    <h3 class="text-sm font-bold text-white uppercase tracking-wider">Device Breakdown
+                                    </h3>
+                                    <button class="text-slate-500 hover:text-white"><span
+                                            class="material-symbols-outlined text-sm">devices</span></button>
+                                </div>
+                                <div class="flex-1 flex flex-col items-center justify-center relative z-10">
+                                    <div class="relative w-36 h-36 flex items-center justify-center">
+                                        <svg class="w-full h-full transform -rotate-90">
+                                            <circle cx="72" cy="72" fill="transparent" r="60"
+                                                stroke="rgba(255,255,255,0.05)" stroke-width="12"></circle>
+                                            <circle class="drop-shadow-[0_0_8px_rgba(147,197,253,0.4)]" cx="72" cy="72"
+                                                fill="transparent" r="60" stroke="#93c5fd" stroke-dasharray="30 347"
+                                                stroke-dashoffset="-347" stroke-width="12"></circle>
+                                            <circle class="drop-shadow-[0_0_8px_rgba(255,255,255,0.4)]" cx="72" cy="72"
+                                                fill="transparent" r="60" stroke="#ffffff" stroke-dasharray="120 257"
+                                                stroke-dashoffset="-226" stroke-width="12"></circle>
+                                            <circle class="drop-shadow-[0_0_15px_rgba(0,82,255,0.8)]" cx="72" cy="72"
+                                                fill="transparent" r="60" stroke="#0052FF" stroke-dasharray="226 151"
+                                                stroke-dashoffset="0" stroke-linecap="butt" stroke-width="12"></circle>
+                                        </svg>
+                                        <div class="absolute flex flex-col items-center">
+                                            <span
+                                                class="text-3xl font-bold text-white drop-shadow-[0_0_10px_rgba(0,82,255,0.8)]">60%</span>
+                                            <span
+                                                class="text-[10px] uppercase tracking-widest text-electric-blue font-semibold">Mobile</span>
+                                        </div>
+                                    </div>
+                                    <div class="w-full flex justify-between mt-4 px-2">
+                                        <div class="flex flex-col items-center">
+                                            <div class="flex items-center gap-1.5 mb-1">
+                                                <span
+                                                    class="w-2 h-2 rounded-full bg-white shadow-[0_0_6px_rgba(255,255,255,0.6)]"></span>
+                                                <span
+                                                    class="text-[10px] text-slate-400 uppercase tracking-wider">Desktop</span>
+                                            </div>
+                                            <span class="text-sm font-bold text-white">32%</span>
+                                        </div>
+                                        <div class="w-[1px] h-8 bg-white/10"></div>
+                                        <div class="flex flex-col items-center">
+                                            <div class="flex items-center gap-1.5 mb-1">
+                                                <span
+                                                    class="w-2 h-2 rounded-full bg-blue-300 shadow-[0_0_6px_rgba(147,197,253,0.4)]"></span>
+                                                <span
+                                                    class="text-[10px] text-slate-400 uppercase tracking-wider">Tablet</span>
+                                            </div>
+                                            <span class="text-sm font-bold text-white">8%</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="glass-panel rounded-2xl p-5 flex flex-col relative overflow-hidden h-[240px]">
+                                <div
+                                    class="absolute bottom-0 left-0 w-20 h-20 bg-emerald-500/10 rounded-full blur-[30px] z-0">
+                                </div>
+                                <div class="flex justify-between items-center mb-4 z-10">
+                                    <h3 class="text-sm font-bold text-white uppercase tracking-wider">Top Pages</h3>
+                                    <button class="text-slate-500 hover:text-white"><span
+                                            class="material-symbols-outlined text-sm">arrow_forward</span></button>
+                                </div>
+                                <div class="flex-1 overflow-y-auto pr-1 space-y-3 custom-scrollbar z-10">
+                                    <div class="flex items-center justify-between group cursor-pointer">
+                                        <div class="flex flex-col">
+                                            <span
+                                                class="text-xs font-medium text-white group-hover:text-electric-blue transition-colors">/dashboard/home</span>
+                                            <span class="text-[10px] text-slate-500">2 mins ago</span>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <span class="text-xs font-bold text-white">24k</span>
+                                            <div class="w-16 h-1 bg-white/10 rounded-full overflow-hidden">
+                                                <div class="h-full bg-electric-blue w-[85%]"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center justify-between group cursor-pointer">
+                                        <div class="flex flex-col">
+                                            <span
+                                                class="text-xs font-medium text-white group-hover:text-electric-blue transition-colors">/profile/settings</span>
+                                            <span class="text-[10px] text-slate-500">15 mins ago</span>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <span class="text-xs font-bold text-white">12k</span>
+                                            <div class="w-16 h-1 bg-white/10 rounded-full overflow-hidden">
+                                                <div class="h-full bg-emerald-400 w-[60%]"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center justify-between group cursor-pointer">
+                                        <div class="flex flex-col">
+                                            <span
+                                                class="text-xs font-medium text-white group-hover:text-electric-blue transition-colors">/products/view</span>
+                                            <span class="text-[10px] text-slate-500">1 hr ago</span>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <span class="text-xs font-bold text-white">8.4k</span>
+                                            <div class="w-16 h-1 bg-white/10 rounded-full overflow-hidden">
+                                                <div class="h-full bg-purple-400 w-[45%]"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center justify-between group cursor-pointer">
+                                        <div class="flex flex-col">
+                                            <span
+                                                class="text-xs font-medium text-white group-hover:text-electric-blue transition-colors">/analytics/reports</span>
+                                            <span class="text-[10px] text-slate-500">3 hrs ago</span>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <span class="text-xs font-bold text-white">5.1k</span>
+                                            <div class="w-16 h-1 bg-white/10 rounded-full overflow-hidden">
+                                                <div class="h-full bg-slate-500 w-[30%]"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="glass-panel rounded-2xl overflow-hidden border border-white/10 relative mt-2">
+                        <div class="neon-border-top"></div>
+                        <div
+                            class="p-4 border-b border-white/5 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 relative z-10">
+                            <h3 class="text-base font-bold text-white">Recent Activity Log</h3>
+                            <div class="flex gap-3">
+                                <div class="relative group">
+                                    <span
+                                        class="absolute left-3 top-2 text-slate-400 material-symbols-outlined text-sm group-focus-within:text-electric-blue transition-colors">search</span>
+                                    <input
+                                        class="bg-black/40 border border-white/10 rounded-lg pl-9 pr-4 py-1.5 text-xs text-white placeholder-slate-500 focus:outline-none focus:border-electric-blue focus:ring-1 focus:ring-electric-blue focus:shadow-[0_0_15px_rgba(0,82,255,0.2)] transition-all"
+                                        placeholder="Search logs..." type="text" />
+                                </div>
+                                <button
+                                    class="flex items-center gap-2 px-3 py-1.5 bg-white/5 hover:bg-white/10 rounded-lg text-xs text-white transition-colors border border-white/5 hover:border-white/20">
+                                    <span class="material-symbols-outlined text-sm">filter_list</span>
+                                    Filter
+                                </button>
+                            </div>
+                        </div>
+                        <div class="overflow-x-auto relative z-10">
+                            <table class="w-full text-left border-collapse">
+                                <thead>
+                                    <tr
+                                        class="text-[10px] text-slate-500 uppercase tracking-widest border-b border-white/5 bg-black/30">
+                                        <th class="p-4 font-semibold">User</th>
+                                        <th class="p-4 font-semibold">Action</th>
+                                        <th class="p-4 font-semibold">Date &amp; Time</th>
+                                        <th class="p-4 font-semibold">Status</th>
+                                        <th class="p-4 font-semibold text-right">Details</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="text-xs divide-y divide-white/5">
+                                    <tr class="group transition-colors hover:bg-white/[0.02]">
+                                        <td class="p-4">
+                                            <div class="flex items-center gap-3">
+                                                <div
+                                                    class="w-7 h-7 rounded-full bg-gradient-to-br from-electric-blue to-black p-[1px] shadow-[0_0_10px_rgba(0,82,255,0.3)]">
+                                                    <div
+                                                        class="w-full h-full rounded-full bg-black flex items-center justify-center text-[9px] font-bold text-white">
+                                                        JD</div>
+                                                </div>
+                                                <span
+                                                    class="font-medium text-white group-hover:text-electric-blue transition-colors">John
+                                                    Doe</span>
+                                            </div>
+                                        </td>
+                                        <td class="p-4 text-slate-300 group-hover:text-white">Updated system
+                                            configurations</td>
+                                        <td class="p-4 text-slate-500 font-mono">Oct 24 • 10:42 AM</td>
+                                        <td class="p-4">
+                                            <span
+                                                class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-900/30 text-emerald-400 border border-emerald-500/20 shadow-[0_0_8px_rgba(16,185,129,0.1)]">
+                                                <span
+                                                    class="w-1 h-1 rounded-full bg-emerald-500 shadow-[0_0_5px_#10b981]"></span>
+                                                Success
+                                            </span>
+                                        </td>
+                                        <td class="p-4 text-right">
+                                            <button
+                                                class="text-slate-500 hover:text-white transition-colors p-1 hover:bg-white/10 rounded">
+                                                <span class="material-symbols-outlined text-base">chevron_right</span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr class="group transition-colors hover:bg-white/[0.02]">
+                                        <td class="p-4">
+                                            <div class="flex items-center gap-3">
+                                                <div
+                                                    class="w-7 h-7 rounded-full bg-gradient-to-br from-white to-black p-[1px] shadow-[0_0_8px_rgba(255,255,255,0.2)]">
+                                                    <div
+                                                        class="w-full h-full rounded-full bg-black flex items-center justify-center text-[9px] font-bold text-white">
+                                                        AS</div>
+                                                </div>
+                                                <span
+                                                    class="font-medium text-white group-hover:text-electric-blue transition-colors">Alice
+                                                    Smith</span>
+                                            </div>
+                                        </td>
+                                        <td class="p-4 text-slate-300 group-hover:text-white">Deployed new build v2.4.0
+                                        </td>
+                                        <td class="p-4 text-slate-500 font-mono">Oct 24 • 09:15 AM</td>
+                                        <td class="p-4">
+                                            <span
+                                                class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-bold bg-blue-900/30 text-blue-400 border border-blue-500/20 shadow-[0_0_8px_rgba(59,130,246,0.1)]">
+                                                <span
+                                                    class="w-1 h-1 rounded-full bg-blue-500 animate-pulse shadow-[0_0_5px_#3b82f6]"></span>
+                                                Processing
+                                            </span>
+                                        </td>
+                                        <td class="p-4 text-right">
+                                            <button
+                                                class="text-slate-500 hover:text-white transition-colors p-1 hover:bg-white/10 rounded">
+                                                <span class="material-symbols-outlined text-base">chevron_right</span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                    <tr class="group transition-colors hover:bg-white/[0.02]">
+                                        <td class="p-4">
+                                            <div class="flex items-center gap-3">
+                                                <div
+                                                    class="w-7 h-7 rounded-full bg-gradient-to-br from-red-600 to-black p-[1px] shadow-[0_0_8px_rgba(220,38,38,0.3)]">
+                                                    <div
+                                                        class="w-full h-full rounded-full bg-black flex items-center justify-center text-[9px] font-bold text-white">
+                                                        MK</div>
+                                                </div>
+                                                <span
+                                                    class="font-medium text-white group-hover:text-electric-blue transition-colors">Mike
+                                                    K.</span>
+                                            </div>
+                                        </td>
+                                        <td class="p-4 text-slate-300 group-hover:text-white">Login attempt failed</td>
+                                        <td class="p-4 text-slate-500 font-mono">Oct 23 • 11:59 PM</td>
+                                        <td class="p-4">
+                                            <span
+                                                class="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-[10px] font-bold bg-red-900/30 text-red-400 border border-red-500/20 shadow-[0_0_8px_rgba(239,68,68,0.1)]">
+                                                <span
+                                                    class="w-1 h-1 rounded-full bg-red-500 shadow-[0_0_5px_#ef4444]"></span>
+                                                Failed
+                                            </span>
+                                        </td>
+                                        <td class="p-4 text-right">
+                                            <button
+                                                class="text-slate-500 hover:text-white transition-colors p-1 hover:bg-white/10 rounded">
+                                                <span class="material-symbols-outlined text-base">chevron_right</span>
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+</body>
+
+</html>

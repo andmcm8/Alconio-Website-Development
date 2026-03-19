@@ -1,0 +1,28 @@
+[
+  {
+    "id": "1773468791415",
+    "name": "Arcaico Studio",
+    "website": "arcaico.vercel.app",
+    "plan": "Standard",
+    "fee": "120",
+    "ecommerce": "No",
+    "email": "dailyinternet2523@gmail.com",
+    "status": "Active",
+    "date": "3/14/2026",
+    "ga_property_id": "472282239",
+    "clerk_user_id": "user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W"
+  },
+  {
+    "id": "1773469709904",
+    "name": "Nova Dynamics",
+    "website": "https://novadynamics.io",
+    "plan": "Custom",
+    "fee": "1200",
+    "ecommerce": "Yes",
+    "email": "andresmcmahon@gmail.com",
+    "status": "Active",
+    "date": "3/14/2026",
+    "ga_property_id": "000000000",
+    "clerk_user_id": "user_2uBvN6C8PjXJp9Q0R1S2T3U4V5X"
+  }
+]

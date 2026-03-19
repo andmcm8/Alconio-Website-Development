@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>ALCONIO - Building Digital Futures</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0e00a3",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#02010A",
+                        "tech-blue": "#04052E",
+                        "deep-purple": "#140152",
+                        "glow-blue": "#0D00A4",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            scroll-behavior: smooth;
+        }
+        .glow-border {
+            border: 1px solid rgba(13, 0, 164, 0.3);
+            box-shadow: 0 0 15px rgba(13, 0, 164, 0.1);
+        }
+        .glow-border:hover {
+            border-color: rgba(13, 0, 164, 0.6);
+            box-shadow: 0 0 20px rgba(13, 0, 164, 0.2);
+        }
+        .hero-gradient {
+            background: radial-gradient(circle at 50% 50%, #140152 0%, #02010A 70%);
+        }
+        .perspective-card {
+            perspective: 1000px;
+        }
+        .skew-mockup {
+            transform: perspective(1000px) rotateY(-15deg) rotateX(5deg);
+        }
+        .skew-mockup-reverse {
+            transform: perspective(1000px) rotateY(15deg) rotateX(5deg);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-white selection:bg-primary selection:text-white">
+<!-- 1. Sticky Header -->
+<header class="fixed top-0 left-0 right-0 z-50 bg-background-dark/80 backdrop-blur-md border-b border-white/5 px-6 py-4">
+<div class="max-w-7xl mx-auto flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="size-8 bg-primary rounded-lg flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-xl">deployed_code</span>
+</div>
+<h1 class="text-xl font-bold tracking-tighter text-white">ALCONIO</h1>
+</div>
+<nav class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-400">
+<a class="hover:text-white transition-colors" href="#services">Services</a>
+<a class="hover:text-white transition-colors" href="#process">Process</a>
+<a class="hover:text-white transition-colors" href="#portfolio">Work</a>
+<a class="hover:text-white transition-colors" href="#testimonials">Clients</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="bg-primary hover:bg-glow-blue text-white px-5 py-2 rounded-lg text-sm font-bold transition-all glow-border">
+                    Get Started
+                </button>
+</div>
+</div>
+</header>
+<!-- 2. Hero Section -->
+<section class="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 hero-gradient">
+<!-- Abstract Geometric Background -->
+
+<div class="relative z-10 text-center px-4 max-w-4xl mx-auto">
+<h1 class="text-7xl md:text-9xl font-bold tracking-tighter mb-6 bg-clip-text text-transparent bg-gradient-to-b from-white to-gray-500">
+                ALCONIO
+            </h1>
+<div class="h-12 mb-8">
+<p class="text-xl md:text-2xl text-gray-400 font-light italic">
+                    Building <span class="text-white font-medium border-r-2 border-primary pr-1">intelligent automations</span>
+</p>
+</div>
+<div class="flex flex-col md:flex-row items-center justify-center gap-4">
+<button class="w-full md:w-auto px-8 py-4 bg-primary text-white font-bold rounded-xl text-lg hover:scale-105 transition-transform glow-border">
+                    View Our Work
+                </button>
+<button class="w-full md:w-auto px-8 py-4 bg-white/5 text-white font-bold rounded-xl text-lg hover:bg-white/10 transition-colors border border-white/10">
+                    Start Your Project
+                </button>
+</div>
+</div>
+<div class="absolute bottom-10 left-1/2 -translate-x-1/2 animate-bounce opacity-50">
+<span class="material-symbols-outlined">expand_more</span>
+</div>
+</section>
+<!-- 3. Trust Section (Logo Carousel) -->
+
+<!-- 4. Services Section (Staggered Grid) -->
+<section class="py-24 bg-background-dark" id="services">
+<div class="max-w-7xl mx-auto px-6">
+<div class="mb-16">
+<h2 class="text-4xl font-bold mb-4">Our Services</h2>
+<div class="w-20 h-1 bg-primary"></div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Card 1 -->
+<div class="group glow-border bg-white/5 p-8 rounded-2xl md:translate-y-0 transition-all hover:-translate-y-2">
+<div class="size-14 bg-primary/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
+<span class="material-symbols-outlined text-primary group-hover:text-white text-3xl">language</span>
+</div>
+<h3 class="text-2xl font-bold mb-4">Website Dev</h3>
+<p class="text-gray-400 leading-relaxed mb-6">Scalable, high-performance digital platforms built with modern stacks like Next.js and Tailwind.</p>
+<ul class="space-y-3 text-sm text-gray-500">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> Responsive Architecture</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> SEO Optimization</li>
+</ul>
+</div>
+<!-- Card 2 -->
+<div class="group glow-border bg-white/5 p-8 rounded-2xl md:translate-y-8 transition-all hover:-translate-y-2">
+<div class="size-14 bg-primary/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
+<span class="material-symbols-outlined text-primary group-hover:text-white text-3xl">smart_toy</span>
+</div>
+<h3 class="text-2xl font-bold mb-4">AI Automation</h3>
+<p class="text-gray-400 leading-relaxed mb-6">Intelligent workflow bots that eliminate repetitive tasks and augment human decision-making.</p>
+<ul class="space-y-3 text-sm text-gray-500">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> LLM Integration</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> Process Optimization</li>
+</ul>
+</div>
+<!-- Card 3 -->
+<div class="group glow-border bg-white/5 p-8 rounded-2xl md:translate-y-16 transition-all hover:-translate-y-2">
+<div class="size-14 bg-primary/20 rounded-xl flex items-center justify-center mb-6 group-hover:bg-primary transition-colors">
+<span class="material-symbols-outlined text-primary group-hover:text-white text-3xl">developer_board</span>
+</div>
+<h3 class="text-2xl font-bold mb-4">Custom Solutions</h3>
+<p class="text-gray-400 leading-relaxed mb-6">Tailored technical architectures designed to solve unique complex business challenges.</p>
+<ul class="space-y-3 text-sm text-gray-500">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> API Strategy</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-sm">check_circle</span> Cloud Infrastructure</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<!-- 5. Process Section (Vertical Timeline) -->
+<section class="py-24 bg-tech-blue/30 relative" id="process">
+<div class="max-w-4xl mx-auto px-6">
+<h2 class="text-4xl font-bold mb-20 text-center">Engineered For Success</h2>
+<div class="relative">
+<!-- Vertical Line -->
+<div class="absolute left-1/2 top-0 bottom-0 w-px border-l border-dashed border-primary/40 -translate-x-1/2"></div>
+<!-- Steps -->
+<div class="space-y-24">
+<!-- Step 1 -->
+<div class="relative flex items-center justify-between">
+<div class="w-5/12 text-right">
+<h4 class="text-2xl font-bold mb-2">Discovery</h4>
+<p class="text-gray-400">Deep dive into your business requirements and technical landscape.</p>
+</div>
+<div class="relative z-10 size-10 bg-primary rounded-full flex items-center justify-center glow-border animate-pulse">
+<span class="text-sm font-bold">01</span>
+</div>
+<div class="w-5/12"></div>
+</div>
+<!-- Step 2 -->
+<div class="relative flex items-center justify-between">
+<div class="w-5/12"></div>
+<div class="relative z-10 size-10 bg-deep-purple border border-primary rounded-full flex items-center justify-center">
+<span class="text-sm font-bold">02</span>
+</div>
+<div class="w-5/12 text-left">
+<h4 class="text-2xl font-bold mb-2">Strategy</h4>
+<p class="text-gray-400">Architecting the roadmap and selecting the optimal technology stack.</p>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="relative flex items-center justify-between">
+<div class="w-5/12 text-right">
+<h4 class="text-2xl font-bold mb-2">Build</h4>
+<p class="text-gray-400">Agile development with continuous integration and rapid prototyping.</p>
+</div>
+<div class="relative z-10 size-10 bg-primary rounded-full flex items-center justify-center glow-border">
+<span class="text-sm font-bold">03</span>
+</div>
+<div class="w-5/12"></div>
+</div>
+<!-- Step 4 -->
+<div class="relative flex items-center justify-between">
+<div class="w-5/12"></div>
+<div class="relative z-10 size-10 bg-deep-purple border border-primary rounded-full flex items-center justify-center">
+<span class="text-sm font-bold">04</span>
+</div>
+<div class="w-5/12 text-left">
+<h4 class="text-2xl font-bold mb-2">Launch</h4>
+<p class="text-gray-400">Deployment, performance tuning, and scaling for growth.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 6. Capabilities (Alternating Text/Mockup) -->
+<section class="py-24 bg-background-dark overflow-hidden">
+<div class="max-w-7xl mx-auto px-6 space-y-32">
+<!-- Cap 1 -->
+<div class="flex flex-col md:flex-row items-center gap-16">
+<div class="flex-1">
+<span class="text-primary font-bold tracking-widest uppercase text-sm mb-4 block">Web Systems</span>
+<h3 class="text-4xl font-bold mb-6">Custom Web Apps</h3>
+<p class="text-gray-400 text-lg leading-relaxed mb-8">We build interactive, real-time web applications that provide seamless user experiences across all devices. Using React and Node.js, we ensure speed and security are prioritized.</p>
+<button class="flex items-center gap-2 text-white font-bold hover:text-primary transition-colors">
+                        Learn more <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<div class="flex-1 perspective-card">
+<div class="skew-mockup bg-tech-blue rounded-xl p-2 glow-border">
+<img class="rounded-lg w-full" data-alt="Dashboard interface with data visualization charts" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_d-juHUV-_bMz9MO-mDM7j1zufoTmBYC_sGL4L0lCm0hZGIMxaDYI1LJhimMdGX4ElCJBdsVmlv1POh-Cey0dqEJMKGeHnuV73KfB1sKHr1h-ek19Ikum03brQarye58uYdQEhT_4AHIxw7ZNwOTOxrBl6iU-uq55BI6PQ2fzOsvQ7yalJSoWGpclpbojEmLd-QzFoSdEftbnzaP4WAax9NlXWiZMZceoi2fmYzfzbagp56P52Ub-tynOeRwraMzKHuC_zLFGDMQD"/>
+</div>
+</div>
+</div>
+<!-- Cap 2 -->
+<div class="flex flex-col md:flex-row-reverse items-center gap-16">
+<div class="flex-1">
+<span class="text-primary font-bold tracking-widest uppercase text-sm mb-4 block">Intelligence</span>
+<h3 class="text-4xl font-bold mb-6">AI Chatbots</h3>
+<p class="text-gray-400 text-lg leading-relaxed mb-8">Leveraging the power of GPT-4 and custom embedding, our chatbots understand context, intent, and complex queries to automate customer support and sales.</p>
+<button class="flex items-center gap-2 text-white font-bold hover:text-primary transition-colors">
+                        Learn more <span class="material-symbols-outlined">arrow_forward</span>
+</button>
+</div>
+<div class="flex-1 perspective-card">
+<div class="skew-mockup-reverse bg-tech-blue rounded-xl p-2 glow-border">
+<img class="rounded-lg w-full" data-alt="AI interface showing neural network patterns" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA46FuI1c5pJ3CDseRsrkjYX6hVPtxXByfA5W4dzHF4-6JJHmPajCrfn8ZpKXZeW68hkA3MvKQeDF1RY8LSwoKxfe0W26tETDeVczLKASZE8p_apHGXNhX2LByyT70JDIlZ_6XXue9QkpjuuAYRKaXiOxL2qfsXyddHk8ssWZ4ksgr2VTfAMpjKhALnX0W2h5gdNL30nmKaE9dCwsoETr0kDXzgZwvWifujrfNDdwmH8E5FoF2I154__6kX1s5FXTY0uZuOhm29G1tk"/>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 7. Metrics Section -->
+<section class="py-20 bg-primary/10 border-y border-primary/20">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
+<div>
+<div class="text-5xl font-bold mb-2">50+</div>
+<div class="text-gray-400 uppercase text-xs tracking-widest">Projects Completed</div>
+</div>
+<div>
+<div class="text-5xl font-bold mb-2">98%</div>
+<div class="text-gray-400 uppercase text-xs tracking-widest">Client Satisfaction</div>
+</div>
+<div>
+<div class="text-5xl font-bold mb-2">24h</div>
+<div class="text-gray-400 uppercase text-xs tracking-widest">Support Response</div>
+</div>
+<div>
+<div class="text-5xl font-bold mb-2">10M+</div>
+<div class="text-gray-400 uppercase text-xs tracking-widest">Lines of Code</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 8. Portfolio Preview (2x3 Grid) -->
+<section class="py-24 bg-background-dark" id="portfolio">
+<div class="max-w-7xl mx-auto px-6">
+<div class="flex justify-between items-end mb-16">
+<div>
+<h2 class="text-4xl font-bold mb-4">Our Portfolio</h2>
+<p class="text-gray-400 max-w-xl">A selection of recent works that define our commitment to excellence and technical innovation.</p>
+</div>
+<button class="hidden md:block text-primary font-bold">View all projects</button>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Project Card 1 -->
+<div class="group relative aspect-video overflow-hidden rounded-xl glow-border">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Minimalist SaaS analytics platform design" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_kCm2yqYexfOhH_NeFuQQwMcBo-k4LMR_p9I_hzlR4eFvTt3R3Xs4KO6ei6_qbZREdoFULNWIzmPGHaMSVU4h3m5ADmnPXObySTD0yKLmoFzoBjgO_FCBfW3r0HnmZRO5mS33dS5dDtAdNnXnHWq-XSzADfQ4YiyNKYMXjXzGTk-x3SaRXMTOD8SAFC-dTnRsubwQzIfIK8hgDp9VQIfB4uJ33t7b1fDmJoefsbn3YHzWVRH7pt5AE6CkTMrueZy75i84DIilQib7"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark/90 to-transparent flex flex-col justify-end p-6 opacity-0 group-hover:opacity-100 transition-opacity">
+<h4 class="text-xl font-bold">SaaS Pulse</h4>
+<p class="text-sm text-gray-400">Enterprise Data Viz</p>
+</div>
+</div>
+<!-- Project Card 2 -->
+<div class="group relative aspect-video overflow-hidden rounded-xl glow-border">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Modern mobile app interface mockup" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPZBbKMyt7xRjE2nQ1Goi39k6a7F366gyNVyRkWLHQiNI_x7E0zMDeLUmIWSfCDYxSmzifXiVwAa0GMjCbZMjgCiT63N3y4oy_CpnedxJV0moD-uqlzIYYrwNLHAYR9Y7JFVfMb5DvfOoDyIS-1tEvjK-yEH0_0lhn_TS3adyh8C5RvfaKxzZveSfonv8d3C3nQwupyyOogxBwdE8oD2XlXeZDwF3u9TAJW3TB-iTSGGGWxSca38gpXLGkwr6r7o76d1i6iS1EaGL2"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark/90 to-transparent flex flex-col justify-end p-6 opacity-0 group-hover:opacity-100 transition-opacity">
+<h4 class="text-xl font-bold">NovaPay</h4>
+<p class="text-sm text-gray-400">Fintech Platform</p>
+</div>
+</div>
+<!-- Project Card 3 -->
+<div class="group relative aspect-video overflow-hidden rounded-xl glow-border">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Dark futuristic tech background with data patterns" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDavZ52nv5rICPALA7-Y9T_OSXnJ-NSBpllTCyoYKSTFkuaFXP5_d7g7lcCpeig4DiO-bRkYSgA9YesLRVL1BfMp1isFpIGxgVWC2jIW-oNo6nnRhZoXuBOf1LNCBmURnhNdmfQb5o-nQC6lv-YMcgzI9ZuoP0PAADSfv5F8MNaXUSKpkPLEYfb02kE9lCHmzAxSZT0VzXC4-hskPjeqNCO9o3JGW-KhjYWLQBmEhugHZbC8tyCwLr7TXAJftGpYq1ERKeV74eKNIDb"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark/90 to-transparent flex flex-col justify-end p-6 opacity-0 group-hover:opacity-100 transition-opacity">
+<h4 class="text-xl font-bold">Aether AI</h4>
+<p class="text-sm text-gray-400">Neural Integration</p>
+</div>
+</div>
+<!-- Project Card 4 -->
+<div class="group relative aspect-video overflow-hidden rounded-xl glow-border">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Close up of high-end design work" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyhqMzUib-YWPppnuIplhIK7kKJoAsMUrtp3ZgtcYL5Pa5axmeSKnv4ZYGpAgxYUrmzt1sYIgabeUVp1FguY6raWvlNWXP_w79de_FrBz--RIMtn_GZQ-n26-uXlb-nkZJkysQazjDxmQlTqjyUmDN_eSpD1s5yxQvbfURazRvDSNJ2sFmkdRmkUHcevFXVNp9IKaIWDrKcxRL8n7tOWA2yLKX1Ab4yMms54edBDoruLG_8ryMHOqEQFSQb8i-ax5kp6y3AjPQ1qHk"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark/90 to-transparent flex flex-col justify-end p-6 opacity-0 group-hover:opacity-100 transition-opacity">
+<h4 class="text-xl font-bold">Lumina</h4>
+<p class="text-sm text-gray-400">Creative Agency</p>
+</div>
+</div>
+<!-- Project Card 5 -->
+<div class="group relative aspect-video overflow-hidden rounded-xl glow-border">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Ecommerce checkout experience visual" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAf0QSslTy6urHnsm9heWFEARsxNPQIR9w3JuwwP3h7eLkRlxRY22cW-SicYHYIYR51o4yR12-ULgU6I_dC66vipO2bezuUZgjnB0xuREXz6_FkLN71TkRAhcIIPXAKJUi1-U-Ij31ihZ8tCwP36iIhWY_9T6xuAzkueJ3UZpC5e8llV-8pP0iNgdN2vphaFWMvUloUf6jI6YDIJAIuC-CYXsA1oPAybflTOVR8YQPjCM31wIt821LH3m5zHiNhwGyY2mNh4x7mYa8g"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark/90 to-transparent flex flex-col justify-end p-6 opacity-0 group-hover:opacity-100 transition-opacity">
+<h4 class="text-xl font-bold">ShopFlow</h4>
+<p class="text-sm text-gray-400">E-commerce Solution</p>
+</div>
+</div>
+<!-- Project Card 6 -->
+<div class="group relative aspect-video overflow-hidden rounded-xl glow-border">
+<img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" data-alt="Cybersecurity data protection graphic" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaUjNf9c69ZfmP3jAkqMR_CMgaU57jTO3bU5DWntEcdX34sILpaAjIDXLmg59mXSR8ah98mcnO_eG5UUzvsGe8Q4CJ33-pMg_y8-6Coe4uyzMDKje43GYiSH0I-sYvOgMoGoOQ0FZegpbfkN-rgz-MMeTuB3znNYbLjHdj4HOZVcTvxjDRLGg1aoZZicGrE9ji3pKQGc98PAJ2fs_c4Fk-NyxZAdwn_cp9QhyEfruoNFEX_7bzRcy4aINqfgMKFhx41uxVLTLzA0DW"/>
+<div class="absolute inset-0 bg-gradient-to-t from-background-dark/90 to-transparent flex flex-col justify-end p-6 opacity-0 group-hover:opacity-100 transition-opacity">
+<h4 class="text-xl font-bold">SecureShield</h4>
+<p class="text-sm text-gray-400">Infosec Dashboard</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- 9. Tech Stack Section -->
+<section class="py-24 bg-tech-blue/20">
+<div class="max-w-7xl mx-auto px-6 text-center">
+<h2 class="text-2xl font-bold text-gray-400 mb-12 uppercase tracking-widest">Our Modern Stack</h2>
+<div class="flex flex-wrap justify-center gap-12 text-gray-500">
+<div class="flex flex-col items-center gap-2 grayscale hover:grayscale-0 transition-all cursor-default group">
+<span class="material-symbols-outlined text-5xl group-hover:text-primary">javascript</span>
+<span class="text-xs font-bold uppercase">React</span>
+</div>
+<div class="flex flex-col items-center gap-2 grayscale hover:grayscale-0 transition-all cursor-default group">
+<span class="material-symbols-outlined text-5xl group-hover:text-primary">neurology</span>
+<span class="text-xs font-bold uppercase">OpenAI</span>
+</div>
+<div class="flex flex-col items-center gap-2 grayscale hover:grayscale-0 transition-all cursor-default group">
+<span class="material-symbols-outlined text-5xl group-hover:text-primary">cloud_done</span>
+<span class="text-xs font-bold uppercase">AWS</span>
+</div>
+<div class="flex flex-col items-center gap-2 grayscale hover:grayscale-0 transition-all cursor-default group">
+<span class="material-symbols-outlined text-5xl group-hover:text-primary">database</span>
+<span class="text-xs font-bold uppercase">PostgreSQL</span>
+</div>
+<div class="flex flex-col items-center gap-2 grayscale hover:grayscale-0 transition-all cursor-default group">
+<span class="material-symbols-outlined text-5xl group-hover:text-primary">api</span>
+<span class="text-xs font-bold uppercase">GraphQL</span>
+</div>
+<div class="flex flex-col items-center gap-2 grayscale hover:grayscale-0 transition-all cursor-default group">
+<span class="material-symbols-outlined text-5xl group-hover:text-primary">terminal</span>
+<span class="text-xs font-bold uppercase">Node.js</span>
+</div>
+</div>
+</div>
+</section>
+<!-- 10. Testimonials (Perspective Horizontal) -->
+
+<!-- 11. CTA Section -->
+<section class="py-24 px-6 bg-background-dark">
+<div class="max-w-5xl mx-auto bg-primary rounded-3xl p-12 md:p-20 text-center relative overflow-hidden glow-border">
+<!-- Decorative circle -->
+<div class="absolute -top-24 -right-24 size-64 bg-white/10 rounded-full blur-3xl"></div>
+<div class="absolute -bottom-24 -left-24 size-64 bg-background-dark/30 rounded-full blur-3xl"></div>
+<div class="relative z-10">
+<h2 class="text-4xl md:text-6xl font-bold mb-8">Ready to Automate Your Future?</h2>
+<p class="text-xl text-white/80 mb-10 max-w-2xl mx-auto">Join dozens of companies scaling faster with ALCONIO's custom tech solutions.</p>
+<div class="flex flex-col md:flex-row items-center justify-center gap-4">
+<button class="bg-white text-primary px-10 py-5 rounded-xl font-bold text-lg hover:shadow-2xl transition-all">
+                        Book a Strategy Call
+                    </button>
+<button class="bg-transparent border border-white/30 text-white px-10 py-5 rounded-xl font-bold text-lg hover:bg-white/10 transition-all">
+                        View Pricing
+                    </button>
+</div>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-background-dark py-20 px-6 border-t border-white/5">
+<div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+<div class="col-span-1 md:col-span-1">
+<div class="flex items-center gap-3 mb-6">
+<div class="size-6 bg-primary rounded flex items-center justify-center">
+<span class="material-symbols-outlined text-white text-xs">deployed_code</span>
+</div>
+<h2 class="text-lg font-bold tracking-tighter">ALCONIO</h2>
+</div>
+<p class="text-gray-500 text-sm leading-relaxed mb-6">Building next-generation digital experiences through intelligence and automation.</p>
+<div class="flex items-center gap-4">
+<a class="text-gray-500 hover:text-white transition-colors" href="#"><span class="material-symbols-outlined">alternate_email</span></a>
+<a class="text-gray-500 hover:text-white transition-colors" href="#"><span class="material-symbols-outlined">public</span></a>
+<a class="text-gray-500 hover:text-white transition-colors" href="#"><span class="material-symbols-outlined">groups</span></a>
+</div>
+</div>
+<div>
+<h4 class="font-bold mb-6 text-white">Services</h4>
+<ul class="space-y-4 text-gray-500 text-sm">
+<li><a class="hover:text-primary transition-colors" href="#">Web Development</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">AI &amp; Automation</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Cloud Architecture</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Tech Consulting</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold mb-6 text-white">Company</h4>
+<ul class="space-y-4 text-gray-500 text-sm">
+<li><a class="hover:text-primary transition-colors" href="#">About Us</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Process</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Portfolio</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Careers</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold mb-6 text-white">Newsletter</h4>
+<p class="text-sm text-gray-500 mb-4">Get the latest insights on tech and AI.</p>
+<form class="flex gap-2">
+<input class="bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-primary w-full" placeholder="Email address" type="email"/>
+<button class="bg-primary p-2 rounded-lg hover:bg-glow-blue transition-colors">
+<span class="material-symbols-outlined text-sm">send</span>
+</button>
+</form>
+</div>
+</div>
+<div class="max-w-7xl mx-auto border-t border-white/5 mt-16 pt-8 flex flex-col md:flex-row justify-between text-gray-600 text-xs gap-4">
+<p>© 2024 ALCONIO. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="hover:text-white transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-white transition-colors" href="#">Terms of Service</a>
+</div>
+</div>
+</footer>
+</body></html>

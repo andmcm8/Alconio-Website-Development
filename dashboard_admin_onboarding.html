@@ -1,0 +1,1319 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    
+    <!-- Strict Role-Based Access Control (RBAC) Guard -->
+    <script>
+        (function() {
+            // 1. Instant concealment
+            document.documentElement.style.display = 'none';
+
+            // Constants
+            const IS_ADMIN_PAGE = window.location.pathname.includes('dashboard_admin') || window.location.pathname.includes('dashboard_onboarding');
+            const EXPECTED_ROLE = IS_ADMIN_PAGE ? 'admin' : 'client';
+
+            function handleAuthFailure(reason) {
+                console.error('[STRICT-AUTH] Redirecting due to:', reason);
+                window.location.replace('dashboard_signin.html?reason=' + encodeURIComponent(reason));
+            }
+
+            function handleRoleMismatch(foundRole) {
+                console.warn('[STRICT-AUTH] Role mismatch. Found:', foundRole, 'Expected:', EXPECTED_ROLE);
+                const target = foundRole === 'admin' ? 'dashboard_admin.html' : 'dashboard_overview.html';
+                window.location.replace(target);
+            }
+
+            async function verifyAccess() {
+                try {
+                    // 2. Wait for Clerk
+                    if (typeof Clerk === 'undefined') {
+                        let attempts = 0;
+                        while (typeof Clerk === 'undefined' && attempts < 100) {
+                            await new Promise(r => setTimeout(r, 50));
+                            attempts++;
+                        }
+                    }
+
+                    if (typeof Clerk === 'undefined') return handleAuthFailure('clerk_timeout');
+
+                    // 3. Ensure loaded
+                    if (!Clerk.loaded) await Clerk.load();
+
+                    // 4. Verification logic
+                    if (!Clerk.isSignedIn) {
+                        return handleAuthFailure('not_signed_in');
+                    }
+
+                    const userRole = Clerk.user?.publicMetadata?.role;
+                    
+                    if (!userRole) {
+                        return handleAuthFailure('no_role_assigned');
+                    }
+
+                    if (userRole !== EXPECTED_ROLE) {
+                        return handleRoleMismatch(userRole);
+                    }
+
+                    // 5. Success - reveal page
+                    document.documentElement.style.display = '';
+                    console.log('[STRICT-AUTH] Access granted for role:', userRole);
+                    
+                    // Extra safety: call window.requireRole if it exists yet
+                    if (typeof window.requireRole === 'function') {
+                        window.requireRole(EXPECTED_ROLE);
+                    }
+                } catch (err) {
+                    console.error('[STRICT-AUTH] Guard error:', err);
+                    handleAuthFailure('guard_error');
+                }
+            }
+
+            // Execute verification
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', verifyAccess);
+            } else {
+                verifyAccess();
+            }
+        })();
+    </script>
+
+
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Alconio Admin - Onboarding Wizard</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "electric-blue": "#0052FF",
+                        "electric-blue-light": "#3374ff",
+                        "obsidian": "#000000",
+                        "obsidian-panel": "#050508",
+                        "glass-border": "rgba(0, 82, 255, 0.3)",
+                        "glass-highlight": "rgba(255, 255, 255, 0.15)",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Space Grotesk", "sans-serif"]
+                    },
+                    boxShadow: {
+                        'neon-blue': '0 0 20px rgba(0, 82, 255, 0.4), inset 0 0 10px rgba(0, 82, 255, 0.1)',
+                        'neon-white': '0 0 15px rgba(255, 255, 255, 0.3)',
+                        'glass-edge': 'inset 1px 1px 0 0 rgba(255, 255, 255, 0.2), inset -1px -1px 0 0 rgba(0, 0, 0, 0.5)',
+                        'header-glow': '0 4px 30px rgba(0, 0, 0, 0.8), 0 1px 0 rgba(0, 82, 255, 0.5)',
+                        'icon-glass': '0 4px 12px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.15)',
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #000000;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #1e1e24;
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0052FF;
+        }
+
+        .glass-panel {
+            background: linear-gradient(160deg, rgba(10, 10, 15, 0.85) 0%, rgba(0, 0, 0, 0.95) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 82, 255, 0.15);
+            border-top: 1px solid rgba(100, 150, 255, 0.3);
+            border-left: 1px solid rgba(100, 150, 255, 0.3);
+            box-shadow:
+                0 0 30px rgba(0, 0, 0, 0.8),
+                inset 0 0 20px rgba(0, 82, 255, 0.03);
+            position: relative;
+
+        }
+
+        .glass-panel::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+            filter: blur(20px);
+            opacity: 0.6;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .glass-panel::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(0, 82, 255, 0.15) 0%, transparent 70%);
+            filter: blur(30px);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .glass-card {
+            background: linear-gradient(135deg, rgba(15, 20, 35, 0.9) 0%, rgba(5, 5, 8, 0.95) 100%);
+            border: 1px solid rgba(0, 82, 255, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.9), inset 0 0 30px rgba(0, 82, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            box-shadow: 0 0 25px rgba(0, 82, 255, 0.25), inset 0 0 20px rgba(0, 82, 255, 0.1);
+            border-color: rgba(0, 82, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .nav-active-highlight {
+            background: linear-gradient(90deg, rgba(0, 82, 254, 0.2) 0%, rgba(0, 0, 0, 0) 100%);
+            border-left: 3px solid #0052FF;
+            box-shadow: inset 10px 0 20px -10px rgba(0, 82, 255, 0.3);
+        }
+
+        .neon-text {
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(0, 82, 255, 0.5);
+        }
+
+        .neon-text-blue {
+            color: #0052FF;
+            text-shadow: 0 0 10px rgba(0, 82, 255, 0.8);
+        }
+
+        .neon-border-top {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 82, 255, 1), transparent);
+            opacity: 0.6;
+        }
+
+        tr.group:hover td {
+            background: rgba(0, 82, 255, 0.05);
+        }
+
+        .header-glass {
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
+        }
+
+        .sidebar-header-area {
+            height: 72px;
+            display: flex;
+            align-items: center;
+        }
+
+        .pill-tag {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(5px);
+        }
+
+        .icon-glass-container {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(0, 82, 255, 0.1);
+            backdrop-filter: blur(8px);
+        }
+
+        .icon-glass-container:hover {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.05) 100%);
+            box-shadow: 0 0 15px rgba(0, 82, 255, 0.3), inset 0 0 25px rgba(0, 82, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .profile-glass-pill {
+            background: linear-gradient(135deg, rgba(20, 20, 25, 0.8) 0%, rgba(5, 5, 8, 0.9) 100%);
+            border: 1px solid rgba(0, 82, 255, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6), inset 0 0 15px rgba(0, 82, 255, 0.15);
+            backdrop-filter: blur(12px);
+        }
+
+        .profile-glass-pill:hover {
+            background: linear-gradient(135deg, rgba(30, 30, 40, 0.9) 0%, rgba(10, 10, 15, 0.95) 100%);
+            box-shadow: 0 0 20px rgba(0, 82, 255, 0.3), inset 0 0 25px rgba(0, 82, 255, 0.2);
+            border-color: rgba(0, 82, 255, 0.5);
+        }
+
+        .mini-spark {
+            filter: drop-shadow(0 0 4px rgba(0, 82, 255, 0.6));
+        }
+
+        .micro-card {
+            background: linear-gradient(135deg, rgba(15, 20, 35, 0.7) 0%, rgba(5, 5, 8, 0.8) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 1px solid rgba(255, 255, 255, 0.15);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .micro-card:hover {
+            background: linear-gradient(135deg, rgba(20, 25, 45, 0.8) 0%, rgba(10, 10, 15, 0.9) 100%);
+            border-color: rgba(0, 82, 255, 0.4);
+            box-shadow: 0 0 15px rgba(0, 82, 255, 0.15);
+        }
+
+        .tooltip-custom {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+        }
+
+        .group:hover .tooltip-custom {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .progress-ring__circle {
+            transition: stroke-dashoffset 0.35s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+
+        .device-box {
+            background: linear-gradient(145deg, rgba(10, 10, 15, 0.9) 0%, rgba(5, 5, 10, 0.95) 100%);
+            box-shadow: 0 0 25px rgba(0, 82, 255, 0.15), inset 0 0 40px rgba(0, 82, 255, 0.1);
+        }
+
+        .housed-profile-container {
+            display: flex;
+            align-items: center;
+            background: rgba(10, 10, 14, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 9999px;
+            padding: 4px;
+            padding-right: 16px;
+            backdrop-filter: blur(8px);
+            transition: border-color 0.2s;
+        }
+
+        .housed-profile-container:hover {
+            border-color: rgba(0, 82, 255, 0.3);
+            background: rgba(15, 15, 22, 0.8);
+        }
+
+        .unified-header-line {
+            position: fixed;
+            top: 72px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: rgba(0, 82, 255, 0.15);
+            box-shadow: 0 0 2px rgba(0, 82, 255, 0.1);
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+        .sidebar-divider-line {
+            position: fixed;
+            top: 0;
+            left: 5rem;
+            width: 1px;
+            height: 100vh;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.05), rgba(0, 82, 255, 0.9), rgba(255, 255, 255, 0.05));
+            box-shadow: 0 0 12px rgba(0, 82, 255, 0.5);
+            z-index: 40;
+            pointer-events: none;
+        }
+    </style>
+    <!-- Clerk JS SDK -->
+    <script async crossorigin="anonymous"
+        data-clerk-publishable-key="pk_test_d2FudGVkLWRhbmUtODQuY2xlcmsuYWNjb3VudHMuZGV2JA"
+        src="https://wanted-dane-84.clerk.accounts.dev/npm/@clerk/clerk-js@5/dist/clerk.browser.js"
+        type="text/javascript">
+        </script>
+
+
+
+
+
+
+</head>
+
+<body
+    class="bg-obsidian text-slate-200 font-display antialiased overflow-x-hidden selection:bg-electric-blue selection:text-white">
+    <!-- Instant Cache Loader -->
+    <script id="instant-loader">
+            (function () {
+                const cacheStr = localStorage.getItem('alconio_dashboard_cache_' + (localStorage.getItem('__clerk_user_id') || 'last_session'));
+                if (!cacheStr) return;
+                const cache = JSON.parse(cacheStr);
+                const observer = new MutationObserver((mutations) => {
+                    for (const mutation of mutations) {
+                        for (const node of mutation.addedNodes) {
+                            if (node.nodeType !== 1) continue;
+                            const metrics = node.querySelectorAll ? Array.from(node.querySelectorAll('[data-metric]')) : [];
+                            if (node.hasAttribute && node.hasAttribute('data-metric')) metrics.push(node);
+                            metrics.forEach(el => {
+                                const key = el.getAttribute('data-metric');
+                                const val = (cache.overview && cache.overview[key]) ? cache.overview[key].value : (cache.currentMetrics ? cache.currentMetrics[key] : null);
+                                if (val !== null) el.textContent = val;
+                            });
+                            const trends = node.querySelectorAll ? Array.from(node.querySelectorAll('[data-trend]')) : [];
+                            if (node.hasAttribute && node.hasAttribute('data-trend')) trends.push(node);
+                            trends.forEach(el => {
+                                const key = el.getAttribute('data-trend');
+                                const data = cache.overview && cache.overview[key];
+                                if (data && data.trend !== undefined) {
+                                    const trend = data.trend;
+                                    const isUp = trend >= 0;
+                                    el.textContent = (isUp ? '+' : '') + trend.toFixed(1) + '%';
+                                    el.className = isUp
+                                        ? "text-emerald-400 flex items-center text-[10px] font-bold bg-emerald-900/40 border border-emerald-500/30 px-1.5 py-0.5 rounded shadow-[0_0_8px_rgba(16,185,129,0.2)] mb-1"
+                                        : "text-rose-400 flex items-center text-[10px] font-bold bg-rose-900/40 border border-rose-500/30 px-1.5 py-0.5 rounded shadow-[0_0_8px_rgba(244,63,94,0.2)] mb-1";
+                                }
+                            });
+                        }
+                    }
+                });
+                observer.observe(document.documentElement, { childList: true, subtree: true });
+                window.addEventListener('alconio-cache-applied', () => observer.disconnect());
+                // Fallback
+                setTimeout(() => observer.disconnect(), 2000);
+            })();
+    </script>
+    <div class="flex h-screen w-full overflow-hidden relative">
+        <div class="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
+            <div
+                class="absolute top-[-20%] left-[20%] w-[60%] h-[60%] bg-[#0052FF] opacity-[0.06] rounded-full blur-[150px]">
+            </div>
+            <div
+                class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-[#0052FF] opacity-[0.04] rounded-full blur-[120px]">
+            </div>
+        </div>
+        <div class="unified-header-line"></div>
+        <div class="sidebar-divider-line"></div>
+        <aside
+            class="dashboard-sidebar relative z-50 w-20 h-full glass-panel flex flex-col border-r-0 hidden md:flex shrink-0 items-center transition-all duration-300 !border-l-transparent border-l-0">
+            <div
+                class="sidebar-header-area relative h-16 px-0 w-full flex justify-end pr-4 shrink-0 transition-all duration-300">
+                <div class="header-inner flex items-center justify-end w-full h-full gap-4 transition-all duration-300">
+                    <h1 class="logo-text text-2xl font-bold tracking-tight text-white neon-text-blue transition-all duration-300"
+                        style="letter-spacing: -0.02em;"></h1>
+                    <img src="logo.png" alt="Logo"
+                        class="sidebar-logo-img w-12 h-12 object-contain transition-all duration-300 absolute top-1/2 -translate-y-1/2 z-10">
+                    <button
+                        class="side-bar-toggle w-6 h-6 rounded flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition-all border border-transparent hover:border-white/10 group">
+                        <span
+                            class="toggle-icon material-symbols-outlined text-sm group-hover:text-electric-blue transition-colors">start</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Notification Bell (Top) - Standardized for Admin too -->
+            <div id="notiBellContainer" class="w-full flex justify-center py-2 border-b border-white/5 transition-all duration-300">
+                <div class="relative group">
+                    <button id="notiBell" class="w-12 h-12 rounded-lg flex items-center justify-center hover:bg-white/5 transition-all relative group/notif">
+                        <span class="material-symbols-outlined text-slate-400 group-hover/notif:text-electric-blue transition-colors text-2xl nav-icon">notifications</span>
+                        <span class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Notifications</span>
+                    </button>
+                    <!-- Optional: Admin notification dot -->
+                    <span class="absolute top-3 right-3 w-2 h-2 bg-electric-blue rounded-full shadow-[0_0_8px_#0052ff]"></span>
+                </div>
+            </div>
+            <nav
+                class="flex-1 px-2 space-y-1 relative z-10 pt-6 w-full flex flex-col items-center overflow-x-hidden sidebar-scroll-hide transition-all duration-300">
+                <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative "
+                    href="dashboard_admin.html" data-tooltip="Clients">
+                    <span
+                        class="material-symbols-outlined text-slate-400 neon-text-blue text-2xl nav-icon flex-shrink-0">group</span>
+                    <span
+                        class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Clients</span>
+                </a>
+                <a class="active-nav-item bg-gradient-to-br from-electric-blue/20 to-electric-blue/5 border border-electric-blue/30 text-electric-blue shadow-[0_0_15px_rgba(0,82,255,0.2)] nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400"
+                    href="dashboard_admin_onboarding.html" data-tooltip="Onboarding">
+                    <span
+                        class="material-symbols-outlined group-hover:text-slate-400 transition-colors text-2xl nav-icon flex-shrink-0 neon-text-blue text-electric-blue">person_add</span>
+                    <span
+                        class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Onboarding</span>
+                </a>
+                <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400"
+                    href="dashboard_admin_billing.html" data-tooltip="Billing & Revenue">
+                    <span
+                        class="material-symbols-outlined group-hover:text-slate-400 transition-colors text-2xl nav-icon flex-shrink-0">payments</span>
+                    <span
+                        class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Billing & Revenue</span>
+                </a>
+                <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400"
+                    href="dashboard_admin_analytics.html" data-tooltip="Analytics Overview">
+                    <span
+                        class="material-symbols-outlined group-hover:text-slate-400 transition-colors text-2xl nav-icon flex-shrink-0">monitoring</span>
+                    <span
+                        class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Analytics Overview</span>
+                </a>
+                <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400"
+                    href="dashboard_admin_performance.html" data-tooltip="Performance Monitor">
+                    <span
+                        class="material-symbols-outlined group-hover:text-slate-400 transition-colors text-2xl nav-icon flex-shrink-0">speed</span>
+                    <span
+                        class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Performance Monitor</span>
+                </a>
+                <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400"
+                    href="dashboard_admin_activity.html" data-tooltip="Activity Log">
+                    <span
+                        class="material-symbols-outlined group-hover:text-slate-400 transition-colors text-2xl nav-icon flex-shrink-0">history</span>
+                    <span
+                        class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Activity Log</span>
+                </a>
+                <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400"
+                    href="dashboard_admin_settings.html" data-tooltip="Settings">
+                    <span
+                        class="material-symbols-outlined group-hover:text-slate-400 transition-colors text-2xl nav-icon flex-shrink-0">admin_panel_settings</span>
+                    <span
+                        class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Settings</span>
+                </a>
+            </nav>
+            <div
+                class="sidebar-footer-area p-4 relative z-10 border-t border-white/5 w-full flex justify-center mb-4 transition-all duration-300">
+                <button
+                    class="logout-btn w-12 h-12 flex items-center justify-center bg-gradient-to-r from-electric-blue to-blue-800 hover:from-blue-600 hover:to-blue-700 text-white rounded-lg shadow-[0_0_25px_rgba(0,82,255,0.4)] border border-white/10 transition-all transform active:scale-95 group relative"
+                    data-tooltip="Logout">
+                    <span
+                        class="material-symbols-outlined text-lg group-hover:animate-pulse flex-shrink-0">logout</span>
+                    <span
+                        class="md-label hidden font-bold text-sm tracking-wide ml-3 transition-opacity whitespace-nowrap">Logout</span>
+                </button>
+            </div>
+
+        </aside>
+        <!-- Sync Sidebar Anti-FOUC Script -->
+        <script>
+            (function () {
+                var sidebar = document.querySelector('aside.dashboard-sidebar');
+                if (!sidebar) return;
+                var toggleBtn = document.querySelector('.side-bar-toggle');
+                var headerInner = document.querySelector('.header-inner');
+                var headerArea = document.querySelector('.sidebar-header-area');
+                var logoText = document.querySelector('.logo-text');
+                var logoImg = document.querySelector('.sidebar-logo-img');
+                var navLinks = document.querySelectorAll('.nav-link-btn');
+                var dividerLine = document.querySelector('.sidebar-divider-line');
+                var logoutBtn = document.querySelector('.logout-btn');
+                var sidebarNav = document.querySelector('aside.dashboard-sidebar nav');
+
+                var isExpanded = localStorage.getItem('sidebarExpanded') !== 'false';
+
+                // Kill ALL transitions instantly
+                var transitionEls = [sidebar, headerArea, headerInner, sidebarNav, dividerLine, toggleBtn, logoText, logoImg].filter(Boolean);
+                navLinks.forEach(function (l) { transitionEls.push(l); });
+                if (logoutBtn) transitionEls.push(logoutBtn);
+                transitionEls.forEach(function (el) { el.style.transition = 'none'; });
+
+                if (isExpanded) {
+                    sidebar.classList.remove('w-20', 'items-center');
+                    sidebar.classList.add('w-72');
+
+                    if (logoText) {
+                        logoText.classList.remove('hidden', 'opacity-0');
+                        logoText.classList.add('opacity-100');
+                        logoText.textContent = "ALCONIO";
+                        logoText.classList.remove('neon-text-blue', 'pl-1');
+                        logoText.classList.add('pl-12');
+                    }
+
+                    if (logoImg) {
+                        logoImg.classList.remove('left-1/2', '-translate-x-1/2');
+                        logoImg.classList.add('left-4');
+                    }
+
+                    var icon = toggleBtn ? toggleBtn.querySelector('.toggle-icon') : null;
+                    if (icon) icon.textContent = 'keyboard_tab_rtl';
+                    if (toggleBtn) {
+                        toggleBtn.classList.remove('w-6', 'h-6', 'absolute', 'right-[2px]', 'translate-x-[2px]');
+                        toggleBtn.classList.add('w-8', 'h-8', 'rounded-lg', 'relative');
+                    }
+
+                    if (headerArea) {
+                        headerArea.classList.remove('px-0', 'justify-end', 'pr-4');
+                        headerArea.classList.add('px-6', 'justify-between');
+                    }
+                    if (headerInner) {
+                        headerInner.classList.remove('justify-center', 'justify-end');
+                        headerInner.classList.add('justify-between');
+                    }
+                    if (sidebarNav) {
+                        sidebarNav.classList.remove('items-center');
+                        sidebarNav.classList.add('items-stretch');
+                        sidebarNav.classList.remove('space-y-1');
+                        sidebarNav.classList.add('space-y-1');
+                    }
+                    if (dividerLine) dividerLine.style.left = '18rem';
+
+                    navLinks.forEach(function (link) {
+                        link.classList.remove('w-12', 'h-12', 'justify-center');
+                        link.classList.add('w-full', 'h-12', 'justify-start', 'pl-5');
+                        var label = link.querySelector('.md-label');
+                        if (label) { label.classList.remove('hidden'); label.classList.add('inline'); }
+                    });
+
+                    if (logoutBtn) {
+                        logoutBtn.classList.remove('w-12');
+                        logoutBtn.classList.add('w-full');
+                        var lLabel = logoutBtn.querySelector('.md-label');
+                        if (lLabel) { lLabel.classList.remove('hidden'); lLabel.classList.add('inline'); }
+                    }
+                } else {
+                    // Collapsed state
+                    sidebar.classList.remove('w-72');
+                    sidebar.classList.add('w-20', 'items-center');
+
+                    if (logoText) {
+                        logoText.classList.remove('opacity-100', 'pl-12');
+                        logoText.classList.add('hidden', 'opacity-0', 'neon-text-blue', 'pl-1');
+                        logoText.textContent = "A";
+                    }
+
+                    if (logoImg) {
+                        logoImg.classList.remove('left-4');
+                        logoImg.classList.add('left-1/2', '-translate-x-1/2');
+                    }
+
+                    var icon = toggleBtn ? toggleBtn.querySelector('.toggle-icon') : null;
+                    if (icon) icon.textContent = 'start';
+                    if (toggleBtn) {
+                        toggleBtn.classList.remove('w-8', 'h-8', 'rounded-lg', 'relative');
+                        toggleBtn.classList.add('w-6', 'h-6', 'absolute', 'right-[2px]', 'translate-x-[2px]');
+                    }
+
+                    if (headerArea) {
+                        headerArea.classList.remove('px-6', 'justify-between');
+                        headerArea.classList.add('px-0', 'justify-end', 'pr-4');
+                    }
+                    if (headerInner) {
+                        headerInner.classList.remove('justify-between', 'justify-end');
+                        headerInner.classList.add('justify-center');
+                    }
+                    if (sidebarNav) {
+                        sidebarNav.classList.remove('items-stretch');
+                        sidebarNav.classList.add('items-center');
+                    }
+                    if (dividerLine) dividerLine.style.left = '5rem';
+
+                    navLinks.forEach(function (link) {
+                        link.classList.remove('w-full', 'justify-start', 'pl-5');
+                        link.classList.add('w-12', 'h-12', 'justify-center');
+                        var label = link.querySelector('.md-label');
+                        if (label) { label.classList.remove('inline'); label.classList.add('hidden'); }
+                    });
+
+                    if (logoutBtn) {
+                        logoutBtn.classList.remove('w-full');
+                        logoutBtn.classList.add('w-12');
+                        var lLabel = logoutBtn.querySelector('.md-label');
+                        if (lLabel) { lLabel.classList.remove('inline'); lLabel.classList.add('hidden'); }
+                    }
+                }
+
+                // Re-enable transitions
+                requestAnimationFrame(function () {
+                    requestAnimationFrame(function () {
+                        transitionEls.forEach(function (el) { el.style.transition = ''; });
+                    });
+                });
+            })();
+        </script>
+
+        <div class="flex-1 flex flex-col h-full relative z-10 overflow-hidden">
+            <header class="w-full h-[72px] z-50 header-glass flex items-center justify-between px-8 shrink-0 relative">
+                <div class="flex items-center gap-6">
+                    <div class="flex items-center">
+                        <div
+                            class="pill-tag px-3 py-1.5 rounded-full text-[11px] font-medium text-slate-400 tracking-wide flex items-center gap-2 hover:border-white/20 transition-colors cursor-pointer group">
+                            <span
+                                class="w-1.5 h-1.5 rounded-full bg-electric-blue shadow-[0_0_6px_#0052ff] animate-pulse"></span>
+                            Alconio HQ
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute left-1/2 transform -translate-x-1/2 flex items-center justify-center pointer-events-none w-full max-w-[400px]">
+                    <h2 class="text-xl font-bold text-white tracking-wide whitespace-nowrap" style="text-shadow: 0 0 20px rgba(255,255,255,0.2);">Onboarding Wizard</h2>
+                </div>
+                <div class="flex items-center gap-4">
+                    <span class="text-xs text-slate-500 font-medium hidden lg:block tracking-wide mr-2">Last updated:
+                        <span class="text-slate-300">2h ago</span></span>
+                    <div class="housed-profile-container group">
+                        <button
+                            class="w-8 h-8 flex items-center justify-center rounded-full text-slate-400 hover:text-white hover:bg-white/10 transition-all relative mr-2">
+                            <span class="material-symbols-outlined text-[20px]">notifications</span>
+                            <span
+                                class="absolute top-1.5 right-1.5 w-1.5 h-1.5 bg-electric-blue rounded-full shadow-[0_0_8px_#0052ff]"></span>
+                        </button>
+                        <div class="w-[1px] h-6 bg-white/10 mr-3"></div>
+                        <div class="flex items-center gap-3 cursor-pointer">
+                            <div
+                                class="w-8 h-8 rounded-full bg-slate-900 overflow-hidden ring-1 ring-white/10 group-hover:ring-electric-blue/50 transition-all shadow-lg relative">
+                                <img alt="User avatar" class="w-full h-full object-cover"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-n-gT0hmTLr68Q785q7si3dFoLMf7H3GynEF6Z2J24-oBY6nDcs61FaN_0-30RLylxw003MUNZjpmJEexdEOJj6EEIbz0kZyi3H7h8vYFqMgF4VyTUf3tatWeOJc4rj5wEdq1c8r291KAyy2Koyp1ed59PBohstiFLTdn9RH0JY9xz4enWsYbeYg0rREdlR6xdaOfvqCBbaSbgP_7p5ElqBZWky_f-ZvrE4SNxQiwFsigcG5W4EJdfdSofsdUwfj2bTUS2j4nyW6y" />
+                            </div>
+                            <div class="flex flex-col text-left">
+                                <span
+                                    class="text-[9px] text-slate-400 uppercase tracking-widest leading-none mb-0.5">Admin</span>
+                                <p
+                                    class="text-xs font-bold text-white group-hover:text-slate-400 transition-colors leading-none">
+                                    Administrator</p>
+                            </div>
+                            <span
+                                class="material-symbols-outlined text-slate-500 text-lg group-hover:text-white transition-colors ml-1">expand_more</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <main class="flex-1 overflow-y-auto h-full p-4 md:p-6 scroll-smooth">
+                <div class="max-w-[1000px] mx-auto flex flex-col gap-8 pb-20">
+                    
+                    <!-- Wizard Progress Header -->
+                    <div class="glass-card rounded-2xl p-6 border border-white/10 relative z-20">
+                        <div class="flex justify-between items-center mb-8 px-4">
+                            <div class="step-indicator active flex flex-col items-center gap-2 group cursor-pointer" onclick="goToStep(1)">
+                                <div class="w-10 h-10 rounded-full bg-electric-blue border-4 border-electric-blue/20 flex items-center justify-center text-white font-bold text-sm shadow-[0_0_15px_rgba(0,82,255,0.4)] transition-all">1</div>
+                                <span class="text-[10px] font-bold uppercase tracking-widest text-white">Profile</span>
+                            </div>
+                            <div class="flex-1 h-px bg-white/10 mx-4 mb-6"></div>
+                            <div class="step-indicator flex flex-col items-center gap-2 group cursor-pointer opacity-50" id="step-id-2" onclick="goToStep(2)">
+                                <div class="w-10 h-10 rounded-full bg-white/5 border-2 border-white/10 flex items-center justify-center text-slate-500 font-bold text-sm transition-all group-hover:border-white/20">2</div>
+                                <span class="text-[10px] font-bold uppercase tracking-widest text-slate-500">Analytics</span>
+                            </div>
+                            <div class="flex-1 h-px bg-white/10 mx-4 mb-6"></div>
+                            <div class="step-indicator flex flex-col items-center gap-2 group cursor-pointer opacity-50" id="step-id-3" onclick="goToStep(3)">
+                                <div class="w-10 h-10 rounded-full bg-white/5 border-2 border-white/10 flex items-center justify-center text-slate-500 font-bold text-sm transition-all group-hover:border-white/20">3</div>
+                                <span class="text-[10px] font-bold uppercase tracking-widest text-slate-500">Security</span>
+                            </div>
+                            <div class="flex-1 h-px bg-white/10 mx-4 mb-6"></div>
+                            <div class="step-indicator flex flex-col items-center gap-2 group cursor-pointer opacity-50" id="step-id-4" onclick="goToStep(4)">
+                                <div class="w-10 h-10 rounded-full bg-white/5 border-2 border-white/10 flex items-center justify-center text-slate-500 font-bold text-sm transition-all group-hover:border-white/20">4</div>
+                                <span class="text-[10px] font-bold uppercase tracking-widest text-slate-500">Deploy</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- WIZARD SCREENS -->
+                    <div id="wizard-container" class="relative">
+                        
+                        <!-- STEP 1: CLIENT PROFILE -->
+                        <div id="step-1" class="wizard-step flex flex-col gap-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                            <div class="glass-card rounded-2xl p-8 border border-white/10">
+                                <h2 class="text-2xl font-bold text-white mb-2 tracking-tight">Client Profile</h2>
+                                <p class="text-slate-400 text-sm mb-8">Establish the primary identity and domain for the new client dashboard.</p>
+                                
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                    <div class="flex flex-col gap-2">
+                                        <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Company Name</label>
+                                        <input type="text" id="onboarding-company-name" placeholder="e.g. Galactic Ventures" class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-electric-blue focus:ring-1 focus:ring-electric-blue transition-all">
+                                    </div>
+                                    <div class="flex flex-col gap-2">
+                                        <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Website URL</label>
+                                        <input type="text" id="onboarding-website-url" placeholder="https://client-site.com" class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-electric-blue focus:ring-1 focus:ring-electric-blue transition-all">
+                                    </div>
+                                    <div class="flex flex-col gap-2">
+                                        <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Service Plan</label>
+                                        <select id="onboarding-service-plan" class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-electric-blue focus:ring-1 focus:ring-electric-blue transition-all appearance-none cursor-pointer">
+                                            <option>Standard</option>
+                                            <option>Premium</option>
+                                            <option>E-commerce</option>
+                                            <option>Custom</option>
+                                        </select>
+                                    </div>
+                                    <div class="flex flex-col gap-2">
+                                        <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">E-commerce Capability</label>
+                                        <select id="onboarding-ecommerce" class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-electric-blue focus:ring-1 focus:ring-electric-blue transition-all appearance-none cursor-pointer">
+                                            <option>No</option>
+                                            <option>Yes</option>
+                                        </select>
+                                    </div>
+                                    <div class="flex flex-col gap-2 md:col-span-2">
+                                        <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Monthly Fee ($)</label>
+                                        <input type="number" id="onboarding-monthly-fee" placeholder="0.00" class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-electric-blue focus:ring-1 focus:ring-electric-blue transition-all">
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- STEP 2: ANALYTICS CONNECTION -->
+                        <div id="step-2" class="wizard-step hidden flex flex-col gap-6 animate-in fade-in slide-in-from-right-8 duration-500">
+                            <div class="glass-card rounded-2xl p-8 border border-white/10">
+                                <h2 class="text-2xl font-bold text-white mb-2 tracking-tight">Analytics Orchestration</h2>
+                                <p class="text-slate-400 text-sm mb-8">Connect the global properties required for real-time reporting.</p>
+                                
+                                <div class="flex flex-col gap-4">
+                                    <div class="p-5 rounded-xl bg-white/[0.02] border border-white/10 flex items-center justify-between group hover:border-electric-blue/30 transition-all cursor-pointer">
+                                        <div class="flex items-center gap-4">
+                                            <div class="w-12 h-12 rounded-lg bg-orange-500/10 border border-orange-500/20 flex items-center justify-center">
+                                                <span class="material-symbols-outlined text-orange-400">query_stats</span>
+                                            </div>
+                                            <div>
+                                                <h4 class="text-white font-bold text-sm">Google Analytics 4</h4>
+                                                <p class="text-slate-500 text-xs">Authorize access to property data.</p>
+                                            </div>
+                                        </div>
+                                        <button id="ga4-connect-btn" onclick="openGA4Modal()" class="px-4 py-2 rounded-lg bg-orange-500/80 hover:bg-orange-500 text-white text-xs font-bold transition-all">Connect</button>
+                                    </div>
+
+                                    <div class="p-5 rounded-xl bg-white/[0.02] border border-white/10 flex items-center justify-between group hover:border-electric-blue/30 transition-all cursor-pointer">
+                                        <div class="flex items-center gap-4">
+                                            <div class="w-12 h-12 rounded-lg bg-blue-500/10 border border-blue-500/20 flex items-center justify-center">
+                                                <span class="material-symbols-outlined text-blue-400">search</span>
+                                            </div>
+                                            <div>
+                                                <h4 class="text-white font-bold text-sm">Search Console</h4>
+                                                <p class="text-slate-500 text-xs">Verify domain and search visibility.</p>
+                                            </div>
+                                        </div>
+                                        <button class="px-4 py-2 rounded-lg bg-blue-500/80 hover:bg-blue-500 text-white text-xs font-bold transition-all">Connect</button>
+                                    </div>
+
+                                    <div class="p-5 rounded-xl bg-white/[0.02] border border-white/10 flex items-center justify-between group hover:border-electric-blue/30 transition-all cursor-pointer opacity-50">
+                                        <div class="flex items-center gap-4">
+                                            <div class="w-12 h-12 rounded-lg bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
+                                                <span class="material-symbols-outlined text-emerald-400">check_circle</span>
+                                            </div>
+                                            <div>
+                                                <h4 class="text-white font-bold text-sm">Onboarding Complete</h4>
+                                                <p class="text-slate-500 text-xs">Verify all steps to finalize.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- STEP 3: SECURITY & PROVISIONING -->
+                        <div id="step-3" class="wizard-step hidden flex flex-col gap-6 animate-in fade-in slide-in-from-right-8 duration-500">
+                            <div class="glass-card rounded-2xl p-8 border border-white/10">
+                                <h2 class="text-2xl font-bold text-white mb-2 tracking-tight">Security & Access</h2>
+                                <p class="text-slate-400 text-sm mb-8">Provision Clerk authentication and invite the primary client user.</p>
+                                
+                                <div class="flex flex-col gap-6">
+                                    <div class="flex flex-col gap-2">
+                                        <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Primary User Email</label>
+                                        <input type="email" id="onboarding-email" placeholder="admin@client-site.com" class="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-electric-blue focus:ring-1 focus:ring-electric-blue transition-all">
+                                    </div>
+                                    
+                                    <div class="p-6 rounded-2xl bg-electric-blue/5 border border-electric-blue/20 flex items-start gap-4">
+                                        <div class="w-10 h-10 rounded-xl bg-electric-blue/10 flex items-center justify-center flex-shrink-0">
+                                            <span class="material-symbols-outlined text-electric-blue">auto_fix</span>
+                                        </div>
+                                        <div>
+                                            <h4 class="text-white font-bold text-sm tracking-tight">Automated Client Setup</h4>
+                                            <p class="text-slate-400 text-xs mt-1 leading-relaxed">
+                                                On deployment, Alconio will automatically generate a secure 12-character password, provision a new Clerk account, and send a welcome email to the address above.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- STEP 4: REVIEW & DEPLOY -->
+                        <div id="step-4" class="wizard-step hidden flex flex-col gap-6 animate-in fade-in slide-in-from-right-8 duration-500">
+                            <div class="glass-card rounded-2xl p-8 border border-white/10 relative overflow-hidden">
+                                <div class="absolute top-0 right-0 w-64 h-64 bg-electric-blue/10 rounded-full blur-[80px] -mr-32 -mt-32"></div>
+                                
+                                <h2 class="text-2xl font-bold text-white mb-2 tracking-tight">Deployment Ready</h2>
+                                <p class="text-slate-400 text-sm mb-8">Review the configuration summary and initialize the environment.</p>
+                                
+                                <div class="space-y-4 relative z-10">
+                                    <div class="flex justify-between items-center p-4 rounded-xl bg-white/5 border border-white/10">
+                                        <div class="flex items-center gap-3">
+                                            <span class="material-symbols-outlined text-electric-blue">business</span>
+                                            <span class="text-sm font-medium text-slate-300">Target Client</span>
+                                        </div>
+                                        <span id="summary-company-name" class="text-sm font-bold text-white">Galactic Ventures</span>
+                                    </div>
+                                    <div class="flex justify-between items-center p-4 rounded-xl bg-white/5 border border-white/10">
+                                        <div class="flex items-center gap-3">
+                                            <span class="material-symbols-outlined text-electric-blue">verified_user</span>
+                                            <span class="text-sm font-medium text-slate-300">Security Mode</span>
+                                        </div>
+                                        <span class="text-sm font-bold text-emerald-400">Encrypted / Managed</span>
+                                    </div>
+                                    <div class="flex justify-between items-center p-4 rounded-xl bg-white/5 border border-white/10">
+                                        <div class="flex items-center gap-3">
+                                            <span class="material-symbols-outlined text-electric-blue">payments</span>
+                                            <span class="text-sm font-medium text-slate-300">Monthly Fee</span>
+                                        </div>
+                                        <span id="summary-monthly-fee" class="text-sm font-bold text-white">$0.00</span>
+                                    </div>
+                                    <div class="flex justify-between items-center p-4 rounded-xl bg-white/5 border border-white/10">
+                                        <div class="flex items-center gap-3">
+                                            <span class="material-symbols-outlined text-electric-blue">shopping_cart</span>
+                                            <span class="text-sm font-medium text-slate-300">E-commerce</span>
+                                        </div>
+                                        <span id="summary-ecommerce" class="text-sm font-bold text-white">No</span>
+                                    </div>
+                                    <div class="flex justify-between items-center p-4 rounded-xl bg-white/5 border border-white/10">
+                                        <div class="flex items-center gap-3">
+                                            <span class="material-symbols-outlined text-electric-blue">cloud_done</span>
+                                            <span class="text-sm font-medium text-slate-300">Service Plan</span>
+                                        </div>
+                                        <span id="summary-service-plan" class="text-sm font-bold text-white">Standard</span>
+                                    </div>
+
+                                    <div class="flex justify-between items-center p-4 rounded-xl bg-white/5 border border-white/10">
+                                        <div class="flex items-center gap-3">
+                                            <span class="material-symbols-outlined text-orange-400">query_stats</span>
+                                            <span class="text-sm font-medium text-slate-300">Google Analytics 4</span>
+                                        </div>
+                                        <div class="flex flex-col items-end">
+                                            <span id="summary-ga4-status" class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Not Connected</span>
+                                            <span id="summary-ga4-id" class="text-xs font-bold text-white hidden"></span>
+                                        </div>
+                                    </div>
+
+
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Wizard Actions -->
+                        <div class="flex justify-between items-center mt-8">
+                            <button id="prev-btn" onclick="prevStep()" class="opacity-0 pointer-events-none px-6 py-3 rounded-xl border border-white/10 text-slate-300 font-bold hover:bg-white/5 transition-all flex items-center gap-2">
+                                <span class="material-symbols-outlined">arrow_back</span>
+                                Back
+                            </button>
+                            <button id="next-btn" onclick="nextStep()" class="px-8 py-3.5 rounded-xl bg-electric-blue hover:bg-electric-blue-light text-white font-bold tracking-wide transition-all shadow-[0_0_25px_rgba(0,82,255,0.4)] flex items-center gap-2 active:scale-95 group">
+                                <span id="next-btn-text">Continue to Analytics</span>
+                                <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </main>
+
+            <!-- WIZARD LOGIC -->
+            <script>
+                let currentStep = 1;
+                const totalSteps = 4;
+                const stepNames = ["Profile", "Analytics", "Security", "Deploy"];
+
+                function updateStepper() {
+                    for (let i = 1; i <= totalSteps; i++) {
+                        const stepEl = document.getElementById(`step-id-${i}`);
+                        if (!stepEl) continue;
+                        const circle = stepEl.querySelector('div');
+                        const label = stepEl.querySelector('span');
+
+                        if (i < currentStep) {
+                            // Completed
+                            if (stepEl.classList) {
+                                stepEl.style.opacity = '1';
+                                if (circle) {
+                                    circle.innerHTML = `<span class="material-symbols-outlined text-base text-white">check</span>`;
+                                    circle.classList.add('bg-emerald-500', 'border-emerald-500/20');
+                                    circle.classList.remove('bg-white/5', 'bg-electric-blue', 'border-white/10', 'border-electric-blue/20', 'shadow-[0_0_15px_rgba(0,82,255,0.4)]');
+                                }
+                                if (label) {
+                                    label.classList.add('text-white');
+                                    label.classList.remove('text-slate-500', 'text-emerald-400');
+                                }
+                            }
+                        } else if (i === currentStep) {
+                            // Current
+                            if (stepEl.classList) {
+                                stepEl.style.opacity = '1';
+                                if (circle) {
+                                    circle.innerHTML = `<span class="text-white">${i}</span>`;
+                                    circle.classList.add('bg-electric-blue', 'border-electric-blue/20', 'shadow-[0_0_15px_rgba(0,82,255,0.4)]');
+                                    circle.classList.remove('bg-white/5', 'bg-emerald-500', 'border-white/10', 'border-emerald-500/20');
+                                }
+                                if (label) {
+                                    label.classList.add('text-white');
+                                    label.classList.remove('text-slate-500', 'text-emerald-400');
+                                }
+                            }
+                        } else {
+                            // Upcoming
+                            if (stepEl.classList) {
+                                stepEl.style.opacity = '0.5';
+                                if (circle) {
+                                    circle.innerHTML = i;
+                                    circle.classList.add('bg-white/5', 'border-white/10');
+                                    circle.classList.remove('bg-electric-blue', 'bg-emerald-500', 'border-electric-blue/20', 'border-emerald-500/20', 'shadow-[0_0_15px_rgba(0,82,255,0.4)]');
+                                }
+                                if (label) {
+                                    label.classList.remove('text-white', 'text-emerald-400');
+                                    label.classList.add('text-slate-500');
+                                }
+                            }
+                        }
+                    }
+
+                    // Fix for Step 1 manual styling in HTML
+                    const step1 = document.querySelector('.step-indicator:first-child');
+                    const c1 = step1.querySelector('div');
+                    const l1 = step1.querySelector('span');
+                    if (currentStep > 1) {
+                        c1.innerHTML = '<span class="material-symbols-outlined text-base text-white">check</span>';
+                        c1.classList.add('bg-emerald-500', 'border-emerald-500/20');
+                        c1.classList.remove('bg-electric-blue', 'border-electric-blue/20');
+                        l1.classList.replace('text-white', 'text-white'); // Ensure white
+                    } else {
+                        c1.innerHTML = '1';
+                        c1.classList.remove('bg-emerald-500', 'border-emerald-500/20');
+                        c1.classList.add('bg-electric-blue', 'border-electric-blue/20');
+                        l1.classList.add('text-white');
+                        l1.classList.remove('text-emerald-400');
+                    }
+
+
+                    // Navbar visibility
+                    const prevBtn = document.getElementById('prev-btn');
+                    const nextBtnText = document.getElementById('next-btn-text');
+                    
+                    if (currentStep === 1) {
+                        prevBtn.classList.add('opacity-0', 'pointer-events-none');
+                    } else {
+                        prevBtn.classList.remove('opacity-0', 'pointer-events-none');
+                    }
+
+                    if (currentStep === totalSteps) {
+                        nextBtnText.textContent = "Deploy Client Dashboard";
+                    } else {
+                        nextBtnText.textContent = `Continue to ${stepNames[currentStep]}`;
+                    }
+                }
+
+                function validateStep(step) {
+                    if (step === 1) {
+                        const name = document.getElementById('onboarding-company-name').value.trim();
+                        const url = document.getElementById('onboarding-website-url').value.trim();
+                        const plan = document.getElementById('onboarding-service-plan').value;
+                        const fee = document.getElementById('onboarding-monthly-fee').value;
+
+                        if (!name) return { valid: false, message: 'Company Name is required.' };
+                        if (!url) return { valid: false, message: 'Website URL is required.' };
+                        try { new URL(url.includes('://') ? url : `https://${url}`); } catch(e) { return { valid: false, message: 'Invalid Website URL format.' }; }
+                        if (!plan) return { valid: false, message: 'Service Plan is required.' };
+                        if (!fee || parseFloat(fee) <= 0) return { valid: false, message: 'Monthly Fee must be a number greater than 0.' };
+                    }
+                    if (step === 2) {
+                        if (!isGA4Connected) return { valid: false, message: 'Please connect Google Analytics 4 before proceeding.' };
+                    }
+                    if (step === 3) {
+                        const email = document.getElementById('onboarding-email').value.trim();
+                        if (!email || !email.includes('@')) return { valid: false, message: 'Please provide a valid primary user email.' };
+                    }
+                    return { valid: true };
+                }
+
+                function goToStep(step) {
+                    if (step > currentStep) {
+                        // Validate all intermediate steps
+                        for (let i = currentStep; i < step; i++) {
+                            const validation = validateStep(i);
+                            if (!validation.valid) {
+                                alert(validation.message);
+                                return;
+                            }
+                        }
+                    }
+                    
+                    document.querySelectorAll('.wizard-step').forEach(s => s.classList.add('hidden'));
+                    document.getElementById(`step-${step}`).classList.remove('hidden');
+                    
+                    // Sync summary values when moving to the review step
+                    if (step === 4) {
+                        const fee = document.getElementById('onboarding-monthly-fee').value || "0.00";
+                        const plan = document.getElementById('onboarding-service-plan').value;
+                        const ecommerce = document.getElementById('onboarding-ecommerce').value;
+                        const companyName = document.getElementById('onboarding-company-name').value || "New Client";
+                        
+                        document.getElementById('summary-monthly-fee').textContent = `$${parseFloat(fee).toFixed(2)}`;
+                        document.getElementById('summary-service-plan').textContent = plan;
+                        document.getElementById('summary-ecommerce').textContent = ecommerce;
+                        document.getElementById('summary-company-name').textContent = companyName;
+                    }
+
+                    currentStep = step;
+                    updateStepper();
+                }
+
+
+                async function nextStep() {
+                    if (currentStep < totalSteps) {
+                        goToStep(currentStep + 1);
+                    } else {
+                        // Execution & Provisioning!
+                        const btn = document.getElementById('next-btn');
+                        const emailInput = document.getElementById('onboarding-email');
+                        const email = emailInput ? emailInput.value : '';
+
+                        if (!email || !email.includes('@')) {
+                            alert('Please provide a valid primary user email in Step 3.');
+                            goToStep(3);
+                            return;
+                        }
+
+                        btn.disabled = true;
+                        btn.innerHTML = '<span class="material-symbols-outlined animate-spin text-lg">sync</span> Provisioning Account...';
+                        
+                        try {
+                            const payload = {
+                                email: email,
+                                companyName: document.getElementById('onboarding-company-name').value,
+                                websiteUrl: document.getElementById('onboarding-website-url').value,
+                                servicePlan: document.getElementById('onboarding-service-plan').value,
+                                monthlyFee: parseFloat(document.getElementById('onboarding-monthly-fee').value),
+                                ecommerce: document.getElementById('onboarding-ecommerce').value === 'Yes',
+                                ga4PropertyId: ga4Data.propId
+                            };
+
+                            const response = await fetch('/api/onboarding/provision', {
+                                method: 'POST',
+                                headers: { 'Content-Type': 'application/json' },
+                                body: JSON.stringify(payload)
+                            });
+
+                            const result = await response.json();
+
+                            if (result.success) {
+                                btn.innerHTML = '<span class="material-symbols-outlined text-emerald-400 text-lg">check_circle</span> Deployment Success!';
+                                btn.classList.add('bg-emerald-500/20', 'border-emerald-500/40', 'text-emerald-400');
+                                btn.classList.remove('bg-electric-blue');
+                                
+                                console.log("[ONBOARDING] New Password generated:", result.password);
+                                
+                                setTimeout(() => {
+                                    window.location.href = 'dashboard_admin.html';
+                                }, 2000);
+                            } else {
+                                throw new Error(result.error || "Provisioning failed");
+                            }
+                        } catch (error) {
+                            console.error("[ONBOARDING ERROR]", error);
+                            btn.disabled = false;
+                            btn.innerHTML = '<span class="material-symbols-outlined text-red-400 text-lg">error</span> Retry Deployment';
+                            btn.classList.add('border-red-500/50', 'text-red-400');
+                            alert(`Error during automated setup: ${error.message}`);
+                        }
+                    }
+                }
+
+
+                function prevStep() {
+                    if (currentStep > 1) {
+                        goToStep(currentStep - 1);
+                    }
+                }
+
+                // --- GA4 MODAL LOGIC ---
+                let isGA4Connected = false;
+                let ga4Data = { propId: '' };
+
+                function openGA4Modal() {
+                    const modal = document.getElementById('ga4-modal');
+                    modal.classList.remove('opacity-0', 'pointer-events-none');
+                }
+
+                function closeGA4Modal() {
+                    const modal = document.getElementById('ga4-modal');
+                    modal.classList.add('opacity-0', 'pointer-events-none');
+                }
+
+                function submitGA4Connection() {
+                    const propId = document.getElementById('ga4-property-id').value.trim();
+                    const btn = document.getElementById('ga4-connect-submit');
+
+                    if (!propId) {
+                        alert('Please enter a Property ID');
+                        return;
+                    }
+
+                    btn.disabled = true;
+                    btn.innerHTML = '<span class="material-symbols-outlined animate-spin text-sm">sync</span> Authorizing...';
+
+                    setTimeout(() => {
+                        isGA4Connected = true;
+                        ga4Data = { propId };
+                        
+                        // Update the Step 2 button
+                        const connectBtn = document.getElementById('ga4-connect-btn');
+                        connectBtn.innerHTML = '<span class="material-symbols-outlined text-xs">check_circle</span> Connected';
+                        connectBtn.classList.remove('bg-orange-500/80', 'hover:bg-orange-500');
+                        connectBtn.classList.add('bg-emerald-500/20', 'text-emerald-400', 'border', 'border-emerald-500/30');
+                        connectBtn.onclick = null; // Prevent re-opening
+                        
+                        // Populate summary step for future navigation
+                        document.getElementById('summary-ga4-status').textContent = 'Connected';
+                        document.getElementById('summary-ga4-status').classList.replace('text-slate-500', 'text-emerald-400');
+                        const summaryId = document.getElementById('summary-ga4-id');
+                        summaryId.textContent = `ID: ${propId}`;
+                        summaryId.classList.remove('hidden');
+
+                        closeGA4Modal();
+                    }, 1500);
+                }
+
+            </script>
+
+        </div>
+    </div>
+
+    <!-- Render Dynamic Pie Charts Script -->
+    <script>
+        window.renderDynamicPies = () => {
+            const charts = document.querySelectorAll('.dynamic-pie-chart');
+            charts.forEach((chart) => {
+                // Clear existing SVG and Tooltip to prevent stacking
+                const existingSvg = chart.querySelector('svg');
+                if (existingSvg) existingSvg.remove();
+
+                const valuesAttr = chart.getAttribute('data-values');
+                const colorsAttr = chart.getAttribute('data-colors');
+                const labelsAttr = chart.getAttribute('data-labels');
+
+                if (!valuesAttr || !colorsAttr) return;
+
+                const values = valuesAttr.split(',').map(v => parseFloat(v.trim()));
+                const colors = colorsAttr.split(',').map(c => c.trim());
+                const labels = labelsAttr ? labelsAttr.split(',').map(l => l.trim()) : [];
+
+                const total = values.reduce((sum, val) => sum + val, 0);
+                if (total === 0) return;
+
+                const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                svg.setAttribute("class", "w-full h-full transform -rotate-90");
+                svg.setAttribute("viewBox", "0 0 144 144");
+
+                // Hover Tooltip Element Generation (linked only to this chart's SVG elements)
+                const tooltip = document.createElement('div');
+                tooltip.className = 'fixed pointer-events-none opacity-0 transition-opacity duration-200 bg-black/80 backdrop-blur-md border border-white/10 p-2 rounded-lg shadow-xl z-[99999] flex items-center gap-2 whitespace-nowrap';
+                tooltip.style.transform = 'translate(-50%, -100%)';
+                document.body.appendChild(tooltip);
+
+                // Base track
+                const track = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+                track.setAttribute("cx", "72"); track.setAttribute("cy", "72"); track.setAttribute("r", "60");
+                track.setAttribute("fill", "none"); track.setAttribute("stroke", "rgba(255,255,255,0.05)");
+                track.setAttribute("stroke-width", "12");
+                svg.appendChild(track);
+
+                let currentOffsetPercentage = 0;
+                const circumference = 2 * Math.PI * 60;
+
+                values.forEach((val, index) => {
+                    const proportion = val / total;
+                    const dasharray = `${proportion * circumference} ${circumference}`;
+                    const dashoffset = -(currentOffsetPercentage * circumference);
+
+                    const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+                    circle.setAttribute("cx", "72"); circle.setAttribute("cy", "72"); circle.setAttribute("r", "60");
+                    circle.setAttribute("fill", "none"); circle.setAttribute("stroke-width", "12");
+                    circle.style.pointerEvents = "stroke";
+
+                    const color = colors[index % colors.length];
+                    circle.setAttribute("stroke", color);
+                    circle.setAttribute("stroke-dasharray", dasharray);
+                    circle.setAttribute("stroke-dashoffset", dashoffset);
+                    circle.style.transition = 'stroke-width 0.2s, stroke-opacity 0.2s';
+                    circle.style.cursor = 'pointer';
+
+                    const labelText = labels[index] || `Segment ${index + 1}`;
+                    const percentageText = ((val / total) * 100).toFixed(1) + '%';
+
+                    circle.addEventListener('mouseenter', (e) => {
+                        circle.setAttribute("stroke-width", "14");
+                        tooltip.innerHTML = `
+                            <span class="w-2 h-2 rounded-full" style="background-color: ${color};"></span>
+                            <span class="text-xs text-slate-300">${labelText}:</span>
+                            <span class="text-xs font-bold text-white">${percentageText}</span>
+                        `;
+                        tooltip.style.opacity = '1';
+                    });
+
+                    circle.addEventListener('mousemove', (e) => {
+                        tooltip.style.left = `${e.clientX}px`;
+                        tooltip.style.top = `${e.clientY - 10}px`;
+                    });
+
+                    circle.addEventListener('mouseleave', () => {
+                        circle.setAttribute("stroke-width", "12");
+                        tooltip.style.opacity = '0';
+                    });
+
+                    svg.appendChild(circle);
+                    currentOffsetPercentage += proportion;
+                });
+
+                chart.appendChild(svg);
+            });
+        };
+        document.addEventListener('DOMContentLoaded', window.renderDynamicPies);
+    </script>
+    <script src="dashboard_ui.js"></script>
+    <script src="dashboard_data.js"></script>
+    <!-- GA4 CONNECTION MODAL -->
+    <div id="ga4-modal" class="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm opacity-0 pointer-events-none transition-all duration-300">
+        <div class="glass-card w-full max-w-lg rounded-3xl p-8 border border-white/10 relative overflow-hidden animate-in fade-in zoom-in-95 duration-300">
+            <div class="absolute top-0 right-0 w-64 h-64 bg-orange-500/10 rounded-full blur-[80px] -mr-32 -mt-32"></div>
+            
+            <div class="flex justify-between items-start mb-6 relative z-10">
+                <div class="flex items-center gap-4">
+                    <div class="w-12 h-12 rounded-xl bg-orange-500/10 border border-orange-500/20 flex items-center justify-center">
+                        <span class="material-symbols-outlined text-orange-400">query_stats</span>
+                    </div>
+                    <div>
+                        <h3 class="text-xl font-bold text-white">Connect GA4 Property</h3>
+                        <p class="text-slate-400 text-xs">Enter your Google Analytics configuration.</p>
+                    </div>
+                </div>
+                <button onclick="closeGA4Modal()" class="w-8 h-8 rounded-full hover:bg-white/10 flex items-center justify-center text-slate-400 hover:text-white transition-all">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+
+            <div class="space-y-5 relative z-10">
+                <div class="mb-6">
+                    <label class="block text-slate-400 text-xs font-medium mb-2 uppercase tracking-wider">GA4 Property ID</label>
+                    <input type="text" id="ga4-property-id" placeholder="e.g. 123456789" class="w-full bg-white/[0.03] border border-white/10 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-electric-blue/50 transition-all font-mono text-sm">
+                    <p class="text-[10px] text-slate-500 mt-2">Found in GA4 Admin > Property Settings > Property Details.</p>
+                </div>
+
+                <div class="pt-2 text-center">
+                    <p class="text-[10px] text-slate-500 mb-6 italic">This information enables real-time data sync to the Alconio dashboard.</p>
+                    <button id="ga4-connect-submit" onclick="submitGA4Connection()" class="w-full py-4 rounded-xl bg-orange-500 hover:bg-orange-600 text-white font-bold tracking-wide transition-all shadow-[0_0_20px_rgba(249,115,22,0.3)] active:scale-95 flex items-center justify-center gap-2">
+                        <span>Authorize & Connect</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

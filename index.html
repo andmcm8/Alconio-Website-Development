@@ -1,0 +1,865 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>ALCONIO - Building Digital Futures</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-431VG72CM9"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-431VG72CM9');
+    </script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet">
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0D00A4", // Updated to Alconio electric blue
+                        "primary-glow": "#4d8bff",
+                        "electric-blue": "#0D00A4",
+                        "background-light": "#f6f5f8", // from original
+                        "background-dark": "#05080e", // merged to "#05080e" from stitch
+                        "surface-dark": "#111620",
+                        "tech-blue": "#04052E",
+                        "deep-purple": "#140152",
+                        "glow-blue": "#0D00A4",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                    backgroundImage: {
+                        'hero-glow': "radial-gradient(circle at 70% 50%, rgba(37, 106, 244, 0.15) 0%, rgba(5, 8, 14, 0) 50%)",
+                        'chrome-text': "linear-gradient(180deg, #FFFFFF 0%, #A5B4FC 100%)",
+                        'glass-gradient': "linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%)",
+                        'widget-gradient': "linear-gradient(180deg, rgba(13, 0, 164, 0.1) 0%, rgba(13, 0, 164, 0.02) 100%)",
+                        'obsidian-glass': "linear-gradient(145deg, rgba(5, 8, 14, 0.9), rgba(13, 0, 164, 0.1))",
+                        'glass-stroke': 'linear-gradient(to bottom, rgba(50, 100, 255, 0.5), rgba(0,0,0,0) 40%, rgba(50, 100, 255, 0.2))',
+                    },
+                    boxShadow: {
+                        'neon': '0 0 20px rgba(13, 0, 164, 0.5)',
+                        'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.5)',
+                        'crisp-glow': '0 0 15px rgba(13, 0, 164, 0.6), inset 0 0 10px rgba(13, 0, 164, 0.2)',
+                        'razor-edge': '0 0 0 1px rgba(13, 0, 164, 0.5), 0 0 15px rgba(13, 0, 164, 0.3)',
+                        'spotlight': '0 0 60px 20px rgba(13, 0, 164, 0.6)',
+                        'inner-blue': 'inset 0 0 20px rgba(13, 0, 164, 0.2)',
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        .glow-border {
+            border: 1px solid rgba(13, 0, 164, 0.3);
+            box-shadow: 0 0 15px rgba(13, 0, 164, 0.1);
+        }
+
+        .glow-border:hover {
+            border-color: rgba(13, 0, 164, 0.6);
+            box-shadow: 0 0 20px rgba(13, 0, 164, 0.2);
+        }
+
+        .hero-gradient {
+            background: radial-gradient(circle at 50% 50%, #140152 0%, #02010A 70%);
+        }
+
+        .perspective-card {
+            perspective: 1000px;
+        }
+
+        .skew-mockup {
+            transform: perspective(1000px) rotateY(-15deg) rotateX(5deg);
+        }
+
+        .skew-mockup-reverse {
+            transform: perspective(1000px) rotateY(15deg) rotateX(5deg);
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(100, 200, 255, 0.1);
+            position: relative;
+            overflow: hidden;
+            box-shadow:
+                0 0 0 1px rgba(0, 163, 255, 0.1), 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 0 60px rgba(14, 0, 163, 0.1);
+            transition: all 0.4s ease-out;
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.8), transparent);
+            opacity: 0.6;
+        }
+
+        .glass-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(56, 189, 248, 0.3), transparent);
+            opacity: 0.4;
+        }
+
+        .glass-streak {
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg,
+                    transparent 45%,
+                    rgba(255, 255, 255, 0.03) 50%,
+                    transparent 55%);
+            transform: rotate(30deg);
+            pointer-events: none;
+        }
+
+        .glass-card:hover {
+            transform: translateY(-5px);
+            box-shadow:
+                0 0 0 1px rgba(56, 189, 248, 0.4), 0 30px 60px rgba(0, 0, 0, 0.6),
+                inset 0 0 80px rgba(14, 0, 163, 0.2),
+                0 0 30px rgba(14, 0, 163, 0.2);
+        }
+
+        .glass-card:hover .icon-glow {
+            filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
+            color: white;
+        }
+
+        .text-glow-white {
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        /* New classes from Stitch Screen */
+        .text-solid-glow {
+            color: #ffffff;
+            text-shadow: 0 0 20px rgba(13, 0, 164, 0.8), 0 0 40px rgba(13, 0, 164, 0.4);
+        }
+
+        .highlight-glow {
+            text-shadow: 0 0 30px rgba(13, 0, 164, 0.9), 0 0 60px rgba(13, 0, 164, 0.6);
+        }
+
+        .glass-panel {
+            background: linear-gradient(135deg, rgba(20, 30, 48, 0.7) 0%, rgba(10, 15, 25, 0.4) 100%);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-top: 1px solid rgba(255, 255, 255, 0.3);
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.5), inset 0 0 20px rgba(13, 0, 164, 0.05);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-panel::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -50%;
+            width: 200%;
+            height: 100%;
+            background: linear-gradient(to right, transparent, rgba(255, 255, 255, 0.05), transparent);
+            transform: skewX(-25deg);
+            pointer-events: none;
+        }
+
+        .floating-element {
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-element-delayed {
+            animation: float 7s ease-in-out infinite;
+            animation-delay: 1s;
+        }
+
+        .floating-shard {
+            animation: floatShard 8s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-12px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        @keyframes floatShard {
+            0% {
+                transform: translateY(0px) rotate(0deg);
+            }
+
+            50% {
+                transform: translateY(-15px) rotate(2deg);
+            }
+
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+        }
+
+        .light-beam {
+            background: linear-gradient(90deg, transparent, rgba(13, 0, 164, 0.3), transparent);
+            filter: blur(8px);
+        }
+
+        .underline-highlight {
+            position: relative;
+            z-index: 10;
+        }
+
+        .underline-highlight::after {
+            content: '';
+            position: absolute;
+            bottom: 0.1em;
+            left: -5%;
+            width: 110%;
+            height: 0.3em;
+            background-color: #0D00A4;
+            z-index: -1;
+            box-shadow: 0 0 40px 10px rgba(13, 0, 164, 0.8);
+            border-radius: 4px;
+            transform: skewX(-10deg);
+        }
+
+        .conic-gradient-blue {
+            background: conic-gradient(from 0deg, #256af4 0%, #0D00A4 84%, rgba(13, 0, 164, 0.1) 100%);
+        }
+
+        .icon-glow-container {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .icon-glow-container::after {
+            content: '';
+            position: absolute;
+            inset: -1px;
+            background: linear-gradient(135deg, rgba(13, 0, 164, 0.9), transparent 50%);
+            border-radius: 50%;
+            z-index: -1;
+            opacity: 0.8;
+            filter: blur(2px);
+        }
+
+        .icon-glow-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 50%;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.15), transparent);
+            border-radius: 50% 50% 0 0;
+            z-index: 1;
+            pointer-events: none;
+        }
+
+        .obsidian-box {
+            background: rgba(5, 8, 14, 0.8);
+            box-shadow:
+                0 0 0 1px rgba(13, 0, 164, 0.4),
+                inset 0 0 20px rgba(0, 0, 0, 1),
+                0 10px 20px rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .obsidian-box:hover {
+            box-shadow:
+                0 0 0 1px rgba(13, 0, 164, 0.8),
+                0 0 15px rgba(13, 0, 164, 0.4),
+                inset 0 0 20px rgba(0, 0, 0, 1);
+        }
+
+        /* Hero Mask Animation & Shape */
+        @keyframes maskGrow {
+            0% {
+                transform: scale(0) perspective(2000px) rotateY(-15deg) rotateX(10deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            100% {
+                transform: scale(1) perspective(2000px) rotateY(-15deg) rotateX(10deg);
+                opacity: 1;
+            }
+        }
+
+        .hero-mask-reveal {
+            animation: maskGrow 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+            border-radius: clamp(2rem, 5vw, 4rem);
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.8), inset 0 0 80px rgba(13, 0, 164, 0.05);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transform-origin: center center;
+        }
+
+        .hero-mask-container {
+            perspective: 2000px;
+            width: 85%;
+            max-width: 1200px;
+            aspect-ratio: 16/9;
+            margin: 0 auto;
+        }
+    </style>
+    <!-- Global sizing overrides -->
+    <style>
+        html {
+            font-size: 18px;
+        }
+
+        .max-w-7xl {
+            max-width: 100% !important;
+        }
+
+        .max-w-4xl {
+            max-width: 90% !important;
+        }
+
+        .max-w-3xl {
+            max-width: 85% !important;
+        }
+
+        .max-w-2xl {
+            max-width: 80% !important;
+        }
+
+        .px-6 {
+            padding-left: 3rem !important;
+            padding-right: 3rem !important;
+        }
+
+        .px-4 {
+            padding-left: 2rem !important;
+            padding-right: 2rem !important;
+        }
+    </style>
+    <!-- GSAP and ScrollTrigger -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+</head>
+
+<body
+    class="bg-black text-white selection:bg-primary selection:text-white font-display">
+    
+    <!-- SVG Definitions for Masks -->
+    <svg width="0" height="0" class="absolute">
+        <defs>
+            <clipPath id="monitor-clip" clipPathUnits="objectBoundingBox">
+                <path d="M 0.15 0.35 
+                         C 0.14 0.25, 0.18 0.22, 0.25 0.22 
+                         L 0.75 0.26 
+                         C 0.82 0.27, 0.84 0.32, 0.85 0.4 
+                         L 0.88 0.75 
+                         C 0.89 0.85, 0.85 0.88, 0.75 0.88 
+                         L 0.25 0.92 
+                         C 0.18 0.93, 0.14 0.88, 0.13 0.78 
+                         Z" />
+            </clipPath>
+        </defs>
+    </svg>
+    <nav class="sticky top-0 z-50 w-full bg-background-dark/80 backdrop-blur-md">
+        <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+            <div class="flex items-center gap-2">
+                <a href="index.html" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
+                    <span class="text-xl font-bold tracking-tight text-white font-display">ALCONIO</span>
+                </a>
+            </div>
+            <div class="hidden items-center gap-8 md:flex">
+                <a class="text-sm font-medium text-slate-400 transition-colors hover:text-white"
+                    href="services.html">Services</a>
+                <a class="text-sm font-medium text-slate-400 transition-colors hover:text-white"
+                    href="our-work.html">Our Work</a>
+                <a class="text-sm font-medium text-slate-400 transition-colors hover:text-white" href="about.html">About
+                    Us</a>
+                <a class="text-sm font-medium text-slate-400 transition-colors hover:text-white"
+                    href="pricing.html">Pricing</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="dashboard_signin.html">
+                    <button
+                        class="rounded-full bg-white/10 px-4 py-2 text-sm font-bold text-white transition-all hover:bg-white/20 border border-white/10 hover:border-white/30">
+                        Client Dashboard
+                    </button>
+                </a>
+                <a href="contact.html">
+                    <button
+                        class="rounded-full bg-primary px-6 py-2 text-sm font-bold text-white transition-all hover:bg-primary/80 hover:shadow-[0_0_20px_rgba(14,0,163,0.4)]">
+                        Get Started
+                    </button>
+                </a>
+                <button class="md:hidden text-white" aria-label="Open menu">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+
+    <section id="hero-trigger" class="relative bg-black">
+        <div id="hero-pin" class="h-screen w-full flex items-center justify-center overflow-hidden relative">
+            <canvas id="hero-canvas" class="w-[85%] h-auto md:w-[75%] object-contain translate-x-12" style="will-change: transform;"></canvas>
+            
+            <!-- SVG Mask (Option 1: Pixel Perfect Curves) -->
+            <div id="reveal-mask" class="absolute inset-0 z-50 pointer-events-none opacity-0 invisible flex items-center justify-center bg-black" 
+                 style="clip-path: url(#monitor-clip); -webkit-clip-path: url(#monitor-clip);">
+                <div id="monitor-content" class="relative w-full h-full pointer-events-auto origin-center">
+                    <section class="min-h-screen w-full flex items-center justify-center absolute inset-0" id="services">
+                        <div class="max-w-7xl mx-auto px-6 relative z-10 w-full">
+                            <div class="mb-20 flex flex-col items-center text-center">
+                                <h2 class="text-5xl font-bold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-white via-blue-100 to-gray-400 tracking-tight">Our Services</h2>
+                            </div>
+                            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                                <!-- Website Dev -->
+                                <div class="glass-card p-10 rounded-2xl group flex flex-col h-full">
+                                    <div class="glass-streak"></div>
+                                    <div class="size-16 rounded-xl flex items-center justify-center mb-8 border border-white/10 bg-white/5 shadow-[0_0_30px_rgba(14,0,163,0.3)] group-hover:shadow-[0_0_40px_rgba(56,189,248,0.4)] transition-all duration-300">
+                                        <span class="material-symbols-outlined text-white text-4xl icon-glow transition-all duration-300">language</span>
+                                    </div>
+                                    <h3 class="text-3xl font-bold mb-4 text-white text-glow-white tracking-wide">Website Dev</h3>
+                                    <p class="text-blue-100/70 leading-relaxed mb-8 font-light text-lg">Scalable, high-performance digital platforms built with modern stacks like Next.js and Tailwind.</p>
+                                    <ul class="space-y-4 text-sm text-blue-200/60 mt-auto">
+                                        <li class="flex items-center gap-3"><span class="material-symbols-outlined text-blue-400 text-sm shadow-[0_0_10px_rgba(56,189,248,0.8)] rounded-full">check_circle</span> Responsive Architecture</li>
+                                        <li class="flex items-center gap-3"><span class="material-symbols-outlined text-blue-400 text-sm shadow-[0_0_10px_rgba(56,189,248,0.8)] rounded-full">check_circle</span> SEO Optimization</li>
+                                    </ul>
+                                </div>
+                                <!-- AI Automation -->
+                                <div class="glass-card p-10 rounded-2xl group flex flex-col h-full">
+                                    <div class="glass-streak"></div>
+                                    <div class="size-16 rounded-xl flex items-center justify-center mb-8 border border-white/10 bg-white/5 shadow-[0_0_30px_rgba(14,0,163,0.3)] group-hover:shadow-[0_0_40px_rgba(56,189,248,0.4)] transition-all duration-300">
+                                        <span class="material-symbols-outlined text-white text-4xl icon-glow transition-all duration-300">smart_toy</span>
+                                    </div>
+                                    <h3 class="text-3xl font-bold mb-4 text-white text-glow-white tracking-wide">AI Automation</h3>
+                                    <p class="text-blue-100/70 leading-relaxed mb-8 font-light text-lg">Intelligent workflow bots that eliminate repetitive tasks and augment human decision-making.</p>
+                                    <ul class="space-y-4 text-sm text-blue-200/60 mt-auto">
+                                        <li class="flex items-center gap-3"><span class="material-symbols-outlined text-blue-400 text-sm shadow-[0_0_10px_rgba(56,189,248,0.8)] rounded-full">check_circle</span> LLM Integration</li>
+                                        <li class="flex items-center gap-3"><span class="material-symbols-outlined text-blue-400 text-sm shadow-[0_0_10px_rgba(56,189,248,0.8)] rounded-full">check_circle</span> Process Optimization</li>
+                                    </ul>
+                                </div>
+                                <!-- Custom Solutions -->
+                                <div class="glass-card p-10 rounded-2xl group flex flex-col h-full">
+                                    <div class="glass-streak"></div>
+                                    <div class="size-16 rounded-xl flex items-center justify-center mb-8 border border-white/10 bg-white/5 shadow-[0_0_30px_rgba(14,0,163,0.3)] group-hover:shadow-[0_0_40px_rgba(56,189,248,0.4)] transition-all duration-300">
+                                        <span class="material-symbols-outlined text-white text-4xl icon-glow transition-all duration-300">developer_board</span>
+                                    </div>
+                                    <h3 class="text-3xl font-bold mb-4 text-white text-glow-white tracking-wide">Custom Solutions</h3>
+                                    <p class="text-blue-100/70 leading-relaxed mb-8 font-light text-lg">Tailored technical architectures designed to solve unique complex business challenges.</p>
+                                    <ul class="space-y-4 text-sm text-blue-200/60 mt-auto">
+                                        <li class="flex items-center gap-3"><span class="material-symbols-outlined text-blue-400 text-sm shadow-[0_0_10px_rgba(56,189,248,0.8)] rounded-full">check_circle</span> API Strategy</li>
+                                        <li class="flex items-center gap-3"><span class="material-symbols-outlined text-blue-400 text-sm shadow-[0_0_10px_rgba(56,189,248,0.8)] rounded-full">check_circle</span> Cloud Infrastructure</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const canvas = document.getElementById('hero-canvas');
+            const context = canvas.getContext('2d');
+
+            canvas.width = 3840;
+            canvas.height = 2160;
+
+            const frameCount = 240;
+            const currentFrame = index => (
+                `frames/hero/frame_${(index + 1).toString().padStart(4, '0')}.png`
+            );
+
+            const images = [];
+            const laptop = {
+                frame: 0
+            };
+
+            // Preload images
+            for (let i = 0; i < frameCount; i++) {
+                const img = new Image();
+                img.src = currentFrame(i);
+                images.push(img);
+            }
+
+            gsap.registerPlugin(ScrollTrigger);
+
+            const tl = gsap.timeline({
+                onUpdate: render,
+                scrollTrigger: {
+                    trigger: "#hero-trigger",
+                    pin: true,
+                    scrub: 1, // Increased for smoother 'inertia'
+                    start: "top top",
+                    end: "+=100%", // Decreased for faster scroll speed
+                }
+            });
+
+            tl.to(laptop, {
+                frame: frameCount - 1,
+                snap: "frame",
+                ease: "none",
+                duration: 1
+            });
+
+            // Zoom effect
+            tl.to("#hero-canvas", {
+                scale: 1.8, // Slightly more zoom for better reveal
+                ease: "power1.inOut",
+                duration: 1
+            }, 0);
+
+            // Phase 1: Speck to Smoothed Rounded Monitor (Option 1: SVG Mask) - FASTER
+            tl.set("#reveal-mask", { autoAlpha: 1, scale: 0 }, 0.4);
+            tl.to("#reveal-mask", {
+                scale: 0.65, // Grow into the monitor shape
+                opacity: 1,
+                ease: "power2.out",
+                duration: 0.2 // Reduced from 0.4
+            }, 0.4);
+
+            // Phase 2: Expand to Full Screen - FASTER
+            tl.to("#reveal-mask", {
+                scale: 1,
+                ease: "power4.inOut",
+                duration: 0.2 // Reduced from 0.3
+            }, 0.6); // Moved earlier from 0.82
+
+            // Final: Remove mask to show full content - FASTER
+            tl.set("#reveal-mask", { clipPath: "none", "-webkit-clip-path": "none" }, 0.8); // Moved earlier from 1.12
+
+            images[0].onload = render;
+
+            function render() {
+                // Simplified render loop
+                if (images[laptop.frame]) {
+                    context.drawImage(images[laptop.frame], 0, 0, canvas.width, canvas.height);
+                }
+            }
+
+            // Handle resize
+            window.addEventListener('resize', () => {
+                ScrollTrigger.refresh();
+            });
+        });
+    </script>
+    <section class="py-24 bg-background-dark overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 space-y-32">
+            <div class="flex flex-col md:flex-row items-center gap-16">
+                <div class="flex-1">
+                    <span class="text-primary font-bold tracking-widest uppercase text-sm mb-4 block" style="">Web
+                        Systems</span>
+                    <h3 class="text-4xl font-bold mb-6" style="">Custom Web Apps</h3>
+                    <p class="text-gray-400 text-lg leading-relaxed mb-8" style="">We build interactive, real-time web
+                        applications that provide seamless user experiences across all devices. Using React and Node.js,
+                        we ensure speed and security are prioritized.</p>
+                    <button class="flex items-center gap-2 text-white font-bold hover:text-primary transition-colors"
+                        style="">
+                        Learn more <span class="material-symbols-outlined" style="">arrow_forward</span>
+                    </button>
+                </div>
+                <div class="flex-1 perspective-card">
+                    <div class="skew-mockup bg-tech-blue rounded-xl p-2 glow-border">
+                        <img class="rounded-lg w-full" data-alt="Dashboard interface with data visualization charts"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_d-juHUV-_bMz9MO-mDM7j1zufoTmBYC_sGL4L0lCm0hZGIMxaDYI1LJhimMdGX4ElCJBdsVmlv1POh-Cey0dqEJMKGeHnuV73KfB1sKHr1h-ek19Ikum03brQarye58uYdQEhT_4AHIxw7ZNwOTOxrBl6iU-uq55BI6PQ2fzOsvQ7yalJSoWGpclpbojEmLd-QzFoSdEftbnzaP4WAax9NlXWiZMZceoi2fmYzfzbagp56P52Ub-tynOeRwraMzKHuC_zLFGDMQD"
+                            style="">
+                    </div>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-row-reverse items-center gap-16">
+                <div class="flex-1">
+                    <span class="text-primary font-bold tracking-widest uppercase text-sm mb-4 block"
+                        style="">Intelligence</span>
+                    <h3 class="text-4xl font-bold mb-6" style="">AI Chatbots</h3>
+                    <p class="text-gray-400 text-lg leading-relaxed mb-8" style="">Leveraging the power of GPT-4 and
+                        custom embedding, our chatbots understand context, intent, and complex queries to automate
+                        customer support and sales.</p>
+                    <button class="flex items-center gap-2 text-white font-bold hover:text-primary transition-colors"
+                        style="">
+                        Learn more <span class="material-symbols-outlined" style="">arrow_forward</span>
+                    </button>
+                </div>
+                <div class="flex-1 perspective-card">
+                    <div class="skew-mockup-reverse bg-tech-blue rounded-xl p-2 glow-border">
+                        <img class="rounded-lg w-full" data-alt="AI interface showing neural network patterns"
+                            src="https://lh3.googleusercontent.com/aida-public/AB6AXuA46FuI1c5pJ3CDseRsrkjYX6hVPtxXByfA5W4dzHF4-6JJHmPajCrfn8ZpKXZeW68hkA3MvKQeDF1RY8LSwoKxfe0W26tETDeVczLKASZE8p_apHGXNhX2LByyT70JDIlZ_6XXue9QkpjuuAYRKaXiOxL2qfsXyddHk8ssWZ4ksgr2VTfAMpjKhALnX0W2h5gdNL30nmKaE9dCwsoETr0kDXzgZwvWifujrfNDdwmH8E5FoF2I154__6kX1s5FXTY0uZuOhm29G1tk"
+                            style="">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-20 bg-primary/10 border-y border-primary/20">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
+                <div>
+                    <div class="text-5xl font-bold mb-2" style="">50+</div>
+                    <div class="text-gray-400 uppercase text-xs tracking-widest" style="">Projects Completed</div>
+                </div>
+                <div>
+                    <div class="text-5xl font-bold mb-2" style="">98%</div>
+                    <div class="text-gray-400 uppercase text-xs tracking-widest" style="">Client Satisfaction</div>
+                </div>
+                <div>
+                    <div class="text-5xl font-bold mb-2" style="">24h</div>
+                    <div class="text-gray-400 uppercase text-xs tracking-widest" style="">Support Response</div>
+                </div>
+                <div>
+                    <div class="text-5xl font-bold mb-2" style="">10M+</div>
+                    <div class="text-gray-400 uppercase text-xs tracking-widest" style="">Lines of Code</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-24 bg-background-dark" id="portfolio">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex justify-between items-end mb-16">
+                <div>
+                    <h2 class="text-4xl font-bold mb-4" style="">Our Portfolio</h2>
+                    <p class="text-gray-400 max-w-xl" style="">A selection of recent works that define our commitment to
+                        excellence and technical innovation.</p>
+                </div>
+                <button class="hidden md:block text-primary font-bold" style="">View all projects</button>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div class="group relative aspect-video overflow-hidden rounded-xl glow-border">
+                    <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        data-alt="Minimalist SaaS analytics platform design"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_kCm2yqYexfOhH_NeFuQQwMcBo-k4LMR_p9I_hzlR4eFvTt3R3Xs4KO6ei6_qbZREdoFULNWIzmPGHaMSVU4h3m5ADmnPXObySTD0yKLmoFzoBjgO_FCBfW3r0HnmZRO5mS33dS5dDtAdNnXnHWq-XSzADfQ4YiyNKYMXjXzGTk-x3SaRXMTOD8SAFC-dTnRsubwQzIfIK8hgDp9VQIfB4uJ33t7b1fDmJoefsbn3YHzWVRH7pt5AE6CkTMrueZy75i84DIilQib7"
+                        style="">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-background-dark/90 to-transparent flex flex-col justify-end p-6 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <h4 class="text-xl font-bold" style="">SaaS Pulse</h4>
+                        <p class="text-sm text-gray-400" style="">Enterprise Data Viz</p>
+                    </div>
+                </div>
+                <div class="group relative aspect-video overflow-hidden rounded-xl glow-border">
+                    <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        data-alt="Modern mobile app interface mockup"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPZBbKMyt7xRjE2nQ1Goi39k6a7F366gyNVyRkWLHQiNI_x7E0zMDeLUmIWSfCDYxSmzifXiVwAa0GMjCbZMjgCiT63N3y4oy_CpnedxJV0moD-uqlzIYYrwNLHAYR9Y7JFVfMb5DvfOoDyIS-1tEvjK-yEH0_0lhn_TS3adyh8C5RvfaKxzZveSfonv8d3C3nQwupyyOogxBwdE8oD2XlXeZDwF3u9TAJW3TB-iTSGGGWxSca38gpXLGkwr6r7o76d1i6iS1EaGL2"
+                        style="">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-background-dark/90 to-transparent flex flex-col justify-end p-6 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <h4 class="text-xl font-bold" style="">NovaPay</h4>
+                        <p class="text-sm text-gray-400" style="">Fintech Platform</p>
+                    </div>
+                </div>
+                <div class="group relative aspect-video overflow-hidden rounded-xl glow-border">
+                    <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        data-alt="Dark futuristic tech background with data patterns"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDavZ52nv5rICPALA7-Y9T_OSXnJ-NSBpllTCyoYKSTFkuaFXP5_d7g7lcCpeig4DiO-bRkYSgA9YesLRVL1BfMp1isFpIGxgVWC2jIW-oNo6nnRhZoXuBOf1LNCBmURnhNdmfQb5o-nQC6lv-YMcgzI9ZuoP0PAADSfv5F8MNaXUSKpkPLEYfb02kE9lCHmzAxSZT0VzXC4-hskPjeqNCO9o3JGW-KhjYWLQBmEhugHZbC8tyCwLr7TXAJftGpYq1ERKeV74eKNIDb"
+                        style="">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-background-dark/90 to-transparent flex flex-col justify-end p-6 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <h4 class="text-xl font-bold" style="">Aether AI</h4>
+                        <p class="text-sm text-gray-400" style="">Neural Integration</p>
+                    </div>
+                </div>
+                <div class="group relative aspect-video overflow-hidden rounded-xl glow-border">
+                    <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        data-alt="Close up of high-end design work"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyhqMzUib-YWPppnuIplhIK7kKJoAsMUrtp3ZgtcYL5Pa5axmeSKnv4ZYGpAgxYUrmzt1sYIgabeUVp1FguY6raWvlNWXP_w79de_FrBz--RIMtn_GZQ-n26-uXlb-nkZJkysQazjDxmQlTqjyUmDN_eSpD1s5yxQvbfURazRvDSNJ2sFmkdRmkUHcevFXVNp9IKaIWDrKcxRL8n7tOWA2yLKX1Ab4yMms54edBDoruLG_8ryMHOqEQFSQb8i-ax5kp6y3AjPQ1qHk"
+                        style="">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-background-dark/90 to-transparent flex flex-col justify-end p-6 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <h4 class="text-xl font-bold" style="">Lumina</h4>
+                        <p class="text-sm text-gray-400" style="">Creative Agency</p>
+                    </div>
+                </div>
+                <div class="group relative aspect-video overflow-hidden rounded-xl glow-border">
+                    <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        data-alt="Ecommerce checkout experience visual"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuAf0QSslTy6urHnsm9heWFEARsxNPQIR9w3JuwwP3h7eLkRlxRY22cW-SicYHYIYR51o4yR12-ULgU6I_dC66vipO2bezuUZgjnB0xuREXz6_FkLN71TkRAhcIIPXAKJUi1-U-Ij31ihZ8tCwP36iIhWY_9T6xuAzkueJ3UZpC5e8llV-8pP0iNgdN2vphaFWMvUloUf6jI6YDIJAIuC-CYXsA1oPAybflTOVR8YQPjCM31wIt821LH3m5zHiNhwGyY2mNh4x7mYa8g"
+                        style="">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-background-dark/90 to-transparent flex flex-col justify-end p-6 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <h4 class="text-xl font-bold" style="">ShopFlow</h4>
+                        <p class="text-sm text-gray-400" style="">E-commerce Solution</p>
+                    </div>
+                </div>
+                <div class="group relative aspect-video overflow-hidden rounded-xl glow-border">
+                    <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        data-alt="Cybersecurity data protection graphic"
+                        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDaUjNf9c69ZfmP3jAkqMR_CMgaU57jTO3bU5DWntEcdX34sILpaAjIDXLmg59mXSR8ah98mcnO_eG5UUzvsGe8Q4CJ33-pMg_y8-6Coe4uyzMDKje43GYiSH0I-sYvOgMoGoOQ0FZegpbfkN-rgz-MMeTuB3znNYbLjHdj4HOZVcTvxjDRLGg1aoZZicGrE9ji3pKQGc98PAJ2fs_c4Fk-NyxZAdwn_cp9QhyEfruoNFEX_7bzRcy4aINqfgMKFhx41uxVLTLzA0DW"
+                        style="">
+                    <div
+                        class="absolute inset-0 bg-gradient-to-t from-background-dark/90 to-transparent flex flex-col justify-end p-6 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <h4 class="text-xl font-bold" style="">SecureShield</h4>
+                        <p class="text-sm text-gray-400" style="">Infosec Dashboard</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-24 bg-tech-blue/20">
+        <div class="max-w-7xl mx-auto px-6 text-center">
+            <h2 class="text-2xl font-bold text-gray-400 mb-12 uppercase tracking-widest" style="">Our Modern Stack</h2>
+            <div class="flex flex-wrap justify-center gap-12 text-gray-500">
+                <div
+                    class="flex flex-col items-center gap-2 grayscale hover:grayscale-0 transition-all cursor-default group">
+                    <span class="material-symbols-outlined text-5xl group-hover:text-primary" style="">javascript</span>
+                    <span class="text-xs font-bold uppercase" style="">React</span>
+                </div>
+                <div
+                    class="flex flex-col items-center gap-2 grayscale hover:grayscale-0 transition-all cursor-default group">
+                    <span class="material-symbols-outlined text-5xl group-hover:text-primary" style="">neurology</span>
+                    <span class="text-xs font-bold uppercase" style="">OpenAI</span>
+                </div>
+                <div
+                    class="flex flex-col items-center gap-2 grayscale hover:grayscale-0 transition-all cursor-default group">
+                    <span class="material-symbols-outlined text-5xl group-hover:text-primary" style="">cloud_done</span>
+                    <span class="text-xs font-bold uppercase" style="">AWS</span>
+                </div>
+                <div
+                    class="flex flex-col items-center gap-2 grayscale hover:grayscale-0 transition-all cursor-default group">
+                    <span class="material-symbols-outlined text-5xl group-hover:text-primary" style="">database</span>
+                    <span class="text-xs font-bold uppercase" style="">PostgreSQL</span>
+                </div>
+                <div
+                    class="flex flex-col items-center gap-2 grayscale hover:grayscale-0 transition-all cursor-default group">
+                    <span class="material-symbols-outlined text-5xl group-hover:text-primary" style="">api</span>
+                    <span class="text-xs font-bold uppercase" style="">GraphQL</span>
+                </div>
+                <div
+                    class="flex flex-col items-center gap-2 grayscale hover:grayscale-0 transition-all cursor-default group">
+                    <span class="material-symbols-outlined text-5xl group-hover:text-primary" style="">terminal</span>
+                    <span class="text-xs font-bold uppercase" style="">Node.js</span>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="py-24 px-6 bg-background-dark">
+        <div
+            class="max-w-5xl mx-auto bg-primary rounded-3xl p-12 md:p-20 text-center relative overflow-hidden glow-border">
+            <div class="absolute -top-24 -right-24 size-64 bg-white/10 rounded-full blur-3xl"></div>
+            <div class="absolute -bottom-24 -left-24 size-64 bg-background-dark/30 rounded-full blur-3xl"></div>
+            <div class="relative z-10">
+                <h2 class="text-4xl md:text-6xl font-bold mb-8" style="">Ready to Automate Your Future?</h2>
+                <p class="text-xl text-white/80 mb-10 max-w-2xl mx-auto" style="">Join dozens of companies scaling
+                    faster with ALCONIO's custom tech solutions.</p>
+                <div class="flex flex-col md:flex-row items-center justify-center gap-4">
+
+                    <!-- Standardized Primary Button Structure: 
+                         - Same padding and rounded-full pill shape across all pages
+                         - Consistent hover:scale and shadow 
+                         - Base color is primary (#0e00a3) -->
+                    <button
+                        class="bg-primary hover:bg-blue-700 text-white px-6 py-2.5 rounded-full font-bold transition-all hover:scale-105 shadow-[0_0_20px_rgba(14,0,163,0.4)] hover:shadow-[0_0_30px_rgba(14,0,163,0.6)]">
+                        Get Started
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="bg-background-dark py-20 px-6 border-t border-white/5">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+            <div class="col-span-1 md:col-span-1">
+                <div class="flex items-center gap-3 mb-6">
+                    <div class="size-6 bg-primary rounded flex items-center justify-center">
+                        <span class="material-symbols-outlined text-white text-xs" style="">deployed_code</span>
+                    </div>
+                    <h2 class="text-lg font-bold tracking-tighter" style="">ALCONIO</h2>
+                </div>
+                <p class="text-gray-500 text-sm leading-relaxed mb-6" style="">Building next-generation digital
+                    experiences through intelligence and automation.</p>
+                <div class="flex items-center gap-4">
+                    <a class="text-gray-500 hover:text-white transition-colors" href="#" style=""><span
+                            class="material-symbols-outlined" style="">alternate_email</span></a>
+                    <a class="text-gray-500 hover:text-white transition-colors" href="#" style=""><span
+                            class="material-symbols-outlined" style="">public</span></a>
+                    <a class="text-gray-500 hover:text-white transition-colors" href="#" style=""><span
+                            class="material-symbols-outlined" style="">groups</span></a>
+                </div>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 text-white" style="">Services</h4>
+                <ul class="space-y-4 text-gray-500 text-sm">
+                    <li class="" style=""><a class="hover:text-primary transition-colors" href="#" style="">Web
+                            Development</a></li>
+                    <li class="" style=""><a class="hover:text-primary transition-colors" href="#" style="">AI &amp;
+                            Automation</a></li>
+                    <li class="" style=""><a class="hover:text-primary transition-colors" href="#" style="">Cloud
+                            Architecture</a></li>
+                    <li class="" style=""><a class="hover:text-primary transition-colors" href="#" style="">Tech
+                            Consulting</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 text-white" style="">Company</h4>
+                <ul class="space-y-4 text-gray-500 text-sm">
+                    <li class="" style=""><a class="hover:text-primary transition-colors" href="#" style="">About Us</a>
+                    </li>
+                    <li class="" style=""><a class="hover:text-primary transition-colors" href="#" style="">Process</a>
+                    </li>
+                    <li class="" style=""><a class="hover:text-primary transition-colors" href="#"
+                            style="">Portfolio</a></li>
+                    <li class="" style=""><a class="hover:text-primary transition-colors" href="#" style="">Careers</a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 text-white" style="">Newsletter</h4>
+                <p class="text-sm text-gray-500 mb-4" style="">Get the latest insights on tech and AI.</p>
+                <form class="flex gap-2">
+                    <input
+                        class="bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-primary w-full"
+                        placeholder="Email address" type="email">
+                    <button class="bg-primary p-2 rounded-lg hover:bg-glow-blue transition-colors" style="">
+                        <span class="material-symbols-outlined text-sm" style="">send</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div
+            class="max-w-7xl mx-auto border-t border-white/5 mt-16 pt-8 flex flex-col md:flex-row justify-between text-gray-600 text-xs gap-4">
+            <p class="" style="">© 2024 ALCONIO. All rights reserved.</p>
+            <div class="flex gap-6">
+                <a class="hover:text-white transition-colors" href="#" style="">Privacy Policy</a>
+                <a class="hover:text-white transition-colors" href="#" style="">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

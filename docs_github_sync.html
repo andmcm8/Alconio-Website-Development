@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Alconio Docs - GitHub Sync</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "electric-blue": "#0052FF",
+                        "electric-blue-light": "#3374ff",
+                        "obsidian": "#000000",
+                        "obsidian-panel": "#050508",
+                        "glass-border": "rgba(0, 82, 255, 0.3)",
+                        "glass-highlight": "rgba(255, 255, 255, 0.15)",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Space Grotesk", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #000000; }
+        ::-webkit-scrollbar-thumb { background: #1e1e24; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #0052FF; }
+
+        .glass-panel {
+            background: linear-gradient(160deg, rgba(10, 10, 15, 0.85) 0%, rgba(0, 0, 0, 0.95) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 82, 255, 0.15);
+            border-top: 1px solid rgba(100, 150, 255, 0.3);
+            border-left: 1px solid rgba(100, 150, 255, 0.3);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(0, 82, 255, 0.03);
+            position: relative;
+        }
+
+        .header-glass {
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
+        }
+
+        .sidebar-header-area { height: 72px; display: flex; align-items: center; }
+
+        .housed-profile-container {
+            display: flex; align-items: center; background: rgba(10, 10, 14, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 9999px;
+            padding: 4px; padding-right: 16px; backdrop-filter: blur(8px);
+            transition: border-color 0.2s;
+        }
+
+        .unified-header-line {
+            position: fixed; top: 72px; left: 0; width: 100%; height: 1px;
+            background: rgba(0, 82, 255, 0.15); z-index: 9999;
+        }
+
+        .sidebar-divider-line {
+            position: fixed; top: 0; left: 5rem; width: 1px; height: 100vh;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.05), rgba(0, 82, 255, 0.9), rgba(255,255,255,0.05));
+            box-shadow: 0 0 12px rgba(0, 82, 255, 0.5); z-index: 40;
+        }
+
+        .article-content h1 { font-size: 2.5rem; font-weight: 700; color: #fff; margin-bottom: 1.5rem; }
+        .article-content h2 { font-size: 1.75rem; font-weight: 600; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; }
+        .article-content p { color: #94a3b8; line-height: 1.7; margin-bottom: 1.25rem; }
+        .article-content ul { color: #94a3b8; margin-bottom: 1.25rem; padding-left: 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: disc; }
+        
+        .sub-nav-item {
+            display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem 1rem;
+            border-radius: 8px; color: #94a3b8; transition: all 0.2s; font-size: 0.875rem;
+        }
+        .sub-nav-item:hover { background: rgba(255, 255, 255, 0.05); color: #fff; }
+        .sub-nav-item.active { background: rgba(0, 82, 255, 0.1); color: #0052FF; font-weight: 600; }
+    </style>
+</head>
+<body class="bg-obsidian text-slate-200 font-display antialiased overflow-x-hidden selection:bg-electric-blue selection:text-white">
+<div class="flex h-screen w-full overflow-hidden relative">
+    <div class="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
+        <div class="absolute top-[-20%] left-[20%] w-[60%] h-[60%] bg-[#0052FF] opacity-[0.06] rounded-full blur-[150px]"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-[#0052FF] opacity-[0.04] rounded-full blur-[120px]"></div>
+    </div>
+    <div class="unified-header-line"></div>
+    <div class="sidebar-divider-line"></div>
+    
+    <aside class="dashboard-sidebar relative z-50 w-20 h-full glass-panel flex flex-col border-r-0 hidden md:flex shrink-0 items-center transition-all duration-300 !border-l-transparent border-l-0">
+        <div class="sidebar-header-area relative h-16 px-0 w-full flex justify-end pr-4 shrink-0 transition-all duration-300">
+            <div class="header-inner flex items-center justify-end w-full h-full gap-4 transition-all duration-300">
+                <h1 class="logo-text text-2xl font-bold tracking-tight text-white transition-all duration-300"></h1>
+                <img src="logo.png" alt="Logo" class="sidebar-logo-img w-12 h-12 object-contain transition-all duration-300 absolute top-1/2 -translate-y-1/2 z-10">
+                <button class="side-bar-toggle w-6 h-6 rounded flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition-all border border-transparent hover:border-white/10 group">
+                    <span class="toggle-icon material-symbols-outlined text-sm group-hover:text-electric-blue transition-colors">start</span>
+                </button>
+            </div>
+        </div>
+        <nav class="flex-1 px-2 space-y-1 relative z-10 pt-6 w-full flex flex-col items-center overflow-x-hidden sidebar-scroll-hide transition-all duration-300">
+            <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 hover:bg-white/5 text-slate-400" href="dashboard_overview.html">
+                <span class="material-symbols-outlined text-2xl group-hover:text-electric-blue">dashboard</span>
+                <span class="md-label hidden ml-4">Overview</span>
+            </a>
+            <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 hover:bg-white/5 text-slate-400" href="dashboard_docs.html">
+                <span class="material-symbols-outlined text-2xl text-electric-blue">article</span>
+                <span class="md-label hidden ml-4 text-electric-blue">Documentation</span>
+            </a>
+        </nav>
+    </aside>
+
+    <script>
+        (function () {
+            var sidebar = document.querySelector('.dashboard-sidebar');
+            var isExpanded = localStorage.getItem('sidebarExpanded') !== 'false';
+            if (isExpanded) {
+                sidebar.classList.remove('w-20', 'items-center');
+                sidebar.classList.add('w-72');
+                var logoText = sidebar.querySelector('.logo-text');
+                if (logoText) { logoText.textContent = "ALCONIO"; logoText.classList.add('pl-12'); }
+                var logoImg = sidebar.querySelector('.sidebar-logo-img');
+                if (logoImg) { logoImg.classList.remove('left-1/2', '-translate-x-1/2'); logoImg.classList.add('left-4'); }
+                var toggleBtn = sidebar.querySelector('.side-bar-toggle');
+                if (toggleBtn) { toggleBtn.querySelector('.toggle-icon').textContent = 'keyboard_tab_rtl'; }
+                sidebar.querySelectorAll('.md-label').forEach(el => el.classList.remove('hidden'));
+                sidebar.querySelectorAll('.nav-link-btn').forEach(el => { el.classList.add('w-full', 'justify-start', 'pl-5'); el.classList.remove('justify-center'); });
+            }
+        })();
+    </script>
+
+    <div class="flex-1 flex flex-col h-full relative z-10 overflow-hidden">
+        <header class="w-full h-[72px] z-50 header-glass flex items-center justify-between px-8 shrink-0 relative">
+            <div class="flex items-center gap-6">
+                <a href="dashboard_docs.html" class="flex items-center gap-2 text-slate-400 hover:text-white transition-colors">
+                    <span class="material-symbols-outlined text-lg">arrow_back</span>
+                    <span class="text-sm font-medium">Back to Docs</span>
+                </a>
+            </div>
+            <div class="absolute left-1/2 transform -translate-x-1/2">
+                <h2 class="text-xl font-bold text-white tracking-wide">GitHub Sync</h2>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="housed-profile-container group">
+                    <div class="flex items-center gap-3 cursor-pointer">
+                        <div class="w-8 h-8 rounded-full bg-slate-900 overflow-hidden ring-1 ring-white/10">
+                            <img alt="User" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-n-gT0hmTLr68Q785q7si3dFoLMf7H3GynEF6Z2J24-oBY6nDcs61FaN_0-30RLylxw003MUNZjpmJEexdEOJj6EEIbz0kZyi3H7h8vYFqMgF4VyTUf3tatWeOJc4rj5wEdq1c8r291KAyy2Koyp1ed59PBohstiFLTdn9RH0JY9xz4enWsYbeYg0rREdlR6xdaOfvqCBbaSbgP_7p5ElqBZWky_f-ZvrE4SNxQiwFsigcG5W4EJdfdSofsdUwfj2bTUS2j4nyW6y"/>
+                        </div>
+                        <p class="text-xs font-bold text-white leading-none">Administrator</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="flex-1 overflow-hidden h-full flex">
+            <!-- Table of Contents -->
+            <div class="w-64 border-r border-white/5 p-6 overflow-y-auto hidden lg:block">
+                <h5 class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-4 px-2">On this page</h5>
+                <nav class="space-y-1">
+                    <a href="#github-app" class="sub-nav-item active">Alconio GitHub App</a>
+                    <a href="#repo-link" class="sub-nav-item">Linking Repositories</a>
+                    <a href="#deployment" class="sub-nav-item">Deployment Tracking</a>
+                    <a href="#benefits" class="sub-nav-item">Why Sync?</a>
+                </nav>
+            </div>
+
+            <!-- Main Content -->
+            <div class="flex-1 overflow-y-auto p-8 md:p-12 scroll-smooth">
+                <article class="max-w-3xl article-content">
+                    <section id="github-app">
+                        <h1>GitHub Sync</h1>
+                        <p>Automatically correlate your code changes with your application's performance. GitHub Sync allows Alconio to monitor your repositories, detect new deployments, and show you exactly how each code push impacts your core metrics.</p>
+                        
+                        <h2>The Alconio GitHub App</h2>
+                        <p>To get started, you'll need to install the Alconio GitHub App from the <strong>GitHub Marketplace</strong>. This app requires permission to read your repository metadata and pull request information. We do NOT require access to your source code itself, only the commit hashes and deployment markers.</p>
+                    </section>
+
+                    <section id="repo-link">
+                        <h2>Linking Repositories</h2>
+                        <p>Once the app is installed, go to <strong>Integrations > GitHub</strong> in Alconio and click <strong>"Link Repository"</strong>. You'll see a list of repositories you've authorized. Select the one that corresponds to your Alconio property. You can link multiple repositories to a single property if you're running a microservices architecture.</p>
+                    </section>
+
+                    <section id="deployment">
+                        <h2>Automatic Deployment Tracking</h2>
+                        <p>Alconio uses GitHub <strong>Deployment Events</strong> to automatically mark new releases on your analytics charts. Every time you push to your production branch (or trigger a Vercel/Netlify build), Alconio will place a vertical marker on your timeline. This lets you immediately see if a new release caused a spike in errors or a drop in engagement.</p>
+                    </section>
+
+                    <section id="benefits">
+                        <h2>Why Sync with GitHub?</h2>
+                        <ul>
+                            <li><strong>Root Cause Analysis</strong>: Quickly identify which commit caused a performance regression.</li>
+                            <li><strong>PR Performance</strong>: See the impact of a specific Pull Request on your site's vitals before it fully rolls out.</li>
+                            <li><strong>Automated Annotations</strong>: No more manual notes on your charts; Alconio handles it for you.</li>
+                        </ul>
+                    </section>
+                </article>
+            </div>
+        </main>
+    </div>
+</div>
+
+<script src="dashboard_ui.js"></script>
+</body></html>

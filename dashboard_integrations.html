@@ -1,0 +1,1116 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    
+    <!-- Strict Role-Based Access Control (RBAC) Guard -->
+    <script>
+        (function() {
+            // 1. Instant concealment
+            document.documentElement.style.display = 'none';
+
+            // Constants
+            const IS_ADMIN_PAGE = window.location.pathname.includes('dashboard_admin') || window.location.pathname.includes('dashboard_onboarding');
+            const EXPECTED_ROLE = IS_ADMIN_PAGE ? 'admin' : 'client';
+
+            function handleAuthFailure(reason) {
+                console.error('[STRICT-AUTH] Redirecting due to:', reason);
+                window.location.replace('dashboard_signin.html?reason=' + encodeURIComponent(reason));
+            }
+
+            function handleRoleMismatch(foundRole) {
+                console.warn('[STRICT-AUTH] Role mismatch. Found:', foundRole, 'Expected:', EXPECTED_ROLE);
+                const target = foundRole === 'admin' ? 'dashboard_admin.html' : 'dashboard_overview.html';
+                window.location.replace(target);
+            }
+
+            async function verifyAccess() {
+                try {
+                    // 2. Wait for Clerk
+                    if (typeof Clerk === 'undefined') {
+                        let attempts = 0;
+                        while (typeof Clerk === 'undefined' && attempts < 100) {
+                            await new Promise(r => setTimeout(r, 50));
+                            attempts++;
+                        }
+                    }
+
+                    if (typeof Clerk === 'undefined') return handleAuthFailure('clerk_timeout');
+
+                    // 3. Ensure loaded
+                    if (!Clerk.loaded) await Clerk.load();
+
+                    // 4. Verification logic
+                    if (!Clerk.isSignedIn) {
+                        return handleAuthFailure('not_signed_in');
+                    }
+
+                    const userRole = Clerk.user?.publicMetadata?.role;
+                    
+                    if (!userRole) {
+                        return handleAuthFailure('no_role_assigned');
+                    }
+
+                    if (userRole !== EXPECTED_ROLE) {
+                        return handleRoleMismatch(userRole);
+                    }
+
+                    // 5. Success - reveal page
+                    document.documentElement.style.display = '';
+                    console.log('[STRICT-AUTH] Access granted for role:', userRole);
+                    
+                    // Extra safety: call window.requireRole if it exists yet
+                    if (typeof window.requireRole === 'function') {
+                        window.requireRole(EXPECTED_ROLE);
+                    }
+                } catch (err) {
+                    console.error('[STRICT-AUTH] Guard error:', err);
+                    handleAuthFailure('guard_error');
+                }
+            }
+
+            // Execute verification
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', verifyAccess);
+            } else {
+                verifyAccess();
+            }
+        })();
+    </script>
+
+
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Alconio Dashboard - Integrations</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "electric-blue": "#0052FF",
+                        "electric-blue-light": "#3374ff",
+                        "obsidian": "#000000",
+                        "obsidian-panel": "#050508",
+                        "glass-border": "rgba(0, 82, 255, 0.3)",
+                        "glass-highlight": "rgba(255, 255, 255, 0.15)",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Space Grotesk", "sans-serif"]
+                    },
+                    boxShadow: {
+                        'neon-blue': '0 0 20px rgba(0, 82, 255, 0.4), inset 0 0 10px rgba(0, 82, 255, 0.1)',
+                        'neon-white': '0 0 15px rgba(255, 255, 255, 0.3)',
+                        'glass-edge': 'inset 1px 1px 0 0 rgba(255, 255, 255, 0.2), inset -1px -1px 0 0 rgba(0, 0, 0, 0.5)',
+                        'header-glow': '0 4px 30px rgba(0, 0, 0, 0.8), 0 1px 0 rgba(0, 82, 255, 0.5)',
+                        'icon-glass': '0 4px 12px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.15)',
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #000000;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #1e1e24;
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0052FF;
+        }
+
+        .glass-panel {
+            background: linear-gradient(160deg, rgba(10, 10, 15, 0.85) 0%, rgba(0, 0, 0, 0.95) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 82, 255, 0.15);
+            border-top: 1px solid rgba(100, 150, 255, 0.3);
+            border-left: 1px solid rgba(100, 150, 255, 0.3);
+            box-shadow:
+                0 0 30px rgba(0, 0, 0, 0.8),
+                inset 0 0 20px rgba(0, 82, 255, 0.03);
+            position: relative;
+
+        }
+
+        .glass-panel::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+            filter: blur(20px);
+            opacity: 0.6;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .glass-panel::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(0, 82, 255, 0.15) 0%, transparent 70%);
+            filter: blur(30px);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .glass-card {
+            background: linear-gradient(135deg, rgba(15, 20, 35, 0.9) 0%, rgba(5, 5, 8, 0.95) 100%);
+            border: 1px solid rgba(0, 82, 255, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.9), inset 0 0 30px rgba(0, 82, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            box-shadow: 0 0 25px rgba(0, 82, 255, 0.25), inset 0 0 20px rgba(0, 82, 255, 0.1);
+            border-color: rgba(0, 82, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .active-nav-item {
+            background: linear-gradient(90deg, rgba(0, 82, 255, 0.2) 0%, rgba(0, 0, 0, 0) 100%);
+            border-left: 3px solid #0052FF;
+            box-shadow: inset 10px 0 20px -10px rgba(0, 82, 255, 0.3);
+        }
+
+        .neon-text {
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(0, 82, 255, 0.5);
+        }
+
+        .neon-text-blue {
+            color: #0052FF;
+            text-shadow: 0 0 10px rgba(0, 82, 255, 0.8);
+        }
+
+        .neon-border-top {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 82, 255, 1), transparent);
+            opacity: 0.6;
+        }
+
+        tr.group:hover td {
+            background: rgba(0, 82, 255, 0.05);
+        }
+
+        .header-glass {
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
+        }
+
+        .sidebar-header-area {
+            height: 72px;
+            display: flex;
+            align-items: center;
+        }
+
+        .pill-tag {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(5px);
+        }
+
+        .icon-glass-container {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(0, 82, 255, 0.1);
+            backdrop-filter: blur(8px);
+        }
+
+        .icon-glass-container:hover {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.05) 100%);
+            box-shadow: 0 0 15px rgba(0, 82, 255, 0.3), inset 0 0 20px rgba(0, 82, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .profile-glass-pill {
+            background: linear-gradient(135deg, rgba(20, 20, 25, 0.8) 0%, rgba(5, 5, 8, 0.9) 100%);
+            border: 1px solid rgba(0, 82, 255, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6), inset 0 0 15px rgba(0, 82, 255, 0.15);
+            backdrop-filter: blur(12px);
+        }
+
+        .profile-glass-pill:hover {
+            background: linear-gradient(135deg, rgba(30, 30, 40, 0.9) 0%, rgba(10, 10, 15, 0.95) 100%);
+            box-shadow: 0 0 20px rgba(0, 82, 255, 0.3), inset 0 0 25px rgba(0, 82, 255, 0.2);
+            border-color: rgba(0, 82, 255, 0.5);
+        }
+
+        .mini-spark {
+            filter: drop-shadow(0 0 4px rgba(0, 82, 255, 0.6));
+        }
+
+        .micro-card {
+            background: linear-gradient(135deg, rgba(15, 20, 35, 0.7) 0%, rgba(5, 5, 8, 0.8) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 1px solid rgba(255, 255, 255, 0.15);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .micro-card:hover {
+            background: linear-gradient(135deg, rgba(20, 25, 45, 0.8) 0%, rgba(10, 10, 15, 0.9) 100%);
+            border-color: rgba(0, 82, 255, 0.4);
+            box-shadow: 0 0 15px rgba(0, 82, 255, 0.15);
+        }
+
+        .tooltip-custom {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+        }
+
+        .group:hover .tooltip-custom {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .progress-ring__circle {
+            transition: stroke-dashoffset 0.35s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+
+        .device-box {
+            background: linear-gradient(145deg, rgba(10, 10, 15, 0.9) 0%, rgba(5, 5, 10, 0.95) 100%);
+            box-shadow: 0 0 25px rgba(0, 82, 255, 0.15), inset 0 0 40px rgba(0, 82, 255, 0.1);
+        }
+
+        .housed-profile-container {
+            display: flex;
+            align-items: center;
+            background: rgba(10, 10, 14, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 9999px;
+            padding: 4px;
+            padding-right: 16px;
+            backdrop-filter: blur(8px);
+            transition: border-color 0.2s;
+        }
+
+        .housed-profile-container:hover {
+            border-color: rgba(0, 82, 255, 0.3);
+            background: rgba(15, 15, 22, 0.8);
+        }
+
+        .unified-header-line {
+            position: fixed;
+            top: 72px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: rgba(0, 82, 255, 0.15);
+            box-shadow: 0 0 2px rgba(0, 82, 255, 0.1);
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+        .sidebar-divider-line {
+            position: fixed;
+            top: 0;
+            left: 5rem;
+            width: 1px;
+            height: 100vh;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.05), rgba(0, 82, 255, 0.9), rgba(255, 255, 255, 0.05));
+            box-shadow: 0 0 12px rgba(0, 82, 255, 0.5);
+            z-index: 40;
+            pointer-events: none;
+        }
+
+        .sharp-input {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 2px;
+            color: white;
+            transition: all 0.3s ease;
+        }
+
+        .sharp-input:focus {
+            border-color: #0052FF;
+            box-shadow: 0 0 10px rgba(0, 82, 255, 0.3);
+            outline: none;
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .toggle-checkbox:checked {
+            right: 0;
+            border-color: #0052FF;
+        }
+
+        .toggle-checkbox:checked+.toggle-label {
+            background-color: #0052FF;
+            box-shadow: 0 0 10px rgba(0, 82, 255, 0.5);
+        }
+
+        .toggle-checkbox:checked+.toggle-label:before {
+            transform: translateX(100%);
+        }
+
+        input.sharp-input,
+        textarea.sharp-input,
+        select.sharp-input {
+            background-color: rgba(0, 0, 0, 0.6) !important;
+            background: rgba(0, 0, 0, 0.6) !important;
+            color: white !important;
+        }
+
+        input.sharp-input:focus,
+        textarea.sharp-input:focus,
+        select.sharp-input:focus {
+            background-color: rgba(0, 0, 0, 0.8) !important;
+            background: rgba(0, 0, 0, 0.8) !important;
+        }
+    </style>
+    <!-- Clerk JS SDK -->
+    <script async crossorigin="anonymous"
+        data-clerk-publishable-key="pk_test_d2FudGVkLWRhbmUtODQuY2xlcmsuYWNjb3VudHMuZGV2JA"
+        src="https://wanted-dane-84.clerk.accounts.dev/npm/@clerk/clerk-js@5/dist/clerk.browser.js"
+        type="text/javascript">
+        </script>
+
+        
+
+        
+
+        
+</head>
+
+<body
+    class="bg-obsidian text-slate-200 font-display antialiased overflow-x-hidden selection:bg-electric-blue selection:text-white">
+    <div class="flex h-screen w-full overflow-hidden relative">
+        <div class="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
+            <div
+                class="absolute top-[-20%] left-[20%] w-[60%] h-[60%] bg-[#0052FF] opacity-[0.06] rounded-full blur-[150px]">
+            </div>
+            <div
+                class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-[#0052FF] opacity-[0.04] rounded-full blur-[120px]">
+            </div>
+        </div>
+        <!-- Standardized Alconio Client Sidebar -->
+<div class="unified-header-line"></div>
+<div class="sidebar-divider-line"></div>
+<aside class="dashboard-sidebar relative z-50 w-20 h-full glass-panel flex flex-col border-r-0 hidden md:flex shrink-0 items-center transition-all duration-300 !border-l-transparent border-l-0">
+    <!-- Header Area -->
+    <div class="sidebar-header-area relative h-18 px-6 w-full flex items-center justify-between shrink-0 transition-all duration-300 overflow-hidden">
+        <div class="header-inner flex items-center justify-between w-full h-full gap-4 transition-all duration-300">
+            <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-electric-blue text-3xl neon-text-blue sidebar-logo-img transition-all duration-300">lightning</span>
+                <h1 class="logo-text text-xl font-bold tracking-tighter text-white transition-all duration-300 opacity-100 uppercase">ALCONIO</h1>
+            </div>
+            <button class="side-bar-toggle w-8 h-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition-all border border-white/10 group relative">
+                <span class="toggle-icon material-symbols-outlined text-sm transition-colors group-hover:text-electric-blue">keyboard_tab_rtl</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="flex-1 px-2 space-y-1 relative z-10 pt-6 w-full flex flex-col items-center overflow-x-hidden sidebar-scroll-hide transition-all duration-300">
+        <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400" href="dashboard_overview.html" data-tooltip="Overview">
+            <span class="material-symbols-outlined group-hover:text-electric-blue transition-colors text-2xl nav-icon flex-shrink-0">dashboard</span>
+            <span class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Overview</span>
+        </a>
+        <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400" href="dashboard_analytics.html" data-tooltip="Analytics">
+            <span class="material-symbols-outlined group-hover:text-electric-blue transition-colors text-2xl nav-icon flex-shrink-0">pie_chart</span>
+            <span class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Analytics</span>
+        </a>
+        <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400" href="dashboard_performance.html" data-tooltip="Performance">
+            <span class="material-symbols-outlined group-hover:text-electric-blue transition-colors text-2xl nav-icon flex-shrink-0">trending_up</span>
+            <span class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Performance</span>
+        </a>
+        <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400" href="dashboard_modifications.html" data-tooltip="Modifications">
+            <span class="material-symbols-outlined group-hover:text-electric-blue transition-colors text-2xl nav-icon flex-shrink-0">edit_note</span>
+            <span class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Modifications</span>
+        </a>
+        <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400" href="dashboard_activity_log.html" data-tooltip="Activity Log">
+            <span class="material-symbols-outlined group-hover:text-electric-blue transition-colors text-2xl nav-icon flex-shrink-0">schedule</span>
+            <span class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Activity Log</span>
+        </a>
+        <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400" href="dashboard_resources.html" data-tooltip="Resources">
+            <span class="material-symbols-outlined group-hover:text-electric-blue transition-colors text-2xl nav-icon flex-shrink-0">folder_open</span>
+            <span class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Resources</span>
+        </a>
+        <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400" href="dashboard_settings.html" data-tooltip="Settings">
+            <span class="material-symbols-outlined group-hover:text-electric-blue transition-colors text-2xl nav-icon flex-shrink-0">settings</span>
+            <span class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Settings</span>
+        </a>
+    </nav>
+
+    <!-- Footer Area -->
+    <div class="sidebar-footer-area p-4 relative z-10 border-t border-white/5 w-full flex justify-center mb-4 transition-all duration-300">
+        <button class="logout-btn w-12 h-12 flex items-center justify-center bg-gradient-to-r from-electric-blue to-blue-800 hover:from-blue-600 hover:to-blue-700 text-white rounded-lg shadow-[0_0_25px_rgba(0,82,255,0.4)] border border-white/10 transition-all transform active:scale-95 group relative" data-tooltip="Logout">
+            <span class="material-symbols-outlined text-lg group-hover:animate-pulse flex-shrink-0">logout</span>
+            <span class="md-label hidden font-bold text-sm tracking-wide ml-3 transition-opacity whitespace-nowrap">Logout</span>
+        </button>
+    </div>
+</aside>
+
+<!-- Sidebar Logic & Interaction -->
+<script id="sidebar-core-logic">
+    (function () {
+        const sidebar = document.querySelector('aside.dashboard-sidebar');
+        if (!sidebar) return;
+        
+        const toggleBtn = document.querySelector('.side-bar-toggle');
+        const headerInner = document.querySelector('.header-inner');
+        const headerArea = document.querySelector('.sidebar-header-area');
+        const logoText = document.querySelector('.logo-text');
+        const logoImg = document.querySelector('.sidebar-logo-img');
+        const navLinks = document.querySelectorAll('.nav-link-btn');
+        const dividerLine = document.querySelector('.sidebar-divider-line');
+        const logoutBtn = document.querySelector('.logout-btn');
+        const sidebarNav = sidebar.querySelector('nav');
+
+        // Set Active State based on current URL
+        const currentPath = window.location.pathname.split('/').pop() || 'dashboard_overview.html';
+        navLinks.forEach(link => {
+            if (link.getAttribute('href') === currentPath) {
+                link.classList.add('active-nav-item', 'text-electric-blue', 'neon-text-blue');
+                link.classList.remove('text-slate-400');
+                const icon = link.querySelector('.nav-icon');
+                if (icon) icon.classList.add('text-electric-blue', 'neon-text-blue');
+            }
+        });
+
+        // Toggle functionality
+        if (toggleBtn) {
+            toggleBtn.addEventListener('click', () => {
+                const isExpanded = !sidebar.classList.contains('w-72');
+                localStorage.setItem('sidebarExpanded', isExpanded);
+                applySidebarState(isExpanded);
+            });
+        }
+
+        function applySidebarState(expanded) {
+            if (expanded) {
+                sidebar.classList.remove('w-20', 'items-center');
+                sidebar.classList.add('w-72');
+                if (logoText) {
+                    logoText.classList.remove('hidden', 'opacity-0');
+                    logoText.classList.add('opacity-100', 'pl-12');
+                    logoText.textContent = "ALCONIO";
+                }
+                if (logoImg) {
+                    logoImg.classList.remove('left-1/2', '-translate-x-1/2');
+                    logoImg.classList.add('left-4');
+                }
+                const icon = toggleBtn?.querySelector('.toggle-icon');
+                if (icon) icon.textContent = 'keyboard_tab_rtl';
+                
+                headerArea?.classList.replace('px-0', 'px-6');
+                headerArea?.classList.replace('justify-end', 'justify-between');
+                headerInner?.classList.replace('justify-center', 'justify-between');
+                sidebarNav?.classList.replace('items-center', 'items-stretch');
+                
+                if (dividerLine) dividerLine.style.left = '18rem';
+
+                navLinks.forEach(link => {
+                    link.classList.remove('w-12', 'h-12', 'justify-center');
+                    link.classList.add('w-full', 'h-12', 'justify-start', 'pl-5');
+                    const label = link.querySelector('.md-label');
+                    if (label) { label.classList.remove('hidden'); label.classList.add('inline'); }
+                });
+
+                if (logoutBtn) {
+                    logoutBtn.classList.remove('w-12');
+                    logoutBtn.classList.add('w-full', 'justify-start', 'pl-5');
+                    const label = logoutBtn.querySelector('.md-label');
+                    if (label) { label.classList.remove('hidden'); label.classList.add('inline'); }
+                }
+            } else {
+                sidebar.classList.remove('w-72');
+                sidebar.classList.add('w-20', 'items-center');
+                if (logoText) {
+                    logoText.classList.remove('opacity-100', 'pl-12');
+                    logoText.classList.add('hidden', 'opacity-0');
+                }
+                if (logoImg) {
+                    logoImg.classList.remove('left-4');
+                    logoImg.classList.add('left-1/2', '-translate-x-1/2');
+                }
+                const icon = toggleBtn?.querySelector('.toggle-icon');
+                if (icon) icon.textContent = 'start';
+
+                headerArea?.classList.replace('px-6', 'px-0');
+                headerArea?.classList.replace('justify-between', 'justify-end');
+                headerInner?.classList.replace('justify-between', 'justify-center');
+                sidebarNav?.classList.replace('items-stretch', 'items-center');
+                
+                if (dividerLine) dividerLine.style.left = '5rem';
+
+                navLinks.forEach(link => {
+                    link.classList.add('w-12', 'h-12', 'justify-center');
+                    link.classList.remove('w-full', 'justify-start', 'pl-5');
+                    const label = link.querySelector('.md-label');
+                    if (label) { label.classList.add('hidden'); label.classList.remove('inline'); }
+                });
+
+                if (logoutBtn) {
+                    logoutBtn.classList.add('w-12', 'justify-center');
+                    logoutBtn.classList.remove('w-full', 'pl-5');
+                    const label = logoutBtn.querySelector('.md-label');
+                    if (label) { label.classList.add('hidden'); label.classList.remove('inline'); }
+                }
+            }
+        }
+
+        // Initial State
+        const isExpanded = localStorage.getItem('sidebarExpanded') !== 'false';
+        
+        // Anti-FOUC (Kill transitions for first load)
+        const transitionEls = [sidebar, headerArea, headerInner, sidebarNav, dividerLine, toggleBtn, logoText, logoImg, ...navLinks, logoutBtn].filter(Boolean);
+        transitionEls.forEach(el => el.style.transition = 'none');
+        
+        applySidebarState(isExpanded);
+
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                transitionEls.forEach(el => el.style.transition = '');
+            });
+        });
+    })();
+</script>
+
+
+        <div class="flex-1 flex flex-col h-full relative z-10 overflow-hidden">
+            <header class="w-full h-[72px] z-50 header-glass flex items-center justify-between px-8 shrink-0 relative">
+                <div class="flex items-center gap-6">
+                    <div class="flex items-center">
+                        <div
+                            class="pill-tag px-3 py-1.5 rounded-full text-[11px] font-medium text-slate-400 tracking-wide flex items-center gap-2 hover:border-white/20 transition-colors cursor-pointer group">
+                            <span
+                                class="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_6px_rgba(16,185,129,0.8)] animate-pulse"></span>
+                            ClientSite.com
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute left-[35%] transform -translate-x-1/2">
+                    <h2 class="text-xl font-bold text-white tracking-wide" style="text-shadow: 0 0 20px rgba(255,255,255,0.2);">Integrations</h2>
+                </div>
+                <div class="flex items-center gap-4">
+                    <span class="text-xs text-slate-500 font-medium hidden lg:block tracking-wide mr-2">Last updated:
+                        <span class="text-slate-300">2h ago</span></span>
+                    <div class="housed-profile-container group">
+                        <button
+                            class="w-8 h-8 flex items-center justify-center rounded-full text-slate-400 hover:text-white hover:bg-white/10 transition-all relative mr-2">
+                            <span class="material-symbols-outlined text-[20px]">notifications</span>
+                            <span
+                                class="absolute top-1.5 right-1.5 w-1.5 h-1.5 bg-electric-blue rounded-full shadow-[0_0_8px_#0052ff]"></span>
+                        </button>
+                        <div class="w-[1px] h-6 bg-white/10 mr-3"></div>
+                        <div class="flex items-center gap-3 cursor-pointer">
+                            <div
+                                class="w-8 h-8 rounded-full bg-slate-900 overflow-hidden ring-1 ring-white/10 group-hover:ring-electric-blue/50 transition-all shadow-lg relative">
+                                <img alt="User avatar" class="w-full h-full object-cover"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-n-gT0hmTLr68Q785q7si3dFoLMf7H3GynEF6Z2J24-oBY6nDcs61FaN_0-30RLylxw003MUNZjpmJEexdEOJj6EEIbz0kZyi3H7h8vYFqMgF4VyTUf3tatWeOJc4rj5wEdq1c8r291KAyy2Koyp1ed59PBohstiFLTdn9RH0JY9xz4enWsYbeYg0rREdlR6xdaOfvqCBbaSbgP_7p5ElqBZWky_f-ZvrE4SNxQiwFsigcG5W4EJdfdSofsdUwfj2bTUS2j4nyW6y" />
+                            </div>
+                            <div class="flex flex-col text-left">
+                                <span
+                                    class="text-[9px] text-slate-400 uppercase tracking-widest leading-none mb-0.5">Admin</span>
+                                <p
+                                    class="text-xs font-bold text-white group-hover:text-electric-blue transition-colors leading-none">
+                                    Administrator</p>
+                            </div>
+                            <span
+                                class="material-symbols-outlined text-slate-500 text-lg group-hover:text-white transition-colors ml-1">expand_more</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <main class="flex-1 overflow-y-auto h-full p-4 md:p-6 scroll-smooth">
+
+<div class="max-w-[1200px] mx-auto flex flex-col gap-8 pb-12">
+    <div class="mt-2">
+        <h2 class="text-xl font-bold text-white">Integrations</h2>
+        <p class="text-sm text-slate-400 mt-1">Connect third-party tools and services to supercharge your workflow.</p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div class="glass-panel rounded-2xl p-6 border border-white/10 shadow-[0_0_30px_rgba(0,0,0,0.8)] relative hover:border-electric-blue/30 transition-all group">
+            <div class="neon-border-top"></div>
+            <div class="flex items-center gap-4 mb-4 relative z-10">
+                <div class="w-12 h-12 rounded-xl bg-[#4A154B]/30 flex items-center justify-center border border-[#4A154B]/30"><span class="text-2xl font-bold text-[#E01E5A]">S</span></div>
+                <div>
+                    <p class="text-sm font-bold text-white">Slack</p>
+                    <p class="text-[10px] text-slate-500">Messaging</p>
+                </div>
+            </div>
+            <p class="text-xs text-slate-400 mb-4 relative z-10">Get real-time dashboard notifications directly in your Slack channels.</p>
+            <div class="flex items-center justify-between relative z-10">
+                <span class="text-xs text-emerald-400 font-bold flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>Connected</span>
+                <button class="text-xs text-slate-400 hover:text-white transition-colors">Configure</button>
+            </div>
+        </div>
+
+        <div class="glass-panel rounded-2xl p-6 border border-white/10 shadow-[0_0_30px_rgba(0,0,0,0.8)] relative hover:border-electric-blue/30 transition-all group">
+            <div class="neon-border-top"></div>
+            <div class="flex items-center gap-4 mb-4 relative z-10">
+                <div class="w-12 h-12 rounded-xl bg-white/10 flex items-center justify-center border border-white/10"><span class="text-2xl font-bold text-white">GH</span></div>
+                <div>
+                    <p class="text-sm font-bold text-white">GitHub</p>
+                    <p class="text-[10px] text-slate-500">Version Control</p>
+                </div>
+            </div>
+            <p class="text-xs text-slate-400 mb-4 relative z-10">Sync deployments and track commits linked to your projects.</p>
+            <div class="flex items-center justify-between relative z-10">
+                <span class="text-xs text-emerald-400 font-bold flex items-center gap-1"><span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>Connected</span>
+                <button class="text-xs text-slate-400 hover:text-white transition-colors">Configure</button>
+            </div>
+        </div>
+
+        <div class="glass-panel rounded-2xl p-6 border border-white/10 shadow-[0_0_30px_rgba(0,0,0,0.8)] relative hover:border-white/20 transition-all group">
+            <div class="neon-border-top"></div>
+            <div class="flex items-center gap-4 mb-4 relative z-10">
+                <div class="w-12 h-12 rounded-xl bg-[#4285F4]/20 flex items-center justify-center border border-[#4285F4]/20"><span class="text-2xl font-bold text-[#4285F4]">G</span></div>
+                <div>
+                    <p class="text-sm font-bold text-white">Google Analytics</p>
+                    <p class="text-[10px] text-slate-500">Analytics</p>
+                </div>
+            </div>
+            <p class="text-xs text-slate-400 mb-4 relative z-10">Import Google Analytics data directly into your dashboard.</p>
+            <div class="flex items-center justify-between relative z-10">
+                <span class="text-xs text-slate-500 font-medium">Not connected</span>
+                <button class="text-xs text-electric-blue font-bold hover:text-white transition-colors">Connect</button>
+            </div>
+        </div>
+
+        <div class="glass-panel rounded-2xl p-6 border border-white/10 shadow-[0_0_30px_rgba(0,0,0,0.8)] relative hover:border-white/20 transition-all group">
+            <div class="neon-border-top"></div>
+            <div class="flex items-center gap-4 mb-4 relative z-10">
+                <div class="w-12 h-12 rounded-xl bg-[#FF6C37]/20 flex items-center justify-center border border-[#FF6C37]/20"><span class="text-2xl font-bold text-[#FF6C37]">P</span></div>
+                <div>
+                    <p class="text-sm font-bold text-white">Postman</p>
+                    <p class="text-[10px] text-slate-500">API Testing</p>
+                </div>
+            </div>
+            <p class="text-xs text-slate-400 mb-4 relative z-10">Monitor API health and run automated tests on your endpoints.</p>
+            <div class="flex items-center justify-between relative z-10">
+                <span class="text-xs text-slate-500 font-medium">Not connected</span>
+                <button class="text-xs text-electric-blue font-bold hover:text-white transition-colors">Connect</button>
+            </div>
+        </div>
+
+        <div class="glass-panel rounded-2xl p-6 border border-white/10 shadow-[0_0_30px_rgba(0,0,0,0.8)] relative hover:border-white/20 transition-all group">
+            <div class="neon-border-top"></div>
+            <div class="flex items-center gap-4 mb-4 relative z-10">
+                <div class="w-12 h-12 rounded-xl bg-[#00D4AA]/20 flex items-center justify-center border border-[#00D4AA]/20"><span class="text-2xl font-bold text-[#00D4AA]">N</span></div>
+                <div>
+                    <p class="text-sm font-bold text-white">Netlify</p>
+                    <p class="text-[10px] text-slate-500">Hosting</p>
+                </div>
+            </div>
+            <p class="text-xs text-slate-400 mb-4 relative z-10">Auto-deploy and manage your production hosting from the dashboard.</p>
+            <div class="flex items-center justify-between relative z-10">
+                <span class="text-xs text-slate-500 font-medium">Not connected</span>
+                <button class="text-xs text-electric-blue font-bold hover:text-white transition-colors">Connect</button>
+            </div>
+        </div>
+
+        <div class="glass-panel rounded-2xl p-6 border border-white/10 shadow-[0_0_30px_rgba(0,0,0,0.8)] relative hover:border-white/20 transition-all group">
+            <div class="neon-border-top"></div>
+            <div class="flex items-center gap-4 mb-4 relative z-10">
+                <div class="w-12 h-12 rounded-xl bg-[#7B68EE]/20 flex items-center justify-center border border-[#7B68EE]/20"><span class="text-2xl font-bold text-[#7B68EE]">F</span></div>
+                <div>
+                    <p class="text-sm font-bold text-white">Figma</p>
+                    <p class="text-[10px] text-slate-500">Design</p>
+                </div>
+            </div>
+            <p class="text-xs text-slate-400 mb-4 relative z-10">Import design files and sync mockups directly into your resources.</p>
+            <div class="flex items-center justify-between relative z-10">
+                <span class="text-xs text-slate-500 font-medium">Not connected</span>
+                <button class="text-xs text-electric-blue font-bold hover:text-white transition-colors">Connect</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+</main>
+        </div>
+    </div>
+
+    <!-- Password Change Modal -->
+    <div id="pw-modal"
+        class="fixed inset-0 z-50 flex items-center justify-center opacity-0 pointer-events-none transition-opacity duration-300"
+        style="background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(8px);">
+        <div class="glass-panel w-full max-w-md mx-4 rounded-2xl border border-white/10 shadow-[0_0_50px_rgba(0,0,0,0.9)] transform scale-95 transition-transform duration-300 overflow-hidden relative flex flex-col max-h-[90vh]"
+            id="pw-modal-content">
+            <div class="neon-border-top"></div>
+
+            <!-- Header -->
+            <div class="p-5 border-b border-white/5 flex items-center justify-between relative z-10 shrink-0">
+                <div class="flex items-center gap-3">
+                    <span class="material-symbols-outlined text-electric-blue text-2xl">lock_reset</span>
+                    <h3 class="text-lg font-bold text-white tracking-wide">Change Password</h3>
+                </div>
+                <button id="pw-close-modal-btn" class="text-slate-500 hover:text-white transition-colors">
+                    <span class="material-symbols-outlined">close</span>
+                </button>
+            </div>
+
+            <!-- Body -->
+            <div class="p-6 relative z-10 space-y-5 overflow-y-auto custom-scrollbar">
+                <!-- Success / Error Banner -->
+                <div id="pw-feedback"
+                    class="hidden relative z-10 p-4 rounded-lg text-sm font-medium flex items-center gap-3"></div>
+
+                <!-- Current Password -->
+                <div class="flex flex-col gap-2">
+                    <label class="text-xs font-semibold text-slate-400 uppercase tracking-wider"
+                        for="pw-current">Current Password</label>
+                    <input id="pw-current" class="sharp-input w-full p-3 text-sm focus:ring-0"
+                        autocomplete="current-password" placeholder="Enter current password" type="password" />
+                </div>
+
+                <!-- New Password -->
+                <div class="flex flex-col gap-2">
+                    <label class="text-xs font-semibold text-slate-400 uppercase tracking-wider" for="pw-new">New
+                        Password</label>
+                    <div class="relative">
+                        <input id="pw-new" class="sharp-input w-full p-3 pr-10 text-sm focus:ring-0"
+                            autocomplete="new-password" placeholder="Enter new password" type="password" />
+                        <button type="button"
+                            class="pw-toggle absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-white transition-colors"
+                            data-target="pw-new">
+                            <span class="material-symbols-outlined text-[18px]">visibility_off</span>
+                        </button>
+                    </div>
+
+                    <!-- Strength Meter -->
+                    <div class="mt-1.5">
+                        <div class="flex items-center justify-between mb-1.5">
+                            <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Password
+                                Strength</span>
+                            <span id="pw-strength-label"
+                                class="text-[10px] font-bold text-slate-500 uppercase tracking-wider">—</span>
+                        </div>
+                        <div class="w-full h-1.5 bg-white/5 rounded-full overflow-hidden">
+                            <div id="pw-strength-bar" class="h-full rounded-full transition-all duration-300 ease-out"
+                                style="width: 0%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Confirm Password -->
+                <div class="flex flex-col gap-2">
+                    <label class="text-xs font-semibold text-slate-400 uppercase tracking-wider"
+                        for="pw-confirm">Confirm New Password</label>
+                    <div class="relative">
+                        <input id="pw-confirm" class="sharp-input w-full p-3 pr-10 text-sm focus:ring-0"
+                            autocomplete="new-password" placeholder="Re-enter new password" type="password" />
+                        <button type="button"
+                            class="pw-toggle absolute right-3 top-1/2 -translate-y-1/2 text-slate-500 hover:text-white transition-colors"
+                            data-target="pw-confirm" style="right:3px;">
+                            <span class="material-symbols-outlined text-[18px]">visibility_off</span>
+                        </button>
+                    </div>
+                    <p id="pw-match-msg" class="text-xs mt-1 hidden"></p>
+                </div>
+
+                <!-- Requirements Checklist -->
+                <div class="pt-2 border-t border-white/5">
+                    <p class="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">Requirements</p>
+                    <div class="grid grid-cols-2 gap-x-4 gap-y-2" id="pw-requirements">
+                        <span class="req-item text-[11px] text-slate-500 flex items-center gap-1.5"
+                            data-req="length"><span
+                                class="material-symbols-outlined text-[14px]">radio_button_unchecked</span> 8+
+                            characters</span>
+                        <span class="req-item text-[11px] text-slate-500 flex items-center gap-1.5"
+                            data-req="upper"><span
+                                class="material-symbols-outlined text-[14px]">radio_button_unchecked</span> Uppercase
+                            letter</span>
+                        <span class="req-item text-[11px] text-slate-500 flex items-center gap-1.5"
+                            data-req="lower"><span
+                                class="material-symbols-outlined text-[14px]">radio_button_unchecked</span> Lowercase
+                            letter</span>
+                        <span class="req-item text-[11px] text-slate-500 flex items-center gap-1.5"
+                            data-req="number"><span
+                                class="material-symbols-outlined text-[14px]">radio_button_unchecked</span>
+                            Number</span>
+                        <span class="req-item text-[11px] text-slate-500 flex items-center gap-1.5"
+                            data-req="special"><span
+                                class="material-symbols-outlined text-[14px]">radio_button_unchecked</span> Special
+                            char</span>
+                        <span class="req-item text-[11px] text-slate-500 flex items-center gap-1.5" data-req="max"><span
+                                class="material-symbols-outlined text-[14px]">radio_button_unchecked</span> Max 128
+                            chars</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="p-5 border-t border-white/5 bg-black/20 flex justify-end gap-3 relative z-10 shrink-0">
+                <button id="pw-cancel-btn"
+                    class="px-5 py-2 rounded-lg text-sm font-bold text-slate-300 hover:text-white hover:bg-white/5 transition-all">Cancel</button>
+                <button id="pw-change-btn" disabled
+                    class="px-5 py-2 rounded-lg bg-electric-blue/40 text-white/50 text-sm font-bold cursor-not-allowed transition-all flex items-center gap-2">
+                    <span class="material-symbols-outlined text-lg">lock</span> Change Password
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="dashboard_ui.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const modal = document.getElementById('pw-modal');
+            const modalContent = document.getElementById('pw-modal-content');
+            const openBtn = document.getElementById('pw-open-modal-btn');
+            const closeBtn = document.getElementById('pw-close-modal-btn');
+            const cancelBtn = document.getElementById('pw-cancel-btn');
+
+            const currentPw = document.getElementById('pw-current');
+            const newPw = document.getElementById('pw-new');
+            const confirmPw = document.getElementById('pw-confirm');
+            const changeBtn = document.getElementById('pw-change-btn');
+            const strengthBar = document.getElementById('pw-strength-bar');
+            const strengthLabel = document.getElementById('pw-strength-label');
+            const matchMsg = document.getElementById('pw-match-msg');
+            const feedback = document.getElementById('pw-feedback');
+
+            if (!openBtn || !modal) return;
+
+            // --- Modal Open/Close Logic ---
+            function openModal() {
+                modal.classList.remove('opacity-0', 'pointer-events-none');
+                modalContent.classList.remove('scale-95');
+                modalContent.classList.add('scale-100');
+            }
+
+            function closeModal() {
+                modal.classList.add('opacity-0', 'pointer-events-none');
+                modalContent.classList.remove('scale-100');
+                modalContent.classList.add('scale-95');
+
+                // Clear the form on close after a brief delay so animation finishes
+                setTimeout(() => {
+                    currentPw.value = '';
+                    newPw.value = '';
+                    confirmPw.value = '';
+                    updateRequirements('');
+                    updateStrength('');
+                    updateMatch();
+                    updateButton();
+                    feedback.classList.add('hidden');
+                }, 300);
+            }
+
+            openBtn.addEventListener('click', openModal);
+            closeBtn.addEventListener('click', closeModal);
+            cancelBtn.addEventListener('click', closeModal);
+
+            // Close modal when clicking outside
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) closeModal();
+            });
+
+            // --- Show/Hide Password Toggles ---
+            document.querySelectorAll('.pw-toggle').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    const input = document.getElementById(btn.dataset.target);
+                    const icon = btn.querySelector('.material-symbols-outlined');
+                    if (input.type === 'password') {
+                        input.type = 'text';
+                        icon.textContent = 'visibility';
+                    } else {
+                        input.type = 'password';
+                        icon.textContent = 'visibility_off';
+                    }
+                });
+            });
+
+            // --- Password Requirements ---
+            const requirements = {
+                length: pw => pw.length >= 8,
+                upper: pw => /[A-Z]/.test(pw),
+                lower: pw => /[a-z]/.test(pw),
+                number: pw => /[0-9]/.test(pw),
+                special: pw => /[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?`~]/.test(pw),
+                max: pw => pw.length <= 128
+            };
+
+            function updateRequirements(pw) {
+                let passed = 0;
+                for (const [key, check] of Object.entries(requirements)) {
+                    const el = document.querySelector(`[data-req="${key}"]`);
+                    const icon = el.querySelector('.material-symbols-outlined');
+                    if (pw.length === 0) {
+                        icon.textContent = 'radio_button_unchecked';
+                        el.className = 'req-item text-[11px] text-slate-500 flex items-center gap-1.5';
+                    } else if (check(pw)) {
+                        icon.textContent = 'check_circle';
+                        el.className = 'req-item text-[11px] text-emerald-400 flex items-center gap-1.5';
+                        passed++;
+                    } else {
+                        icon.textContent = 'cancel';
+                        el.className = 'req-item text-[11px] text-rose-400 flex items-center gap-1.5';
+                    }
+                }
+                return passed;
+            }
+
+            // --- Strength Meter ---
+            function updateStrength(pw) {
+                if (pw.length === 0) {
+                    strengthBar.style.width = '0%';
+                    strengthBar.style.background = '';
+                    strengthLabel.textContent = '—';
+                    strengthLabel.className = 'text-[10px] font-bold text-slate-500 uppercase tracking-wider';
+                    return;
+                }
+                let score = 0;
+                if (pw.length >= 8) score++;
+                if (pw.length >= 12) score++;
+                if (/[A-Z]/.test(pw) && /[a-z]/.test(pw)) score++;
+                if (/[0-9]/.test(pw)) score++;
+                if (/[!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?`~]/.test(pw)) score++;
+                if (pw.length >= 16) score++;
+
+                const levels = [
+                    { max: 2, label: 'Weak', color: '#ef4444', width: '25%', cls: 'text-rose-400' },
+                    { max: 3, label: 'Fair', color: '#f59e0b', width: '50%', cls: 'text-amber-400' },
+                    { max: 4, label: 'Good', color: '#3b82f6', width: '75%', cls: 'text-blue-400' },
+                    { max: 9, label: 'Strong', color: '#10b981', width: '100%', cls: 'text-emerald-400' }
+                ];
+                const level = levels.find(l => score <= l.max) || levels[3];
+                strengthBar.style.width = level.width;
+                strengthBar.style.background = level.color;
+                strengthLabel.textContent = level.label;
+                strengthLabel.className = `text-[10px] font-bold ${level.cls} uppercase tracking-wider`;
+            }
+
+            // --- Match Check ---
+            function updateMatch() {
+                const np = newPw.value;
+                const cp = confirmPw.value;
+                if (cp.length === 0) {
+                    matchMsg.classList.add('hidden');
+                    return;
+                }
+                matchMsg.classList.remove('hidden');
+                if (np === cp) {
+                    matchMsg.textContent = '✓ Passwords match';
+                    matchMsg.className = 'text-[11px] mt-1 text-emerald-400';
+                } else {
+                    matchMsg.textContent = '✕ Passwords do not match';
+                    matchMsg.className = 'text-[11px] mt-1 text-rose-400';
+                }
+            }
+
+            // --- Enable/Disable Button ---
+            function updateButton() {
+                const np = newPw.value;
+                const allReqs = Object.values(requirements).every(fn => fn(np));
+                const match = np === confirmPw.value && confirmPw.value.length > 0;
+                const hasCurrent = currentPw.value.length > 0;
+                const notSame = currentPw.value !== np;
+                const valid = allReqs && match && hasCurrent && notSame;
+
+                if (valid) {
+                    changeBtn.disabled = false;
+                    changeBtn.className = 'px-5 py-2 rounded-lg bg-electric-blue hover:bg-electric-blue-light text-white text-sm font-bold cursor-pointer shadow-[0_0_20px_rgba(0,82,255,0.5)] hover:shadow-[0_0_30px_rgba(0,82,255,0.7)] transition-all transform active:scale-95 flex items-center gap-2';
+                } else {
+                    changeBtn.disabled = true;
+                    changeBtn.className = 'px-5 py-2 rounded-lg bg-electric-blue/40 text-white/50 text-sm font-bold cursor-not-allowed transition-all flex items-center gap-2';
+                }
+            }
+
+            // --- Event Listeners ---
+            newPw.addEventListener('input', () => {
+                updateRequirements(newPw.value);
+                updateStrength(newPw.value);
+                updateMatch();
+                updateButton();
+            });
+            confirmPw.addEventListener('input', () => { updateMatch(); updateButton(); });
+            currentPw.addEventListener('input', updateButton);
+
+            // --- Show Feedback ---
+            function showFeedback(type, message) {
+                feedback.classList.remove('hidden');
+                if (type === 'success') {
+                    feedback.className = 'relative z-10 p-4 rounded-lg text-sm font-medium flex items-center gap-3 bg-emerald-500/10 border border-emerald-500/20 text-emerald-400';
+                    feedback.innerHTML = '<span class="material-symbols-outlined text-lg">check_circle</span>' + message;
+                } else {
+                    feedback.className = 'relative z-10 p-4 rounded-lg text-sm font-medium flex items-center gap-3 bg-rose-500/10 border border-rose-500/20 text-rose-400';
+                    feedback.innerHTML = '<span class="material-symbols-outlined text-lg">error</span>' + message;
+                }
+                // Auto dismiss error after 8 seconds
+                setTimeout(() => { if (!feedback.classList.contains('hidden')) feedback.classList.add('hidden'); }, 8000);
+            }
+
+            // --- Change Password Handler ---
+            changeBtn.addEventListener('click', async () => {
+                changeBtn.disabled = true;
+                const origText = changeBtn.innerHTML;
+                changeBtn.innerHTML = '<span class="material-symbols-outlined text-lg animate-spin">progress_activity</span> Changing...';
+                changeBtn.className = 'px-5 py-2 rounded-lg bg-electric-blue/40 text-white/50 text-sm font-bold cursor-not-allowed transition-all flex items-center gap-2';
+
+                try {
+                    // Wait for Clerk to be available
+                    if (typeof Clerk === 'undefined') throw new Error('Authentication service not loaded. Please refresh.');
+                    if (!Clerk.loaded) await Clerk.load();
+                    if (!Clerk.user) throw new Error('Not signed in. Please sign in again.');
+
+                    await Clerk.user.updatePassword({
+                        currentPassword: currentPw.value,
+                        newPassword: newPw.value,
+                        signOutOfOtherSessions: true
+                    });
+
+                    showFeedback('success', 'Password changed successfully! All other sessions have been signed out.');
+
+                    // Close modal and reset after 3 seconds of showing success
+                    setTimeout(() => {
+                        closeModal();
+                    }, 3000);
+
+                } catch (err) {
+                    let msg = 'Failed to change password.';
+                    if (err.errors && err.errors.length > 0) {
+                        msg = err.errors[0].longMessage || err.errors[0].message || msg;
+                    } else if (err.message) {
+                        msg = err.message;
+                    }
+                    showFeedback('error', msg);
+                    changeBtn.innerHTML = origText;
+                    updateButton();
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

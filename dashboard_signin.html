@@ -1,0 +1,864 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Alconio — Client Sign In</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet" />
+    <!-- Clerk JS SDK -->
+    <script async crossorigin="anonymous"
+        data-clerk-publishable-key="pk_test_d2FudGVkLWRhbmUtODQuY2xlcmsuYWNjb3VudHMuZGV2JA"
+        src="https://wanted-dane-84.clerk.accounts.dev/npm/@clerk/clerk-js@5/dist/clerk.browser.js"
+        type="text/javascript">
+        </script>
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "electric-blue": "#0052FF",
+                        "electric-blue-light": "#3374ff",
+                        "obsidian": "#000000",
+                        "obsidian-panel": "#050508",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Space Grotesk", "sans-serif"]
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            background: #000000;
+            font-family: 'Space Grotesk', sans-serif;
+        }
+
+        .glass-card {
+            background: linear-gradient(160deg, rgba(10, 10, 15, 0.9) 0%, rgba(0, 0, 0, 0.98) 100%);
+            backdrop-filter: blur(30px);
+            -webkit-backdrop-filter: blur(30px);
+            border: 1px solid rgba(0, 82, 255, 0.2);
+            box-shadow:
+                0 0 60px rgba(0, 0, 0, 0.9),
+                0 0 40px rgba(0, 82, 255, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.08);
+        }
+
+        .glass-card::before {
+            content: '';
+            position: absolute;
+            top: -40px;
+            left: -40px;
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.15) 0%, transparent 70%);
+            filter: blur(15px);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        input.input-field {
+            background-color: #ffffff !important;
+            border: 1px solid #cbd5e1 !important;
+            transition: all 0.3s ease;
+            color: #000000 !important;
+        }
+
+        input.input-field:focus {
+            background-color: #050508 !important;
+            border-color: rgba(0, 82, 255, 0.5) !important;
+            box-shadow: 0 0 20px rgba(0, 82, 255, 0.15), inset 0 0 10px rgba(0, 82, 255, 0.05) !important;
+            outline: none;
+            color: #ffffff !important;
+        }
+
+        input.input-field::placeholder {
+            color: #94a3b8 !important;
+        }
+
+        /* Autofill inverted states */
+        input.input-field:-webkit-autofill,
+        input.input-field:-webkit-autofill:hover,
+        input.input-field:-webkit-autofill:active {
+            -webkit-text-fill-color: #000000 !important;
+            -webkit-box-shadow: 0 0 0px 1000px #ffffff inset !important;
+            box-shadow: 0 0 0px 1000px #ffffff inset !important;
+            border-color: #cbd5e1 !important;
+            caret-color: #000000;
+        }
+
+        input.input-field:-webkit-autofill:focus {
+            -webkit-text-fill-color: #ffffff !important;
+            -webkit-box-shadow: 0 0 0px 1000px #050508 inset !important;
+            box-shadow: 0 0 0px 1000px #050508 inset !important;
+            border-color: rgba(0, 82, 255, 0.5) !important;
+            caret-color: #ffffff;
+        }
+
+        .signin-btn {
+            background: linear-gradient(135deg, #0052FF 0%, #0040cc 100%);
+            box-shadow: 0 0 30px rgba(0, 82, 255, 0.3), 0 4px 15px rgba(0, 0, 0, 0.5);
+            transition: all 0.3s ease;
+        }
+
+        .signin-btn:hover {
+            box-shadow: 0 0 40px rgba(0, 82, 255, 0.5), 0 6px 20px rgba(0, 0, 0, 0.6);
+            transform: translateY(-1px);
+        }
+
+        .signin-btn:active {
+            transform: translateY(0);
+            box-shadow: 0 0 20px rgba(0, 82, 255, 0.3), 0 2px 10px rgba(0, 0, 0, 0.4);
+        }
+
+        .signin-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .bg-grid {
+            background-image:
+                linear-gradient(rgba(0, 82, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 82, 255, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+        }
+
+        @keyframes pulse-glow {
+
+            0%,
+            100% {
+                opacity: 0.3;
+            }
+
+            50% {
+                opacity: 0.6;
+            }
+        }
+
+        .error-shake {
+            animation: shake 0.5s ease-in-out;
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            20%,
+            60% {
+                transform: translateX(-6px);
+            }
+
+            40%,
+            80% {
+                transform: translateX(6px);
+            }
+        }
+
+        /* Smooth view transitions */
+        .view-panel {
+            display: none;
+        }
+
+        .view-panel.active {
+            display: block;
+        }
+
+        .success-msg {
+            background: rgba(16, 185, 129, 0.08);
+            border: 1px solid rgba(16, 185, 129, 0.25);
+            color: #34d399;
+        }
+    </style>
+</head>
+
+<body class="text-slate-100 min-h-screen overflow-x-hidden selection:bg-electric-blue selection:text-white">
+
+    <!-- Background Effects -->
+    <div class="fixed inset-0 bg-grid pointer-events-none z-0"></div>
+    <div class="fixed top-1/4 left-1/4 w-96 h-96 rounded-full pointer-events-none z-0"
+        style="background: radial-gradient(circle, rgba(0,82,255,0.06) 0%, transparent 70%); animation: pulse-glow 4s ease-in-out infinite;">
+    </div>
+    <div class="fixed bottom-1/4 right-1/4 w-64 h-64 rounded-full pointer-events-none z-0"
+        style="background: radial-gradient(circle, rgba(0,82,255,0.04) 0%, transparent 70%); animation: pulse-glow 6s ease-in-out infinite 2s;">
+    </div>
+
+    <div class="relative z-10 min-h-screen flex flex-col items-center justify-center px-4">
+
+        <!-- Logo -->
+        <a href="index.html" class="flex items-center gap-3 mb-10 group">
+            <span class="text-3xl font-bold tracking-tight text-white transition-opacity group-hover:opacity-80"
+                style="font-family: 'Space Grotesk', sans-serif;">ALCONIO</span>
+        </a>
+
+        <!-- Sign In Card -->
+        <div class="glass-card relative rounded-2xl w-full max-w-md p-10">
+
+            <!-- Header -->
+            <div class="text-center mb-8">
+                <div
+                    class="w-16 h-16 mx-auto mb-5 rounded-2xl bg-gradient-to-br from-electric-blue/20 to-electric-blue/5 border border-electric-blue/20 flex items-center justify-center shadow-[0_0_30px_rgba(0,82,255,0.2)]">
+                    <span id="header-icon" class="material-symbols-outlined text-electric-blue text-3xl"
+                        style="filter: drop-shadow(0 0 8px rgba(0,82,255,0.5));">dashboard</span>
+                </div>
+                <h1 id="header-title" class="text-2xl font-bold text-white tracking-tight mb-1">Client Dashboard</h1>
+                <p id="header-subtitle" class="text-sm text-slate-500">Sign in to access your project dashboard</p>
+            </div>
+
+            <!-- Status Messages -->
+            <div id="error-msg"
+                class="hidden mb-5 px-4 py-3 rounded-xl bg-rose-500/10 border border-rose-500/20 text-rose-400 text-sm font-medium flex items-center gap-2">
+                <span class="material-symbols-outlined text-base">error</span>
+                <span id="error-text">Invalid email or password</span>
+            </div>
+            <div id="success-msg"
+                class="hidden mb-5 px-4 py-3 rounded-xl success-msg text-sm font-medium flex items-center gap-2">
+                <span class="material-symbols-outlined text-base">check_circle</span>
+                <span id="success-text">Password reset code sent!</span>
+            </div>
+
+            <!-- ===== VIEW 1: SIGN IN ===== -->
+            <div id="view-signin" class="view-panel active">
+                <form id="signin-form" class="space-y-5">
+                    <!-- Email -->
+                    <div>
+                        <label
+                            class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Email</label>
+                        <div class="relative">
+                            <span
+                                class="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-slate-500 text-xl">mail</span>
+                            <input id="email" type="email" name="email"
+                                class="input-field w-full h-13 pl-12 pr-4 py-3.5 rounded-xl text-sm font-medium"
+                                placeholder="Enter your email" autocomplete="email" required />
+                        </div>
+                    </div>
+
+                    <!-- Password -->
+                    <div>
+                        <label
+                            class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Password</label>
+                        <div class="relative">
+                            <span
+                                class="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-slate-500 text-xl">lock</span>
+                            <input id="password" type="password" name="password"
+                                class="input-field w-full h-13 pl-12 pr-12 py-3.5 rounded-xl text-sm font-medium"
+                                placeholder="Enter your password" autocomplete="current-password" required />
+                            <button type="button" onclick="togglePassword('password', 'eye-icon')"
+                                class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300 transition-colors">
+                                <span id="eye-icon" class="material-symbols-outlined text-xl">visibility_off</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <!-- Remember Me & Forgot Password -->
+                    <div class="flex items-center justify-between">
+                        <label class="flex items-center gap-2 cursor-pointer group">
+                            <input type="checkbox" id="remember-me"
+                                class="w-4 h-4 rounded bg-white/5 border border-white/10 text-electric-blue focus:ring-electric-blue/30 focus:ring-offset-0 cursor-pointer" />
+                            <span class="text-xs text-slate-500 group-hover:text-slate-400 transition-colors">Remember
+                                me</span>
+                        </label>
+                        <a href="#" id="forgot-password-link"
+                            class="text-xs text-electric-blue hover:text-electric-blue-light transition-colors font-medium">Forgot
+                            password?</a>
+                    </div>
+
+                    <!-- Sign In Button -->
+                    <button type="submit" id="signin-btn"
+                        class="signin-btn w-full h-13 py-3.5 rounded-xl text-white font-bold text-sm tracking-wide flex items-center justify-center gap-2 mt-2">
+                        <span id="btn-text">Sign In</span>
+                        <span id="btn-spinner" class="hidden">
+                            <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                    stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor"
+                                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                                </path>
+                            </svg>
+                        </span>
+                        <span class="material-symbols-outlined text-lg" id="btn-arrow">arrow_forward</span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- ===== VIEW 2: FORGOT PASSWORD — Enter Email ===== -->
+            <div id="view-forgot-email" class="view-panel">
+                <form id="forgot-email-form" class="space-y-5">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Email
+                            Address</label>
+                        <div class="relative">
+                            <span
+                                class="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-slate-500 text-xl">mail</span>
+                            <input id="forgot-email" type="email"
+                                class="input-field w-full h-13 pl-12 pr-4 py-3.5 rounded-xl text-sm font-medium"
+                                placeholder="Enter your account email" autocomplete="email" required />
+                        </div>
+                    </div>
+                    <button type="submit" id="send-code-btn"
+                        class="signin-btn w-full h-13 py-3.5 rounded-xl text-white font-bold text-sm tracking-wide flex items-center justify-center gap-2">
+                        <span id="send-code-text">Send Reset Code</span>
+                        <span id="send-code-spinner" class="hidden">
+                            <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                    stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor"
+                                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                                </path>
+                            </svg>
+                        </span>
+                        <span class="material-symbols-outlined text-lg" id="send-code-arrow">forward_to_inbox</span>
+                    </button>
+                    <button type="button" onclick="showView('signin')"
+                        class="w-full h-12 rounded-xl bg-white/5 hover:bg-white/10 border border-white/5 hover:border-white/10 text-slate-400 hover:text-white text-sm font-medium transition-all flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined text-lg">arrow_back</span>
+                        Back to Sign In
+                    </button>
+                </form>
+            </div>
+
+            <!-- ===== VIEW 3: FORGOT PASSWORD — Enter Code + New Password ===== -->
+            <div id="view-forgot-reset" class="view-panel">
+                <form id="forgot-reset-form" class="space-y-5">
+                    <div>
+                        <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Verification
+                            Code</label>
+                        <div class="relative">
+                            <span
+                                class="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-slate-500 text-xl">pin</span>
+                            <input id="reset-code" type="text"
+                                class="input-field w-full h-13 pl-12 pr-4 py-3.5 rounded-xl text-sm font-medium"
+                                placeholder="Enter the code from your email" autocomplete="one-time-code" required />
+                        </div>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">New
+                            Password</label>
+                        <div class="relative">
+                            <span
+                                class="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-slate-500 text-xl">lock</span>
+                            <input id="new-password" type="password"
+                                class="input-field w-full h-13 pl-12 pr-12 py-3.5 rounded-xl text-sm font-medium"
+                                placeholder="Enter your new password" autocomplete="new-password" required />
+                            <button type="button" onclick="togglePassword('new-password', 'eye-icon-new')"
+                                class="absolute right-4 top-1/2 -translate-y-1/2 text-slate-500 hover:text-slate-300 transition-colors">
+                                <span id="eye-icon-new" class="material-symbols-outlined text-xl">visibility_off</span>
+                            </button>
+                        </div>
+                    </div>
+                    <button type="submit" id="reset-btn"
+                        class="signin-btn w-full h-13 py-3.5 rounded-xl text-white font-bold text-sm tracking-wide flex items-center justify-center gap-2">
+                        <span id="reset-btn-text">Reset Password</span>
+                        <span id="reset-btn-spinner" class="hidden">
+                            <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                    stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor"
+                                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                                </path>
+                            </svg>
+                        </span>
+                        <span class="material-symbols-outlined text-lg" id="reset-btn-arrow">lock_reset</span>
+                    </button>
+                    <button type="button" onclick="showView('forgot-email')"
+                        class="w-full h-12 rounded-xl bg-white/5 hover:bg-white/10 border border-white/5 hover:border-white/10 text-slate-400 hover:text-white text-sm font-medium transition-all flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined text-lg">arrow_back</span>
+                        Try a Different Email
+                    </button>
+                </form>
+            </div>
+
+            <!-- ===== VIEW 4: EMAIL VERIFICATION CODE (Client Trust) ===== -->
+            <div id="view-verify-email" class="view-panel">
+                <form id="verify-email-form" class="space-y-5">
+                    <p class="text-sm text-slate-400 text-center mb-2">We sent a verification code to your email to
+                        confirm this device.</p>
+                    <div>
+                        <label class="block text-xs font-bold text-slate-400 uppercase tracking-wider mb-2">Verification
+                            Code</label>
+                        <div class="relative">
+                            <span
+                                class="absolute left-4 top-1/2 -translate-y-1/2 material-symbols-outlined text-slate-500 text-xl">pin</span>
+                            <input id="verify-code" type="text"
+                                class="input-field w-full h-13 pl-12 pr-4 py-3.5 rounded-xl text-sm font-medium"
+                                placeholder="Enter the code from your email" autocomplete="one-time-code" required />
+                        </div>
+                    </div>
+                    <button type="submit" id="verify-btn"
+                        class="signin-btn w-full h-13 py-3.5 rounded-xl text-white font-bold text-sm tracking-wide flex items-center justify-center gap-2">
+                        <span id="verify-btn-text">Verify & Sign In</span>
+                        <span id="verify-btn-spinner" class="hidden">
+                            <svg class="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none"
+                                viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                                    stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor"
+                                    d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z">
+                                </path>
+                            </svg>
+                        </span>
+                        <span class="material-symbols-outlined text-lg" id="verify-btn-arrow">verified</span>
+                    </button>
+                    <button type="button" onclick="showView('signin')"
+                        class="w-full h-12 rounded-xl bg-white/5 hover:bg-white/10 border border-white/5 hover:border-white/10 text-slate-400 hover:text-white text-sm font-medium transition-all flex items-center justify-center gap-2">
+                        <span class="material-symbols-outlined text-lg">arrow_back</span>
+                        Back to Sign In
+                    </button>
+                </form>
+            </div>
+
+            <!-- Divider (only on sign-in view) -->
+            <div id="signin-divider" class="flex items-center gap-4 my-7">
+                <div class="flex-1 h-px bg-white/5"></div>
+                <span class="text-[10px] text-slate-600 uppercase tracking-widest font-bold">or</span>
+                <div class="flex-1 h-px bg-white/5"></div>
+            </div>
+
+            <!-- Back to Homepage -->
+            <a href="index.html" id="back-home-link"
+                class="flex items-center justify-center gap-2 w-full h-12 rounded-xl bg-white/5 hover:bg-white/10 border border-white/5 hover:border-white/10 text-slate-400 hover:text-white text-sm font-medium transition-all">
+                <span class="material-symbols-outlined text-lg">arrow_back</span>
+                Back to Homepage
+            </a>
+
+            <!-- Developer Bypass (Hidden) -->
+            <div id="dev-bypass" class="hidden mt-6 pt-6 border-t border-white/5">
+                <p class="text-[10px] text-slate-500 uppercase tracking-widest font-bold text-center mb-4">Developer Bypass</p>
+                <button type="button" onclick="devBypassLogin()"
+                    class="w-full h-10 rounded-xl bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/20 text-amber-500 text-xs font-bold transition-all shadow-[0_0_20px_rgba(245,158,11,0.1)]">
+                    Login without Auth (Local Only)
+                </button>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <p class="mt-8 text-[11px] text-slate-600 tracking-wider">&copy; 2025 Alconio. All rights reserved.</p>
+    </div>
+
+    <script>
+        // ==========================================
+        //  UTILITY FUNCTIONS
+        // ==========================================
+
+        function togglePassword(inputId, iconId) {
+            const pw = document.getElementById(inputId);
+            const icon = document.getElementById(iconId);
+            if (pw.type === 'password') {
+                pw.type = 'text';
+                icon.textContent = 'visibility';
+            } else {
+                pw.type = 'password';
+                icon.textContent = 'visibility_off';
+            }
+        }
+
+        function showError(message) {
+            const errorMsg = document.getElementById('error-msg');
+            const successMsg = document.getElementById('success-msg');
+            successMsg.classList.add('hidden');
+            document.getElementById('error-text').textContent = message;
+            errorMsg.classList.remove('hidden');
+            // Shake the active form
+            const activePanel = document.querySelector('.view-panel.active form');
+            if (activePanel) {
+                activePanel.classList.add('error-shake');
+                setTimeout(() => activePanel.classList.remove('error-shake'), 500);
+            }
+        }
+
+        function showSuccess(message) {
+            const errorMsg = document.getElementById('error-msg');
+            const successMsg = document.getElementById('success-msg');
+            errorMsg.classList.add('hidden');
+            document.getElementById('success-text').textContent = message;
+            successMsg.classList.remove('hidden');
+        }
+
+        function hideMessages() {
+            document.getElementById('error-msg').classList.add('hidden');
+            document.getElementById('success-msg').classList.add('hidden');
+        }
+
+        let devClickCount = 0;
+        function handleDevClick() {
+            devClickCount++;
+            if (devClickCount >= 5) {
+                document.getElementById('dev-bypass').classList.remove('hidden');
+            }
+        }
+
+        function devBypassLogin() {
+            const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+            if (!isLocal) {
+                showError('Bypass only available on localhost');
+                return;
+            }
+            localStorage.setItem('alconio_mock_session', 'true');
+            showSuccess('Bypass active! Redirecting...');
+            setTimeout(() => {
+                window.location.href = 'dashboard_overview.html';
+            }, 500);
+        }
+
+        function setButtonLoading(textId, spinnerId, arrowId, btnId, loading) {
+            const text = document.getElementById(textId);
+            const spinner = document.getElementById(spinnerId);
+            const arrow = document.getElementById(arrowId);
+            const btn = document.getElementById(btnId);
+            if (loading) {
+                text.style.display = 'none';
+                spinner.classList.remove('hidden');
+                arrow.classList.add('hidden');
+                btn.disabled = true;
+            } else {
+                text.style.display = '';
+                spinner.classList.add('hidden');
+                arrow.classList.remove('hidden');
+                btn.disabled = false;
+            }
+        }
+
+        // ==========================================
+        //  VIEW MANAGEMENT
+        // ==========================================
+
+        const viewConfig = {
+            'signin': { title: 'Client Dashboard', subtitle: 'Sign in to access your project dashboard', icon: 'dashboard' },
+            'forgot-email': { title: 'Reset Password', subtitle: 'Enter your email to receive a reset code', icon: 'lock_reset' },
+            'forgot-reset': { title: 'Set New Password', subtitle: 'Enter the code and your new password', icon: 'lock_reset' },
+            'verify-email': { title: 'Verify Your Device', subtitle: 'Check your email for a verification code', icon: 'verified_user' },
+        };
+
+        function showView(viewName) {
+            hideMessages();
+            // Toggle panels
+            document.querySelectorAll('.view-panel').forEach(p => p.classList.remove('active'));
+            document.getElementById('view-' + viewName).classList.add('active');
+            // Update header
+            const cfg = viewConfig[viewName];
+            document.getElementById('header-title').textContent = cfg.title;
+            document.getElementById('header-subtitle').textContent = cfg.subtitle;
+            document.getElementById('header-icon').textContent = cfg.icon;
+            // Show/hide divider and back-home on non-signin views
+            const isSignin = viewName === 'signin';
+            document.getElementById('signin-divider').style.display = isSignin ? 'flex' : 'none';
+            document.getElementById('back-home-link').style.display = isSignin ? 'flex' : 'none';
+        }
+
+        // ==========================================
+        //  REMEMBER ME
+        // ==========================================
+
+        function loadRememberedEmail() {
+            const saved = localStorage.getItem('alconio_remembered_email');
+            if (saved) {
+                document.getElementById('email').value = saved;
+                document.getElementById('remember-me').checked = true;
+            }
+        }
+
+        function saveRememberedEmail() {
+            const checkbox = document.getElementById('remember-me');
+            const email = document.getElementById('email').value.trim();
+            if (checkbox.checked && email) {
+                localStorage.setItem('alconio_remembered_email', email);
+            } else {
+                localStorage.removeItem('alconio_remembered_email');
+            }
+        }
+
+        // ==========================================
+        //  CLERK INITIALIZATION & FORM HANDLERS
+        // ==========================================
+
+        window.addEventListener('load', async function () {
+            // Secret way to reveal bypass: click the copy-right footer 5 times
+            const footer = document.querySelector('p.mt-8.text-\\[11px\\]');
+            if (footer) {
+                footer.style.cursor = 'pointer';
+                footer.onclick = handleDevClick;
+            }
+
+            try {
+                await Clerk.load();
+                
+                // If already signed in, go straight to dashboard
+                if (Clerk.isSignedIn) {
+                    const userRole = Clerk.user?.publicMetadata?.role || 'client';
+                    const isSuperAdmin = userRole === 'admin';
+                    window.location.href = isSuperAdmin ? 'dashboard_admin.html' : 'dashboard_overview.html';
+                    return;
+                }
+            } catch (err) {
+                console.error('Clerk failed to load:', err);
+                showError('Authentication system is currently unavailable. (Code: 401/Blocked)');
+                // Auto-reveal bypass if Clerk fails on localhost
+                const isLocal = window.location.hostname === 'localhost' || window.location.hostname === '127.0.0.1';
+                if (isLocal) {
+                    document.getElementById('dev-bypass').classList.remove('hidden');
+                }
+                // Fallback: Don't block the rest of the script, but many features will fail
+            }
+
+            // Load remembered email
+            loadRememberedEmail();
+
+            // Focus email on load (if not pre-filled)
+            const emailInput = document.getElementById('email');
+            if (!emailInput.value) emailInput.focus();
+
+            // --- SIGN IN FORM ---
+            document.getElementById('signin-form').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                hideMessages();
+
+                const email = document.getElementById('email').value.trim();
+                const password = document.getElementById('password').value.trim();
+
+                if (!email || !password) {
+                    showError('Please fill in all fields');
+                    return;
+                }
+
+
+
+                // Save/clear remembered email
+                saveRememberedEmail();
+
+                setButtonLoading('btn-text', 'btn-spinner', 'btn-arrow', 'signin-btn', true);
+
+                try {
+                    const signInAttempt = await Clerk.client.signIn.create({
+                        identifier: email,
+                        password: password,
+                    });
+
+                    if (signInAttempt.status === 'complete') {
+                        await Clerk.setActive({ session: signInAttempt.createdSessionId });
+                        
+                        // Intelligent Redirect based on role
+                        const userRole = Clerk.user?.publicMetadata?.role || 'client';
+                        const isSuperAdmin = userRole === 'admin';
+                        
+                        window.location.href = isSuperAdmin ? 'dashboard_admin.html' : 'dashboard_overview.html';
+                    } else if (signInAttempt.status === 'needs_first_factor' || signInAttempt.status === 'needs_second_factor' || signInAttempt.status === 'needs_client_trust') {
+                        // Handle email code verification (Client Trust / 2FA)
+                        const emailCodeFactor = (signInAttempt.supportedFirstFactors || signInAttempt.supportedSecondFactors || []).find(
+                            factor => factor.strategy === 'email_code'
+                        );
+                        if (emailCodeFactor) {
+                            // Prepare the email code factor (sends the email)
+                            if (signInAttempt.status === 'needs_first_factor') {
+                                await Clerk.client.signIn.prepareFirstFactor({
+                                    strategy: 'email_code',
+                                    emailAddressId: emailCodeFactor.emailAddressId,
+                                });
+                            } else {
+                                await Clerk.client.signIn.prepareSecondFactor({
+                                    strategy: 'email_code',
+                                    emailAddressId: emailCodeFactor.emailAddressId,
+                                });
+                            }
+                            setButtonLoading('btn-text', 'btn-spinner', 'btn-arrow', 'signin-btn', false);
+                            window._setVerifyFactorType(signInAttempt.status === 'needs_first_factor' ? 'first' : 'second');
+                            showView('verify-email');
+                            showSuccess('Verification code sent to your email!');
+                        } else {
+                            showError('Additional verification is required but no email code method is available. Please contact support.');
+                            setButtonLoading('btn-text', 'btn-spinner', 'btn-arrow', 'signin-btn', false);
+                        }
+                    } else {
+                        showError('Sign in could not be completed. Please try again. (Status: ' + signInAttempt.status + ')');
+                        setButtonLoading('btn-text', 'btn-spinner', 'btn-arrow', 'signin-btn', false);
+                    }
+                } catch (error) {
+                    setButtonLoading('btn-text', 'btn-spinner', 'btn-arrow', 'signin-btn', false);
+                    const errMsg = error?.errors?.[0]?.longMessage
+                        || error?.errors?.[0]?.message
+                        || 'Invalid email or password. Please try again.';
+                    showError(errMsg);
+                }
+            });
+
+            // --- FORGOT PASSWORD LINK ---
+            document.getElementById('forgot-password-link').addEventListener('click', (e) => {
+                e.preventDefault();
+                // Pre-fill forgot email if email field has a value
+                const currentEmail = document.getElementById('email').value.trim();
+                if (currentEmail) {
+                    document.getElementById('forgot-email').value = currentEmail;
+                }
+                showView('forgot-email');
+            });
+
+            // --- FORGOT PASSWORD: SEND CODE ---
+            document.getElementById('forgot-email-form').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                hideMessages();
+
+                const email = document.getElementById('forgot-email').value.trim();
+                if (!email) {
+                    showError('Please enter your email address');
+                    return;
+                }
+
+                setButtonLoading('send-code-text', 'send-code-spinner', 'send-code-arrow', 'send-code-btn', true);
+
+                try {
+                    await Clerk.client.signIn.create({
+                        strategy: 'reset_password_email_code',
+                        identifier: email,
+                    });
+
+                    showSuccess('Reset code sent! Check your email inbox.');
+                    setTimeout(() => {
+                        showView('forgot-reset');
+                        showSuccess('We sent a code to ' + email);
+                    }, 1000);
+                } catch (error) {
+                    const errMsg = error?.errors?.[0]?.longMessage
+                        || error?.errors?.[0]?.message
+                        || 'Could not send reset code. Please check your email.';
+                    showError(errMsg);
+                } finally {
+                    setButtonLoading('send-code-text', 'send-code-spinner', 'send-code-arrow', 'send-code-btn', false);
+                }
+            });
+
+            // --- EMAIL VERIFICATION (Client Trust / 2FA) ---
+            let verifyFactorType = 'first'; // 'first' or 'second'
+
+            // Update: store factor type when transitioning to verify view
+            // (This is called from the sign-in handler above via closure)
+            window._setVerifyFactorType = function (type) { verifyFactorType = type; };
+
+            document.getElementById('verify-email-form').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                hideMessages();
+
+                const code = document.getElementById('verify-code').value.trim();
+                if (!code) {
+                    showError('Please enter the verification code');
+                    return;
+                }
+
+                setButtonLoading('verify-btn-text', 'verify-btn-spinner', 'verify-btn-arrow', 'verify-btn', true);
+
+                try {
+                    let result;
+                    if (verifyFactorType === 'first') {
+                        result = await Clerk.client.signIn.attemptFirstFactor({
+                            strategy: 'email_code',
+                            code: code,
+                        });
+                    } else {
+                        result = await Clerk.client.signIn.attemptSecondFactor({
+                            strategy: 'email_code',
+                            code: code,
+                        });
+                    }
+
+                    if (result.status === 'complete') {
+                        await Clerk.setActive({ session: result.createdSessionId });
+                        const userRole = Clerk.user?.publicMetadata?.role || 'client';
+                        const isSuperAdmin = userRole === 'admin';
+                        showSuccess('Verified! Redirecting to dashboard...');
+                        setTimeout(() => {
+                            window.location.href = isSuperAdmin ? 'dashboard_admin.html' : 'dashboard_overview.html';
+                        }, 1000);
+                    } else if (result.status === 'needs_second_factor') {
+                        // After first factor, may need second factor too
+                        const emailCodeFactor = (result.supportedSecondFactors || []).find(
+                            factor => factor.strategy === 'email_code'
+                        );
+                        if (emailCodeFactor) {
+                            await Clerk.client.signIn.prepareSecondFactor({
+                                strategy: 'email_code',
+                                emailAddressId: emailCodeFactor.emailAddressId,
+                            });
+                            verifyFactorType = 'second';
+                            document.getElementById('verify-code').value = '';
+                            showSuccess('Another verification code sent! Check your email again.');
+                        } else {
+                            showError('Additional verification is required. Please contact support.');
+                        }
+                        setButtonLoading('verify-btn-text', 'verify-btn-spinner', 'verify-btn-arrow', 'verify-btn', false);
+                    } else {
+                        showError('Verification could not be completed. (Status: ' + result.status + ')');
+                        setButtonLoading('verify-btn-text', 'verify-btn-spinner', 'verify-btn-arrow', 'verify-btn', false);
+                    }
+                } catch (error) {
+                    setButtonLoading('verify-btn-text', 'verify-btn-spinner', 'verify-btn-arrow', 'verify-btn', false);
+                    const errMsg = error?.errors?.[0]?.longMessage
+                        || error?.errors?.[0]?.message
+                        || 'Invalid verification code. Please try again.';
+                    showError(errMsg);
+                }
+            });
+
+            // --- FORGOT PASSWORD: RESET WITH CODE ---
+            document.getElementById('forgot-reset-form').addEventListener('submit', async (e) => {
+                e.preventDefault();
+                hideMessages();
+
+                const code = document.getElementById('reset-code').value.trim();
+                const newPassword = document.getElementById('new-password').value.trim();
+
+                if (!code || !newPassword) {
+                    showError('Please fill in all fields');
+                    return;
+                }
+
+                if (newPassword.length < 8) {
+                    showError('Password must be at least 8 characters');
+                    return;
+                }
+
+                setButtonLoading('reset-btn-text', 'reset-btn-spinner', 'reset-btn-arrow', 'reset-btn', true);
+
+                try {
+                    const result = await Clerk.client.signIn.attemptFirstFactor({
+                        strategy: 'reset_password_email_code',
+                        code: code,
+                        password: newPassword,
+                    });
+
+                    if (result.status === 'complete') {
+                        await Clerk.setActive({ session: result.createdSessionId });
+                        const userRole = Clerk.user?.publicMetadata?.role || 'client';
+                        const isSuperAdmin = userRole === 'admin';
+                        showSuccess('Password reset successful! Redirecting...');
+                        setTimeout(() => {
+                            window.location.href = isSuperAdmin ? 'dashboard_admin.html' : 'dashboard_overview.html';
+                        }, 1500);
+                    } else {
+                        showError('Password reset could not be completed. Please try again.');
+                        setButtonLoading('reset-btn-text', 'reset-btn-spinner', 'reset-btn-arrow', 'reset-btn', false);
+                    }
+                } catch (error) {
+                    setButtonLoading('reset-btn-text', 'reset-btn-spinner', 'reset-btn-arrow', 'reset-btn', false);
+                    const errMsg = error?.errors?.[0]?.longMessage
+                        || error?.errors?.[0]?.message
+                        || 'Invalid code or password. Please try again.';
+                    showError(errMsg);
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>

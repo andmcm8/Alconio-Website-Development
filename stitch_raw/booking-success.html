@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Booking Success | Alconio</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0e00a3",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#00001a",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .glass-card {
+            background: rgba(28, 27, 40, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glow-effect {
+            box-shadow: 0 0 40px rgba(14, 0, 163, 0.3);
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white min-h-screen flex flex-col font-display">
+<!-- Navigation -->
+<header class="w-full px-6 py-6 flex justify-between items-center max-w-7xl mx-auto">
+<div class="flex items-center gap-3">
+<div class="size-8 text-primary">
+<svg fill="currentColor" viewbox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+<path d="M42.4379 44C42.4379 44 36.0744 33.9038 41.1692 24C46.8624 12.9336 42.2078 4 42.2078 4L7.01134 4C7.01134 4 11.6577 12.932 5.96912 23.9969C0.876273 33.9029 7.27094 44 7.27094 44L42.4379 44Z"></path>
+</svg>
+</div>
+<span class="text-xl font-bold tracking-tight">Alconio</span>
+</div>
+<div class="flex gap-4">
+<button class="p-2 rounded-full hover:bg-white/5 transition-colors">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<div class="h-10 w-10 rounded-full bg-primary/20 flex items-center justify-center border border-primary/30 overflow-hidden">
+<img alt="User Profile" class="w-full h-full object-cover" data-alt="Close up portrait of a smiling professional person" src="https://lh3.googleusercontent.com/aida-public/AB6AXuASv0c2BxpL2QJh7mkOCRVotlqpxyxqoNLZcLYK5TsQYpxePgoJV0j4757refTENwRzD-0HNNPb2QpKGu687xZLTRaGONWfGZ6IKNE1jmwj9OY102g4QBo0AfXfLIa80xHxhC_B0gGwDjNOikKlG8yN764Gw7kxFuDcyDzI26Zt-YHoR82evl9rPRyitz6UbHxKSVkcp8EksFxKED9pToRU-BTBn7GvZ8kkwKOWSPLTxwj8KQCRAq3bNT0-GOvr5kEfk2i4Fft_PycX"/>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow flex items-center justify-center p-6 relative overflow-hidden">
+<!-- Abstract Background Glows -->
+<div class="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-primary/20 blur-[120px] rounded-full pointer-events-none"></div>
+<div class="absolute bottom-[-10%] left-[-10%] w-[400px] h-[400px] bg-purple-900/10 blur-[100px] rounded-full pointer-events-none"></div>
+<div class="max-w-2xl w-full flex flex-col items-center text-center z-10">
+<!-- Success Icon -->
+<div class="relative mb-10">
+<div class="absolute inset-0 bg-primary/40 blur-3xl rounded-full scale-150 opacity-50"></div>
+<div class="relative h-24 w-24 rounded-full bg-gradient-to-tr from-primary to-purple-600 flex items-center justify-center shadow-2xl glow-effect">
+<span class="material-symbols-outlined text-white text-5xl font-bold">check</span>
+</div>
+</div>
+<!-- Heading -->
+<div class="space-y-4 mb-12">
+<h1 class="text-5xl md:text-6xl font-bold tracking-tight text-white">Booking Confirmed!</h1>
+<p class="text-lg text-slate-400 max-w-md mx-auto">
+                    You're all set, Alex. We've sent a confirmation email with a calendar invite to your inbox.
+                </p>
+</div>
+<!-- Glass Card Summary -->
+<div class="glass-card w-full rounded-xl p-8 mb-10 text-left">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-8 border-b border-white/10 pb-8">
+<div class="space-y-1">
+<span class="text-xs font-semibold uppercase tracking-widest text-primary/80">Service</span>
+<h3 class="text-2xl font-bold text-white">Strategic Consultation</h3>
+<p class="text-slate-400 text-sm">Reference: ALC-99283-B</p>
+</div>
+<div class="text-left md:text-right space-y-1">
+<span class="text-xs font-semibold uppercase tracking-widest text-primary/80">Date &amp; Time</span>
+<div class="text-white font-medium flex items-center md:justify-end gap-2">
+<span class="material-symbols-outlined text-sm">calendar_today</span>
+                            October 24, 2023
+                        </div>
+<div class="text-white font-medium flex items-center md:justify-end gap-2">
+<span class="material-symbols-outlined text-sm">schedule</span>
+                            10:00 AM - 11:00 AM EST
+                        </div>
+</div>
+</div>
+<!-- Next Steps -->
+<div class="space-y-6">
+<h4 class="text-sm font-bold text-white/50 uppercase tracking-widest">What's Next?</h4>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<div class="flex gap-4 items-start">
+<div class="size-8 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-primary text-xl">mail</span>
+</div>
+<p class="text-sm text-slate-300">Check your email for the meeting link and prep guide.</p>
+</div>
+<div class="flex gap-4 items-start">
+<div class="size-8 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-primary text-xl">assignment</span>
+</div>
+<p class="text-sm text-slate-300">Complete the pre-session questionnaire.</p>
+</div>
+<div class="flex gap-4 items-start">
+<div class="size-8 rounded-lg bg-white/5 flex items-center justify-center flex-shrink-0">
+<span class="material-symbols-outlined text-primary text-xl">videocam</span>
+</div>
+<p class="text-sm text-slate-300">Join the call 5 minutes early to test your setup.</p>
+</div>
+</div>
+</div>
+</div>
+<!-- Action Buttons -->
+<div class="flex flex-col sm:flex-row gap-4 w-full justify-center">
+<button class="bg-primary hover:bg-primary/90 text-white px-8 py-4 rounded-lg font-bold transition-all shadow-lg flex items-center justify-center gap-2 group">
+<span>Go to Dashboard</span>
+<span class="material-symbols-outlined group-hover:translate-x-1 transition-transform">arrow_forward</span>
+</button>
+<button class="bg-white/5 hover:bg-white/10 text-white border border-white/10 px-8 py-4 rounded-lg font-bold transition-all flex items-center justify-center gap-2">
+<span class="material-symbols-outlined">receipt_long</span>
+<span>Download Receipt</span>
+</button>
+</div>
+<!-- Subtle Calendar Add -->
+<button class="mt-8 text-slate-400 hover:text-white transition-colors text-sm flex items-center gap-2 group">
+<span class="material-symbols-outlined text-lg group-hover:text-primary transition-colors">event_available</span>
+                Add to Apple / Google / Outlook Calendar
+            </button>
+</div>
+</main>
+<!-- Footer -->
+<footer class="w-full px-6 py-8 border-t border-white/5 mt-12">
+<div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-slate-500 text-sm">
+<p>© 2023 Alconio Global. All rights reserved.</p>
+<div class="flex gap-6">
+<a class="hover:text-white transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-white transition-colors" href="#">Terms of Service</a>
+<a class="hover:text-white transition-colors" href="#">Support</a>
+</div>
+</div>
+</footer>
+</body></html>

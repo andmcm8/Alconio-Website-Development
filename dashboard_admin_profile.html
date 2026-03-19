@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+    
+    <!-- Strict Role-Based Access Control (RBAC) Guard -->
+    <script>
+        (function() {
+            // 1. Instant concealment
+            document.documentElement.style.display = 'none';
+
+            // Constants
+            const IS_ADMIN_PAGE = window.location.pathname.includes('dashboard_admin') || window.location.pathname.includes('dashboard_onboarding');
+            const EXPECTED_ROLE = IS_ADMIN_PAGE ? 'admin' : 'client';
+
+            function handleAuthFailure(reason) {
+                console.error('[STRICT-AUTH] Redirecting due to:', reason);
+                window.location.replace('dashboard_signin.html?reason=' + encodeURIComponent(reason));
+            }
+
+            function handleRoleMismatch(foundRole) {
+                console.warn('[STRICT-AUTH] Role mismatch. Found:', foundRole, 'Expected:', EXPECTED_ROLE);
+                const target = foundRole === 'admin' ? 'dashboard_admin.html' : 'dashboard_overview.html';
+                window.location.replace(target);
+            }
+
+            async function verifyAccess() {
+                try {
+                    // 2. Wait for Clerk
+                    if (typeof Clerk === 'undefined') {
+                        let attempts = 0;
+                        while (typeof Clerk === 'undefined' && attempts < 100) {
+                            await new Promise(r => setTimeout(r, 50));
+                            attempts++;
+                        }
+                    }
+
+                    if (typeof Clerk === 'undefined') return handleAuthFailure('clerk_timeout');
+
+                    // 3. Ensure loaded
+                    if (!Clerk.loaded) await Clerk.load();
+
+                    // 4. Verification logic
+                    if (!Clerk.isSignedIn) {
+                        return handleAuthFailure('not_signed_in');
+                    }
+
+                    const userRole = Clerk.user?.publicMetadata?.role;
+                    
+                    if (!userRole) {
+                        return handleAuthFailure('no_role_assigned');
+                    }
+
+                    if (userRole !== EXPECTED_ROLE) {
+                        return handleRoleMismatch(userRole);
+                    }
+
+                    // 5. Success - reveal page
+                    document.documentElement.style.display = '';
+                    console.log('[STRICT-AUTH] Access granted for role:', userRole);
+                    
+                    // Extra safety: call window.requireRole if it exists yet
+                    if (typeof window.requireRole === 'function') {
+                        window.requireRole(EXPECTED_ROLE);
+                    }
+                } catch (err) {
+                    console.error('[STRICT-AUTH] Guard error:', err);
+                    handleAuthFailure('guard_error');
+                }
+            }
+
+            // Execute verification
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', verifyAccess);
+            } else {
+                verifyAccess();
+            }
+        })();
+    </script>
+
+
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Admin Profile - Alconio Admin</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet" />
+    <script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "electric-blue": "#0052FF",
+                        "obsidian": "#000000",
+                        "obsidian-panel": "#050508",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                    }
+                },
+            },
+        }
+    </script>
+</head>
+<body class="bg-obsidian text-slate-200 font-display antialiased overflow-x-hidden">
+    <div class="flex min-h-screen">
+        <main class="flex-1 p-8">
+            <div class="max-w-2xl mx-auto">
+                <a href="dashboard_admin.html" class="flex items-center gap-2 text-electric-blue hover:text-white transition-colors mb-8">
+                    <span class="material-symbols-outlined">arrow_back</span>
+                    Back to Hub
+                </a>
+                <h1 class="text-3xl font-bold text-white mb-8">Admin Profile</h1>
+                <div class="p-8 rounded-2xl bg-white/5 border border-white/10 text-center">
+                    <div class="w-24 h-24 rounded-full bg-electric-blue/10 border-2 border-electric-blue/30 mx-auto mb-6 flex items-center justify-center overflow-hidden">
+                        <img src="https://ui-avatars.com/api/?name=Admin+HQ&background=0052FF&color=fff" class="w-full h-full object-cover" alt="Profile">
+                    </div>
+                    <h2 class="text-xl font-bold text-white mb-2">Admin HQ</h2>
+                    <p class="text-slate-400 text-sm mb-8">administrator@alconio.hq</p>
+                    <div class="grid grid-cols-2 gap-4">
+                        <button class="px-6 py-3 rounded-xl bg-white/5 border border-white/10 text-sm font-bold text-slate-300 hover:text-white transition-all">Edit Details</button>
+                        <button class="px-6 py-3 rounded-xl bg-electric-blue text-sm font-bold text-white hover:bg-electric-blue-light transition-all">Security Settings</button>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+    <script src="dashboard_ui.js"></script>
+    <script src="dashboard_data.js"></script>
+</body>
+</html>

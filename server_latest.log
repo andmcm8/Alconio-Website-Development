@@ -1,0 +1,2985 @@
+Starting API Server...
+Starting Static Server...
+--- Servers Manager Started ---
+API: http://localhost:3000
+Static: http://localhost:8081
+(node:55232) [DEP0190] DeprecationWarning: Passing args to a child process with shell option true can lead to security vulnerabilities, as the arguments are not escaped, only concatenated.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+Static server running at http://localhost:8081/
+Root directory: /Users/andresmcmahon/Documents/Alconio Website
+[dotenv@17.3.1] injecting env (13) from .env -- tip: 🔐 encrypt with Dotenvx: https://dotenvx.com
+Analytics API proxy server running on http://localhost:3000
+[SERVER] Database initialization failed: connect ECONNREFUSED 127.0.0.1:3306
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 5,
+  "totalSessions": 6,
+  "avgBounce": 0.5,
+  "avgDuration": 143.18040333333332,
+  "totalNewUsers": 4,
+  "userEngagementDuration": 825,
+  "avgUserDuration": 165,
+  "screenPageViews": 59,
+  "scrolledUsers": 3,
+  "screenPageViewsPerUser": 14.75
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 5,
+  "totalSessions": 6,
+  "avgBounce": 0.5,
+  "avgDuration": 143.18040333333332,
+  "totalNewUsers": 4,
+  "userEngagementDuration": 825,
+  "avgUserDuration": 165,
+  "screenPageViews": 59,
+  "scrolledUsers": 3,
+  "screenPageViewsPerUser": 14.75
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 5,
+  "totalSessions": 6,
+  "avgBounce": 0.5,
+  "avgDuration": 143.18040333333332,
+  "totalNewUsers": 4,
+  "userEngagementDuration": 825,
+  "avgUserDuration": 165,
+  "screenPageViews": 59,
+  "scrolledUsers": 3,
+  "screenPageViewsPerUser": 14.75
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 5,
+  "totalSessions": 6,
+  "avgBounce": 0.5,
+  "avgDuration": 143.18040333333332,
+  "totalNewUsers": 4,
+  "userEngagementDuration": 825,
+  "avgUserDuration": 165,
+  "screenPageViews": 59,
+  "scrolledUsers": 3,
+  "screenPageViewsPerUser": 14.75
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 5,
+  "totalSessions": 6,
+  "avgBounce": 0.5,
+  "avgDuration": 143.18040333333332,
+  "totalNewUsers": 4,
+  "userEngagementDuration": 825,
+  "avgUserDuration": 165,
+  "screenPageViews": 59,
+  "scrolledUsers": 3,
+  "screenPageViewsPerUser": 14.75
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 5,
+  "totalSessions": 6,
+  "avgBounce": 0.5,
+  "avgDuration": 143.18040333333332,
+  "totalNewUsers": 4,
+  "userEngagementDuration": 825,
+  "avgUserDuration": 165,
+  "screenPageViews": 59,
+  "scrolledUsers": 3,
+  "screenPageViewsPerUser": 14.75
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 5,
+  "totalSessions": 6,
+  "avgBounce": 0.5,
+  "avgDuration": 143.18040333333332,
+  "totalNewUsers": 4,
+  "userEngagementDuration": 825,
+  "avgUserDuration": 165,
+  "screenPageViews": 59,
+  "scrolledUsers": 3,
+  "screenPageViewsPerUser": 14.75
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 5,
+  "totalSessions": 6,
+  "avgBounce": 0.5,
+  "avgDuration": 143.18040333333332,
+  "totalNewUsers": 4,
+  "userEngagementDuration": 825,
+  "avgUserDuration": 165,
+  "screenPageViews": 59,
+  "scrolledUsers": 3,
+  "screenPageViewsPerUser": 14.75
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 5,
+  "totalSessions": 6,
+  "avgBounce": 0.5,
+  "avgDuration": 143.18040333333332,
+  "totalNewUsers": 4,
+  "userEngagementDuration": 825,
+  "avgUserDuration": 165,
+  "screenPageViews": 59,
+  "scrolledUsers": 3,
+  "screenPageViewsPerUser": 14.75
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 5,
+  "totalSessions": 6,
+  "avgBounce": 0.5,
+  "avgDuration": 143.18040333333332,
+  "totalNewUsers": 4,
+  "userEngagementDuration": 825,
+  "avgUserDuration": 165,
+  "screenPageViews": 59,
+  "scrolledUsers": 3,
+  "screenPageViewsPerUser": 14.75
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[2026-03-16T05:08:33.192Z] GET /dashboard_activity_log.html
+[2026-03-16T05:08:33.260Z] GET /logo.png
+[2026-03-16T05:08:33.264Z] GET /dashboard_ui.js
+[SERVER] MySQL Error fetching activity logs, serving fallback mock data: connect ECONNREFUSED 127.0.0.1:3306
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 5,
+  "totalSessions": 6,
+  "avgBounce": 0.5,
+  "avgDuration": 143.18040333333332,
+  "totalNewUsers": 4,
+  "userEngagementDuration": 825,
+  "avgUserDuration": 165,
+  "screenPageViews": 59,
+  "scrolledUsers": 3,
+  "screenPageViewsPerUser": 14.75
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[2026-03-16T05:15:27.166Z] GET /dashboard_overview.html
+[2026-03-16T05:15:27.222Z] GET /logo.png
+[2026-03-16T05:15:27.439Z] GET /dashboard_ui.js
+[2026-03-16T05:15:27.440Z] GET /dashboard_data.js
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 5,
+  "totalSessions": 6,
+  "avgBounce": 0.5,
+  "avgDuration": 143.18040333333332,
+  "totalNewUsers": 4,
+  "userEngagementDuration": 825,
+  "avgUserDuration": 165,
+  "screenPageViews": 59,
+  "scrolledUsers": 3,
+  "screenPageViewsPerUser": 14.75
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[2026-03-16T05:15:53.535Z] GET /dashboard_performance
+[2026-03-16T05:15:53.591Z] GET /logo.png
+[2026-03-16T05:15:53.705Z] GET /dashboard_ui.js
+[2026-03-16T05:15:53.705Z] GET /dashboard_data.js
+[SERVER] GA4 Request for period: 7days
+[2026-03-16T05:15:54.610Z] GET /dashboard_activity_log
+[2026-03-16T05:15:54.630Z] GET /logo.png
+[2026-03-16T05:15:54.631Z] GET /dashboard_ui.js
+[SERVER] MySQL Error fetching activity logs, serving fallback mock data: connect ECONNREFUSED 127.0.0.1:3306
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 5,
+  "totalSessions": 6,
+  "avgBounce": 0.5,
+  "avgDuration": 143.18040333333332,
+  "totalNewUsers": 4,
+  "userEngagementDuration": 825,
+  "avgUserDuration": 165,
+  "screenPageViews": 59,
+  "scrolledUsers": 3,
+  "screenPageViewsPerUser": 14.75
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[2026-03-16T05:37:10.946Z] GET /dashboard_billing.html
+[2026-03-16T05:37:11.014Z] GET /logo.png
+[2026-03-16T05:37:11.268Z] GET /dashboard_ui.js
+[2026-03-16T05:37:11.453Z] GET /api/billing/invoices
+[2026-03-16T05:37:11.583Z] GET /api/billing/config
+[2026-03-16T05:37:11.584Z] GET /api/billing/customer
+[2026-03-16T05:37:11.598Z] GET /api/billing/payment-methods
+[2026-03-16T05:37:13.965Z] POST /api/billing/setup-intent
+[BILLING] Setup intent error: The payment method type "paypal" is invalid. See https://stripe.com/docs/api/payment_methods/object#payment_method_object-type for the full list of supported payment method types. Please also ensure the provided types are activated in your dashboard (https://dashboard.stripe.com/account/payments/settings) and your account is enabled for any features that you are trying to use.
+[2026-03-16T05:37:45.925Z] GET /dashboard_overview.html
+[2026-03-16T05:37:45.977Z] GET /logo.png
+[2026-03-16T05:37:46.102Z] GET /dashboard_ui.js
+[2026-03-16T05:37:46.103Z] GET /dashboard_data.js
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 5,
+  "totalSessions": 6,
+  "avgBounce": 0.5,
+  "avgDuration": 143.18040333333332,
+  "totalNewUsers": 4,
+  "userEngagementDuration": 825,
+  "avgUserDuration": 165,
+  "screenPageViews": 59,
+  "scrolledUsers": 3,
+  "screenPageViewsPerUser": 14.75
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 5,
+  "totalSessions": 6,
+  "avgBounce": 0.5,
+  "avgDuration": 143.18040333333332,
+  "totalNewUsers": 4,
+  "userEngagementDuration": 825,
+  "avgUserDuration": 165,
+  "screenPageViews": 59,
+  "scrolledUsers": 3,
+  "screenPageViewsPerUser": 14.75
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 5,
+  "totalSessions": 6,
+  "avgBounce": 0.5,
+  "avgDuration": 143.18040333333332,
+  "totalNewUsers": 4,
+  "userEngagementDuration": 825,
+  "avgUserDuration": 165,
+  "screenPageViews": 59,
+  "scrolledUsers": 3,
+  "screenPageViewsPerUser": 14.75
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 5,
+  "totalSessions": 6,
+  "avgBounce": 0.5,
+  "avgDuration": 143.18040333333332,
+  "totalNewUsers": 4,
+  "userEngagementDuration": 825,
+  "avgUserDuration": 165,
+  "screenPageViews": 59,
+  "scrolledUsers": 3,
+  "screenPageViewsPerUser": 14.75
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 5,
+  "totalSessions": 6,
+  "avgBounce": 0.5,
+  "avgDuration": 143.18040333333332,
+  "totalNewUsers": 4,
+  "userEngagementDuration": 825,
+  "avgUserDuration": 165,
+  "screenPageViews": 59,
+  "scrolledUsers": 3,
+  "screenPageViewsPerUser": 14.75
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 5,
+  "totalSessions": 6,
+  "avgBounce": 0.5,
+  "avgDuration": 143.18040333333332,
+  "totalNewUsers": 4,
+  "userEngagementDuration": 825,
+  "avgUserDuration": 165,
+  "screenPageViews": 59,
+  "scrolledUsers": 3,
+  "screenPageViewsPerUser": 14.75
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Error: Error: 4 DEADLINE_EXCEEDED: Deadline exceeded after 1040.824s,LB pick: 0.001s,remote_addr=142.251.211.170:443
+    at callErrorFromStatus (/Users/andresmcmahon/Documents/Alconio Website/node_modules/@grpc/grpc-js/build/src/call.js:32:19)
+    at Object.onReceiveStatus (/Users/andresmcmahon/Documents/Alconio Website/node_modules/@grpc/grpc-js/build/src/client.js:193:76)
+    at Object.onReceiveStatus (/Users/andresmcmahon/Documents/Alconio Website/node_modules/@grpc/grpc-js/build/src/client-interceptors.js:367:141)
+    at Object.onReceiveStatus (/Users/andresmcmahon/Documents/Alconio Website/node_modules/@grpc/grpc-js/build/src/client-interceptors.js:327:181)
+    at /Users/andresmcmahon/Documents/Alconio Website/node_modules/@grpc/grpc-js/build/src/resolving-call.js:135:78
+    at process.processTicksAndRejections (node:internal/process/task_queues:84:11)
+for call at
+    at ServiceClientImpl.makeUnaryRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/@grpc/grpc-js/build/src/client.js:161:32)
+    at ServiceClientImpl.<anonymous> (/Users/andresmcmahon/Documents/Alconio Website/node_modules/@grpc/grpc-js/build/src/make-client.js:105:19)
+    at /Users/andresmcmahon/Documents/Alconio Website/node_modules/@google-analytics/data/build/src/v1beta/beta_analytics_data_client.js:232:29
+    at /Users/andresmcmahon/Documents/Alconio Website/node_modules/google-gax/build/src/normalCalls/timeout.js:44:16
+    at OngoingCallPromise.call (/Users/andresmcmahon/Documents/Alconio Website/node_modules/google-gax/build/src/call.js:70:27)
+    at NormalApiCaller.call (/Users/andresmcmahon/Documents/Alconio Website/node_modules/google-gax/build/src/normalCalls/normalApiCaller.js:34:19)
+    at /Users/andresmcmahon/Documents/Alconio Website/node_modules/google-gax/build/src/createApiCall.js:110:30 {
+  code: 4,
+  details: 'Deadline exceeded after 1040.824s,LB pick: 0.001s,remote_addr=142.251.211.170:443',
+  metadata: Metadata {
+    internalRepr: Map(0) {},
+    opaqueData: Map(0) {},
+    options: {}
+  }
+}
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Error: Error: 4 DEADLINE_EXCEEDED: Deadline exceeded after 906.694s,metadata filters: 0.002s,remote_addr=142.250.65.74:443
+    at callErrorFromStatus (/Users/andresmcmahon/Documents/Alconio Website/node_modules/@grpc/grpc-js/build/src/call.js:32:19)
+    at Object.onReceiveStatus (/Users/andresmcmahon/Documents/Alconio Website/node_modules/@grpc/grpc-js/build/src/client.js:193:76)
+    at Object.onReceiveStatus (/Users/andresmcmahon/Documents/Alconio Website/node_modules/@grpc/grpc-js/build/src/client-interceptors.js:367:141)
+    at Object.onReceiveStatus (/Users/andresmcmahon/Documents/Alconio Website/node_modules/@grpc/grpc-js/build/src/client-interceptors.js:327:181)
+    at /Users/andresmcmahon/Documents/Alconio Website/node_modules/@grpc/grpc-js/build/src/resolving-call.js:135:78
+    at process.processTicksAndRejections (node:internal/process/task_queues:84:11)
+for call at
+    at ServiceClientImpl.makeUnaryRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/@grpc/grpc-js/build/src/client.js:161:32)
+    at ServiceClientImpl.<anonymous> (/Users/andresmcmahon/Documents/Alconio Website/node_modules/@grpc/grpc-js/build/src/make-client.js:105:19)
+    at /Users/andresmcmahon/Documents/Alconio Website/node_modules/@google-analytics/data/build/src/v1beta/beta_analytics_data_client.js:232:29
+    at /Users/andresmcmahon/Documents/Alconio Website/node_modules/google-gax/build/src/normalCalls/timeout.js:44:16
+    at OngoingCallPromise.call (/Users/andresmcmahon/Documents/Alconio Website/node_modules/google-gax/build/src/call.js:70:27)
+    at NormalApiCaller.call (/Users/andresmcmahon/Documents/Alconio Website/node_modules/google-gax/build/src/normalCalls/normalApiCaller.js:34:19)
+    at /Users/andresmcmahon/Documents/Alconio Website/node_modules/google-gax/build/src/createApiCall.js:110:30 {
+  code: 4,
+  details: 'Deadline exceeded after 906.694s,metadata filters: 0.002s,remote_addr=142.250.65.74:443',
+  metadata: Metadata {
+    internalRepr: Map(0) {},
+    opaqueData: Map(0) {},
+    options: {}
+  }
+}
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[CRON] Running daily billing checks...
+[CRON] Error checking system health: connect ECONNREFUSED 127.0.0.1:3306
+[2026-03-16T15:24:19.863Z] GET /dashboard_activity_log.html
+[2026-03-16T15:24:19.947Z] GET /logo.png
+[2026-03-16T15:24:19.956Z] GET /dashboard_ui.js
+[SERVER] MySQL Error fetching activity logs, serving fallback mock data: connect ECONNREFUSED 127.0.0.1:3306
+[2026-03-16T15:24:27.612Z] GET /dashboard_performance.html
+[2026-03-16T15:24:27.645Z] GET /logo.png
+[2026-03-16T15:24:27.649Z] GET /dashboard_ui.js
+[2026-03-16T15:24:27.651Z] GET /dashboard_data.js
+[SERVER] GA4 Request for period: 7days
+[SERVER] Database cache fetch failed: connect ECONNREFUSED 127.0.0.1:3306
+[SERVER] Performance analysis (fetch) for: https://arcaico.vercel.app (mobile)
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[2026-03-16T15:24:41.363Z] GET /dashboard_performance.html
+[2026-03-16T15:24:41.385Z] GET /logo.png
+[2026-03-16T15:24:41.388Z] GET /dashboard_ui.js
+[2026-03-16T15:24:41.391Z] GET /dashboard_data.js
+[SERVER] GA4 Request for period: 7days
+[2026-03-16T15:24:42.203Z] GET /favicon.ico
+File not found: /Users/andresmcmahon/Documents/Alconio Website/favicon.ico
+[2026-03-16T15:24:42.326Z] GET /dashboard_performance.html
+[2026-03-16T15:24:42.343Z] GET /logo.png
+[2026-03-16T15:24:42.346Z] GET /dashboard_ui.js
+[2026-03-16T15:24:42.348Z] GET /dashboard_data.js
+[SERVER] GA4 Request for period: 7days
+[SERVER] Failed to save performance metrics to DB: connect ECONNREFUSED 127.0.0.1:3306
+[2026-03-16T15:24:42.821Z] GET /dashboard_performance.html
+[2026-03-16T15:24:42.831Z] GET /logo.png
+[2026-03-16T15:24:42.833Z] GET /dashboard_ui.js
+[2026-03-16T15:24:42.834Z] GET /dashboard_data.js
+[SERVER] GA4 Request for period: 7days
+[2026-03-16T15:24:43.121Z] GET /dashboard_performance.html
+[2026-03-16T15:24:43.130Z] GET /logo.png
+[2026-03-16T15:24:43.132Z] GET /dashboard_ui.js
+[2026-03-16T15:24:43.134Z] GET /dashboard_data.js
+[2026-03-16T15:24:43.406Z] GET /dashboard_performance.html
+[2026-03-16T15:24:43.418Z] GET /logo.png
+[2026-03-16T15:24:43.420Z] GET /dashboard_ui.js
+[2026-03-16T15:24:43.422Z] GET /dashboard_data.js
+[SERVER] GA4 Request for period: 7days
+[2026-03-16T15:24:45.470Z] GET /favicon.ico
+File not found: /Users/andresmcmahon/Documents/Alconio Website/favicon.ico
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] Database cache fetch failed: connect ECONNREFUSED 127.0.0.1:3306
+[SERVER] Performance analysis (fetch) for: https://arcaico.vercel.app (mobile)
+[SERVER] Failed to save performance metrics to DB: connect ECONNREFUSED 127.0.0.1:3306
+[SERVER] Performance analysis (fetch) for: https://arcaico.vercel.app (mobile)
+[SERVER] Failed to save performance metrics to DB: connect ECONNREFUSED 127.0.0.1:3306
+[SERVER] Database cache fetch failed: connect ECONNREFUSED 127.0.0.1:3306
+[SERVER] Performance analysis (fetch) for: https://arcaico.vercel.app (desktop)
+[SERVER] Database cache fetch failed: connect ECONNREFUSED 127.0.0.1:3306
+[SERVER] Performance analysis (fetch) for: https://arcaico.vercel.app (mobile)
+[SERVER] Failed to save performance metrics to DB: connect ECONNREFUSED 127.0.0.1:3306
+[SERVER] Performance analysis (fetch) for: https://arcaico.vercel.app (desktop)
+[SERVER] Failed to save performance metrics to DB: connect ECONNREFUSED 127.0.0.1:3306
+[SERVER] Database cache fetch failed: connect ECONNREFUSED 127.0.0.1:3306
+[SERVER] Performance analysis (fetch) for: https://arcaico.vercel.app (desktop)
+[SERVER] Failed to save performance metrics to DB: connect ECONNREFUSED 127.0.0.1:3306
+[SERVER] Failed to save performance metrics to DB: connect ECONNREFUSED 127.0.0.1:3306
+[SERVER] Performance analysis (fetch) for: https://arcaico.vercel.app (desktop)
+[SERVER] Performance analysis (fetch) for: https://arcaico.vercel.app (mobile)
+[SERVER] Failed to save performance metrics to DB: connect ECONNREFUSED 127.0.0.1:3306
+[SERVER] Database cache fetch failed: connect ECONNREFUSED 127.0.0.1:3306
+[SERVER] Performance analysis (fetch) for: https://arcaico.vercel.app (mobile)
+[SERVER] Failed to save performance metrics to DB: connect ECONNREFUSED 127.0.0.1:3306
+[SERVER] Performance analysis (fetch) for: https://arcaico.vercel.app (mobile)
+[SERVER] Failed to save performance metrics to DB: connect ECONNREFUSED 127.0.0.1:3306
+[2026-03-16T15:25:12.159Z] GET /dashboard_overview.html
+[2026-03-16T15:25:12.179Z] GET /logo.png
+[2026-03-16T15:25:12.190Z] GET /dashboard_ui.js
+[2026-03-16T15:25:12.190Z] GET /dashboard_data.js
+[SERVER] GA4 Request for period: 7days
+[2026-03-16T15:25:13.792Z] GET /dashboard_analytics.html
+[2026-03-16T15:25:13.819Z] GET /logo.png
+[2026-03-16T15:25:13.826Z] GET /dashboard_ui.js
+[2026-03-16T15:25:13.835Z] GET /dashboard_data.js
+[SERVER] GA4 Request for period: 30days
+[SERVER] Heatmap request for property: 526584649
+[SERVER] Heatmap success: 6 days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[2026-03-16T15:25:16.702Z] GET /dashboard_overview.html
+[2026-03-16T15:25:16.715Z] GET /logo.png
+[2026-03-16T15:25:16.717Z] GET /dashboard_ui.js
+[2026-03-16T15:25:16.717Z] GET /dashboard_data.js
+[SERVER] GA4 Request for period: 7days
+[2026-03-16T15:25:18.805Z] GET /dashboard_analytics.html
+[2026-03-16T15:25:18.821Z] GET /logo.png
+[2026-03-16T15:25:18.822Z] GET /dashboard_ui.js
+[2026-03-16T15:25:18.823Z] GET /dashboard_data.js
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 30days
+[SERVER] Heatmap request for property: 526584649
+[SERVER] Heatmap success: 6 days
+[2026-03-16T15:25:20.886Z] GET /dashboard_overview.html
+[2026-03-16T15:25:20.897Z] GET /logo.png
+[2026-03-16T15:25:20.898Z] GET /dashboard_ui.js
+[2026-03-16T15:25:20.900Z] GET /dashboard_data.js
+[GA4] Retention report success
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] Failed to save performance metrics to DB: connect ECONNREFUSED 127.0.0.1:3306
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: today
+[GA4] Retention report success
+[SERVER] fillGaps for "today" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "today" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[2026-03-16T15:26:00.347Z] GET /dashboard_performance.html
+[2026-03-16T15:26:00.389Z] GET /logo.png
+[2026-03-16T15:26:00.390Z] GET /dashboard_ui.js
+[2026-03-16T15:26:00.392Z] GET /dashboard_data.js
+[SERVER] GA4 Request for period: 7days
+[2026-03-16T15:26:01.935Z] GET /dashboard_activity_log.html
+[2026-03-16T15:26:01.945Z] GET /logo.png
+[2026-03-16T15:26:01.946Z] GET /dashboard_ui.js
+[SERVER] MySQL Error fetching activity logs, serving fallback mock data: connect ECONNREFUSED 127.0.0.1:3306
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[2026-03-16T15:26:02.837Z] GET /dashboard_resources.html
+[2026-03-16T15:26:02.854Z] GET /logo.png
+[2026-03-16T15:26:02.855Z] GET /dashboard_ui.js
+[2026-03-16T16:01:08.019Z] GET /dashboard_activity_log.html
+[2026-03-16T16:01:08.085Z] GET /logo.png
+[2026-03-16T16:01:08.089Z] GET /dashboard_ui.js
+[SERVER] MySQL Error fetching activity logs, serving fallback mock data: connect ECONNREFUSED 127.0.0.1:3306
+[2026-03-16T16:01:09.048Z] GET /dashboard_performance.html
+[2026-03-16T16:01:09.063Z] GET /logo.png
+[2026-03-16T16:01:09.069Z] GET /dashboard_ui.js
+[2026-03-16T16:01:09.072Z] GET /dashboard_data.js
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[2026-03-16T16:10:50.908Z] GET /dashboard_performance.html
+[2026-03-16T16:10:50.969Z] GET /logo.png
+[2026-03-16T16:10:50.995Z] GET /dashboard_ui.js
+[2026-03-16T16:10:50.995Z] GET /dashboard_data.js
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[2026-03-16T16:10:54.791Z] GET /dashboard_activity_log.html
+[2026-03-16T16:10:54.808Z] GET /logo.png
+[2026-03-16T16:10:54.810Z] GET /dashboard_ui.js
+[SERVER] MySQL Error fetching activity logs, serving fallback mock data: connect ECONNREFUSED 127.0.0.1:3306
+[2026-03-16T16:10:55.430Z] GET /dashboard_resources.html
+[2026-03-16T16:10:55.442Z] GET /logo.png
+[2026-03-16T16:10:55.448Z] GET /dashboard_ui.js
+[2026-03-16T16:18:46.704Z] GET /dashboard_resources.html
+[2026-03-16T16:18:46.765Z] GET /logo.png
+[2026-03-16T16:18:46.766Z] GET /dashboard_ui.js
+[2026-03-16T16:18:48.492Z] GET /dashboard_docs.html
+[2026-03-16T16:18:48.522Z] GET /logo.png
+[2026-03-16T16:18:48.534Z] GET /dashboard_ui.js
+[2026-03-16T16:19:00.601Z] GET /dashboard_resources.html
+[2026-03-16T16:19:00.625Z] GET /logo.png
+[2026-03-16T16:19:00.625Z] GET /dashboard_ui.js
+[2026-03-16T16:22:42.626Z] GET /dashboard_resources.html
+[2026-03-16T16:22:42.675Z] GET /logo.png
+[2026-03-16T16:22:42.680Z] GET /dashboard_ui.js
+[2026-03-16T16:22:43.996Z] GET /dashboard_docs.html
+[2026-03-16T16:22:44.009Z] GET /logo.png
+[2026-03-16T16:22:44.010Z] GET /dashboard_ui.js
+[2026-03-16T16:22:53.079Z] GET /dashboard_docs.html
+[2026-03-16T16:22:53.091Z] GET /logo.png
+[2026-03-16T16:22:53.091Z] GET /dashboard_ui.js
+[2026-03-16T16:22:57.230Z] GET /dashboard_help.html
+[2026-03-16T16:22:57.242Z] GET /logo.png
+[2026-03-16T16:22:57.243Z] GET /dashboard_ui.js
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: today
+[GA4] Retention report success
+[SERVER] fillGaps for "today" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "today" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 30days
+[GA4] Retention report success
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: today
+[GA4] Retention report success
+[SERVER] fillGaps for "today" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "today" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 30days
+[GA4] Retention report success
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: today
+[GA4] Retention report success
+[SERVER] fillGaps for "today" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "today" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: today
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "today" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "today" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 30days
+[GA4] Retention report success
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: today
+[GA4] Retention report success
+[SERVER] fillGaps for "today" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "today" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: today
+[GA4] Retention report success
+[SERVER] fillGaps for "today" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "today" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: today
+[GA4] Retention report success
+[SERVER] fillGaps for "today" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "today" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 30days
+[GA4] Retention report success
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 30days
+[GA4] Retention report success
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: today
+[GA4] Retention report success
+[SERVER] fillGaps for "today" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "today" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 30days
+[GA4] Retention report success
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 30days
+[GA4] Retention report success
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 30days
+[GA4] Retention report success
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 30days
+[GA4] Retention report success
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 30days
+[GA4] Retention report success
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 30days
+[GA4] Retention report success
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 30days
+[GA4] Retention report success
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 30days
+[SERVER] Heatmap request for property: 526584649
+[SERVER] Heatmap success: 6 days
+[GA4] Retention report success
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 30days
+[GA4] Retention report success
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 30days
+[GA4] Retention report success
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 30days
+[GA4] Retention report success
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 30days
+[GA4] Retention report success
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 30days
+[GA4] Retention report success
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 30days
+[GA4] Retention report success
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 30days
+[GA4] Retention report success
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 30days
+[GA4] Retention report success
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 30days
+[GA4] Retention report success
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 30days
+[GA4] Retention report success
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 30days
+[GA4] Retention report success
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 3,
+  "totalSessions": 3,
+  "avgBounce": 0.3333333333333333,
+  "avgDuration": 123.58668466666667,
+  "totalNewUsers": 3,
+  "userEngagementDuration": 359,
+  "avgUserDuration": 119.66666666666667,
+  "screenPageViews": 26,
+  "scrolledUsers": 2,
+  "screenPageViewsPerUser": 8.666666666666666
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[2026-03-17T18:50:50.951Z] GET /
+[2026-03-17T18:50:52.839Z] GET /frames/hero/frame_0001.png
+[2026-03-17T18:50:52.840Z] GET /frames/hero/frame_0002.png
+[2026-03-17T18:50:52.855Z] GET /frames/hero/frame_0003.png
+[2026-03-17T18:50:52.862Z] GET /frames/hero/frame_0004.png
+[2026-03-17T18:50:52.870Z] GET /frames/hero/frame_0005.png
+[2026-03-17T18:50:52.886Z] GET /frames/hero/frame_0006.png
+[2026-03-17T18:50:53.047Z] GET /frames/hero/frame_0007.png
+[2026-03-17T18:50:53.072Z] GET /frames/hero/frame_0008.png
+[2026-03-17T18:50:53.142Z] GET /frames/hero/frame_0009.png
+[2026-03-17T18:50:53.142Z] GET /frames/hero/frame_0010.png
+[2026-03-17T18:50:53.145Z] GET /frames/hero/frame_0011.png
+[2026-03-17T18:50:53.148Z] GET /frames/hero/frame_0012.png
+[2026-03-17T18:50:53.149Z] GET /frames/hero/frame_0013.png
+[2026-03-17T18:50:53.177Z] GET /frames/hero/frame_0014.png
+[2026-03-17T18:50:53.208Z] GET /frames/hero/frame_0015.png
+[2026-03-17T18:50:53.229Z] GET /frames/hero/frame_0016.png
+[2026-03-17T18:50:53.237Z] GET /frames/hero/frame_0017.png
+[2026-03-17T18:50:53.237Z] GET /frames/hero/frame_0018.png
+[2026-03-17T18:50:53.244Z] GET /frames/hero/frame_0019.png
+[2026-03-17T18:50:53.252Z] GET /frames/hero/frame_0020.png
+[2026-03-17T18:50:53.433Z] GET /frames/hero/frame_0021.png
+[2026-03-17T18:50:53.447Z] GET /frames/hero/frame_0022.png
+[2026-03-17T18:50:53.448Z] GET /frames/hero/frame_0023.png
+[2026-03-17T18:50:53.454Z] GET /frames/hero/frame_0024.png
+[2026-03-17T18:50:53.462Z] GET /frames/hero/frame_0025.png
+[2026-03-17T18:50:53.462Z] GET /frames/hero/frame_0026.png
+[2026-03-17T18:50:53.716Z] GET /frames/hero/frame_0027.png
+[2026-03-17T18:50:53.746Z] GET /frames/hero/frame_0028.png
+[2026-03-17T18:50:53.747Z] GET /frames/hero/frame_0029.png
+[2026-03-17T18:50:53.754Z] GET /frames/hero/frame_0030.png
+[2026-03-17T18:50:53.754Z] GET /frames/hero/frame_0031.png
+[2026-03-17T18:50:53.981Z] GET /frames/hero/frame_0032.png
+[2026-03-17T18:50:54.011Z] GET /frames/hero/frame_0033.png
+[2026-03-17T18:50:54.011Z] GET /frames/hero/frame_0034.png
+[2026-03-17T18:50:54.017Z] GET /frames/hero/frame_0035.png
+[2026-03-17T18:50:54.018Z] GET /frames/hero/frame_0036.png
+[2026-03-17T18:50:54.056Z] GET /frames/hero/frame_0037.png
+[2026-03-17T18:50:54.493Z] GET /frames/hero/frame_0038.png
+[2026-03-17T18:50:54.583Z] GET /frames/hero/frame_0039.png
+[2026-03-17T18:50:54.591Z] GET /frames/hero/frame_0040.png
+[2026-03-17T18:50:54.591Z] GET /frames/hero/frame_0041.png
+[2026-03-17T18:50:54.598Z] GET /frames/hero/frame_0042.png
+[2026-03-17T18:50:54.629Z] GET /frames/hero/frame_0043.png
+[2026-03-17T18:50:54.651Z] GET /frames/hero/frame_0044.png
+[2026-03-17T18:50:54.754Z] GET /frames/hero/frame_0045.png
+[2026-03-17T18:50:55.854Z] GET /frames/hero/frame_0046.png
+[2026-03-17T18:50:55.854Z] GET /frames/hero/frame_0047.png
+[2026-03-17T18:50:55.854Z] GET /frames/hero/frame_0048.png
+[2026-03-17T18:50:55.860Z] GET /frames/hero/frame_0049.png
+[2026-03-17T18:50:55.870Z] GET /frames/hero/frame_0050.png
+[2026-03-17T18:50:55.936Z] GET /frames/hero/frame_0051.png
+[2026-03-17T18:50:55.937Z] GET /frames/hero/frame_0052.png
+[2026-03-17T18:50:55.938Z] GET /frames/hero/frame_0053.png
+[2026-03-17T18:50:55.946Z] GET /frames/hero/frame_0054.png
+[2026-03-17T18:50:55.953Z] GET /frames/hero/frame_0055.png
+[2026-03-17T18:50:55.953Z] GET /frames/hero/frame_0056.png
+[2026-03-17T18:50:56.059Z] GET /frames/hero/frame_0057.png
+[2026-03-17T18:50:56.066Z] GET /frames/hero/frame_0058.png
+[2026-03-17T18:50:56.067Z] GET /frames/hero/frame_0059.png
+[2026-03-17T18:50:56.067Z] GET /frames/hero/frame_0060.png
+[2026-03-17T18:50:56.075Z] GET /frames/hero/frame_0061.png
+[2026-03-17T18:50:56.086Z] GET /frames/hero/frame_0062.png
+[2026-03-17T18:50:56.157Z] GET /frames/hero/frame_0063.png
+[2026-03-17T18:50:56.167Z] GET /frames/hero/frame_0064.png
+[2026-03-17T18:50:56.170Z] GET /frames/hero/frame_0065.png
+[2026-03-17T18:50:56.174Z] GET /frames/hero/frame_0066.png
+[2026-03-17T18:50:56.174Z] GET /frames/hero/frame_0067.png
+[2026-03-17T18:50:56.180Z] GET /frames/hero/frame_0068.png
+[2026-03-17T18:50:56.252Z] GET /frames/hero/frame_0069.png
+[2026-03-17T18:50:56.264Z] GET /frames/hero/frame_0070.png
+[2026-03-17T18:50:56.264Z] GET /frames/hero/frame_0071.png
+[2026-03-17T18:50:56.267Z] GET /frames/hero/frame_0072.png
+[2026-03-17T18:50:56.271Z] GET /frames/hero/frame_0073.png
+[2026-03-17T18:50:56.275Z] GET /frames/hero/frame_0074.png
+[2026-03-17T18:50:56.386Z] GET /frames/hero/frame_0075.png
+[2026-03-17T18:50:56.390Z] GET /frames/hero/frame_0076.png
+[2026-03-17T18:50:56.391Z] GET /frames/hero/frame_0077.png
+[2026-03-17T18:50:56.391Z] GET /frames/hero/frame_0078.png
+[2026-03-17T18:50:56.392Z] GET /frames/hero/frame_0079.png
+[2026-03-17T18:50:56.397Z] GET /frames/hero/frame_0080.png
+[2026-03-17T18:50:57.131Z] GET /frames/hero/frame_0081.png
+[2026-03-17T18:50:57.131Z] GET /frames/hero/frame_0082.png
+[2026-03-17T18:50:57.134Z] GET /frames/hero/frame_0083.png
+[2026-03-17T18:50:57.135Z] GET /frames/hero/frame_0084.png
+[2026-03-17T18:50:57.136Z] GET /frames/hero/frame_0085.png
+[2026-03-17T18:50:57.136Z] GET /frames/hero/frame_0086.png
+[2026-03-17T18:50:57.200Z] GET /frames/hero/frame_0087.png
+[2026-03-17T18:50:57.204Z] GET /frames/hero/frame_0088.png
+[2026-03-17T18:50:57.204Z] GET /frames/hero/frame_0089.png
+[2026-03-17T18:50:57.205Z] GET /frames/hero/frame_0090.png
+[2026-03-17T18:50:57.207Z] GET /frames/hero/frame_0091.png
+[2026-03-17T18:50:57.207Z] GET /frames/hero/frame_0092.png
+[2026-03-17T18:50:57.229Z] GET /frames/hero/frame_0093.png
+[2026-03-17T18:50:57.306Z] GET /frames/hero/frame_0094.png
+[2026-03-17T18:50:57.311Z] GET /frames/hero/frame_0095.png
+[2026-03-17T18:50:57.311Z] GET /frames/hero/frame_0096.png
+[2026-03-17T18:50:57.311Z] GET /frames/hero/frame_0097.png
+[2026-03-17T18:50:57.311Z] GET /frames/hero/frame_0098.png
+[2026-03-17T18:50:57.312Z] GET /frames/hero/frame_0099.png
+[2026-03-17T18:50:57.419Z] GET /frames/hero/frame_0100.png
+[2026-03-17T18:50:57.421Z] GET /frames/hero/frame_0101.png
+[2026-03-17T18:50:57.434Z] GET /frames/hero/frame_0102.png
+[2026-03-17T18:50:57.437Z] GET /frames/hero/frame_0103.png
+[2026-03-17T18:50:57.438Z] GET /frames/hero/frame_0104.png
+[2026-03-17T18:50:57.440Z] GET /frames/hero/frame_0105.png
+[2026-03-17T18:50:57.446Z] GET /frames/hero/frame_0106.png
+[2026-03-17T18:50:57.446Z] GET /frames/hero/frame_0107.png
+[2026-03-17T18:50:57.533Z] GET /frames/hero/frame_0108.png
+[2026-03-17T18:50:57.539Z] GET /frames/hero/frame_0109.png
+[2026-03-17T18:50:57.540Z] GET /frames/hero/frame_0110.png
+[2026-03-17T18:50:57.545Z] GET /frames/hero/frame_0111.png
+[2026-03-17T18:50:57.548Z] GET /frames/hero/frame_0112.png
+[2026-03-17T18:50:57.550Z] GET /frames/hero/frame_0113.png
+[2026-03-17T18:50:57.578Z] GET /frames/hero/frame_0114.png
+[2026-03-17T18:50:57.661Z] GET /frames/hero/frame_0115.png
+[2026-03-17T18:50:57.662Z] GET /frames/hero/frame_0116.png
+[2026-03-17T18:50:57.663Z] GET /frames/hero/frame_0117.png
+[2026-03-17T18:50:57.664Z] GET /frames/hero/frame_0118.png
+[2026-03-17T18:50:57.665Z] GET /frames/hero/frame_0119.png
+[2026-03-17T18:50:57.667Z] GET /frames/hero/frame_0120.png
+[2026-03-17T18:50:57.748Z] GET /frames/hero/frame_0121.png
+[2026-03-17T18:50:57.774Z] GET /frames/hero/frame_0122.png
+[2026-03-17T18:50:57.776Z] GET /frames/hero/frame_0123.png
+[2026-03-17T18:50:57.778Z] GET /frames/hero/frame_0124.png
+[2026-03-17T18:50:57.778Z] GET /frames/hero/frame_0125.png
+[2026-03-17T18:50:57.780Z] GET /frames/hero/frame_0126.png
+[2026-03-17T18:50:57.842Z] GET /frames/hero/frame_0127.png
+[2026-03-17T18:50:57.843Z] GET /frames/hero/frame_0128.png
+[2026-03-17T18:50:57.852Z] GET /frames/hero/frame_0129.png
+[2026-03-17T18:50:57.862Z] GET /frames/hero/frame_0130.png
+[2026-03-17T18:50:57.866Z] GET /frames/hero/frame_0131.png
+[2026-03-17T18:50:57.867Z] GET /frames/hero/frame_0132.png
+[2026-03-17T18:50:57.940Z] GET /frames/hero/frame_0133.png
+[2026-03-17T18:50:57.940Z] GET /frames/hero/frame_0134.png
+[2026-03-17T18:50:57.943Z] GET /frames/hero/frame_0135.png
+[2026-03-17T18:50:57.945Z] GET /frames/hero/frame_0136.png
+[2026-03-17T18:50:57.946Z] GET /frames/hero/frame_0137.png
+[2026-03-17T18:50:57.946Z] GET /frames/hero/frame_0138.png
+[2026-03-17T18:50:57.977Z] GET /frames/hero/frame_0139.png
+[2026-03-17T18:50:58.117Z] GET /frames/hero/frame_0140.png
+[2026-03-17T18:50:58.117Z] GET /frames/hero/frame_0141.png
+[2026-03-17T18:50:58.117Z] GET /frames/hero/frame_0142.png
+[2026-03-17T18:50:58.119Z] GET /frames/hero/frame_0143.png
+[2026-03-17T18:50:58.123Z] GET /frames/hero/frame_0144.png
+[2026-03-17T18:50:58.135Z] GET /frames/hero/frame_0145.png
+[2026-03-17T18:50:58.208Z] GET /frames/hero/frame_0146.png
+[2026-03-17T18:50:58.216Z] GET /frames/hero/frame_0147.png
+[2026-03-17T18:50:58.218Z] GET /frames/hero/frame_0148.png
+[2026-03-17T18:50:58.219Z] GET /frames/hero/frame_0149.png
+[2026-03-17T18:50:58.247Z] GET /frames/hero/frame_0150.png
+[2026-03-17T18:50:58.249Z] GET /frames/hero/frame_0151.png
+[2026-03-17T18:50:58.497Z] GET /frames/hero/frame_0152.png
+[2026-03-17T18:50:58.498Z] GET /frames/hero/frame_0153.png
+[2026-03-17T18:50:58.500Z] GET /frames/hero/frame_0154.png
+[2026-03-17T18:50:58.501Z] GET /frames/hero/frame_0155.png
+[2026-03-17T18:50:58.513Z] GET /frames/hero/frame_0156.png
+[2026-03-17T18:50:58.514Z] GET /frames/hero/frame_0157.png
+[2026-03-17T18:50:58.624Z] GET /frames/hero/frame_0158.png
+[2026-03-17T18:50:58.632Z] GET /frames/hero/frame_0159.png
+[2026-03-17T18:50:58.632Z] GET /frames/hero/frame_0160.png
+[2026-03-17T18:50:58.642Z] GET /frames/hero/frame_0161.png
+[2026-03-17T18:50:58.642Z] GET /frames/hero/frame_0162.png
+[2026-03-17T18:50:58.718Z] GET /frames/hero/frame_0163.png
+[2026-03-17T18:50:59.126Z] GET /frames/hero/frame_0164.png
+[2026-03-17T18:50:59.128Z] GET /frames/hero/frame_0165.png
+[2026-03-17T18:50:59.129Z] GET /frames/hero/frame_0166.png
+[2026-03-17T18:50:59.129Z] GET /frames/hero/frame_0167.png
+[2026-03-17T18:50:59.130Z] GET /frames/hero/frame_0168.png
+[2026-03-17T18:50:59.132Z] GET /frames/hero/frame_0169.png
+[2026-03-17T18:50:59.455Z] GET /frames/hero/frame_0170.png
+[2026-03-17T18:50:59.461Z] GET /frames/hero/frame_0171.png
+[2026-03-17T18:50:59.461Z] GET /frames/hero/frame_0172.png
+[2026-03-17T18:50:59.464Z] GET /frames/hero/frame_0173.png
+[2026-03-17T18:50:59.470Z] GET /frames/hero/frame_0174.png
+[2026-03-17T18:50:59.470Z] GET /frames/hero/frame_0175.png
+[2026-03-17T18:50:59.607Z] GET /frames/hero/frame_0176.png
+[2026-03-17T18:50:59.611Z] GET /frames/hero/frame_0177.png
+[2026-03-17T18:50:59.642Z] GET /frames/hero/frame_0178.png
+[2026-03-17T18:50:59.737Z] GET /frames/hero/frame_0179.png
+[2026-03-17T18:50:59.740Z] GET /frames/hero/frame_0180.png
+[2026-03-17T18:50:59.795Z] GET /frames/hero/frame_0181.png
+[2026-03-17T18:50:59.977Z] GET /frames/hero/frame_0182.png
+[2026-03-17T18:51:00.001Z] GET /frames/hero/frame_0183.png
+[2026-03-17T18:51:00.040Z] GET /frames/hero/frame_0184.png
+[2026-03-17T18:51:00.116Z] GET /frames/hero/frame_0185.png
+[2026-03-17T18:51:00.116Z] GET /frames/hero/frame_0186.png
+[2026-03-17T18:51:00.127Z] GET /frames/hero/frame_0187.png
+[2026-03-17T18:51:00.385Z] GET /frames/hero/frame_0188.png
+[2026-03-17T18:51:00.535Z] GET /frames/hero/frame_0189.png
+[2026-03-17T18:51:00.536Z] GET /frames/hero/frame_0190.png
+[2026-03-17T18:51:01.280Z] GET /frames/hero/frame_0191.png
+[2026-03-17T18:51:01.293Z] GET /frames/hero/frame_0192.png
+[2026-03-17T18:51:01.294Z] GET /frames/hero/frame_0193.png
+[2026-03-17T18:51:01.396Z] GET /frames/hero/frame_0194.png
+[2026-03-17T18:51:01.604Z] GET /frames/hero/frame_0195.png
+[2026-03-17T18:51:01.604Z] GET /frames/hero/frame_0196.png
+[2026-03-17T18:51:01.810Z] GET /frames/hero/frame_0197.png
+[2026-03-17T18:51:01.963Z] GET /frames/hero/frame_0198.png
+[2026-03-17T18:51:01.970Z] GET /frames/hero/frame_0199.png
+[2026-03-17T18:51:02.002Z] GET /frames/hero/frame_0200.png
+[2026-03-17T18:51:02.024Z] GET /frames/hero/frame_0201.png
+[2026-03-17T18:51:02.040Z] GET /frames/hero/frame_0202.png
+[2026-03-17T18:51:02.072Z] GET /frames/hero/frame_0203.png
+[2026-03-17T18:51:02.175Z] GET /frames/hero/frame_0204.png
+[2026-03-17T18:51:02.893Z] GET /frames/hero/frame_0205.png
+[2026-03-17T18:51:03.445Z] GET /frames/hero/frame_0206.png
+[2026-03-17T18:51:04.063Z] GET /frames/hero/frame_0207.png
+[2026-03-17T18:51:04.078Z] GET /frames/hero/frame_0208.png
+[2026-03-17T18:51:04.087Z] GET /frames/hero/frame_0209.png
+[2026-03-17T18:51:04.102Z] GET /frames/hero/frame_0210.png
+[2026-03-17T18:51:04.110Z] GET /frames/hero/frame_0211.png
+[2026-03-17T18:51:04.295Z] GET /frames/hero/frame_0212.png
+[2026-03-17T18:51:04.296Z] GET /frames/hero/frame_0213.png
+[2026-03-17T18:51:04.319Z] GET /frames/hero/frame_0214.png
+[2026-03-17T18:51:04.320Z] GET /frames/hero/frame_0215.png
+[2026-03-17T18:51:04.320Z] GET /frames/hero/frame_0216.png
+[2026-03-17T18:51:04.334Z] GET /frames/hero/frame_0217.png
+[2026-03-17T18:51:04.418Z] GET /frames/hero/frame_0218.png
+[2026-03-17T18:51:04.450Z] GET /frames/hero/frame_0219.png
+[2026-03-17T18:51:04.451Z] GET /frames/hero/frame_0220.png
+[2026-03-17T18:51:04.451Z] GET /frames/hero/frame_0221.png
+[2026-03-17T18:51:04.452Z] GET /frames/hero/frame_0222.png
+[2026-03-17T18:51:04.452Z] GET /frames/hero/frame_0223.png
+[2026-03-17T18:51:04.452Z] GET /frames/hero/frame_0224.png
+[2026-03-17T18:51:04.507Z] GET /frames/hero/frame_0225.png
+[2026-03-17T18:51:04.513Z] GET /frames/hero/frame_0226.png
+[2026-03-17T18:51:04.513Z] GET /frames/hero/frame_0227.png
+[2026-03-17T18:51:04.514Z] GET /frames/hero/frame_0228.png
+[2026-03-17T18:51:04.514Z] GET /frames/hero/frame_0229.png
+[2026-03-17T18:51:04.514Z] GET /frames/hero/frame_0230.png
+[2026-03-17T18:51:04.522Z] GET /frames/hero/frame_0231.png
+[2026-03-17T18:51:04.539Z] GET /frames/hero/frame_0232.png
+[2026-03-17T18:51:04.570Z] GET /frames/hero/frame_0233.png
+[2026-03-17T18:51:04.570Z] GET /frames/hero/frame_0234.png
+[2026-03-17T18:51:04.570Z] GET /frames/hero/frame_0235.png
+[2026-03-17T18:51:04.571Z] GET /frames/hero/frame_0236.png
+[2026-03-17T18:51:04.571Z] GET /frames/hero/frame_0237.png
+[2026-03-17T18:51:04.579Z] GET /frames/hero/frame_0238.png
+[2026-03-17T18:51:04.580Z] GET /frames/hero/frame_0239.png
+[2026-03-17T18:51:04.580Z] GET /frames/hero/frame_0240.png
+[2026-03-17T18:51:11.015Z] GET /favicon.ico
+File not found: /Users/andresmcmahon/Documents/Alconio Website/favicon.ico
+[2026-03-17T18:53:51.907Z] GET /dashboard_signin.html
+[2026-03-17T18:53:52.376Z] GET /dashboard_signin.html
+[2026-03-17T18:53:56.030Z] GET /dashboard_overview.html
+[2026-03-17T18:53:56.068Z] GET /logo.png
+[2026-03-17T18:53:56.079Z] GET /dashboard_ui.js
+[2026-03-17T18:53:56.079Z] GET /dashboard_data.js
+[2026-03-17T18:54:38.012Z] GET /dashboard_overview.html
+[2026-03-17T18:54:38.471Z] GET /logo.png
+[2026-03-17T18:54:38.495Z] GET /dashboard_ui.js
+[2026-03-17T18:54:38.500Z] GET /dashboard_data.js
+[2026-03-17T18:54:39.320Z] GET /favicon.ico
+File not found: /Users/andresmcmahon/Documents/Alconio Website/favicon.ico
+[2026-03-17T18:54:50.382Z] GET /dashboard_analytics.html
+[2026-03-17T18:54:50.442Z] GET /logo.png
+[2026-03-17T18:54:50.442Z] GET /dashboard_ui.js
+[2026-03-17T18:54:50.463Z] GET /dashboard_data.js
+[2026-03-17T18:56:05.851Z] GET /dashboard_overview.html
+[2026-03-17T18:56:06.798Z] GET /logo.png
+[2026-03-17T18:56:06.835Z] GET /dashboard_ui.js
+[2026-03-17T18:56:06.867Z] GET /dashboard_data.js
+[2026-03-17T19:03:13.537Z] GET /dashboard_appearance.html
+[2026-03-17T19:03:13.982Z] GET /logo.png
+[2026-03-17T19:03:14.036Z] GET /dashboard_ui.js
+[2026-03-17T19:03:22.631Z] GET /dashboard_overview.html
+[2026-03-17T19:03:22.668Z] GET /logo.png
+[2026-03-17T19:03:22.688Z] GET /dashboard_ui.js
+[2026-03-17T19:03:22.691Z] GET /dashboard_data.js
+[2026-03-17T19:03:31.276Z] GET /dashboard_settings.html
+[2026-03-17T19:03:31.340Z] GET /logo.png
+[2026-03-17T19:03:31.341Z] GET /dashboard_ui.js
+[2026-03-17T19:03:41.661Z] GET /dashboard_overview.html
+[2026-03-17T19:03:41.690Z] GET /logo.png
+[2026-03-17T19:03:41.691Z] GET /dashboard_ui.js
+[2026-03-17T19:03:41.711Z] GET /dashboard_data.js
+[2026-03-17T19:05:00.946Z] GET /dashboard_overview.html
+[2026-03-17T19:05:01.637Z] GET /logo.png
+[2026-03-17T19:05:01.684Z] GET /dashboard_ui.js
+[2026-03-17T19:05:01.823Z] GET /dashboard_data.js
+[2026-03-17T19:05:02.928Z] GET /favicon.ico
+File not found: /Users/andresmcmahon/Documents/Alconio Website/favicon.ico
+[2026-03-17T19:09:36.295Z] GET /dashboard_overview.html
+[2026-03-17T19:09:36.337Z] GET /logo.png
+[2026-03-17T19:09:36.354Z] GET /dashboard_ui.js
+[2026-03-17T19:09:36.354Z] GET /dashboard_data.js
+[2026-03-17T19:09:37.288Z] GET /dashboard_overview.html
+[2026-03-17T19:09:37.300Z] GET /logo.png
+[2026-03-17T19:09:37.301Z] GET /dashboard_ui.js
+[2026-03-17T19:09:37.305Z] GET /dashboard_data.js
+[2026-03-17T19:10:27.043Z] GET /dashboard_overview.html
+[2026-03-17T19:10:27.128Z] GET /logo.png
+[2026-03-17T19:10:27.137Z] GET /dashboard_ui.js
+[2026-03-17T19:10:27.141Z] GET /dashboard_data.js
+[2026-03-17T19:10:27.481Z] GET /favicon.ico
+File not found: /Users/andresmcmahon/Documents/Alconio Website/favicon.ico
+[2026-03-17T19:10:28.245Z] GET /dashboard_overview.html
+[2026-03-17T19:10:28.259Z] GET /logo.png
+[2026-03-17T19:10:28.262Z] GET /dashboard_ui.js
+[2026-03-17T19:10:28.264Z] GET /dashboard_data.js
+[2026-03-17T19:10:28.439Z] GET /favicon.ico
+File not found: /Users/andresmcmahon/Documents/Alconio Website/favicon.ico
+[2026-03-17T19:10:28.652Z] GET /dashboard_overview.html
+[2026-03-17T19:10:28.664Z] GET /logo.png
+[2026-03-17T19:10:28.668Z] GET /dashboard_ui.js
+[2026-03-17T19:10:28.671Z] GET /dashboard_data.js
+[2026-03-17T19:10:28.891Z] GET /favicon.ico
+File not found: /Users/andresmcmahon/Documents/Alconio Website/favicon.ico
+[2026-03-17T19:10:28.903Z] GET /dashboard_overview.html
+[2026-03-17T19:10:28.912Z] GET /logo.png
+[2026-03-17T19:10:28.915Z] GET /dashboard_ui.js
+[2026-03-17T19:10:28.917Z] GET /dashboard_data.js
+[2026-03-17T19:10:29.123Z] GET /dashboard_overview.html
+[2026-03-17T19:10:29.136Z] GET /logo.png
+[2026-03-17T19:10:29.141Z] GET /dashboard_ui.js
+[2026-03-17T19:10:29.143Z] GET /dashboard_data.js
+[2026-03-17T19:10:29.327Z] GET /dashboard_overview.html
+[2026-03-17T19:10:29.344Z] GET /logo.png
+[2026-03-17T19:10:29.353Z] GET /dashboard_ui.js
+[2026-03-17T19:10:29.358Z] GET /dashboard_data.js
+[2026-03-17T19:10:29.472Z] GET /dashboard_overview.html
+[2026-03-17T19:10:29.498Z] GET /logo.png
+[2026-03-17T19:10:29.500Z] GET /dashboard_ui.js
+[2026-03-17T19:10:29.502Z] GET /dashboard_data.js
+[2026-03-17T19:10:29.684Z] GET /dashboard_overview.html
+[2026-03-17T19:10:29.696Z] GET /logo.png
+[2026-03-17T19:10:29.701Z] GET /dashboard_ui.js
+[2026-03-17T19:10:29.704Z] GET /dashboard_data.js
+[2026-03-17T19:10:29.869Z] GET /dashboard_overview.html
+[2026-03-17T19:10:29.882Z] GET /logo.png
+[2026-03-17T19:10:29.888Z] GET /dashboard_ui.js
+[2026-03-17T19:10:29.891Z] GET /dashboard_data.js
+[2026-03-17T19:10:30.051Z] GET /dashboard_overview.html
+[2026-03-17T19:10:30.061Z] GET /logo.png
+[2026-03-17T19:10:30.068Z] GET /dashboard_ui.js
+[2026-03-17T19:10:30.071Z] GET /dashboard_data.js
+[2026-03-17T19:10:30.239Z] GET /dashboard_overview.html
+[2026-03-17T19:10:30.252Z] GET /logo.png
+[2026-03-17T19:10:30.260Z] GET /dashboard_ui.js
+[2026-03-17T19:10:30.261Z] GET /dashboard_data.js
+[2026-03-17T19:10:30.412Z] GET /dashboard_overview.html
+[2026-03-17T19:10:30.423Z] GET /logo.png
+[2026-03-17T19:10:30.430Z] GET /dashboard_ui.js
+[2026-03-17T19:10:30.432Z] GET /dashboard_data.js
+[2026-03-17T19:10:30.592Z] GET /dashboard_overview.html
+[2026-03-17T19:10:30.601Z] GET /logo.png
+[2026-03-17T19:10:30.612Z] GET /dashboard_ui.js
+[2026-03-17T19:10:30.614Z] GET /dashboard_data.js
+[2026-03-17T19:10:30.765Z] GET /favicon.ico
+File not found: /Users/andresmcmahon/Documents/Alconio Website/favicon.ico
+[2026-03-17T19:10:31.789Z] GET /dashboard_overview.html
+[2026-03-17T19:10:31.801Z] GET /logo.png
+[2026-03-17T19:10:31.815Z] GET /dashboard_ui.js
+[2026-03-17T19:10:31.817Z] GET /dashboard_data.js
+[2026-03-17T19:10:31.990Z] GET /favicon.ico
+File not found: /Users/andresmcmahon/Documents/Alconio Website/favicon.ico
+[2026-03-17T19:11:38.804Z] GET /dashboard_overview.html
+[2026-03-17T19:11:38.823Z] GET /logo.png
+[2026-03-17T19:11:38.838Z] GET /dashboard_ui.js
+[2026-03-17T19:11:38.838Z] GET /dashboard_data.js
+[2026-03-17T19:11:39.587Z] GET /dashboard_overview.html
+[2026-03-17T19:11:39.598Z] GET /logo.png
+[2026-03-17T19:11:39.599Z] GET /dashboard_ui.js
+[2026-03-17T19:11:39.616Z] GET /dashboard_data.js
+[2026-03-17T19:11:40.404Z] GET /dashboard_overview.html
+[2026-03-17T19:11:40.416Z] GET /logo.png
+[2026-03-17T19:11:40.416Z] GET /dashboard_ui.js
+[2026-03-17T19:11:40.434Z] GET /dashboard_data.js
+[2026-03-17T19:11:40.735Z] GET /dashboard_overview.html
+[2026-03-17T19:11:40.745Z] GET /logo.png
+[2026-03-17T19:11:40.745Z] GET /dashboard_ui.js
+[2026-03-17T19:11:40.758Z] GET /dashboard_data.js
+[2026-03-17T19:11:40.968Z] GET /dashboard_overview.html
+[2026-03-17T19:11:40.985Z] GET /logo.png
+[2026-03-17T19:11:40.985Z] GET /dashboard_ui.js
+[2026-03-17T19:11:40.999Z] GET /dashboard_data.js
+[2026-03-17T19:11:41.185Z] GET /dashboard_overview.html
+[2026-03-17T19:11:41.195Z] GET /logo.png
+[2026-03-17T19:11:41.197Z] GET /dashboard_ui.js
+[2026-03-17T19:11:41.209Z] GET /dashboard_data.js
+[2026-03-17T19:11:41.402Z] GET /dashboard_overview.html
+[2026-03-17T19:11:41.421Z] GET /logo.png
+[2026-03-17T19:11:41.422Z] GET /dashboard_ui.js
+[2026-03-17T19:11:41.436Z] GET /dashboard_data.js
+[2026-03-17T19:11:41.617Z] GET /dashboard_overview.html
+[2026-03-17T19:11:41.625Z] GET /logo.png
+[2026-03-17T19:11:41.625Z] GET /dashboard_ui.js
+[2026-03-17T19:11:41.641Z] GET /dashboard_data.js
+[2026-03-17T19:11:41.834Z] GET /dashboard_overview.html
+[2026-03-17T19:11:41.843Z] GET /logo.png
+[2026-03-17T19:11:41.844Z] GET /dashboard_ui.js
+[2026-03-17T19:11:41.859Z] GET /dashboard_data.js
+[2026-03-17T19:11:42.101Z] GET /dashboard_overview.html
+[2026-03-17T19:11:42.118Z] GET /logo.png
+[2026-03-17T19:11:42.118Z] GET /dashboard_ui.js
+[2026-03-17T19:11:42.136Z] GET /dashboard_data.js
+[2026-03-17T19:11:42.368Z] GET /dashboard_overview.html
+[2026-03-17T19:11:42.379Z] GET /logo.png
+[2026-03-17T19:11:42.380Z] GET /dashboard_ui.js
+[2026-03-17T19:11:42.397Z] GET /dashboard_data.js
+[2026-03-17T19:11:44.447Z] GET /dashboard_overview.html
+[2026-03-17T19:11:44.473Z] GET /logo.png
+[2026-03-17T19:11:44.510Z] GET /dashboard_ui.js
+[2026-03-17T19:11:44.523Z] GET /dashboard_data.js
+[2026-03-17T19:11:44.755Z] GET /dashboard_overview.html
+[2026-03-17T19:11:44.772Z] GET /logo.png
+[2026-03-17T19:11:44.790Z] GET /dashboard_ui.js
+[2026-03-17T19:11:44.792Z] GET /dashboard_data.js
+[2026-03-17T19:11:45.004Z] GET /favicon.ico
+File not found: /Users/andresmcmahon/Documents/Alconio Website/favicon.ico
+[2026-03-17T19:11:45.022Z] GET /dashboard_overview.html
+[2026-03-17T19:11:45.036Z] GET /logo.png
+[2026-03-17T19:11:45.055Z] GET /dashboard_ui.js
+[2026-03-17T19:11:45.057Z] GET /dashboard_data.js
+[2026-03-17T19:11:45.212Z] GET /favicon.ico
+File not found: /Users/andresmcmahon/Documents/Alconio Website/favicon.ico
+[2026-03-17T19:11:45.304Z] GET /dashboard_overview.html
+[2026-03-17T19:11:45.323Z] GET /logo.png
+[2026-03-17T19:11:45.338Z] GET /dashboard_ui.js
+[2026-03-17T19:11:45.341Z] GET /dashboard_data.js
+[2026-03-17T19:11:45.496Z] GET /favicon.ico
+File not found: /Users/andresmcmahon/Documents/Alconio Website/favicon.ico
+[2026-03-17T19:12:00.190Z] GET /dashboard_analytics.html
+[2026-03-17T19:12:00.218Z] GET /logo.png
+[2026-03-17T19:12:00.218Z] GET /dashboard_ui.js
+[2026-03-17T19:12:00.228Z] GET /dashboard_data.js
+[2026-03-17T19:13:43.607Z] GET /dashboard_analytics.html
+[2026-03-17T19:13:43.733Z] GET /logo.png
+[2026-03-17T19:13:43.735Z] GET /dashboard_ui.js
+[2026-03-17T19:13:43.737Z] GET /dashboard_data.js
+[2026-03-17T19:13:44.168Z] GET /favicon.ico
+File not found: /Users/andresmcmahon/Documents/Alconio Website/favicon.ico
+[2026-03-17T19:13:44.407Z] GET /dashboard_analytics.html
+[2026-03-17T19:13:44.440Z] GET /logo.png
+[2026-03-17T19:13:44.442Z] GET /dashboard_ui.js
+[2026-03-17T19:13:44.444Z] GET /dashboard_data.js
+[2026-03-17T19:13:44.664Z] GET /favicon.ico
+File not found: /Users/andresmcmahon/Documents/Alconio Website/favicon.ico
+[2026-03-17T19:13:44.859Z] GET /dashboard_analytics.html
+[2026-03-17T19:13:44.912Z] GET /logo.png
+[2026-03-17T19:13:44.916Z] GET /dashboard_ui.js
+[2026-03-17T19:13:44.917Z] GET /dashboard_data.js
+[2026-03-17T19:13:45.159Z] GET /favicon.ico
+File not found: /Users/andresmcmahon/Documents/Alconio Website/favicon.ico
+[2026-03-17T19:13:45.294Z] GET /dashboard_analytics.html
+[2026-03-17T19:13:45.325Z] GET /logo.png
+[2026-03-17T19:13:45.328Z] GET /dashboard_ui.js
+[2026-03-17T19:13:45.329Z] GET /dashboard_data.js
+[2026-03-17T19:13:45.526Z] GET /favicon.ico
+File not found: /Users/andresmcmahon/Documents/Alconio Website/favicon.ico
+[2026-03-17T19:13:45.881Z] GET /dashboard_analytics.html
+[2026-03-17T19:13:45.916Z] GET /logo.png
+[2026-03-17T19:13:45.918Z] GET /dashboard_ui.js
+[2026-03-17T19:13:45.920Z] GET /dashboard_data.js
+[2026-03-17T19:13:46.127Z] GET /favicon.ico
+File not found: /Users/andresmcmahon/Documents/Alconio Website/favicon.ico
+[2026-03-17T19:13:48.347Z] GET /dashboard_overview.html
+[2026-03-17T19:13:48.376Z] GET /logo.png
+[2026-03-17T19:13:48.379Z] GET /dashboard_ui.js
+[2026-03-17T19:13:48.386Z] GET /dashboard_data.js
+[2026-03-17T19:13:55.216Z] GET /dashboard_overview.html
+[2026-03-17T19:13:55.232Z] GET /logo.png
+[2026-03-17T19:13:55.235Z] GET /dashboard_ui.js
+[2026-03-17T19:13:55.236Z] GET /dashboard_data.js
+[2026-03-17T19:13:55.420Z] GET /dashboard_overview.html
+[2026-03-17T19:13:55.437Z] GET /logo.png
+[2026-03-17T19:13:55.442Z] GET /dashboard_ui.js
+[2026-03-17T19:13:55.444Z] GET /dashboard_data.js
+[2026-03-17T19:13:55.602Z] GET /dashboard_overview.html
+[2026-03-17T19:13:55.626Z] GET /logo.png
+[2026-03-17T19:13:55.628Z] GET /dashboard_ui.js
+[2026-03-17T19:13:55.629Z] GET /dashboard_data.js
+[2026-03-17T19:13:55.791Z] GET /dashboard_overview.html
+[2026-03-17T19:13:55.802Z] GET /logo.png
+[2026-03-17T19:13:55.804Z] GET /dashboard_ui.js
+[2026-03-17T19:13:55.807Z] GET /dashboard_data.js
+[2026-03-17T19:13:55.977Z] GET /dashboard_overview.html
+[2026-03-17T19:13:55.991Z] GET /logo.png
+[2026-03-17T19:13:55.994Z] GET /dashboard_ui.js
+[2026-03-17T19:13:55.995Z] GET /dashboard_data.js
+[2026-03-17T19:13:56.153Z] GET /dashboard_overview.html
+[2026-03-17T19:13:56.169Z] GET /logo.png
+[2026-03-17T19:13:56.172Z] GET /dashboard_ui.js
+[2026-03-17T19:13:56.175Z] GET /dashboard_data.js
+[2026-03-17T19:13:56.364Z] GET /favicon.ico
+File not found: /Users/andresmcmahon/Documents/Alconio Website/favicon.ico
+[2026-03-17T19:13:56.615Z] GET /dashboard_overview.html
+[2026-03-17T19:13:56.625Z] GET /logo.png
+[2026-03-17T19:13:56.629Z] GET /dashboard_ui.js
+[2026-03-17T19:13:56.631Z] GET /dashboard_data.js
+[2026-03-17T19:13:56.801Z] GET /favicon.ico
+File not found: /Users/andresmcmahon/Documents/Alconio Website/favicon.ico
+[2026-03-17T19:13:57.116Z] GET /dashboard_overview.html
+[2026-03-17T19:13:57.127Z] GET /logo.png
+[2026-03-17T19:13:57.132Z] GET /dashboard_ui.js
+[2026-03-17T19:13:57.134Z] GET /dashboard_data.js
+[2026-03-17T19:13:57.225Z] GET /dashboard_overview.html
+[2026-03-17T19:13:57.237Z] GET /logo.png
+[2026-03-17T19:13:57.242Z] GET /dashboard_ui.js
+[2026-03-17T19:13:57.244Z] GET /dashboard_data.js
+[2026-03-17T19:13:57.307Z] GET /dashboard_overview.html
+[2026-03-17T19:13:57.315Z] GET /logo.png
+[2026-03-17T19:13:57.320Z] GET /dashboard_ui.js
+[2026-03-17T19:13:57.322Z] GET /dashboard_data.js
+[2026-03-17T19:13:57.391Z] GET /dashboard_overview.html
+[2026-03-17T19:13:57.400Z] GET /logo.png
+[2026-03-17T19:13:57.405Z] GET /dashboard_ui.js
+[2026-03-17T19:13:57.408Z] GET /dashboard_data.js
+[2026-03-17T19:13:57.475Z] GET /dashboard_overview.html
+[2026-03-17T19:13:57.482Z] GET /logo.png
+[2026-03-17T19:13:57.490Z] GET /dashboard_ui.js
+[2026-03-17T19:13:57.491Z] GET /dashboard_data.js
+[2026-03-17T19:13:57.557Z] GET /dashboard_overview.html
+[2026-03-17T19:13:57.569Z] GET /logo.png
+[2026-03-17T19:13:57.575Z] GET /dashboard_ui.js
+[2026-03-17T19:13:57.577Z] GET /dashboard_data.js
+[2026-03-17T19:13:57.642Z] GET /dashboard_overview.html
+[2026-03-17T19:13:57.649Z] GET /logo.png
+[2026-03-17T19:13:57.657Z] GET /dashboard_ui.js
+[2026-03-17T19:13:57.659Z] GET /dashboard_data.js
+[2026-03-17T19:13:57.727Z] GET /dashboard_overview.html
+[2026-03-17T19:13:57.740Z] GET /logo.png
+[2026-03-17T19:13:57.747Z] GET /dashboard_ui.js
+[2026-03-17T19:13:57.749Z] GET /dashboard_data.js
+[2026-03-17T19:13:57.809Z] GET /dashboard_overview.html
+[2026-03-17T19:13:57.817Z] GET /logo.png
+[2026-03-17T19:13:57.825Z] GET /dashboard_ui.js
+[2026-03-17T19:13:57.827Z] GET /dashboard_data.js
+[2026-03-17T19:13:57.894Z] GET /dashboard_overview.html
+[2026-03-17T19:13:57.902Z] GET /logo.png
+[2026-03-17T19:13:57.911Z] GET /dashboard_ui.js
+[2026-03-17T19:13:57.913Z] GET /dashboard_data.js
+[2026-03-17T19:13:57.978Z] GET /dashboard_overview.html
+[2026-03-17T19:13:57.992Z] GET /logo.png
+[2026-03-17T19:13:57.999Z] GET /dashboard_ui.js
+[2026-03-17T19:13:58.002Z] GET /dashboard_data.js
+[2026-03-17T19:13:58.061Z] GET /dashboard_overview.html
+[2026-03-17T19:13:58.068Z] GET /logo.png
+[2026-03-17T19:13:58.078Z] GET /dashboard_ui.js
+[2026-03-17T19:13:58.079Z] GET /dashboard_data.js
+[2026-03-17T19:13:58.145Z] GET /dashboard_overview.html
+[2026-03-17T19:13:58.159Z] GET /logo.png
+[2026-03-17T19:13:58.167Z] GET /dashboard_ui.js
+[2026-03-17T19:13:58.168Z] GET /dashboard_data.js
+[2026-03-17T19:13:58.229Z] GET /dashboard_overview.html
+[2026-03-17T19:13:58.238Z] GET /logo.png
+[2026-03-17T19:13:58.247Z] GET /dashboard_ui.js
+[2026-03-17T19:13:58.249Z] GET /dashboard_data.js
+[2026-03-17T19:13:58.314Z] GET /dashboard_overview.html
+[2026-03-17T19:13:58.322Z] GET /logo.png
+[2026-03-17T19:13:58.333Z] GET /dashboard_ui.js
+[2026-03-17T19:13:58.335Z] GET /dashboard_data.js
+[2026-03-17T19:13:58.397Z] GET /dashboard_overview.html
+[2026-03-17T19:13:58.404Z] GET /logo.png
+[2026-03-17T19:13:58.416Z] GET /dashboard_ui.js
+[2026-03-17T19:13:58.418Z] GET /dashboard_data.js
+[2026-03-17T19:13:58.481Z] GET /dashboard_overview.html
+[2026-03-17T19:13:58.500Z] GET /logo.png
+[2026-03-17T19:13:58.510Z] GET /dashboard_ui.js
+[2026-03-17T19:13:58.511Z] GET /dashboard_data.js
+[2026-03-17T19:13:58.564Z] GET /dashboard_overview.html
+[2026-03-17T19:13:58.571Z] GET /logo.png
+[2026-03-17T19:13:58.582Z] GET /dashboard_ui.js
+[2026-03-17T19:13:58.584Z] GET /dashboard_data.js
+[2026-03-17T19:13:58.647Z] GET /dashboard_overview.html
+[2026-03-17T19:13:58.659Z] GET /logo.png
+[2026-03-17T19:13:58.668Z] GET /dashboard_ui.js
+[2026-03-17T19:13:58.671Z] GET /dashboard_data.js
+[2026-03-17T19:13:58.731Z] GET /dashboard_overview.html
+[2026-03-17T19:13:58.738Z] GET /logo.png
+[2026-03-17T19:13:58.749Z] GET /dashboard_ui.js
+[2026-03-17T19:13:58.751Z] GET /dashboard_data.js
+[2026-03-17T19:13:58.925Z] GET /favicon.ico
+File not found: /Users/andresmcmahon/Documents/Alconio Website/favicon.ico
+[2026-03-17T19:14:00.154Z] GET /dashboard_overview.html
+[2026-03-17T19:14:00.171Z] GET /logo.png
+[2026-03-17T19:14:00.190Z] GET /dashboard_ui.js
+[2026-03-17T19:14:00.192Z] GET /dashboard_data.js
+[2026-03-17T19:14:00.341Z] GET /favicon.ico
+File not found: /Users/andresmcmahon/Documents/Alconio Website/favicon.ico
+[2026-03-17T19:14:50.549Z] GET /dashboard_overview.html
+[2026-03-17T19:14:50.570Z] GET /logo.png
+[2026-03-17T19:14:50.592Z] GET /dashboard_ui.js
+[2026-03-17T19:14:50.593Z] GET /dashboard_data.js
+[2026-03-17T19:14:51.308Z] GET /dashboard_overview.html
+[2026-03-17T19:14:51.321Z] GET /logo.png
+[2026-03-17T19:14:51.321Z] GET /dashboard_ui.js
+[2026-03-17T19:14:51.341Z] GET /dashboard_data.js
+[2026-03-17T19:14:51.590Z] GET /dashboard_overview.html
+[2026-03-17T19:14:51.603Z] GET /logo.png
+[2026-03-17T19:14:51.603Z] GET /dashboard_ui.js
+[2026-03-17T19:14:51.617Z] GET /dashboard_data.js
+[2026-03-17T19:14:51.805Z] GET /dashboard_overview.html
+[2026-03-17T19:14:51.815Z] GET /logo.png
+[2026-03-17T19:14:51.816Z] GET /dashboard_ui.js
+[2026-03-17T19:14:51.832Z] GET /dashboard_data.js
+[2026-03-17T19:14:52.038Z] GET /dashboard_overview.html
+[2026-03-17T19:14:52.049Z] GET /logo.png
+[2026-03-17T19:14:52.049Z] GET /dashboard_ui.js
+[2026-03-17T19:14:52.066Z] GET /dashboard_data.js
+[2026-03-17T19:14:52.255Z] GET /dashboard_overview.html
+[2026-03-17T19:14:52.264Z] GET /logo.png
+[2026-03-17T19:14:52.265Z] GET /dashboard_ui.js
+[2026-03-17T19:14:52.280Z] GET /dashboard_data.js
+[2026-03-17T19:14:52.472Z] GET /dashboard_overview.html
+[2026-03-17T19:14:52.481Z] GET /logo.png
+[2026-03-17T19:14:52.482Z] GET /dashboard_ui.js
+[2026-03-17T19:14:52.500Z] GET /dashboard_data.js
+[2026-03-17T19:14:52.672Z] GET /dashboard_overview.html
+[2026-03-17T19:14:52.681Z] GET /logo.png
+[2026-03-17T19:14:52.682Z] GET /dashboard_ui.js
+[2026-03-17T19:14:52.699Z] GET /dashboard_data.js
+[2026-03-17T19:14:52.889Z] GET /dashboard_overview.html
+[2026-03-17T19:14:52.912Z] GET /logo.png
+[2026-03-17T19:14:52.912Z] GET /dashboard_ui.js
+[2026-03-17T19:14:52.929Z] GET /dashboard_data.js
+[2026-03-17T19:14:53.072Z] GET /dashboard_overview.html
+[2026-03-17T19:14:53.081Z] GET /logo.png
+[2026-03-17T19:14:53.081Z] GET /dashboard_ui.js
+[2026-03-17T19:14:53.100Z] GET /dashboard_data.js
+[2026-03-17T19:14:53.288Z] GET /dashboard_overview.html
+[2026-03-17T19:14:53.297Z] GET /logo.png
+[2026-03-17T19:14:53.297Z] GET /dashboard_ui.js
+[2026-03-17T19:14:53.315Z] GET /dashboard_data.js
+[2026-03-17T19:14:53.675Z] GET /dashboard_overview.html
+[2026-03-17T19:14:53.688Z] GET /logo.png
+[2026-03-17T19:14:53.688Z] GET /dashboard_ui.js
+[2026-03-17T19:14:53.710Z] GET /dashboard_data.js
+[2026-03-17T19:14:53.871Z] GET /dashboard_overview.html
+[2026-03-17T19:14:53.880Z] GET /logo.png
+[2026-03-17T19:14:53.881Z] GET /dashboard_ui.js
+[2026-03-17T19:14:53.901Z] GET /dashboard_data.js
+[2026-03-17T19:14:54.071Z] GET /dashboard_overview.html
+[2026-03-17T19:14:54.080Z] GET /logo.png
+[2026-03-17T19:14:54.080Z] GET /dashboard_ui.js
+[2026-03-17T19:14:54.101Z] GET /dashboard_data.js
+[2026-03-17T19:14:55.835Z] GET /dashboard_overview.html
+[2026-03-17T19:14:55.849Z] GET /logo.png
+[2026-03-17T19:14:55.875Z] GET /dashboard_ui.js
+[2026-03-17T19:14:55.878Z] GET /dashboard_data.js
+[2026-03-17T19:14:56.033Z] GET /dashboard_overview.html
+[2026-03-17T19:14:56.043Z] GET /logo.png
+[2026-03-17T19:14:56.071Z] GET /dashboard_ui.js
+[2026-03-17T19:14:56.073Z] GET /dashboard_data.js
+[2026-03-17T19:14:56.249Z] GET /dashboard_overview.html
+[2026-03-17T19:14:56.279Z] GET /logo.png
+[2026-03-17T19:14:56.302Z] GET /dashboard_ui.js
+[2026-03-17T19:14:56.303Z] GET /dashboard_data.js
+[2026-03-17T19:14:56.440Z] GET /dashboard_overview.html
+[2026-03-17T19:14:56.466Z] GET /logo.png
+[2026-03-17T19:14:56.488Z] GET /dashboard_ui.js
+[2026-03-17T19:14:56.492Z] GET /dashboard_data.js
+[2026-03-17T19:14:56.670Z] GET /dashboard_overview.html
+[2026-03-17T19:14:56.721Z] GET /logo.png
+[2026-03-17T19:14:56.728Z] GET /dashboard_ui.js
+[2026-03-17T19:14:56.729Z] GET /dashboard_data.js
+[2026-03-17T19:14:56.948Z] GET /dashboard_overview.html
+[2026-03-17T19:14:56.961Z] GET /logo.png
+[2026-03-17T19:14:56.984Z] GET /dashboard_ui.js
+[2026-03-17T19:14:56.985Z] GET /dashboard_data.js
+[2026-03-17T19:14:57.282Z] GET /favicon.ico
+File not found: /Users/andresmcmahon/Documents/Alconio Website/favicon.ico
+[2026-03-17T19:14:58.858Z] GET /dashboard_overview.html
+[2026-03-17T19:14:58.870Z] GET /logo.png
+[2026-03-17T19:14:58.900Z] GET /dashboard_ui.js
+[2026-03-17T19:14:58.903Z] GET /dashboard_data.js
+[2026-03-17T19:14:59.109Z] GET /favicon.ico
+File not found: /Users/andresmcmahon/Documents/Alconio Website/favicon.ico
+[2026-03-17T19:14:59.378Z] GET /dashboard_overview.html
+[2026-03-17T19:14:59.389Z] GET /logo.png
+[2026-03-17T19:14:59.417Z] GET /dashboard_ui.js
+[2026-03-17T19:14:59.419Z] GET /dashboard_data.js
+[2026-03-17T19:14:59.607Z] GET /favicon.ico
+File not found: /Users/andresmcmahon/Documents/Alconio Website/favicon.ico
+[2026-03-17T19:14:59.767Z] GET /dashboard_overview.html
+[2026-03-17T19:14:59.779Z] GET /logo.png
+[2026-03-17T19:14:59.803Z] GET /dashboard_ui.js
+[2026-03-17T19:14:59.805Z] GET /dashboard_data.js
+[2026-03-17T19:14:59.998Z] GET /dashboard_overview.html
+[2026-03-17T19:15:00.006Z] GET /logo.png
+[2026-03-17T19:15:00.031Z] GET /dashboard_ui.js
+[2026-03-17T19:15:00.034Z] GET /dashboard_data.js
+[2026-03-17T19:15:00.205Z] GET /dashboard_overview.html
+[2026-03-17T19:15:00.215Z] GET /logo.png
+[2026-03-17T19:15:00.240Z] GET /dashboard_ui.js
+[2026-03-17T19:15:00.242Z] GET /dashboard_data.js
+[2026-03-17T19:15:00.388Z] GET /dashboard_overview.html
+[2026-03-17T19:15:00.413Z] GET /logo.png
+[2026-03-17T19:15:00.436Z] GET /dashboard_ui.js
+[2026-03-17T19:15:00.444Z] GET /dashboard_data.js
+[2026-03-17T19:15:00.548Z] GET /dashboard_overview.html
+[2026-03-17T19:15:00.567Z] GET /logo.png
+[2026-03-17T19:15:00.593Z] GET /dashboard_ui.js
+[2026-03-17T19:15:00.597Z] GET /dashboard_data.js
+[2026-03-17T19:15:00.732Z] GET /dashboard_overview.html
+[2026-03-17T19:15:00.758Z] GET /logo.png
+[2026-03-17T19:15:00.777Z] GET /dashboard_ui.js
+[2026-03-17T19:15:00.782Z] GET /dashboard_data.js
+[2026-03-17T19:15:00.891Z] GET /dashboard_overview.html
+[2026-03-17T19:15:00.902Z] GET /logo.png
+[2026-03-17T19:15:00.929Z] GET /dashboard_ui.js
+[2026-03-17T19:15:00.934Z] GET /dashboard_data.js
+[2026-03-17T19:15:01.073Z] GET /dashboard_overview.html
+[2026-03-17T19:15:01.086Z] GET /logo.png
+[2026-03-17T19:15:01.113Z] GET /dashboard_ui.js
+[2026-03-17T19:15:01.115Z] GET /dashboard_data.js
+[2026-03-17T19:15:01.225Z] GET /dashboard_overview.html
+[2026-03-17T19:15:01.235Z] GET /logo.png
+[2026-03-17T19:15:01.265Z] GET /dashboard_ui.js
+[2026-03-17T19:15:01.267Z] GET /dashboard_data.js
+[2026-03-17T19:15:01.404Z] GET /dashboard_overview.html
+[2026-03-17T19:15:01.431Z] GET /logo.png
+[2026-03-17T19:15:01.459Z] GET /dashboard_ui.js
+[2026-03-17T19:15:01.468Z] GET /dashboard_data.js
+[2026-03-17T19:15:01.543Z] GET /dashboard_overview.html
+[2026-03-17T19:15:01.565Z] GET /logo.png
+[2026-03-17T19:15:01.594Z] GET /dashboard_ui.js
+[2026-03-17T19:15:01.598Z] GET /dashboard_data.js
+[2026-03-17T19:15:01.687Z] GET /dashboard_overview.html
+[2026-03-17T19:15:01.696Z] GET /logo.png
+[2026-03-17T19:15:01.726Z] GET /dashboard_ui.js
+[2026-03-17T19:15:01.728Z] GET /dashboard_data.js
+[2026-03-17T19:15:01.861Z] GET /dashboard_overview.html
+[2026-03-17T19:15:01.873Z] GET /logo.png
+[2026-03-17T19:15:01.903Z] GET /dashboard_ui.js
+[2026-03-17T19:15:01.910Z] GET /dashboard_data.js
+[2026-03-17T19:15:02.059Z] GET /dashboard_overview.html
+[2026-03-17T19:15:02.076Z] GET /logo.png
+[2026-03-17T19:15:02.104Z] GET /dashboard_ui.js
+[2026-03-17T19:15:02.115Z] GET /dashboard_data.js
+[2026-03-17T19:15:02.176Z] GET /dashboard_overview.html
+[2026-03-17T19:15:02.190Z] GET /logo.png
+[2026-03-17T19:15:02.221Z] GET /dashboard_ui.js
+[2026-03-17T19:15:02.223Z] GET /dashboard_data.js
+[2026-03-17T19:15:02.359Z] GET /dashboard_overview.html
+[2026-03-17T19:15:02.380Z] GET /logo.png
+[2026-03-17T19:15:02.412Z] GET /dashboard_ui.js
+[2026-03-17T19:15:02.415Z] GET /dashboard_data.js
+[2026-03-17T19:15:02.508Z] GET /dashboard_overview.html
+[2026-03-17T19:15:02.520Z] GET /logo.png
+[2026-03-17T19:15:02.554Z] GET /dashboard_ui.js
+[2026-03-17T19:15:02.556Z] GET /dashboard_data.js
+[2026-03-17T19:15:02.682Z] GET /dashboard_overview.html
+[2026-03-17T19:15:02.700Z] GET /logo.png
+[2026-03-17T19:15:02.734Z] GET /dashboard_ui.js
+[2026-03-17T19:15:02.736Z] GET /dashboard_data.js
+[2026-03-17T19:15:02.863Z] GET /dashboard_overview.html
+[2026-03-17T19:15:02.886Z] GET /logo.png
+[2026-03-17T19:15:02.916Z] GET /dashboard_ui.js
+[2026-03-17T19:15:02.919Z] GET /dashboard_data.js
+[2026-03-17T19:15:02.993Z] GET /dashboard_overview.html
+[2026-03-17T19:15:03.009Z] GET /logo.png
+[2026-03-17T19:15:03.044Z] GET /dashboard_ui.js
+[2026-03-17T19:15:03.046Z] GET /dashboard_data.js
+[2026-03-17T19:15:03.235Z] GET /favicon.ico
+File not found: /Users/andresmcmahon/Documents/Alconio Website/favicon.ico
+[2026-03-17T19:15:05.431Z] GET /dashboard_analytics.html
+[2026-03-17T19:15:05.461Z] GET /logo.png
+[2026-03-17T19:15:05.463Z] GET /dashboard_ui.js
+[2026-03-17T19:15:05.468Z] GET /dashboard_data.js
+[2026-03-17T19:16:47.943Z] GET /dashboard_overview.html
+[2026-03-17T19:16:48.020Z] GET /logo.png
+[2026-03-17T19:16:48.027Z] GET /dashboard_ui.js
+[2026-03-17T19:16:48.027Z] GET /dashboard_data.js
+[2026-03-17T19:17:24.348Z] GET /dashboard_overview.html
+[2026-03-17T19:17:24.366Z] GET /logo.png
+[2026-03-17T19:17:24.374Z] GET /dashboard_ui.js
+[2026-03-17T19:17:24.374Z] GET /dashboard_data.js
+[2026-03-17T19:17:25.105Z] GET /dashboard_overview.html
+[2026-03-17T19:17:25.114Z] GET /logo.png
+[2026-03-17T19:17:25.114Z] GET /dashboard_ui.js
+[2026-03-17T19:17:25.117Z] GET /dashboard_data.js
+[2026-03-17T19:17:25.404Z] GET /dashboard_overview.html
+[2026-03-17T19:17:25.416Z] GET /logo.png
+[2026-03-17T19:17:25.417Z] GET /dashboard_ui.js
+[2026-03-17T19:17:25.418Z] GET /dashboard_data.js
+[2026-03-17T19:17:25.622Z] GET /dashboard_overview.html
+[2026-03-17T19:17:25.636Z] GET /logo.png
+[2026-03-17T19:17:25.636Z] GET /dashboard_ui.js
+[2026-03-17T19:17:25.636Z] GET /dashboard_data.js
+[2026-03-17T19:17:25.868Z] GET /dashboard_overview.html
+[2026-03-17T19:17:25.947Z] GET /logo.png
+[2026-03-17T19:17:25.948Z] GET /dashboard_ui.js
+[2026-03-17T19:17:25.948Z] GET /dashboard_data.js
+[2026-03-17T19:17:35.884Z] GET /dashboard_overview.html
+[2026-03-17T19:17:35.898Z] GET /logo.png
+[2026-03-17T19:17:35.901Z] GET /dashboard_ui.js
+[2026-03-17T19:17:35.903Z] GET /dashboard_data.js
+[2026-03-17T19:17:36.060Z] GET /dashboard_overview.html
+[2026-03-17T19:17:36.081Z] GET /logo.png
+[2026-03-17T19:17:36.086Z] GET /dashboard_ui.js
+[2026-03-17T19:17:36.088Z] GET /dashboard_data.js
+[2026-03-17T19:17:36.221Z] GET /dashboard_overview.html
+[2026-03-17T19:17:36.234Z] GET /logo.png
+[2026-03-17T19:17:36.236Z] GET /dashboard_ui.js
+[2026-03-17T19:17:36.238Z] GET /dashboard_data.js
+[2026-03-17T19:17:36.388Z] GET /dashboard_overview.html
+[2026-03-17T19:17:36.419Z] GET /logo.png
+[2026-03-17T19:17:36.423Z] GET /dashboard_ui.js
+[2026-03-17T19:17:36.426Z] GET /dashboard_data.js
+[2026-03-17T19:17:36.529Z] GET /dashboard_overview.html
+[2026-03-17T19:17:36.545Z] GET /logo.png
+[2026-03-17T19:17:36.548Z] GET /dashboard_ui.js
+[2026-03-17T19:17:36.549Z] GET /dashboard_data.js
+[2026-03-17T19:17:36.697Z] GET /dashboard_overview.html
+[2026-03-17T19:17:36.712Z] GET /logo.png
+[2026-03-17T19:17:36.716Z] GET /dashboard_ui.js
+[2026-03-17T19:17:36.717Z] GET /dashboard_data.js
+[2026-03-17T19:17:36.871Z] GET /dashboard_overview.html
+[2026-03-17T19:17:36.880Z] GET /logo.png
+[2026-03-17T19:17:36.884Z] GET /dashboard_ui.js
+[2026-03-17T19:17:36.886Z] GET /dashboard_data.js
+[2026-03-17T19:17:37.051Z] GET /dashboard_overview.html
+[2026-03-17T19:17:37.064Z] GET /logo.png
+[2026-03-17T19:17:37.067Z] GET /dashboard_ui.js
+[2026-03-17T19:17:37.105Z] GET /dashboard_data.js
+[2026-03-17T19:17:37.208Z] GET /dashboard_overview.html
+[2026-03-17T19:17:37.232Z] GET /logo.png
+[2026-03-17T19:17:37.258Z] GET /dashboard_ui.js
+[2026-03-17T19:17:37.258Z] GET /dashboard_data.js
+[2026-03-17T19:17:37.382Z] GET /dashboard_overview.html
+[2026-03-17T19:17:37.402Z] GET /logo.png
+[2026-03-17T19:17:37.406Z] GET /dashboard_ui.js
+[2026-03-17T19:17:37.408Z] GET /dashboard_data.js
+[2026-03-17T19:17:37.541Z] GET /dashboard_overview.html
+[2026-03-17T19:17:37.562Z] GET /logo.png
+[2026-03-17T19:17:37.569Z] GET /dashboard_ui.js
+[2026-03-17T19:17:37.571Z] GET /dashboard_data.js
+[2026-03-17T19:17:37.697Z] GET /dashboard_overview.html
+[2026-03-17T19:17:37.705Z] GET /logo.png
+[2026-03-17T19:17:37.711Z] GET /dashboard_ui.js
+[2026-03-17T19:17:37.715Z] GET /dashboard_data.js
+[2026-03-17T19:17:37.853Z] GET /dashboard_overview.html
+[2026-03-17T19:17:37.870Z] GET /logo.png
+[2026-03-17T19:17:37.912Z] GET /dashboard_ui.js
+[2026-03-17T19:17:37.913Z] GET /dashboard_data.js
+[2026-03-17T19:17:38.059Z] GET /favicon.ico
+File not found: /Users/andresmcmahon/Documents/Alconio Website/favicon.ico
+[2026-03-17T19:17:38.321Z] GET /dashboard_overview.html
+[2026-03-17T19:17:38.332Z] GET /logo.png
+[2026-03-17T19:17:38.336Z] GET /dashboard_ui.js
+[2026-03-17T19:17:38.337Z] GET /dashboard_data.js
+[2026-03-17T19:17:38.493Z] GET /favicon.ico
+File not found: /Users/andresmcmahon/Documents/Alconio Website/favicon.ico
+[2026-03-17T19:17:38.553Z] GET /dashboard_overview.html
+[2026-03-17T19:17:38.610Z] GET /logo.png
+[2026-03-17T19:17:38.615Z] GET /dashboard_ui.js
+[2026-03-17T19:17:38.617Z] GET /dashboard_data.js
+[2026-03-17T19:17:38.756Z] GET /dashboard_overview.html
+[2026-03-17T19:17:38.767Z] GET /logo.png
+[2026-03-17T19:17:38.774Z] GET /dashboard_ui.js
+[2026-03-17T19:17:38.776Z] GET /dashboard_data.js
+[2026-03-17T19:17:38.930Z] GET /favicon.ico
+File not found: /Users/andresmcmahon/Documents/Alconio Website/favicon.ico
+[2026-03-17T19:20:08.579Z] GET /dashboard_overview.html
+[2026-03-17T19:20:08.656Z] GET /logo.png
+[2026-03-17T19:20:08.665Z] GET /dashboard_ui.js
+[2026-03-17T19:20:08.666Z] GET /dashboard_data.js
+[2026-03-17T19:20:09.590Z] GET /dashboard_overview.html
+[2026-03-17T19:20:09.602Z] GET /logo.png
+[2026-03-17T19:20:09.602Z] GET /dashboard_ui.js
+[2026-03-17T19:20:09.610Z] GET /dashboard_data.js
+[2026-03-17T19:20:10.572Z] GET /dashboard_overview.html
+[2026-03-17T19:20:10.583Z] GET /logo.png
+[2026-03-17T19:20:10.583Z] GET /dashboard_ui.js
+[2026-03-17T19:20:10.594Z] GET /dashboard_data.js
+[2026-03-17T19:20:12.340Z] GET /dashboard_overview.html
+[2026-03-17T19:20:12.355Z] GET /logo.png
+[2026-03-17T19:20:12.356Z] GET /dashboard_ui.js
+[2026-03-17T19:20:12.361Z] GET /dashboard_data.js
+[2026-03-17T19:20:13.306Z] GET /dashboard_overview.html
+[2026-03-17T19:20:13.316Z] GET /logo.png
+[2026-03-17T19:20:13.316Z] GET /dashboard_ui.js
+[2026-03-17T19:20:13.325Z] GET /dashboard_data.js
+[2026-03-17T19:20:14.071Z] GET /dashboard_overview.html
+[2026-03-17T19:20:14.083Z] GET /logo.png
+[2026-03-17T19:20:14.084Z] GET /dashboard_ui.js
+[2026-03-17T19:20:14.096Z] GET /dashboard_data.js
+[2026-03-17T21:23:26.666Z] GET /dashboard_overview.html
+[2026-03-17T21:23:26.734Z] GET /logo.png
+[2026-03-17T21:23:26.750Z] GET /dashboard_ui.js
+[2026-03-17T21:23:26.750Z] GET /dashboard_data.js
+[2026-03-17T21:23:27.658Z] GET /dashboard_overview.html
+[2026-03-17T21:23:27.670Z] GET /logo.png
+[2026-03-17T21:23:27.682Z] GET /dashboard_ui.js
+[2026-03-17T21:23:27.683Z] GET /dashboard_data.js
+[2026-03-17T21:47:40.433Z] GET /dashboard_overview.html
+[2026-03-17T21:47:40.497Z] GET /logo.png
+[2026-03-17T21:47:40.508Z] GET /dashboard_ui.js
+[2026-03-17T21:47:40.509Z] GET /dashboard_data.js
+[2026-03-17T21:47:41.595Z] GET /dashboard_overview.html
+[2026-03-17T21:47:41.607Z] GET /logo.png
+[2026-03-17T21:47:41.607Z] GET /dashboard_ui.js
+[2026-03-17T21:47:41.626Z] GET /dashboard_data.js
+[2026-03-17T21:48:40.258Z] GET /dashboard_overview.html
+[2026-03-17T21:48:40.359Z] GET /logo.png
+[2026-03-17T21:48:40.395Z] GET /dashboard_ui.js
+[2026-03-17T21:48:40.395Z] GET /dashboard_data.js
+[2026-03-17T21:48:42.550Z] GET /dashboard_overview.html
+[2026-03-17T21:48:42.583Z] GET /logo.png
+[2026-03-17T21:48:42.584Z] GET /dashboard_ui.js
+[2026-03-17T21:48:42.612Z] GET /dashboard_data.js
+[2026-03-17T21:48:43.579Z] GET /dashboard_overview.html
+[2026-03-17T21:48:43.655Z] GET /logo.png
+[2026-03-17T21:48:43.656Z] GET /dashboard_ui.js
+[2026-03-17T21:48:43.675Z] GET /dashboard_data.js
+[2026-03-17T21:48:44.413Z] GET /dashboard_overview.html
+[2026-03-17T21:48:44.424Z] GET /logo.png
+[2026-03-17T21:48:44.425Z] GET /dashboard_ui.js
+[2026-03-17T21:48:44.441Z] GET /dashboard_data.js
+[2026-03-17T21:48:59.383Z] GET /dashboard_overview.html
+[2026-03-17T21:48:59.401Z] GET /logo.png
+[2026-03-17T21:48:59.418Z] GET /dashboard_ui.js
+[2026-03-17T21:48:59.421Z] GET /dashboard_data.js
+[2026-03-17T21:48:59.653Z] GET /favicon.ico
+File not found: /Users/andresmcmahon/Documents/Alconio Website/favicon.ico
+[2026-03-17T21:49:00.007Z] GET /dashboard_overview.html
+[2026-03-17T21:49:00.021Z] GET /logo.png
+[2026-03-17T21:49:00.038Z] GET /dashboard_ui.js
+[2026-03-17T21:49:00.040Z] GET /dashboard_data.js
+[2026-03-17T21:49:00.201Z] GET /favicon.ico
+File not found: /Users/andresmcmahon/Documents/Alconio Website/favicon.ico
+[2026-03-17T21:49:00.248Z] GET /dashboard_overview.html
+[2026-03-17T21:49:00.259Z] GET /logo.png
+[2026-03-17T21:49:00.275Z] GET /dashboard_ui.js
+[2026-03-17T21:49:00.277Z] GET /dashboard_data.js
+[2026-03-17T21:49:00.472Z] GET /dashboard_overview.html
+[2026-03-17T21:49:00.506Z] GET /logo.png
+[2026-03-17T21:49:00.536Z] GET /dashboard_ui.js
+[2026-03-17T21:49:00.536Z] GET /dashboard_data.js
+[2026-03-17T21:49:00.601Z] GET /dashboard_overview.html
+[2026-03-17T21:49:00.633Z] GET /logo.png
+[2026-03-17T21:49:00.649Z] GET /dashboard_ui.js
+[2026-03-17T21:49:00.652Z] GET /dashboard_data.js
+[2026-03-17T21:49:00.819Z] GET /dashboard_overview.html
+[2026-03-17T21:49:00.836Z] GET /logo.png
+[2026-03-17T21:49:00.856Z] GET /dashboard_ui.js
+[2026-03-17T21:49:00.856Z] GET /dashboard_data.js
+[2026-03-17T21:49:01.135Z] GET /favicon.ico
+File not found: /Users/andresmcmahon/Documents/Alconio Website/favicon.ico
+[2026-03-17T21:49:01.209Z] GET /dashboard_overview.html
+[2026-03-17T21:49:01.220Z] GET /logo.png
+[2026-03-17T21:49:01.240Z] GET /dashboard_ui.js
+[2026-03-17T21:49:01.243Z] GET /dashboard_data.js
+[2026-03-17T21:49:01.403Z] GET /dashboard_overview.html
+[2026-03-17T21:49:01.421Z] GET /logo.png
+[2026-03-17T21:49:01.442Z] GET /dashboard_ui.js
+[2026-03-17T21:49:01.442Z] GET /dashboard_data.js
+[2026-03-17T21:49:01.573Z] GET /dashboard_overview.html
+[2026-03-17T21:49:01.592Z] GET /logo.png
+[2026-03-17T21:49:01.617Z] GET /dashboard_ui.js
+[2026-03-17T21:49:01.621Z] GET /dashboard_data.js
+[2026-03-17T21:49:01.927Z] GET /favicon.ico
+File not found: /Users/andresmcmahon/Documents/Alconio Website/favicon.ico

@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    
+    <!-- Strict Role-Based Access Control (RBAC) Guard -->
+    <script>
+        (function() {
+            // 1. Instant concealment
+            document.documentElement.style.display = 'none';
+
+            // Constants
+            const IS_ADMIN_PAGE = window.location.pathname.includes('dashboard_admin') || window.location.pathname.includes('dashboard_onboarding');
+            const EXPECTED_ROLE = IS_ADMIN_PAGE ? 'admin' : 'client';
+
+            function handleAuthFailure(reason) {
+                console.error('[STRICT-AUTH] Redirecting due to:', reason);
+                window.location.replace('dashboard_signin.html?reason=' + encodeURIComponent(reason));
+            }
+
+            function handleRoleMismatch(foundRole) {
+                console.warn('[STRICT-AUTH] Role mismatch. Found:', foundRole, 'Expected:', EXPECTED_ROLE);
+                const target = foundRole === 'admin' ? 'dashboard_admin.html' : 'dashboard_overview.html';
+                window.location.replace(target);
+            }
+
+            async function verifyAccess() {
+                try {
+                    // 2. Wait for Clerk
+                    if (typeof Clerk === 'undefined') {
+                        let attempts = 0;
+                        while (typeof Clerk === 'undefined' && attempts < 100) {
+                            await new Promise(r => setTimeout(r, 50));
+                            attempts++;
+                        }
+                    }
+
+                    if (typeof Clerk === 'undefined') return handleAuthFailure('clerk_timeout');
+
+                    // 3. Ensure loaded
+                    if (!Clerk.loaded) await Clerk.load();
+
+                    // 4. Verification logic
+                    if (!Clerk.isSignedIn) {
+                        return handleAuthFailure('not_signed_in');
+                    }
+
+                    const userRole = Clerk.user?.publicMetadata?.role;
+                    
+                    if (!userRole) {
+                        return handleAuthFailure('no_role_assigned');
+                    }
+
+                    if (userRole !== EXPECTED_ROLE) {
+                        return handleRoleMismatch(userRole);
+                    }
+
+                    // 5. Success - reveal page
+                    document.documentElement.style.display = '';
+                    console.log('[STRICT-AUTH] Access granted for role:', userRole);
+                    
+                    // Extra safety: call window.requireRole if it exists yet
+                    if (typeof window.requireRole === 'function') {
+                        window.requireRole(EXPECTED_ROLE);
+                    }
+                } catch (err) {
+                    console.error('[STRICT-AUTH] Guard error:', err);
+                    handleAuthFailure('guard_error');
+                }
+            }
+
+            // Execute verification
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', verifyAccess);
+            } else {
+                verifyAccess();
+            }
+        })();
+    </script>
+
+
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Client Details - Alconio Admin</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "electric-blue": "#0052FF",
+                        "electric-blue-light": "#3374ff",
+                        "obsidian": "#000000",
+                        "obsidian-panel": "#050508",
+                        "glass-border": "rgba(0, 82, 255, 0.3)",
+                        "glass-highlight": "rgba(255, 255, 255, 0.15)",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Space Grotesk", "sans-serif"]
+                    },
+                    boxShadow: {
+                        'neon-blue': '0 0 20px rgba(0, 82, 255, 0.4), inset 0 0 10px rgba(0, 82, 255, 0.1)',
+                        'neon-white': '0 0 15px rgba(255, 255, 255, 0.3)',
+                        'glass-edge': 'inset 1px 1px 0 0 rgba(255, 255, 255, 0.2), inset -1px -1px 0 0 rgba(0, 0, 0, 0.5)',
+                        'header-glow': '0 4px 30px rgba(0, 0, 0, 0.8), 0 1px 0 rgba(0, 82, 255, 0.5)',
+                        'icon-glass': '0 4px 12px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.15)',
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #000000;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #1e1e24;
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0052FF;
+        }
+
+        .glass-panel {
+            background: linear-gradient(160deg, rgba(10, 10, 15, 0.85) 0%, rgba(0, 0, 0, 0.95) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 82, 255, 0.15);
+            border-top: 1px solid rgba(100, 150, 255, 0.3);
+            border-left: 1px solid rgba(100, 150, 255, 0.3);
+            box-shadow:
+                0 0 30px rgba(0, 0, 0, 0.8),
+                inset 0 0 20px rgba(0, 82, 255, 0.03);
+            position: relative;
+
+        }
+
+        .glass-panel::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+            filter: blur(20px);
+            opacity: 0.6;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .glass-panel::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(0, 82, 255, 0.15) 0%, transparent 70%);
+            filter: blur(30px);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .glass-card {
+            background: linear-gradient(135deg, rgba(15, 20, 35, 0.9) 0%, rgba(5, 5, 8, 0.95) 100%);
+            border: 1px solid rgba(0, 82, 255, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.9), inset 0 0 30px rgba(0, 82, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            box-shadow: 0 0 25px rgba(0, 82, 255, 0.25), inset 0 0 20px rgba(0, 82, 255, 0.1);
+            border-color: rgba(0, 82, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .active-sidebar-link {
+            background: linear-gradient(90deg, rgba(0, 82, 255, 0.2) 0%, rgba(0, 0, 0, 0) 100%);
+            border-left: 3px solid #0052FF;
+            box-shadow: inset 10px 0 20px -10px rgba(0, 82, 255, 0.3);
+        }
+
+        .neon-text {
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(0, 82, 255, 0.5);
+        }
+
+        .neon-text-blue {
+            color: #0052FF;
+            text-shadow: 0 0 10px rgba(0, 82, 255, 0.8);
+        }
+
+        .neon-border-top {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 82, 255, 1), transparent);
+            opacity: 0.6;
+        }
+
+        .header-glass {
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
+        }
+
+        .sidebar-header-area {
+            height: 72px;
+            display: flex;
+            align-items: center;
+        }
+
+        .pill-tag {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(5px);
+        }
+
+        .profile-glass-pill {
+            background: linear-gradient(135deg, rgba(20, 20, 25, 0.8) 0%, rgba(5, 5, 8, 0.9) 100%);
+            border: 1px solid rgba(0, 82, 255, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6), inset 0 0 15px rgba(0, 82, 255, 0.15);
+            backdrop-filter: blur(12px);
+        }
+
+        .profile-glass-pill:hover {
+            background: linear-gradient(135deg, rgba(30, 30, 40, 0.9) 0%, rgba(10, 10, 15, 0.95) 100%);
+            box-shadow: 0 0 20px rgba(0, 82, 255, 0.3), inset 0 0 25px rgba(0, 82, 255, 0.2);
+            border-color: rgba(0, 82, 255, 0.5);
+        }
+
+        .micro-card {
+            background: linear-gradient(135deg, rgba(15, 20, 35, 0.7) 0%, rgba(5, 5, 8, 0.8) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 1px solid rgba(255, 255, 255, 0.15);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .micro-card:hover {
+            background: linear-gradient(135deg, rgba(20, 25, 45, 0.8) 0%, rgba(10, 10, 15, 0.9) 100%);
+            border-color: rgba(0, 82, 255, 0.4);
+            box-shadow: 0 0 15px rgba(0, 82, 255, 0.15);
+        }
+
+        .housed-profile-container {
+            display: flex;
+            align-items: center;
+            background: rgba(10, 10, 14, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 9999px;
+            padding: 4px;
+            padding-right: 16px;
+            backdrop-filter: blur(8px);
+            transition: border-color 0.2s;
+        }
+
+        .housed-profile-container:hover {
+            border-color: rgba(0, 82, 255, 0.3);
+            background: rgba(15, 15, 22, 0.8);
+        }
+
+        .unified-header-line {
+            position: fixed;
+            top: 72px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: rgba(0, 82, 255, 0.15);
+            box-shadow: 0 0 2px rgba(0, 82, 255, 0.1);
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+        .sidebar-divider-line {
+            position: fixed;
+            top: 0;
+            left: 5rem;
+            width: 1px;
+            height: 100vh;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.05), rgba(0, 82, 255, 0.9), rgba(255, 255, 255, 0.05));
+            box-shadow: 0 0 12px rgba(0, 82, 255, 0.5);
+            z-index: 40;
+            pointer-events: none;
+        }
+
+        .sidebar-header-area {
+            transition: all 0.3s ease;
+        }
+
+        .side-bar-toggle {
+            transition: all 0.3s ease;
+        }
+
+        /* Anti-FOUC for sidebar */
+        .sidebar-no-transition {
+            transition: none !important;
+        }
+
+        .sidebar-no-transition * {
+            transition: none !important;
+        }
+    </style>
+</head>
+
+<body class="bg-[#020205] text-slate-200 font-display antialiased overflow-hidden">
+
+    <div class="flex h-screen w-full overflow-hidden relative">
+
+        <!-- Background Glows -->
+        <div class="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
+            <div class="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-electric-blue/10 rounded-full blur-[120px]">
+            </div>
+            <div
+                class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-indigo-500/10 rounded-full blur-[120px]">
+            </div>
+        </div>
+
+        <div class="unified-header-line"></div>
+        <div class="sidebar-divider-line"></div>
+
+        <aside
+            class="dashboard-sidebar relative z-50 w-20 h-full glass-panel flex flex-col border-r-0 hidden md:flex shrink-0 items-center transition-all duration-300 !border-l-transparent border-l-0">
+            <div
+                class="sidebar-header-area relative h-16 px-0 w-full flex justify-end pr-4 shrink-0 transition-all duration-300">
+                <div class="header-inner flex items-center justify-end w-full h-full gap-4 transition-all duration-300">
+                    <h1 class="logo-text text-2xl font-bold tracking-tight text-white neon-text-blue transition-all duration-300"
+                        style="letter-spacing: -0.02em;"></h1>
+                    <img src="logo.png" alt="Logo"
+                        class="sidebar-logo-img w-12 h-12 object-contain transition-all duration-300 absolute top-1/2 -translate-y-1/2 z-10">
+                    <button
+                        class="side-bar-toggle w-8 h-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition-all border border-transparent hover:border-white/10 group relative">
+                        <span
+                            class="toggle-icon material-symbols-outlined text-sm group-hover:text-electric-blue transition-colors">keyboard_tab_rtl</span>
+                    </button>
+                </div>
+            </div>
+            <nav
+                class="flex-1 px-2 space-y-1 relative z-10 pt-6 w-full flex flex-col items-center overflow-x-hidden sidebar-scroll-hide transition-all duration-300">
+                
+                <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400"
+                    href="dashboard_admin.html" data-tooltip="Admin Hub">
+                    <span class="material-symbols-outlined group-hover:text-slate-400 transition-colors text-2xl nav-icon flex-shrink-0">grid_view</span>
+                    <span class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Admin Hub</span>
+                </a>
+
+                <a class="active-nav-item bg-gradient-to-br from-electric-blue/20 to-electric-blue/5 border border-electric-blue/30 text-electric-blue shadow-[0_0_15px_rgba(0,82,255,0.2)] nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative"
+                    href="dashboard_admin.html" data-tooltip="Clients">
+                    <span class="material-symbols-outlined text-slate-400 neon-text-blue text-2xl nav-icon flex-shrink-0 neon-text-blue text-electric-blue">group</span>
+                    <span class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Clients</span>
+                </a>
+
+                <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400"
+                    href="dashboard_admin_performance.html" data-tooltip="System Vitals">
+                    <span class="material-symbols-outlined group-hover:text-slate-400 transition-colors text-2xl nav-icon flex-shrink-0">monitoring</span>
+                    <span class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">System Vitals</span>
+                </a>
+
+                <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400"
+                    href="dashboard_admin_analytics.html" data-tooltip="Global Analytics">
+                    <span class="material-symbols-outlined group-hover:text-slate-400 transition-colors text-2xl nav-icon flex-shrink-0">analytics</span>
+                    <span class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Global Analytics</span>
+                </a>
+
+                <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400"
+                    href="dashboard_admin_activity.html" data-tooltip="Audit Trail">
+                    <span class="material-symbols-outlined group-hover:text-slate-400 transition-colors text-2xl nav-icon flex-shrink-0">history</span>
+                    <span class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Audit Trail</span>
+                </a>
+
+                <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400"
+                    href="dashboard_admin_billing.html" data-tooltip="Billing Hub">
+                    <span class="material-symbols-outlined group-hover:text-slate-400 transition-colors text-2xl nav-icon flex-shrink-0">payments</span>
+                    <span class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Billing Hub</span>
+                </a>
+
+                <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400"
+                    href="dashboard_admin_settings.html" data-tooltip="Core Settings">
+                    <span class="material-symbols-outlined group-hover:text-slate-400 transition-colors text-2xl nav-icon flex-shrink-0">settings</span>
+                    <span class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Core Settings</span>
+                </a>
+            </nav>
+
+            <div class="sidebar-footer-area p-4 relative z-10 border-t border-white/5 w-full flex justify-center mb-4 transition-all duration-300">
+                <button
+                    class="logout-btn w-12 h-12 flex items-center justify-center bg-gradient-to-r from-electric-blue to-blue-800 hover:from-blue-600 hover:to-blue-700 text-white rounded-lg shadow-[0_0_25px_rgba(0,82,255,0.4)] border border-white/10 transition-all transform active:scale-95 group relative"
+                    data-tooltip="Logout">
+                    <span class="material-symbols-outlined text-lg group-hover:animate-pulse flex-shrink-0">logout</span>
+                    <span class="md-label hidden font-bold text-sm tracking-wide ml-3 transition-opacity whitespace-nowrap">Logout</span>
+                </button>
+            </div>
+        </aside>
+
+        <!-- Sync Sidebar Anti-FOUC Script -->
+        <script>
+            (function () {
+                var sidebar = document.querySelector('aside.dashboard-sidebar');
+                if (!sidebar) return;
+                var toggleBtn = document.querySelector('.side-bar-toggle');
+                var headerInner = document.querySelector('.header-inner');
+                var headerArea = document.querySelector('.sidebar-header-area');
+                var logoText = document.querySelector('.logo-text');
+                var logoImg = document.querySelector('.sidebar-logo-img');
+                var navLinks = document.querySelectorAll('.nav-link-btn');
+                var dividerLine = document.querySelector('.sidebar-divider-line');
+                var logoutBtn = document.querySelector('.logout-btn');
+                var sidebarNav = document.querySelector('aside.dashboard-sidebar nav');
+
+                var isExpanded = localStorage.getItem('sidebarExpanded') !== 'false';
+
+                // Kill ALL transitions instantly
+                var transitionEls = [sidebar, headerArea, headerInner, sidebarNav, dividerLine, toggleBtn, logoText, logoImg].filter(Boolean);
+                navLinks.forEach(function (l) { transitionEls.push(l); });
+                if (logoutBtn) transitionEls.push(logoutBtn);
+                transitionEls.forEach(function (el) { el.style.transition = 'none'; });
+
+                if (isExpanded) {
+                    sidebar.classList.remove('w-20', 'items-center');
+                    sidebar.classList.add('w-72');
+
+                    if (logoText) {
+                        logoText.classList.remove('hidden', 'opacity-0');
+                        logoText.classList.add('opacity-100');
+                        logoText.textContent = "ALCONIO";
+                        logoText.classList.remove('neon-text-blue', 'pl-1');
+                        logoText.classList.add('pl-12');
+                    }
+
+                    if (logoImg) {
+                        logoImg.classList.remove('left-1/2', '-translate-x-1/2');
+                        logoImg.classList.add('left-4');
+                    }
+
+                    var icon = toggleBtn ? toggleBtn.querySelector('.toggle-icon') : null;
+                    if (icon) icon.textContent = 'keyboard_tab_rtl';
+                    if (toggleBtn) {
+                        toggleBtn.classList.remove('w-6', 'h-6', 'absolute', 'right-[2px]', 'translate-x-[2px]');
+                        toggleBtn.classList.add('w-8', 'h-8', 'rounded-lg', 'relative');
+                    }
+
+                    if (headerArea) {
+                        headerArea.classList.remove('px-0', 'justify-end', 'pr-4');
+                        headerArea.classList.add('px-6', 'justify-between');
+                    }
+                    if (headerInner) {
+                        headerInner.classList.remove('justify-center', 'justify-end');
+                        headerInner.classList.add('justify-between');
+                    }
+                    if (sidebarNav) {
+                        sidebarNav.classList.remove('items-center');
+                        sidebarNav.classList.add('items-stretch');
+                    }
+                    if (dividerLine) dividerLine.style.left = '18rem';
+
+                    navLinks.forEach(function (link) {
+                        link.classList.remove('w-12', 'h-12', 'justify-center');
+                        link.classList.add('w-full', 'h-12', 'justify-start', 'pl-5');
+                        var label = link.querySelector('.md-label');
+                        if (label) { label.classList.remove('hidden'); label.classList.add('inline'); }
+                    });
+
+                    if (logoutBtn) {
+                        logoutBtn.classList.remove('w-12');
+                        logoutBtn.classList.add('w-full');
+                        var lLabel = logoutBtn.querySelector('.md-label');
+                        if (lLabel) { lLabel.classList.remove('hidden'); lLabel.classList.add('inline'); }
+                    }
+                } else {
+                    // Collapsed state
+                    sidebar.classList.remove('w-72');
+                    sidebar.classList.add('w-20', 'items-center');
+
+                    if (logoText) {
+                        logoText.classList.remove('opacity-100', 'pl-12');
+                        logoText.classList.add('hidden', 'opacity-0', 'neon-text-blue', 'pl-1');
+                        logoText.textContent = "A";
+                    }
+
+                    if (logoImg) {
+                        logoImg.classList.remove('left-4');
+                        logoImg.classList.add('left-1/2', '-translate-x-1/2');
+                    }
+
+                    var icon = toggleBtn ? toggleBtn.querySelector('.toggle-icon') : null;
+                    if (icon) icon.textContent = 'keyboard_tab_rtl';
+                    if (toggleBtn) {
+                        toggleBtn.classList.remove('w-6', 'h-6', 'absolute', 'right-[2px]', 'translate-x-[2px]');
+                        toggleBtn.classList.add('w-8', 'h-8', 'rounded-lg', 'relative');
+                    }
+
+                    if (headerArea) {
+                        headerArea.classList.remove('px-6', 'justify-between');
+                        headerArea.classList.add('px-0', 'justify-end', 'pr-4');
+                    }
+                    if (headerInner) {
+                        headerInner.classList.remove('justify-between', 'justify-end');
+                        headerInner.classList.add('justify-center');
+                    }
+                    if (sidebarNav) {
+                        sidebarNav.classList.remove('items-stretch');
+                        sidebarNav.classList.add('items-center');
+                    }
+                    if (dividerLine) dividerLine.style.left = '5rem';
+
+                    navLinks.forEach(function (link) {
+                        link.classList.remove('w-full', 'justify-start', 'pl-5');
+                        link.classList.add('w-12', 'h-12', 'justify-center');
+                        var label = link.querySelector('.md-label');
+                        if (label) { label.classList.remove('inline'); label.classList.add('hidden'); }
+                    });
+
+                    if (logoutBtn) {
+                        logoutBtn.classList.remove('w-full');
+                        logoutBtn.classList.add('w-12');
+                        var lLabel = logoutBtn.querySelector('.md-label');
+                        if (lLabel) { lLabel.classList.remove('inline'); lLabel.classList.add('hidden'); }
+                    }
+                }
+
+                // Re-enable transitions
+                requestAnimationFrame(function () {
+                    requestAnimationFrame(function () {
+                        transitionEls.forEach(function (el) { el.style.transition = ''; });
+                    });
+                });
+            })();
+        </script>
+
+        <div class="flex-1 flex flex-col h-full relative z-10 overflow-hidden">
+            <header class="w-full h-[72px] z-50 header-glass flex items-center justify-between px-8 shrink-0 relative">
+                <div class="flex items-center gap-6">
+                    <div class="flex items-center">
+                        <div
+                            class="pill-tag px-3 py-1.5 rounded-full text-[11px] font-medium text-slate-400 tracking-wide flex items-center gap-2 hover:border-white/20 transition-colors cursor-pointer group">
+                            <span
+                                class="w-1.5 h-1.5 rounded-full bg-electric-blue shadow-[0_0_6px_#0052ff] animate-pulse"></span>
+                            Alconio HQ
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute left-1/2 transform -translate-x-1/2 flex items-center justify-center pointer-events-none w-full max-w-[400px]">
+                    <h2 class="text-xl font-bold text-white tracking-wide whitespace-nowrap"
+                        style="text-shadow: 0 0 20px rgba(255,255,255,0.2);">Client Details</h2>
+                </div>
+                <div class="flex items-center gap-4">
+                    <div class="housed-profile-container group">
+                        <button
+                            class="w-8 h-8 flex items-center justify-center rounded-full text-slate-400 hover:text-white hover:bg-white/10 transition-all relative mr-2">
+                            <span class="material-symbols-outlined text-[20px]">notifications</span>
+                            <span
+                                class="absolute top-1.5 right-1.5 w-1.5 h-1.5 bg-electric-blue rounded-full shadow-[0_0_8px_#0052ff]"></span>
+                        </button>
+                        <div class="w-[1px] h-6 bg-white/10 mr-3"></div>
+                        <div class="flex items-center gap-3 cursor-pointer">
+                            <div
+                                class="w-8 h-8 rounded-full bg-slate-900 overflow-hidden ring-1 ring-white/10 group-hover:ring-electric-blue/50 transition-all shadow-lg relative">
+                                <img alt="User avatar" class="w-full h-full object-cover"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-n-gT0hmTLr68Q785q7si3dFoLMf7H3GynEF6Z2J24-oBY6nDcs61FaN_0-30RLylxw003MUNZjpmJEexdEOJj6EEIbz0kZyi3H7h8vYFqMgF4VyTUf3tatWeOJc4rj5wEdq1c8r291KAyy2Koyp1ed59PBohstiFLTdn9RH0JY9xz4enWsYbeYg0rREdlR6xdaOfvqCBbaSbgP_7p5ElqBZWky_f-ZvrE4SNxQiwFsigcG5W4EJdfdSofsdUwfj2bTUS2j4nyW6y" />
+                            </div>
+                            <div class="flex flex-col text-left">
+                                <span
+                                    class="text-[9px] text-slate-400 uppercase tracking-widest leading-none mb-0.5">Admin</span>
+                                <p
+                                    class="text-xs font-bold text-white group-hover:text-electric-blue transition-colors leading-none">
+                                    Administrator</p>
+                            </div>
+                            <span
+                                class="material-symbols-outlined text-slate-500 text-lg group-hover:text-white transition-colors ml-1">expand_more</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            
+            <main class="flex-1 overflow-y-auto h-full p-4 md:p-8 scroll-smooth custom-scrollbar">
+                <div class="max-w-[1200px] mx-auto flex flex-col gap-8 pb-12">
+                    
+                    <a href="dashboard_admin.html" class="flex items-center gap-2 text-electric-blue hover:text-white transition-colors mb-2 w-fit group">
+                        <span class="material-symbols-outlined group-hover:-translate-x-1 transition-transform">arrow_back</span>
+                        <span class="font-bold tracking-wide text-sm">Back to Clients Hub</span>
+                    </a>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                        <!-- Profile Card -->
+                        <div class="lg:col-span-1 flex flex-col gap-6">
+                            <div class="glass-card rounded-2xl flex flex-col relative overflow-hidden p-8">
+                                <div class="absolute top-0 right-0 w-32 h-32 bg-electric-blue/10 rounded-full blur-[40px] -mr-16 -mt-16"></div>
+                                <div class="w-20 h-20 rounded-full bg-slate-900 border-2 border-electric-blue/30 overflow-hidden mb-6 mx-auto shadow-[0_0_20px_rgba(0,82,255,0.2)]">
+                                    <img src="https://ui-avatars.com/api/?name=Galactic+Ventures&background=0052FF&color=fff" class="w-full h-full object-cover" alt="Client Logo">
+                                </div>
+                                <div class="text-center mb-8">
+                                    <h3 class="text-xl font-bold text-white">Galactic Ventures</h3>
+                                    <p class="text-sm text-slate-400">contact@galactic.com</p>
+                                    <div class="mt-4 flex justify-center">
+                                        <span class="px-3 py-1 rounded-full bg-emerald-500/10 border border-emerald-500/20 text-[10px] font-bold text-emerald-400 uppercase tracking-widest">Active Client</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="space-y-4 pt-4 border-t border-white/5">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-xs text-slate-500 font-medium uppercase tracking-wider">Plan</span>
+                                        <span class="text-xs font-bold text-white bg-white/5 px-2 py-1 rounded border border-white/10 uppercase tracking-wider">Pro Tier</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-xs text-slate-500 font-medium uppercase tracking-wider">Joined</span>
+                                        <span class="text-xs font-bold text-slate-300">Oct 12, 2025</span>
+                                    </div>
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-xs text-slate-500 font-medium uppercase tracking-wider">Region</span>
+                                        <span class="text-xs font-bold text-slate-300">US East (N. Virginia)</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="glass-card rounded-2xl p-6">
+                                <h3 class="text-sm font-bold text-white mb-4 flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-electric-blue text-sm">rocket_launch</span>
+                                    Infrastructure Status
+                                </h3>
+                                <div class="p-4 rounded-xl bg-electric-blue/5 border border-white/5 space-y-3">
+                                    <div class="flex justify-between items-center">
+                                        <span class="text-xs text-slate-400">Main Fleet</span>
+                                        <span class="text-[10px] font-bold text-emerald-400 bg-emerald-400/10 px-1.5 py-0.5 rounded uppercase">Stable</span>
+                                    </div>
+                                    <div class="w-full h-1.5 bg-white/5 rounded-full overflow-hidden">
+                                        <div class="h-full bg-emerald-400 rounded-full" style="width: 100%"></div>
+                                    </div>
+                                    <p class="text-[10px] text-slate-500 italic">Last deployment: 12 days ago</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Management Area -->
+                        <div class="lg:col-span-2 flex flex-col gap-8">
+                            <div class="glass-card rounded-2xl p-8 border border-white/10 relative overflow-hidden">
+                                <div class="relative z-10">
+                                    <h2 class="text-xl font-bold text-white mb-2">Management Console</h2>
+                                    <p class="text-sm text-slate-400 mb-8 max-w-lg">Update client status, manage modification requests, and send direct system notifications to the client dashboard.</p>
+                                    
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 mb-8">
+                                        <div class="flex flex-col gap-2">
+                                            <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest pl-1">Target Client Email</label>
+                                            <div class="relative group">
+                                                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 transition-colors group-focus-within:text-electric-blue">mail</span>
+                                                <input id="target-email" class="w-full bg-black/40 border border-white/10 rounded-xl py-3 pl-10 pr-4 text-sm text-white focus:border-electric-blue focus:ring-1 focus:ring-electric-blue outline-none transition-all" type="email" value="contact@galactic.com">
+                                            </div>
+                                        </div>
+                                        <div class="flex flex-col gap-2">
+                                            <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest pl-1">Modification Subject</label>
+                                            <div class="relative group">
+                                                <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-slate-500 transition-colors group-focus-within:text-electric-blue">edit_note</span>
+                                                <input id="mod-title" class="w-full bg-black/40 border border-white/10 rounded-xl py-3 pl-10 pr-4 text-sm text-white focus:border-electric-blue focus:ring-1 focus:ring-electric-blue outline-none transition-all" type="text" placeholder="e.g. Website Overhaul">
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex flex-col gap-2 mb-8">
+                                        <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest pl-1">New Workflow Status</label>
+                                        <div class="grid grid-cols-2 lg:grid-cols-4 gap-3">
+                                            <label class="cursor-pointer relative group">
+                                                <input type="radio" name="mod-status-radio" value="received" class="peer sr-only" checked>
+                                                <div class="p-3 rounded-xl border border-white/5 bg-white/5 text-center transition-all peer-checked:border-electric-blue peer-checked:bg-electric-blue/10 hover:bg-white/10">
+                                                    <span class="text-xs font-bold text-slate-400 peer-checked:text-white">Received</span>
+                                                </div>
+                                            </label>
+                                            <label class="cursor-pointer relative group">
+                                                <input type="radio" name="mod-status-radio" value="in_progress" class="peer sr-only">
+                                                <div class="p-3 rounded-xl border border-white/5 bg-white/5 text-center transition-all peer-checked:border-amber-500 peer-checked:bg-amber-500/10 hover:bg-white/10">
+                                                    <span class="text-xs font-bold text-slate-400 peer-checked:text-white">In Progress</span>
+                                                </div>
+                                            </label>
+                                            <label class="cursor-pointer relative group">
+                                                <input type="radio" name="mod-status-radio" value="completed" class="peer sr-only">
+                                                <div class="p-3 rounded-xl border border-white/5 bg-white/5 text-center transition-all peer-checked:border-emerald-500 peer-checked:bg-emerald-500/10 hover:bg-white/10">
+                                                    <span class="text-xs font-bold text-slate-400 peer-checked:text-white">Completed</span>
+                                                </div>
+                                            </label>
+                                            <label class="cursor-pointer relative group">
+                                                <input type="radio" name="mod-status-radio" value="rejected" class="peer sr-only">
+                                                <div class="p-3 rounded-xl border border-white/5 bg-white/5 text-center transition-all peer-checked:border-rose-500 peer-checked:bg-rose-500/10 hover:bg-white/10">
+                                                    <span class="text-xs font-bold text-slate-400 peer-checked:text-white">Rejected</span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <div class="flex flex-col gap-6 pt-6 border-t border-white/5">
+                                        <div class="flex items-center justify-between">
+                                            <div id="status-feedback" class="text-xs font-medium hidden flex items-center gap-2">
+                                                <span class="w-1.5 h-1.5 rounded-full bg-current animate-pulse"></span>
+                                                <span class="feedback-text">Sending...</span>
+                                            </div>
+                                            <div class="flex-1"></div>
+                                            <button onclick="sendModificationUpdate()" class="flex items-center gap-3 px-8 py-3 bg-electric-blue hover:bg-electric-blue-light rounded-xl text-sm font-bold text-white transition-all shadow-[0_0_25px_rgba(0,82,255,0.4)] active:scale-[0.98] group">
+                                                <span class="material-symbols-outlined text-[18px] group-hover:rotate-12 transition-transform">send</span>
+                                                Deploy Update
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="glass-card rounded-2xl p-6 border border-white/10">
+                                <h3 class="text-sm font-bold text-white mb-4 flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-electric-blue text-sm">history</span>
+                                    Recent Admin Actions
+                                </h3>
+                                <div class="space-y-4">
+                                    <div class="flex gap-4 p-4 rounded-xl bg-white/5 border border-white/5">
+                                        <div class="w-8 h-8 rounded-lg bg-indigo-500/20 flex items-center justify-center shrink-0">
+                                            <span class="material-symbols-outlined text-indigo-400 text-[18px]">verified</span>
+                                        </div>
+                                        <div>
+                                            <p class="text-xs font-bold text-white">Status Updated to "In Progress"</p>
+                                            <p class="text-[10px] text-slate-500 mt-1">Updated 2 hours ago by System Admin</p>
+                                        </div>
+                                    </div>
+                                    <div class="flex gap-4 p-4 rounded-xl hover:bg-white/5 transition-colors cursor-pointer group">
+                                        <div class="w-8 h-8 rounded-lg bg-emerald-500/20 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                                            <span class="material-symbols-outlined text-emerald-400 text-[18px]">add_task</span>
+                                        </div>
+                                        <div>
+                                            <p class="text-xs font-bold text-white">New Modification Recorded</p>
+                                            <p class="text-[10px] text-slate-500 mt-1">Oct 14, 2025 • Website V2 Redirection</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        async function sendModificationUpdate() {
+            const email = document.getElementById('target-email').value;
+            const modificationTitle = document.getElementById('mod-title').value;
+            const feedback = document.getElementById('status-feedback');
+            const feedbackText = feedback.querySelector('.feedback-text');
+            
+            // Get value from checked radio button
+            const statusRadio = document.querySelector('input[name="mod-status-radio"]:checked');
+            const status = statusRadio ? statusRadio.value : 'received';
+
+            if (!email) return alert('Email is required');
+            if (!modificationTitle) return alert('Modification title is required');
+
+            feedback.classList.remove('hidden', 'text-emerald-400', 'text-rose-400', 'text-slate-400');
+            feedback.classList.add('flex', 'text-slate-400');
+            feedbackText.textContent = 'Deploying notification...';
+
+            try {
+                if (typeof Clerk !== 'undefined' && Clerk.loaded) {
+                    const token = await Clerk.session.getToken();
+                    const res = await fetch('/api/admin/notifications/modification', {
+                        method: 'POST',
+                        headers: { 
+                            'Content-Type': 'application/json',
+                            'Authorization': `Bearer ${token}`
+                        },
+                        body: JSON.stringify({ targetEmail: email, status, modificationTitle })
+                    });
+
+                    const data = await res.json();
+                    if (res.ok) {
+                        feedbackText.textContent = 'Update deployed successfully.';
+                        feedback.classList.replace('text-slate-400', 'text-emerald-400');
+                    } else {
+                        feedbackText.textContent = 'Failed: ' + (data.error || 'Unknown error');
+                        feedback.classList.replace('text-slate-400', 'text-rose-400');
+                    }
+                }
+            } catch (err) {
+                feedbackText.textContent = 'Network error. check console.';
+                feedback.classList.replace('text-slate-400', 'text-rose-400');
+            }
+        }
+    </script>
+    <script src="dashboard_ui.js"></script>
+    <script src="dashboard_data.js"></script>
+</body>
+
+</html>

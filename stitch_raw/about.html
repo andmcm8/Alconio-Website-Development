@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>About Alconio | Architects of the Future</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0e00a3",
+                        "accent-deep": "#140152",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#02010a",
+                        "navy-dark": "#04052e",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Space Grotesk', sans-serif;
+        }
+        .glass-nav {
+            background: rgba(2, 1, 10, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(14, 0, 163, 0.2);
+        }
+        .hero-gradient {
+            background: radial-gradient(circle at top right, #140152 0%, #02010a 60%);
+        }
+        .diagonal-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+        @media (min-width: 1024px) {
+            .value-card:nth-child(even) {
+                transform: translateY(40px);
+            }
+        }
+        .geometric-shape {
+            position: absolute;
+            z-index: 0;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white overflow-x-hidden">
+<!-- Sticky Header -->
+<header class="fixed top-0 w-full z-50 glass-nav">
+<div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<div class="text-primary">
+<span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1">architecture</span>
+</div>
+<span class="text-2xl font-bold tracking-tighter uppercase">Alconio</span>
+</div>
+<nav class="hidden md:flex items-center gap-10">
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Home</a>
+<a class="text-sm font-medium text-primary" href="#">About</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Services</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Portfolio</a>
+<a class="text-sm font-medium hover:text-primary transition-colors" href="#">Contact</a>
+</nav>
+<div class="flex items-center gap-4">
+<button class="hidden sm:flex bg-primary hover:bg-opacity-90 text-white px-6 py-2.5 rounded-lg text-sm font-bold transition-all">
+                    Get Started
+                </button>
+<button class="md:hidden text-white leading-none">
+<span class="material-symbols-outlined">menu</span>
+</button>
+</div>
+</div>
+</header>
+<main>
+<!-- Hero Section -->
+<section class="relative min-h-screen flex items-center justify-center pt-20 hero-gradient overflow-hidden">
+<div class="absolute inset-0 z-0">
+<div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[120px]"></div>
+<div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent-deep/30 rounded-full blur-[120px]"></div>
+</div>
+<div class="relative z-10 max-w-5xl mx-auto px-6 text-center">
+<h1 class="text-6xl md:text-8xl font-bold tracking-tighter mb-8 bg-clip-text text-transparent bg-gradient-to-b from-white to-white/40 leading-tight">
+                    We Build the Future
+                </h1>
+<p class="text-xl md:text-2xl text-slate-400 max-w-3xl mx-auto font-light leading-relaxed">
+                    Alconio is dedicated to pioneering technological impacts that reshape industries and empower humanity through scalable excellence.
+                </p>
+<div class="mt-12">
+<span class="material-symbols-outlined text-primary text-5xl animate-bounce">expand_more</span>
+</div>
+</div>
+<!-- Decorative geometric element -->
+<div class="absolute bottom-0 right-0 p-10 hidden lg:block opacity-20">
+<svg class="text-primary fill-none stroke-current stroke-[0.2]" height="400" viewbox="0 0 100 100" width="400">
+<path d="M0 100 L100 0 M20 100 L100 20 M40 100 L100 40 M60 100 L100 60 M80 100 L100 80"></path>
+</svg>
+</div>
+</section>
+<!-- Story Section -->
+<section class="relative py-24 bg-navy-dark/30">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid lg:grid-cols-2 gap-16 items-start">
+<div class="space-y-8 relative">
+<div class="inline-block px-4 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-bold tracking-widest uppercase">
+                            Our Story
+                        </div>
+<h2 class="text-4xl font-bold">Bridging Complexity and Humanity</h2>
+<div class="prose prose-invert prose-lg text-slate-400">
+<p>
+                                Founded on the principles of architectural innovation, Alconio began as a vision to bridge the gap between complex engineering and human-centric design. Our journey is marked by a relentless pursuit of excellence and a commitment to building a smarter, more connected world.
+                            </p>
+<p>
+                                In an era where technology moves faster than the human experience, we provide the steady hand of craftsmanship and the visionary eye of progress. We don't just write code; we architect experiences that endure.
+                            </p>
+</div>
+</div>
+<div class="relative flex items-center justify-center py-10 lg:py-0">
+<div class="absolute -inset-4 bg-primary/10 rounded-xl blur-2xl"></div>
+<blockquote class="relative z-10">
+<span class="material-symbols-outlined text-primary text-7xl opacity-40 absolute -top-10 -left-10">format_quote</span>
+<h3 class="text-4xl md:text-5xl font-bold italic leading-tight text-white">
+                                "Innovation is not just about tools; it's about the <span class="text-primary">architects</span> of the future."
+                            </h3>
+<footer class="mt-6 text-slate-500 font-medium">— Alconio Founding Philosophy</footer>
+</blockquote>
+</div>
+</div>
+</div>
+</section>
+<!-- Values Section (Diagonal Grid) -->
+<section class="py-32 relative overflow-hidden">
+<div class="max-w-7xl mx-auto px-6 mb-20">
+<div class="text-center max-w-3xl mx-auto">
+<h2 class="text-5xl font-bold mb-6">Our Core Values</h2>
+<p class="text-slate-400">The pillars that define every project we undertake and every solution we architect.</p>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-6 pb-20">
+<div class="diagonal-grid">
+<!-- Value Card 1 -->
+<div class="value-card bg-navy-dark border border-white/5 p-10 rounded-xl hover:border-primary/50 transition-all group">
+<div class="w-16 h-16 bg-primary/20 rounded-lg flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl">bolt</span>
+</div>
+<h4 class="text-2xl font-bold mb-4">Innovation First</h4>
+<p class="text-slate-400 leading-relaxed">We push the boundaries of what's possible, exploring uncharted technological territories to deliver breakthrough results.</p>
+</div>
+<!-- Value Card 2 -->
+<div class="value-card bg-navy-dark border border-white/5 p-10 rounded-xl hover:border-primary/50 transition-all group">
+<div class="w-16 h-16 bg-primary/20 rounded-lg flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl">query_stats</span>
+</div>
+<h4 class="text-2xl font-bold mb-4">Results Driven</h4>
+<p class="text-slate-400 leading-relaxed">Our success is measured by the tangible impact we create for our partners and the communities they serve.</p>
+</div>
+<!-- Value Card 3 -->
+<div class="value-card bg-navy-dark border border-white/5 p-10 rounded-xl hover:border-primary/50 transition-all group">
+<div class="w-16 h-16 bg-primary/20 rounded-lg flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl">dynamic_feed</span>
+</div>
+<h4 class="text-2xl font-bold mb-4">Scalable Excellence</h4>
+<p class="text-slate-400 leading-relaxed">Every solution is built to grow. We architect for the present with a rigorous focus on future-proof sustainability.</p>
+</div>
+<!-- Value Card 4 -->
+<div class="value-card bg-navy-dark border border-white/5 p-10 rounded-xl hover:border-primary/50 transition-all group">
+<div class="w-16 h-16 bg-primary/20 rounded-lg flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
+<span class="material-symbols-outlined text-primary text-3xl">diversity_3</span>
+</div>
+<h4 class="text-2xl font-bold mb-4">Human-Centric</h4>
+<p class="text-slate-400 leading-relaxed">Technology is a tool for people. We prioritize the human experience in every interface and infrastructure we build.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Founder Spotlight / Team Section -->
+<section class="py-24 bg-background-dark relative">
+<div class="max-w-7xl mx-auto px-6">
+<div class="flex flex-col lg:flex-row gap-16 items-center">
+<div class="lg:w-1/2">
+<div class="relative group">
+<div class="absolute -inset-2 bg-gradient-to-r from-primary to-accent-deep rounded-xl blur opacity-30 group-hover:opacity-60 transition duration-1000"></div>
+<div class="relative bg-navy-dark rounded-xl overflow-hidden aspect-[4/5]">
+<img alt="Founder Portrait" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700" data-alt="Professional portrait of founder in minimalist setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_t5Q4Xv40cou747-phkz69AgleNoczltFep3NzsGkGWqbyzVneQ5Kqk8jGpIiKP-6iz2qgF25LMGJKFQ-YqfUohQnzUt8uq57t0HVMQbu2cq_1u7BAtEo_ICQUOrZ4EgX-sN0m1_AEBtkFY5rkywHzaaUxRwgRcp_JH7kvHBqgaOuFlV5iUyeEyVnkjK8bCF9fY3rZ4wQOAiX5sDCBVshYkCGrDUsa9rhRgRP5OXrIB17RGBcxETebkKejdfWLvJAaK8XXmT9_Znw"/>
+<div class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-background-dark to-transparent">
+<h4 class="text-3xl font-bold">Julian Vane</h4>
+<p class="text-primary font-medium tracking-widest uppercase text-sm mt-1">Chief Architect &amp; Founder</p>
+</div>
+</div>
+</div>
+</div>
+<div class="lg:w-1/2 space-y-8">
+<h2 class="text-5xl font-bold leading-tight">Meet the Architects of Innovation</h2>
+<p class="text-xl text-slate-400 leading-relaxed">
+                            Our team is a collective of visionary engineers, designers, and strategists. We don't just hire talent; we recruit pioneers who are restless for what's next.
+                        </p>
+<div class="grid grid-cols-2 gap-8 py-4">
+<div>
+<h5 class="text-4xl font-bold text-primary">15+</h5>
+<p class="text-slate-500 uppercase text-xs tracking-widest mt-2 font-bold">Years of Innovation</p>
+</div>
+<div>
+<h5 class="text-4xl font-bold text-primary">200+</h5>
+<p class="text-slate-500 uppercase text-xs tracking-widest mt-2 font-bold">Global Projects</p>
+</div>
+</div>
+<button class="flex items-center gap-3 text-white font-bold group">
+<span class="w-12 h-12 bg-primary flex items-center justify-center rounded-full group-hover:bg-accent-deep transition-colors">
+<span class="material-symbols-outlined">group</span>
+</span>
+                            View All Team Members
+                        </button>
+</div>
+</div>
+</div>
+</section>
+<!-- CTA Section -->
+<section class="py-24">
+<div class="max-w-7xl mx-auto px-6">
+<div class="bg-primary/10 border border-primary/20 rounded-3xl p-12 md:p-20 text-center relative overflow-hidden">
+<div class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-primary/20 rounded-full blur-3xl"></div>
+<div class="relative z-10">
+<h2 class="text-4xl md:text-6xl font-bold mb-8">Ready to architect your future?</h2>
+<div class="flex flex-wrap justify-center gap-6">
+<button class="bg-primary hover:bg-opacity-90 text-white px-10 py-4 rounded-xl text-lg font-bold transition-all shadow-xl shadow-primary/20">
+                                Start a Project
+                            </button>
+<button class="border border-white/20 hover:border-white/50 text-white px-10 py-4 rounded-xl text-lg font-bold transition-all">
+                                Join the Team
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer -->
+<footer class="bg-background-dark pt-20 pb-10 border-t border-white/5">
+<div class="max-w-7xl mx-auto px-6">
+<div class="grid md:grid-cols-4 gap-12 mb-20">
+<div class="col-span-2">
+<div class="flex items-center gap-3 mb-6">
+<div class="text-primary">
+<span class="material-symbols-outlined text-3xl" style="font-variation-settings: 'FILL' 1">architecture</span>
+</div>
+<span class="text-xl font-bold tracking-tighter uppercase">Alconio</span>
+</div>
+<p class="text-slate-400 max-w-sm mb-8">
+                        Pioneering the next generation of technological infrastructure. We build for performance, scale, and humanity.
+                    </p>
+<div class="flex gap-4">
+<a class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">public</span>
+</a>
+<a class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">code</span>
+</a>
+<a class="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center hover:bg-primary transition-colors" href="#">
+<span class="material-symbols-outlined text-sm">alternate_email</span>
+</a>
+</div>
+</div>
+<div>
+<h6 class="font-bold mb-6">Quick Links</h6>
+<ul class="space-y-4 text-slate-400">
+<li><a class="hover:text-primary" href="#">Our Process</a></li>
+<li><a class="hover:text-primary" href="#">Case Studies</a></li>
+<li><a class="hover:text-primary" href="#">Research</a></li>
+<li><a class="hover:text-primary" href="#">Careers</a></li>
+</ul>
+</div>
+<div>
+<h6 class="font-bold mb-6">Contact</h6>
+<ul class="space-y-4 text-slate-400">
+<li class="flex gap-2">
+<span class="material-symbols-outlined text-primary text-sm">location_on</span>
+                            Global HQ, Silicon Valley
+                        </li>
+<li class="flex gap-2">
+<span class="material-symbols-outlined text-primary text-sm">mail</span>
+                            hello@alconio.tech
+                        </li>
+</ul>
+</div>
+</div>
+<div class="pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-4">
+<p class="text-slate-500 text-sm">© 2024 ALCONIO TECHNOLOGIES. ALL RIGHTS RESERVED.</p>
+<div class="flex gap-8 text-slate-500 text-sm">
+<a class="hover:text-white" href="#">Privacy Policy</a>
+<a class="hover:text-white" href="#">Terms of Service</a>
+</div>
+</div>
+</div>
+</footer>
+</body></html>

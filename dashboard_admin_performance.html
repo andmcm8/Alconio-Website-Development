@@ -1,0 +1,1005 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    
+    <!-- Strict Role-Based Access Control (RBAC) Guard -->
+    <script>
+        (function() {
+            // 1. Instant concealment
+            document.documentElement.style.display = 'none';
+
+            // Constants
+            const IS_ADMIN_PAGE = window.location.pathname.includes('dashboard_admin') || window.location.pathname.includes('dashboard_onboarding');
+            const EXPECTED_ROLE = IS_ADMIN_PAGE ? 'admin' : 'client';
+
+            function handleAuthFailure(reason) {
+                console.error('[STRICT-AUTH] Redirecting due to:', reason);
+                window.location.replace('dashboard_signin.html?reason=' + encodeURIComponent(reason));
+            }
+
+            function handleRoleMismatch(foundRole) {
+                console.warn('[STRICT-AUTH] Role mismatch. Found:', foundRole, 'Expected:', EXPECTED_ROLE);
+                const target = foundRole === 'admin' ? 'dashboard_admin.html' : 'dashboard_overview.html';
+                window.location.replace(target);
+            }
+
+            async function verifyAccess() {
+                try {
+                    // 2. Wait for Clerk
+                    if (typeof Clerk === 'undefined') {
+                        let attempts = 0;
+                        while (typeof Clerk === 'undefined' && attempts < 100) {
+                            await new Promise(r => setTimeout(r, 50));
+                            attempts++;
+                        }
+                    }
+
+                    if (typeof Clerk === 'undefined') return handleAuthFailure('clerk_timeout');
+
+                    // 3. Ensure loaded
+                    if (!Clerk.loaded) await Clerk.load();
+
+                    // 4. Verification logic
+                    if (!Clerk.isSignedIn) {
+                        return handleAuthFailure('not_signed_in');
+                    }
+
+                    const userRole = Clerk.user?.publicMetadata?.role;
+                    
+                    if (!userRole) {
+                        return handleAuthFailure('no_role_assigned');
+                    }
+
+                    if (userRole !== EXPECTED_ROLE) {
+                        return handleRoleMismatch(userRole);
+                    }
+
+                    // 5. Success - reveal page
+                    document.documentElement.style.display = '';
+                    console.log('[STRICT-AUTH] Access granted for role:', userRole);
+                    
+                    // Extra safety: call window.requireRole if it exists yet
+                    if (typeof window.requireRole === 'function') {
+                        window.requireRole(EXPECTED_ROLE);
+                    }
+                } catch (err) {
+                    console.error('[STRICT-AUTH] Guard error:', err);
+                    handleAuthFailure('guard_error');
+                }
+            }
+
+            // Execute verification
+            if (document.readyState === 'loading') {
+                document.addEventListener('DOMContentLoaded', verifyAccess);
+            } else {
+                verifyAccess();
+            }
+        })();
+    </script>
+
+
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Alconio Admin - Systems & Vitals</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "electric-blue": "#0052FF",
+                        "electric-blue-light": "#3374ff",
+                        "obsidian": "#000000",
+                        "obsidian-panel": "#050508",
+                        "glass-border": "rgba(0, 82, 255, 0.3)",
+                        "glass-highlight": "rgba(255, 255, 255, 0.15)",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Space Grotesk", "sans-serif"]
+                    },
+                    boxShadow: {
+                        'neon-blue': '0 0 20px rgba(0, 82, 255, 0.4), inset 0 0 10px rgba(0, 82, 255, 0.1)',
+                        'neon-white': '0 0 15px rgba(255, 255, 255, 0.3)',
+                        'glass-edge': 'inset 1px 1px 0 0 rgba(255, 255, 255, 0.2), inset -1px -1px 0 0 rgba(0, 0, 0, 0.5)',
+                        'header-glow': '0 4px 30px rgba(0, 0, 0, 0.8), 0 1px 0 rgba(0, 82, 255, 0.5)',
+                        'icon-glass': '0 4px 12px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.15)',
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #000000;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #1e1e24;
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0052FF;
+        }
+
+        .glass-panel {
+            background: linear-gradient(160deg, rgba(10, 10, 15, 0.85) 0%, rgba(0, 0, 0, 0.95) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 82, 255, 0.15);
+            border-top: 1px solid rgba(100, 150, 255, 0.3);
+            border-left: 1px solid rgba(100, 150, 255, 0.3);
+            box-shadow:
+                0 0 30px rgba(0, 0, 0, 0.8),
+                inset 0 0 20px rgba(0, 82, 255, 0.03);
+            position: relative;
+
+        }
+
+        .glass-panel::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+            filter: blur(20px);
+            opacity: 0.6;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .glass-panel::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(0, 82, 255, 0.15) 0%, transparent 70%);
+            filter: blur(30px);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .glass-card {
+            background: linear-gradient(135deg, rgba(15, 20, 35, 0.9) 0%, rgba(5, 5, 8, 0.95) 100%);
+            border: 1px solid rgba(0, 82, 255, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.9), inset 0 0 30px rgba(0, 82, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            box-shadow: 0 0 25px rgba(0, 82, 255, 0.25), inset 0 0 20px rgba(0, 82, 255, 0.1);
+            border-color: rgba(0, 82, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .nav-active-highlight {
+            background: linear-gradient(90deg, rgba(0, 82, 254, 0.2) 0%, rgba(0, 0, 0, 0) 100%);
+            border-left: 3px solid #0052FF;
+            box-shadow: inset 10px 0 20px -10px rgba(0, 82, 255, 0.3);
+        }
+
+        .neon-text {
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(0, 82, 255, 0.5);
+        }
+
+        .neon-text-blue {
+            color: #0052FF;
+            text-shadow: 0 0 10px rgba(0, 82, 255, 0.8);
+        }
+
+        .neon-border-top {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 82, 255, 1), transparent);
+            opacity: 0.6;
+        }
+
+        tr.group:hover td {
+            background: rgba(0, 82, 255, 0.05);
+        }
+
+        .header-glass {
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
+        }
+
+        .sidebar-header-area {
+            height: 72px;
+            display: flex;
+            align-items: center;
+        }
+
+        .pill-tag {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(5px);
+        }
+
+        .icon-glass-container {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(0, 82, 255, 0.1);
+            backdrop-filter: blur(8px);
+        }
+
+        .icon-glass-container:hover {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.05) 100%);
+            box-shadow: 0 0 15px rgba(0, 82, 255, 0.3), inset 0 0 25px rgba(0, 82, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .profile-glass-pill {
+            background: linear-gradient(135deg, rgba(20, 20, 25, 0.8) 0%, rgba(5, 5, 8, 0.9) 100%);
+            border: 1px solid rgba(0, 82, 255, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6), inset 0 0 15px rgba(0, 82, 255, 0.15);
+            backdrop-filter: blur(12px);
+        }
+
+        .profile-glass-pill:hover {
+            background: linear-gradient(135deg, rgba(30, 30, 40, 0.9) 0%, rgba(10, 10, 15, 0.95) 100%);
+            box-shadow: 0 0 20px rgba(0, 82, 255, 0.3), inset 0 0 25px rgba(0, 82, 255, 0.2);
+            border-color: rgba(0, 82, 255, 0.5);
+        }
+
+        .mini-spark {
+            filter: drop-shadow(0 0 4px rgba(0, 82, 255, 0.6));
+        }
+
+        .micro-card {
+            background: linear-gradient(135deg, rgba(15, 20, 35, 0.7) 0%, rgba(5, 5, 8, 0.8) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 1px solid rgba(255, 255, 255, 0.15);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .micro-card:hover {
+            background: linear-gradient(135deg, rgba(20, 25, 45, 0.8) 0%, rgba(10, 10, 15, 0.9) 100%);
+            border-color: rgba(0, 82, 255, 0.4);
+            box-shadow: 0 0 15px rgba(0, 82, 255, 0.15);
+        }
+
+        .tooltip-custom {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+        }
+
+        .group:hover .tooltip-custom {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .progress-ring__circle {
+            transition: stroke-dashoffset 0.35s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+
+        .device-box {
+            background: linear-gradient(145deg, rgba(10, 10, 15, 0.9) 0%, rgba(5, 5, 10, 0.95) 100%);
+            box-shadow: 0 0 25px rgba(0, 82, 255, 0.15), inset 0 0 40px rgba(0, 82, 255, 0.1);
+        }
+
+        .housed-profile-container {
+            display: flex;
+            align-items: center;
+            background: rgba(10, 10, 14, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 9999px;
+            padding: 4px;
+            padding-right: 16px;
+            backdrop-filter: blur(8px);
+            transition: border-color 0.2s;
+        }
+
+        .housed-profile-container:hover {
+            border-color: rgba(0, 82, 255, 0.3);
+            background: rgba(15, 15, 22, 0.8);
+        }
+
+        .unified-header-line {
+            position: fixed;
+            top: 72px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: rgba(0, 82, 255, 0.15);
+            box-shadow: 0 0 2px rgba(0, 82, 255, 0.1);
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+        .sidebar-divider-line {
+            position: fixed;
+            top: 0;
+            left: 5rem;
+            width: 1px;
+            height: 100vh;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.05), rgba(0, 82, 255, 0.9), rgba(255, 255, 255, 0.05));
+            box-shadow: 0 0 12px rgba(0, 82, 255, 0.5);
+            z-index: 40;
+            pointer-events: none;
+        }
+    </style>
+    <!-- Clerk JS SDK -->
+    <script async crossorigin="anonymous"
+        data-clerk-publishable-key="pk_test_d2FudGVkLWRhbmUtODQuY2xlcmsuYWNjb3VudHMuZGV2JA"
+        src="https://wanted-dane-84.clerk.accounts.dev/npm/@clerk/clerk-js@5/dist/clerk.browser.js"
+        type="text/javascript">
+        </script>
+
+
+
+
+
+
+</head>
+
+<body
+    class="bg-obsidian text-slate-200 font-display antialiased overflow-x-hidden selection:bg-electric-blue selection:text-white">
+    <!-- Instant Cache Loader -->
+    <script id="instant-loader">
+            (function () {
+                const cacheStr = localStorage.getItem('alconio_dashboard_cache_' + (localStorage.getItem('__clerk_user_id') || 'last_session'));
+                if (!cacheStr) return;
+                const cache = JSON.parse(cacheStr);
+                const observer = new MutationObserver((mutations) => {
+                    for (const mutation of mutations) {
+                        for (const node of mutation.addedNodes) {
+                            if (node.nodeType !== 1) continue;
+                            const metrics = node.querySelectorAll ? Array.from(node.querySelectorAll('[data-metric]')) : [];
+                            if (node.hasAttribute && node.hasAttribute('data-metric')) metrics.push(node);
+                            metrics.forEach(el => {
+                                const key = el.getAttribute('data-metric');
+                                const val = (cache.overview && cache.overview[key]) ? cache.overview[key].value : (cache.currentMetrics ? cache.currentMetrics[key] : null);
+                                if (val !== null) el.textContent = val;
+                            });
+                            const trends = node.querySelectorAll ? Array.from(node.querySelectorAll('[data-trend]')) : [];
+                            if (node.hasAttribute && node.hasAttribute('data-trend')) trends.push(node);
+                            trends.forEach(el => {
+                                const key = el.getAttribute('data-trend');
+                                const data = cache.overview && cache.overview[key];
+                                if (data && data.trend !== undefined) {
+                                    const trend = data.trend;
+                                    const isUp = trend >= 0;
+                                    el.textContent = (isUp ? '+' : '') + trend.toFixed(1) + '%';
+                                    el.className = isUp
+                                        ? "text-emerald-400 flex items-center text-[10px] font-bold bg-emerald-900/40 border border-emerald-500/30 px-1.5 py-0.5 rounded shadow-[0_0_8px_rgba(16,185,129,0.2)] mb-1"
+                                        : "text-rose-400 flex items-center text-[10px] font-bold bg-rose-900/40 border border-rose-500/30 px-1.5 py-0.5 rounded shadow-[0_0_8px_rgba(244,63,94,0.2)] mb-1";
+                                }
+                            });
+                        }
+                    }
+                });
+                observer.observe(document.documentElement, { childList: true, subtree: true });
+                window.addEventListener('alconio-cache-applied', () => observer.disconnect());
+                // Fallback
+                setTimeout(() => observer.disconnect(), 2000);
+            })();
+    </script>
+    <div class="flex h-screen w-full overflow-hidden relative">
+        <div class="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
+            <div
+                class="absolute top-[-20%] left-[20%] w-[60%] h-[60%] bg-[#0052FF] opacity-[0.06] rounded-full blur-[150px]">
+            </div>
+            <div
+                class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-[#0052FF] opacity-[0.04] rounded-full blur-[120px]">
+            </div>
+        </div>
+        <div class="unified-header-line"></div>
+        <div class="sidebar-divider-line"></div>
+        <aside
+            class="dashboard-sidebar relative z-50 w-20 h-full glass-panel flex flex-col border-r-0 hidden md:flex shrink-0 items-center transition-all duration-300 !border-l-transparent border-l-0">
+            <div
+                class="sidebar-header-area relative h-16 px-0 w-full flex justify-end pr-4 shrink-0 transition-all duration-300">
+                <div class="header-inner flex items-center justify-end w-full h-full gap-4 transition-all duration-300">
+                    <h1 class="logo-text text-2xl font-bold tracking-tight text-white neon-text-blue transition-all duration-300"
+                        style="letter-spacing: -0.02em;"></h1>
+                    <img src="logo.png" alt="Logo"
+                        class="sidebar-logo-img w-12 h-12 object-contain transition-all duration-300 absolute top-1/2 -translate-y-1/2 z-10">
+                    <button
+                        class="side-bar-toggle w-8 h-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition-all border border-transparent hover:border-white/10 group relative">
+                        <span
+                            class="toggle-icon material-symbols-outlined text-sm group-hover:text-electric-blue transition-colors">keyboard_tab_rtl</span>
+                    </button>
+                </div>
+            </div>
+            <nav
+                class="flex-1 px-2 space-y-1 relative z-10 pt-6 w-full flex flex-col items-center overflow-x-hidden sidebar-scroll-hide transition-all duration-300">
+                <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative "
+                    href="dashboard_admin.html" data-tooltip="Clients">
+                    <span
+                        class="material-symbols-outlined text-slate-400 neon-text-blue text-2xl nav-icon flex-shrink-0">group</span>
+                    <span
+                        class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Clients</span>
+                </a>
+                <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400"
+                    href="dashboard_admin_onboarding.html" data-tooltip="Onboarding">
+                    <span
+                        class="material-symbols-outlined group-hover:text-slate-400 transition-colors text-2xl nav-icon flex-shrink-0">person_add</span>
+                    <span
+                        class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Onboarding</span>
+                </a>
+                <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400"
+                    href="dashboard_admin_billing.html" data-tooltip="Billing & Revenue">
+                    <span
+                        class="material-symbols-outlined group-hover:text-slate-400 transition-colors text-2xl nav-icon flex-shrink-0">payments</span>
+                    <span
+                        class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Billing & Revenue</span>
+                </a>
+                <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400"
+                    href="dashboard_admin_analytics.html" data-tooltip="Analytics Overview">
+                    <span
+                        class="material-symbols-outlined group-hover:text-slate-400 transition-colors text-2xl nav-icon flex-shrink-0">monitoring</span>
+                    <span
+                        class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Analytics Overview</span>
+                </a>
+                <a class="active-nav-item bg-gradient-to-br from-electric-blue/20 to-electric-blue/5 border border-electric-blue/30 text-electric-blue shadow-[0_0_15px_rgba(0,82,255,0.2)] nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400"
+                    href="dashboard_admin_performance.html" data-tooltip="Performance Monitor">
+                    <span
+                        class="material-symbols-outlined group-hover:text-slate-400 transition-colors text-2xl nav-icon flex-shrink-0 neon-text-blue text-electric-blue">speed</span>
+                    <span
+                        class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Performance Monitor</span>
+                </a>
+                <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400"
+                    href="dashboard_admin_activity.html" data-tooltip="Activity Log">
+                    <span
+                        class="material-symbols-outlined group-hover:text-slate-400 transition-colors text-2xl nav-icon flex-shrink-0">history</span>
+                    <span
+                        class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Activity Log</span>
+                </a>
+                <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400"
+                    href="dashboard_admin_settings.html" data-tooltip="Settings">
+                    <span
+                        class="material-symbols-outlined group-hover:text-slate-400 transition-colors text-2xl nav-icon flex-shrink-0">admin_panel_settings</span>
+                    <span
+                        class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Settings</span>
+                </a>
+            </nav>
+            <div
+                class="sidebar-footer-area p-4 relative z-10 border-t border-white/5 w-full flex justify-center mb-4 transition-all duration-300">
+                <button
+                    class="logout-btn w-12 h-12 flex items-center justify-center bg-gradient-to-r from-electric-blue to-blue-800 hover:from-blue-600 hover:to-blue-700 text-white rounded-lg shadow-[0_0_25px_rgba(0,82,255,0.4)] border border-white/10 transition-all transform active:scale-95 group relative"
+                    data-tooltip="Logout">
+                    <span
+                        class="material-symbols-outlined text-lg group-hover:animate-pulse flex-shrink-0">logout</span>
+                    <span
+                        class="md-label hidden font-bold text-sm tracking-wide ml-3 transition-opacity whitespace-nowrap">Logout</span>
+                </button>
+            </div>
+
+        </aside>
+        <!-- Sync Sidebar Anti-FOUC Script -->
+        <script>
+            (function () {
+                var sidebar = document.querySelector('aside.dashboard-sidebar');
+                if (!sidebar) return;
+                var toggleBtn = document.querySelector('.side-bar-toggle');
+                var headerInner = document.querySelector('.header-inner');
+                var headerArea = document.querySelector('.sidebar-header-area');
+                var logoText = document.querySelector('.logo-text');
+                var logoImg = document.querySelector('.sidebar-logo-img');
+                var navLinks = document.querySelectorAll('.nav-link-btn');
+                var dividerLine = document.querySelector('.sidebar-divider-line');
+                var logoutBtn = document.querySelector('.logout-btn');
+                var sidebarNav = document.querySelector('aside.dashboard-sidebar nav');
+
+                var isExpanded = localStorage.getItem('sidebarExpanded') !== 'false';
+
+                // Kill ALL transitions instantly
+                var transitionEls = [sidebar, headerArea, headerInner, sidebarNav, dividerLine, toggleBtn, logoText, logoImg].filter(Boolean);
+                navLinks.forEach(function (l) { transitionEls.push(l); });
+                if (logoutBtn) transitionEls.push(logoutBtn);
+                transitionEls.forEach(function (el) { el.style.transition = 'none'; });
+
+                if (isExpanded) {
+                    sidebar.classList.remove('w-20', 'items-center');
+                    sidebar.classList.add('w-72');
+
+                    if (logoText) {
+                        logoText.classList.remove('hidden', 'opacity-0');
+                        logoText.classList.add('opacity-100');
+                        logoText.textContent = "ALCONIO";
+                        logoText.classList.remove('neon-text-blue', 'pl-1');
+                        logoText.classList.add('pl-12');
+                    }
+
+                    if (logoImg) {
+                        logoImg.classList.remove('left-1/2', '-translate-x-1/2');
+                        logoImg.classList.add('left-4');
+                    }
+
+                    var icon = toggleBtn ? toggleBtn.querySelector('.toggle-icon') : null;
+                    if (icon) icon.textContent = 'keyboard_tab_rtl';
+                    if (toggleBtn) {
+                        toggleBtn.classList.remove('w-6', 'h-6', 'absolute', 'right-[2px]', 'translate-x-[2px]');
+                        toggleBtn.classList.add('w-8', 'h-8', 'rounded-lg', 'relative');
+                    }
+
+                    if (headerArea) {
+                        headerArea.classList.remove('px-0', 'justify-end', 'pr-4');
+                        headerArea.classList.add('px-6', 'justify-between');
+                    }
+                    if (headerInner) {
+                        headerInner.classList.remove('justify-center', 'justify-end');
+                        headerInner.classList.add('justify-between');
+                    }
+                    if (sidebarNav) {
+                        sidebarNav.classList.remove('items-center');
+                        sidebarNav.classList.add('items-stretch');
+                        sidebarNav.classList.remove('space-y-1');
+                        sidebarNav.classList.add('space-y-1');
+                    }
+                    if (dividerLine) dividerLine.style.left = '18rem';
+
+                    navLinks.forEach(function (link) {
+                        link.classList.remove('w-12', 'h-12', 'justify-center');
+                        link.classList.add('w-full', 'h-12', 'justify-start', 'pl-5');
+                        var label = link.querySelector('.md-label');
+                        if (label) { label.classList.remove('hidden'); label.classList.add('inline'); }
+                    });
+
+                    if (logoutBtn) {
+                        logoutBtn.classList.remove('w-12');
+                        logoutBtn.classList.add('w-full');
+                        var lLabel = logoutBtn.querySelector('.md-label');
+                        if (lLabel) { lLabel.classList.remove('hidden'); lLabel.classList.add('inline'); }
+                    }
+                } else {
+                    // Collapsed state
+                    sidebar.classList.remove('w-72');
+                    sidebar.classList.add('w-20', 'items-center');
+
+                    if (logoText) {
+                        logoText.classList.remove('opacity-100', 'pl-12');
+                        logoText.classList.add('hidden', 'opacity-0', 'neon-text-blue', 'pl-1');
+                        logoText.textContent = "A";
+                    }
+
+                    if (logoImg) {
+                        logoImg.classList.remove('left-4');
+                        logoImg.classList.add('left-1/2', '-translate-x-1/2');
+                    }
+
+                    var icon = toggleBtn ? toggleBtn.querySelector('.toggle-icon') : null;
+                    if (icon) icon.textContent = 'keyboard_tab_rtl';
+                    if (toggleBtn) {
+                        toggleBtn.classList.remove('w-6', 'h-6', 'absolute', 'right-[2px]', 'translate-x-[2px]');
+                        toggleBtn.classList.add('w-8', 'h-8', 'rounded-lg', 'relative');
+                    }
+
+                    if (headerArea) {
+                        headerArea.classList.remove('px-6', 'justify-between');
+                        headerArea.classList.add('px-0', 'justify-end', 'pr-4');
+                    }
+                    if (headerInner) {
+                        headerInner.classList.remove('justify-between', 'justify-end');
+                        headerInner.classList.add('justify-center');
+                    }
+                    if (sidebarNav) {
+                        sidebarNav.classList.remove('items-stretch');
+                        sidebarNav.classList.add('items-center');
+                    }
+                    if (dividerLine) dividerLine.style.left = '5rem';
+
+                    navLinks.forEach(function (link) {
+                        link.classList.remove('w-full', 'justify-start', 'pl-5');
+                        link.classList.add('w-12', 'h-12', 'justify-center');
+                        var label = link.querySelector('.md-label');
+                        if (label) { label.classList.remove('inline'); label.classList.add('hidden'); }
+                    });
+
+                    if (logoutBtn) {
+                        logoutBtn.classList.remove('w-full');
+                        logoutBtn.classList.add('w-12');
+                        var lLabel = logoutBtn.querySelector('.md-label');
+                        if (lLabel) { lLabel.classList.remove('inline'); lLabel.classList.add('hidden'); }
+                    }
+                }
+
+                // Re-enable transitions
+                requestAnimationFrame(function () {
+                    requestAnimationFrame(function () {
+                        transitionEls.forEach(function (el) { el.style.transition = ''; });
+                    });
+                });
+            })();
+        </script>
+
+        <div class="flex-1 flex flex-col h-full relative z-10 overflow-hidden">
+            <header class="w-full h-[72px] z-50 header-glass flex items-center justify-between px-8 shrink-0 relative">
+                <div class="flex items-center gap-6">
+                    <div class="flex items-center">
+                        <div
+                            class="pill-tag px-3 py-1.5 rounded-full text-[11px] font-medium text-slate-400 tracking-wide flex items-center gap-2 hover:border-white/20 transition-colors cursor-pointer group">
+                            <span
+                                class="w-1.5 h-1.5 rounded-full bg-electric-blue shadow-[0_0_6px_#0052ff] animate-pulse"></span>
+                            Alconio HQ
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute left-[40%] transform -translate-x-1/2">
+                    <h2 class="text-xl font-bold text-white tracking-wide" style="text-shadow: 0 0 20px rgba(255,255,255,0.2);">Systems & Vitals</h2>
+                </div>
+                <div class="flex items-center gap-4">
+                    <span class="text-xs text-slate-500 font-medium hidden lg:block tracking-wide mr-2">Last updated:
+                        <span class="text-slate-300">2h ago</span></span>
+                    <div class="housed-profile-container group">
+                        <button
+                            class="w-8 h-8 flex items-center justify-center rounded-full text-slate-400 hover:text-white hover:bg-white/10 transition-all relative mr-2">
+                            <span class="material-symbols-outlined text-[20px]">notifications</span>
+                            <span
+                                class="absolute top-1.5 right-1.5 w-1.5 h-1.5 bg-electric-blue rounded-full shadow-[0_0_8px_#0052ff]"></span>
+                        </button>
+                        <div class="w-[1px] h-6 bg-white/10 mr-3"></div>
+                        <div class="flex items-center gap-3 cursor-pointer">
+                            <div
+                                class="w-8 h-8 rounded-full bg-slate-900 overflow-hidden ring-1 ring-white/10 group-hover:ring-electric-blue/50 transition-all shadow-lg relative">
+                                <img alt="User avatar" class="w-full h-full object-cover"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-n-gT0hmTLr68Q785q7si3dFoLMf7H3GynEF6Z2J24-oBY6nDcs61FaN_0-30RLylxw003MUNZjpmJEexdEOJj6EEIbz0kZyi3H7h8vYFqMgF4VyTUf3tatWeOJc4rj5wEdq1c8r291KAyy2Koyp1ed59PBohstiFLTdn9RH0JY9xz4enWsYbeYg0rREdlR6xdaOfvqCBbaSbgP_7p5ElqBZWky_f-ZvrE4SNxQiwFsigcG5W4EJdfdSofsdUwfj2bTUS2j4nyW6y" />
+                            </div>
+                            <div class="flex flex-col text-left">
+                                <span
+                                    class="text-[9px] text-slate-400 uppercase tracking-widest leading-none mb-0.5">Admin</span>
+                                <p
+                                    class="text-xs font-bold text-white group-hover:text-electric-blue transition-colors leading-none">
+                                    Administrator</p>
+                            </div>
+                            <span
+                                class="material-symbols-outlined text-slate-500 text-lg group-hover:text-white transition-colors ml-1">expand_more</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <main class="flex-1 overflow-y-auto h-full p-4 md:p-6 scroll-smooth">
+                <div class="max-w-[1600px] mx-auto flex flex-col gap-6 pb-12">
+                    
+                    <!-- System Vitals Header -->
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+                        <div class="glass-card rounded-2xl p-6 border border-white/10 relative overflow-hidden group">
+                            <div class="absolute top-0 right-0 w-32 h-32 bg-emerald-500/10 rounded-full blur-[40px] -mr-16 -mt-16 group-hover:bg-emerald-500/20 transition-all"></div>
+                            <div class="flex items-center gap-4 mb-4 relative z-10">
+                                <div class="w-10 h-10 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-emerald-400">check_circle</span>
+                                </div>
+                                <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Global API Health</span>
+                            </div>
+                            <div class="flex items-baseline gap-2 relative z-10">
+                                <h3 class="text-3xl font-bold text-white tracking-tight">99.98%</h3>
+                                <div class="px-2 py-0.5 rounded-full bg-emerald-400/10 border border-emerald-400/20 text-[9px] font-bold text-emerald-400 uppercase">Stable</div>
+                            </div>
+                        </div>
+
+                        <div class="glass-card rounded-2xl p-6 border border-white/10 relative overflow-hidden group">
+                            <div class="absolute top-0 right-0 w-32 h-32 bg-electric-blue/10 rounded-full blur-[40px] -mr-16 -mt-16 group-hover:bg-electric-blue/20 transition-all"></div>
+                            <div class="flex items-center gap-4 mb-4 relative z-10">
+                                <div class="w-10 h-10 rounded-xl bg-electric-blue/10 border border-electric-blue/20 flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-electric-blue">bolt</span>
+                                </div>
+                                <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Avg. Latency (P95)</span>
+                            </div>
+                            <div class="flex items-baseline gap-2 relative z-10">
+                                <h3 class="text-3xl font-bold text-white tracking-tight">22ms</h3>
+                                <span class="text-xs font-bold text-emerald-400 bg-emerald-400/10 px-1.5 py-0.5 rounded">-4ms</span>
+                            </div>
+                        </div>
+
+                        <div class="glass-card rounded-2xl p-6 border border-white/10 relative overflow-hidden group">
+                            <div class="absolute top-0 right-0 w-32 h-32 bg-rose-500/10 rounded-full blur-[40px] -mr-16 -mt-16 group-hover:bg-rose-500/20 transition-all"></div>
+                            <div class="flex items-center gap-4 mb-4 relative z-10">
+                                <div class="w-10 h-10 rounded-xl bg-rose-500/10 border border-rose-500/20 flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-rose-400">error</span>
+                                </div>
+                                <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Error rate</span>
+                            </div>
+                            <div class="flex items-baseline gap-2 relative z-10">
+                                <h3 class="text-3xl font-bold text-white tracking-tight">0.02%</h3>
+                                <span class="text-xs font-bold text-rose-400 bg-rose-400/10 px-1.5 py-0.5 rounded">+0.01%</span>
+                            </div>
+                        </div>
+
+                        <div class="glass-card rounded-2xl p-6 border border-white/10 relative overflow-hidden group">
+                            <div class="absolute top-0 right-0 w-32 h-32 bg-indigo-500/10 rounded-full blur-[40px] -mr-16 -mt-16 group-hover:bg-indigo-500/20 transition-all"></div>
+                            <div class="flex items-center gap-4 mb-4 relative z-10">
+                                <div class="w-10 h-10 rounded-xl bg-indigo-500/10 border border-indigo-500/20 flex items-center justify-center">
+                                    <span class="material-symbols-outlined text-indigo-400">dns</span>
+                                </div>
+                                <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">Active Instances</span>
+                            </div>
+                            <div class="flex items-baseline gap-2 relative z-10">
+                                <h3 class="text-3xl font-bold text-white tracking-tight">42</h3>
+                                <span class="text-xs font-bold text-slate-500 ml-1">Nodes</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-4 gap-6">
+                        <!-- Resource Utilization Grid -->
+                        <div class="lg:col-span-1 flex flex-col gap-4">
+                            <div class="glass-card rounded-2xl border border-white/10 p-5">
+                                <h2 class="text-xs font-bold text-white mb-4 uppercase tracking-wider flex items-center gap-2">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-electric-blue"></span>
+                                    CPU Usage
+                                </h2>
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-2xl font-bold text-white">24.5%</span>
+                                    <span class="text-[10px] text-slate-500">Peak: 42%</span>
+                                </div>
+                                <div class="h-1 w-full bg-white/5 rounded-full overflow-hidden">
+                                    <div class="h-full bg-electric-blue rounded-full" style="width: 24.5%;"></div>
+                                </div>
+                            </div>
+                            <div class="glass-card rounded-2xl border border-white/10 p-5">
+                                <h2 class="text-xs font-bold text-white mb-4 uppercase tracking-wider flex items-center gap-2">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-indigo-500"></span>
+                                    Memory Load
+                                </h2>
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-2xl font-bold text-white">4.2 GB</span>
+                                    <span class="text-[10px] text-slate-500">Threshold: 8GB</span>
+                                </div>
+                                <div class="h-1 w-full bg-white/5 rounded-full overflow-hidden">
+                                    <div class="h-full bg-indigo-500 rounded-full" style="width: 52%;"></div>
+                                </div>
+                            </div>
+                            <div class="glass-card rounded-2xl border border-white/10 p-5">
+                                <h2 class="text-xs font-bold text-white mb-4 uppercase tracking-wider flex items-center gap-2">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                                    Available Disk
+                                </h2>
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-2xl font-bold text-white">840 GB</span>
+                                    <span class="text-[10px] text-slate-500">Free of 1.2TB</span>
+                                </div>
+                                <div class="h-1 w-full bg-white/5 rounded-full overflow-hidden">
+                                    <div class="h-full bg-emerald-500 rounded-full" style="width: 70%;"></div>
+                                </div>
+                            </div>
+                            <div class="glass-card rounded-2xl border border-white/10 p-5">
+                                <h2 class="text-xs font-bold text-white mb-4 uppercase tracking-wider flex items-center gap-2">
+                                    <span class="w-1.5 h-1.5 rounded-full bg-rose-500"></span>
+                                    Network Bandwidth
+                                </h2>
+                                <div class="flex items-center justify-between mb-2">
+                                    <span class="text-2xl font-bold text-white">12.5 TB</span>
+                                    <span class="text-[10px] text-slate-500">Daily Average</span>
+                                </div>
+                                <div class="h-1 w-full bg-white/5 rounded-full overflow-hidden">
+                                    <div class="h-full bg-rose-500 rounded-full" style="width: 85%;"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Main Grid: Real-time Heatmap & Events -->
+                        <div class="lg:col-span-3 flex flex-col gap-6">
+                            <div class="glass-card rounded-2xl border border-white/10 overflow-hidden">
+                                <div class="p-5 border-b border-white/10 flex justify-between items-center">
+                                    <h2 class="text-sm font-bold text-white flex items-center gap-2">
+                                        <span class="material-symbols-outlined text-electric-blue text-sm">public</span>
+                                        Regional Node Status
+                                    </h2>
+                                    <div class="flex gap-4">
+                                        <div class="flex items-center gap-1.5">
+                                            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+                                            <span class="text-[10px] font-bold text-slate-500 uppercase">Operational</span>
+                                        </div>
+                                        <div class="flex items-center gap-1.5">
+                                            <span class="w-2 h-2 rounded-full bg-orange-500"></span>
+                                            <span class="text-[10px] font-bold text-slate-500 uppercase">Degraded</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="overflow-x-auto">
+                                    <table class="w-full text-left border-collapse">
+                                        <thead>
+                                            <tr class="bg-white/[0.02] border-b border-white/5">
+                                                <th class="px-6 py-3 text-[10px] font-bold text-slate-600 uppercase tracking-widest">Region</th>
+                                                <th class="px-6 py-3 text-[10px] font-bold text-slate-600 uppercase tracking-widest">Latency</th>
+                                                <th class="px-6 py-3 text-[10px] font-bold text-slate-600 uppercase tracking-widest text-center">Status</th>
+                                                <th class="px-6 py-3 text-[10px] font-bold text-slate-600 uppercase tracking-widest text-right">Uptime</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody class="divide-y divide-white/5">
+                                            <tr class="hover:bg-white/[0.02] transition-colors">
+                                                <td class="px-6 py-4 text-xs font-bold text-white">US-East-1 (N. Virginia)</td>
+                                                <td class="px-6 py-4 text-xs text-emerald-400">12ms</td>
+                                                <td class="px-6 py-4 text-center">
+                                                    <span class="w-2 h-2 rounded-full bg-emerald-500 inline-block shadow-[0_0_8px_rgba(16,185,129,0.5)]"></span>
+                                                </td>
+                                                <td class="px-6 py-4 text-xs font-mono text-slate-400 text-right">99.99%</td>
+                                            </tr>
+                                            <tr class="hover:bg-white/[0.02] transition-colors">
+                                                <td class="px-6 py-4 text-xs font-bold text-white">EU-Central-1 (Frankfurt)</td>
+                                                <td class="px-6 py-4 text-xs text-emerald-400">42ms</td>
+                                                <td class="px-6 py-4 text-center">
+                                                    <span class="w-2 h-2 rounded-full bg-emerald-500 inline-block shadow-[0_0_8px_rgba(16,185,129,0.5)]"></span>
+                                                </td>
+                                                <td class="px-6 py-4 text-xs font-mono text-slate-400 text-right">99.98%</td>
+                                            </tr>
+                                            <tr class="hover:bg-white/[0.02] transition-colors">
+                                                <td class="px-6 py-4 text-xs font-bold text-white">AP-Northeast-1 (Tokyo)</td>
+                                                <td class="px-6 py-4 text-xs text-orange-400">184ms</td>
+                                                <td class="px-6 py-4 text-center">
+                                                    <span class="w-2 h-2 rounded-full bg-orange-500 inline-block shadow-[0_0_8px_rgba(249,115,22,0.5)] animate-pulse"></span>
+                                                </td>
+                                                <td class="px-6 py-4 text-xs font-mono text-slate-400 text-right">98.42%</td>
+                                            </tr>
+                                            <tr class="hover:bg-white/[0.02] transition-colors">
+                                                <td class="px-6 py-4 text-xs font-bold text-white">SA-East-1 (Sao Paulo)</td>
+                                                <td class="px-6 py-4 text-xs text-emerald-400">76ms</td>
+                                                <td class="px-6 py-4 text-center">
+                                                    <span class="w-2 h-2 rounded-full bg-emerald-500 inline-block shadow-[0_0_8px_rgba(16,185,129,0.5)]"></span>
+                                                </td>
+                                                <td class="px-6 py-4 text-xs font-mono text-slate-400 text-right">99.99%</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                            <div class="glass-card rounded-2xl border border-white/10 p-6 relative flex-1">
+                                <h2 class="text-sm font-bold text-white mb-6 flex items-center gap-2">
+                                    <span class="material-symbols-outlined text-electric-blue text-sm">terminal</span>
+                                    Live Log Stream
+                                </h2>
+                                <div class="font-mono text-[10px] space-y-2 max-h-[220px] overflow-y-auto pr-2 custom-scrollbar">
+                                    <div class="flex gap-3 text-slate-500">
+                                        <span class="text-emerald-500/80">[INFO]</span>
+                                        <span>2024-10-24 14:22:12</span>
+                                        <span class="text-slate-300">Garbage collector finished (24ms freed)</span>
+                                    </div>
+                                    <div class="flex gap-3 text-slate-500">
+                                        <span class="text-electric-blue/80">[AUTH]</span>
+                                        <span>2024-10-24 14:22:08</span>
+                                        <span class="text-slate-300">Admin login successful from IP 192.168.1.42</span>
+                                    </div>
+                                    <div class="flex gap-3 text-slate-500">
+                                        <span class="text-rose-500/80">[WARN]</span>
+                                        <span>2024-10-24 14:21:55</span>
+                                        <span class="text-rose-300">High memory pressure in AP-Northeast node group</span>
+                                    </div>
+                                    <div class="flex gap-3 text-slate-500">
+                                        <span class="text-emerald-500/80">[INFO]</span>
+                                        <span>2024-10-24 14:21:30</span>
+                                        <span class="text-slate-300">Auto-scaling group expanded: +2 nodes in US-East-1</span>
+                                    </div>
+                                    <div class="flex gap-3 text-slate-500">
+                                        <span class="text-electric-blue/80">[API]</span>
+                                        <span>2024-10-24 14:21:12</span>
+                                        <span class="text-slate-300">Successfully processed batch request (128 tx)</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Render Dynamic Pie Charts Script -->
+    <script>
+        window.renderDynamicPies = () => {
+            const charts = document.querySelectorAll('.dynamic-pie-chart');
+            charts.forEach((chart) => {
+                // Clear existing SVG and Tooltip to prevent stacking
+                const existingSvg = chart.querySelector('svg');
+                if (existingSvg) existingSvg.remove();
+
+                const valuesAttr = chart.getAttribute('data-values');
+                const colorsAttr = chart.getAttribute('data-colors');
+                const labelsAttr = chart.getAttribute('data-labels');
+
+                if (!valuesAttr || !colorsAttr) return;
+
+                const values = valuesAttr.split(',').map(v => parseFloat(v.trim()));
+                const colors = colorsAttr.split(',').map(c => c.trim());
+                const labels = labelsAttr ? labelsAttr.split(',').map(l => l.trim()) : [];
+
+                const total = values.reduce((sum, val) => sum + val, 0);
+                if (total === 0) return;
+
+                const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                svg.setAttribute("class", "w-full h-full transform -rotate-90");
+                svg.setAttribute("viewBox", "0 0 144 144");
+
+                // Hover Tooltip Element Generation (linked only to this chart's SVG elements)
+                const tooltip = document.createElement('div');
+                tooltip.className = 'fixed pointer-events-none opacity-0 transition-opacity duration-200 bg-black/80 backdrop-blur-md border border-white/10 p-2 rounded-lg shadow-xl z-[99999] flex items-center gap-2 whitespace-nowrap';
+                tooltip.style.transform = 'translate(-50%, -100%)';
+                document.body.appendChild(tooltip);
+
+                // Base track
+                const track = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+                track.setAttribute("cx", "72"); track.setAttribute("cy", "72"); track.setAttribute("r", "60");
+                track.setAttribute("fill", "none"); track.setAttribute("stroke", "rgba(255,255,255,0.05)");
+                track.setAttribute("stroke-width", "12");
+                svg.appendChild(track);
+
+                let currentOffsetPercentage = 0;
+                const circumference = 2 * Math.PI * 60;
+
+                values.forEach((val, index) => {
+                    const proportion = val / total;
+                    const dasharray = `${proportion * circumference} ${circumference}`;
+                    const dashoffset = -(currentOffsetPercentage * circumference);
+
+                    const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+                    circle.setAttribute("cx", "72"); circle.setAttribute("cy", "72"); circle.setAttribute("r", "60");
+                    circle.setAttribute("fill", "none"); circle.setAttribute("stroke-width", "12");
+                    circle.style.pointerEvents = "stroke";
+
+                    const color = colors[index % colors.length];
+                    circle.setAttribute("stroke", color);
+                    circle.setAttribute("stroke-dasharray", dasharray);
+                    circle.setAttribute("stroke-dashoffset", dashoffset);
+                    circle.style.transition = 'stroke-width 0.2s, stroke-opacity 0.2s';
+                    circle.style.cursor = 'pointer';
+
+                    const labelText = labels[index] || `Segment ${index + 1}`;
+                    const percentageText = ((val / total) * 100).toFixed(1) + '%';
+
+                    circle.addEventListener('mouseenter', (e) => {
+                        circle.setAttribute("stroke-width", "14");
+                        tooltip.innerHTML = `
+                            <span class="w-2 h-2 rounded-full" style="background-color: ${color};"></span>
+                            <span class="text-xs text-slate-300">${labelText}:</span>
+                            <span class="text-xs font-bold text-white">${percentageText}</span>
+                        `;
+                        tooltip.style.opacity = '1';
+                    });
+
+                    circle.addEventListener('mousemove', (e) => {
+                        tooltip.style.left = `${e.clientX}px`;
+                        tooltip.style.top = `${e.clientY - 10}px`;
+                    });
+
+                    circle.addEventListener('mouseleave', () => {
+                        circle.setAttribute("stroke-width", "12");
+                        tooltip.style.opacity = '0';
+                    });
+
+                    svg.appendChild(circle);
+                    currentOffsetPercentage += proportion;
+                });
+
+                chart.appendChild(svg);
+            });
+        };
+        document.addEventListener('DOMContentLoaded', window.renderDynamicPies);
+    </script>
+    <script src="dashboard_ui.js"></script>
+    <script src="dashboard_data.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,1457 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    
+    <!-- Role-Based Routing Guard -->
+    <script>
+        (function() {
+            document.documentElement.style.display = 'none';
+            const check = () => {
+                if (window.Clerk && window.Clerk.loaded) {
+                    if (!Clerk.isSignedIn) {
+                        window.location.replace('dashboard_signin.html');
+                    } else {
+                        const role = Clerk.user.publicMetadata.role || 'client';
+                        if (role !== 'client') {
+                            window.location.replace(role === 'admin' ? 'dashboard_admin.html' : 'dashboard_overview.html');
+                        } else {
+                            document.documentElement.style.display = '';
+                        }
+                    }
+                } else {
+                    setTimeout(check, 10);
+                }
+            };
+            check();
+        })();
+    </script>
+
+
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Alconio Dashboard - Detailed Analytics</title>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-431VG72CM9"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'G-431VG72CM9');
+    </script>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/jsvectormap@1.6.0/dist/jsvectormap.min.css" />
+    <script src="https://cdn.jsdelivr.net/npm/jsvectormap@1.6.0/dist/jsvectormap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jsvectormap@1.6.0/dist/maps/world.js"></script>
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "electric-blue": "#0052FF",
+                        "electric-blue-light": "#3374ff",
+                        "obsidian": "#000000",
+                        "obsidian-panel": "#050508",
+                        "glass-border": "rgba(0, 82, 255, 0.3)",
+                        "glass-highlight": "rgba(255, 255, 255, 0.15)",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Space Grotesk", "sans-serif"]
+                    },
+                    boxShadow: {
+                        'neon-blue': '0 0 20px rgba(0, 82, 255, 0.4), inset 0 0 10px rgba(0, 82, 255, 0.1)',
+                        'neon-white': '0 0 15px rgba(255, 255, 255, 0.3)',
+                        'glass-edge': 'inset 1px 1px 0 0 rgba(255, 255, 255, 0.2), inset -1px -1px 0 0 rgba(0, 0, 0, 0.5)',
+                        'header-glow': '0 4px 30px rgba(0, 0, 0, 0.8), 0 1px 0 rgba(0, 82, 255, 0.5)',
+                        'icon-glass': '0 4px 12px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.15)',
+                    }
+                },
+            },
+        }
+    </script>
+    <style>
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #000000;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: #1e1e24;
+            border-radius: 3px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0052FF;
+        }
+
+        .glass-panel {
+            background: linear-gradient(160deg, rgba(10, 10, 15, 0.85) 0%, rgba(0, 0, 0, 0.95) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 82, 255, 0.15);
+            border-top: 1px solid rgba(100, 150, 255, 0.3);
+            border-left: 1px solid rgba(100, 150, 255, 0.3);
+            box-shadow:
+                0 0 30px rgba(0, 0, 0, 0.8),
+                inset 0 0 20px rgba(0, 82, 255, 0.03);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .glass-panel::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+            filter: blur(20px);
+            opacity: 0.6;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .glass-panel::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(0, 82, 255, 0.15) 0%, transparent 70%);
+            filter: blur(30px);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .glass-card {
+            background: linear-gradient(135deg, rgba(15, 20, 35, 0.9) 0%, rgba(5, 5, 8, 0.95) 100%);
+            border: 1px solid rgba(0, 82, 255, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.9), inset 0 0 30px rgba(0, 82, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            box-shadow: 0 0 25px rgba(0, 82, 255, 0.25), inset 0 0 20px rgba(0, 82, 255, 0.1);
+            border-color: rgba(0, 82, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .active-nav-item {
+            background: linear-gradient(90deg, rgba(0, 82, 255, 0.2) 0%, rgba(0, 0, 0, 0) 100%);
+            border-left: 3px solid #0052FF;
+            box-shadow: inset 10px 0 20px -10px rgba(0, 82, 255, 0.3);
+        }
+
+        .neon-text {
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(0, 82, 255, 0.5);
+        }
+
+        .neon-text-blue {
+            color: #0052FF;
+            text-shadow: 0 0 10px rgba(0, 82, 255, 0.8);
+        }
+
+        .neon-border-top {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 82, 255, 1), transparent);
+            opacity: 0.6;
+        }
+
+        tr.group:hover td {
+            background: rgba(0, 82, 255, 0.05);
+        }
+
+        .section-header {
+            display: flex;
+            justify-content: flex-start;
+            margin-bottom: 0.5rem;
+            margin-top: 3rem;
+        }
+
+        .section-title {
+            font-size: 1.25rem;
+            font-weight: 700;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            display: inline-block;
+        }
+
+        .header-glass {
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
+        }
+
+        .sidebar-header-area {
+            height: 72px;
+            display: flex;
+            align-items: center;
+        }
+
+        .pill-tag {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: inset 0 0 10px rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(5px);
+        }
+
+        .icon-glass-container {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5), inset 0 0 15px rgba(0, 82, 255, 0.1);
+            backdrop-filter: blur(8px);
+        }
+
+        .icon-glass-container:hover {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.05) 100%);
+            box-shadow: 0 0 15px rgba(0, 82, 255, 0.3), inset 0 0 25px rgba(0, 82, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .profile-glass-pill {
+            background: linear-gradient(135deg, rgba(20, 20, 25, 0.8) 0%, rgba(5, 5, 8, 0.9) 100%);
+            border: 1px solid rgba(0, 82, 255, 0.3);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.6), inset 0 0 15px rgba(0, 82, 255, 0.15);
+            backdrop-filter: blur(12px);
+        }
+
+        .profile-glass-pill:hover {
+            background: linear-gradient(135deg, rgba(30, 30, 40, 0.9) 0%, rgba(10, 10, 15, 0.95) 100%);
+            box-shadow: 0 0 20px rgba(0, 82, 255, 0.3), inset 0 0 25px rgba(0, 82, 255, 0.2);
+            border-color: rgba(0, 82, 255, 0.5);
+        }
+
+        .mini-spark {
+            filter: drop-shadow(0 0 4px rgba(0, 82, 255, 0.6));
+        }
+
+        .micro-card {
+            background: linear-gradient(135deg, rgba(15, 20, 35, 0.7) 0%, rgba(5, 5, 8, 0.8) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 1px solid rgba(255, 255, 255, 0.15);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .micro-card:hover {
+            background: linear-gradient(135deg, rgba(20, 25, 45, 0.8) 0%, rgba(10, 10, 15, 0.9) 100%);
+            border-color: rgba(0, 82, 255, 0.4);
+            box-shadow: 0 0 15px rgba(0, 82, 255, 0.15);
+        }
+
+        .tooltip-custom {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+        }
+
+        .group:hover .tooltip-custom {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .progress-ring__circle {
+            transition: stroke-dashoffset 0.35s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+
+        .device-box {
+            background: linear-gradient(145deg, rgba(10, 10, 15, 0.9) 0%, rgba(5, 5, 10, 0.95) 100%);
+            box-shadow: 0 0 25px rgba(0, 82, 255, 0.15), inset 0 0 40px rgba(0, 82, 255, 0.1);
+        }
+
+        .premium-donut {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+
+        .housed-profile-container {
+            display: flex;
+            align-items: center;
+            background: rgba(10, 10, 14, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 9999px;
+            padding: 4px;
+            padding-right: 16px;
+            backdrop-filter: blur(8px);
+            transition: border-color 0.2s;
+        }
+
+        .housed-profile-container:hover {
+            border-color: rgba(0, 82, 255, 0.3);
+            background: rgba(15, 15, 22, 0.8);
+        }
+
+        .unified-header-line {
+            position: fixed;
+            top: 72px;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: rgba(0, 82, 255, 0.15);
+            box-shadow: 0 0 2px rgba(0, 82, 255, 0.1);
+            z-index: 9999;
+            pointer-events: none;
+        }
+
+        .sidebar-divider-line {
+            position: fixed;
+            top: 0;
+            left: 5rem;
+            width: 1px;
+            height: 100vh;
+            background: linear-gradient(to bottom, rgba(255, 255, 255, 0.05), rgba(0, 82, 255, 0.9), rgba(255, 255, 255, 0.05));
+            box-shadow: 0 0 12px rgba(0, 82, 255, 0.5);
+            z-index: 40;
+            pointer-events: none;
+        }
+
+        .map-dot {
+            animation: pulse-dot 2s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0% {
+                transform: scale(1);
+                opacity: 0.8;
+                box-shadow: 0 0 0 0 rgba(0, 82, 255, 0.7);
+            }
+
+            70% {
+                transform: scale(1.5);
+                opacity: 0;
+                box-shadow: 0 0 0 10px rgba(0, 82, 255, 0);
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 0;
+            }
+        }
+    </style>
+    <!-- Clerk JS SDK -->
+    <script async crossorigin="anonymous"
+        data-clerk-publishable-key="pk_test_d2FudGVkLWRhbmUtODQuY2xlcmsuYWNjb3VudHMuZGV2JA"
+        src="https://wanted-dane-84.clerk.accounts.dev/npm/@clerk/clerk-js@5/dist/clerk.browser.js"
+        type="text/javascript">
+        </script>
+
+
+
+
+
+
+</head>
+
+<body
+    class="bg-obsidian text-slate-200 font-display antialiased overflow-x-hidden selection:bg-electric-blue selection:text-white">
+    <!-- Instant Cache Loader -->
+    <script id="instant-loader">
+            (function () {
+                const cacheStr = localStorage.getItem('alconio_dashboard_cache');
+                if (!cacheStr) return;
+                const cache = JSON.parse(cacheStr);
+                const observer = new MutationObserver((mutations) => {
+                    for (const mutation of mutations) {
+                        for (const node of mutation.addedNodes) {
+                            if (node.nodeType !== 1) continue;
+                            const metrics = node.querySelectorAll ? Array.from(node.querySelectorAll('[data-metric]')) : [];
+                            if (node.hasAttribute && node.hasAttribute('data-metric')) metrics.push(node);
+                            metrics.forEach(el => {
+                                const key = el.getAttribute('data-metric');
+                                const val = (cache.overview && cache.overview[key]) ? cache.overview[key].value : (cache.currentMetrics ? cache.currentMetrics[key] : null);
+                                if (val !== null) el.textContent = val;
+                            });
+                            const trends = node.querySelectorAll ? Array.from(node.querySelectorAll('[data-trend]')) : [];
+                            if (node.hasAttribute && node.hasAttribute('data-trend')) trends.push(node);
+                            trends.forEach(el => {
+                                const key = el.getAttribute('data-trend');
+                                const data = cache.overview && cache.overview[key];
+                                if (data && data.trend !== undefined) {
+                                    const trend = data.trend;
+                                    const isUp = trend >= 0;
+                                    el.textContent = (isUp ? '+' : '') + trend.toFixed(1) + '%';
+                                    el.className = isUp
+                                        ? "text-emerald-400 flex items-center text-[10px] font-bold bg-emerald-900/40 border border-emerald-500/30 px-1.5 py-0.5 rounded shadow-[0_0_8px_rgba(16,185,129,0.2)] mb-1"
+                                        : "text-rose-400 flex items-center text-[10px] font-bold bg-rose-900/40 border border-rose-500/30 px-1.5 py-0.5 rounded shadow-[0_0_8px_rgba(244,63,94,0.2)] mb-1";
+                                }
+                            });
+                        }
+                    }
+                });
+                observer.observe(document.documentElement, { childList: true, subtree: true });
+                window.addEventListener('alconio-cache-applied', () => observer.disconnect());
+                setTimeout(() => observer.disconnect(), 2000);
+            })();
+    </script>
+    <div class="flex h-screen w-full overflow-hidden relative">
+        <div class="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
+            <div
+                class="absolute top-[-20%] left-[20%] w-[60%] h-[60%] bg-[#0052FF] opacity-[0.06] rounded-full blur-[150px]">
+            </div>
+            <div
+                class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-[#0052FF] opacity-[0.04] rounded-full blur-[120px]">
+            </div>
+        </div>
+        <!-- Standardized Alconio Client Sidebar -->
+<div class="unified-header-line"></div>
+<div class="sidebar-divider-line"></div>
+<aside class="dashboard-sidebar relative z-50 w-20 h-full glass-panel flex flex-col border-r-0 hidden md:flex shrink-0 items-center transition-all duration-300 !border-l-transparent border-l-0">
+    <!-- Header Area -->
+    <div class="sidebar-header-area relative h-18 px-6 w-full flex items-center justify-between shrink-0 transition-all duration-300 overflow-hidden">
+        <div class="header-inner flex items-center justify-between w-full h-full gap-4 transition-all duration-300">
+            <div class="flex items-center gap-3">
+                <span class="material-symbols-outlined text-electric-blue text-3xl neon-text-blue sidebar-logo-img transition-all duration-300">lightning</span>
+                <h1 class="logo-text text-xl font-bold tracking-tighter text-white transition-all duration-300 opacity-100 uppercase">ALCONIO</h1>
+            </div>
+            <button class="side-bar-toggle w-8 h-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition-all border border-white/10 group relative">
+                <span class="toggle-icon material-symbols-outlined text-sm transition-colors group-hover:text-electric-blue">keyboard_tab_rtl</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="flex-1 px-2 space-y-1 relative z-10 pt-6 w-full flex flex-col items-center overflow-x-hidden sidebar-scroll-hide transition-all duration-300">
+        <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400" href="dashboard_overview.html" data-tooltip="Overview">
+            <span class="material-symbols-outlined group-hover:text-electric-blue transition-colors text-2xl nav-icon flex-shrink-0">dashboard</span>
+            <span class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Overview</span>
+        </a>
+        <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400" href="dashboard_analytics.html" data-tooltip="Analytics">
+            <span class="material-symbols-outlined group-hover:text-electric-blue transition-colors text-2xl nav-icon flex-shrink-0">pie_chart</span>
+            <span class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Analytics</span>
+        </a>
+        <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400" href="dashboard_performance.html" data-tooltip="Performance">
+            <span class="material-symbols-outlined group-hover:text-electric-blue transition-colors text-2xl nav-icon flex-shrink-0">trending_up</span>
+            <span class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Performance</span>
+        </a>
+        <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400" href="dashboard_modifications.html" data-tooltip="Modifications">
+            <span class="material-symbols-outlined group-hover:text-electric-blue transition-colors text-2xl nav-icon flex-shrink-0">edit_note</span>
+            <span class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Modifications</span>
+        </a>
+        <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400" href="dashboard_activity_log.html" data-tooltip="Activity Log">
+            <span class="material-symbols-outlined group-hover:text-electric-blue transition-colors text-2xl nav-icon flex-shrink-0">schedule</span>
+            <span class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Activity Log</span>
+        </a>
+        <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400" href="dashboard_resources.html" data-tooltip="Resources">
+            <span class="material-symbols-outlined group-hover:text-electric-blue transition-colors text-2xl nav-icon flex-shrink-0">folder_open</span>
+            <span class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Resources</span>
+        </a>
+        <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400" href="dashboard_settings.html" data-tooltip="Settings">
+            <span class="material-symbols-outlined group-hover:text-electric-blue transition-colors text-2xl nav-icon flex-shrink-0">settings</span>
+            <span class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Settings</span>
+        </a>
+    </nav>
+
+    <!-- Footer Area -->
+    <div class="sidebar-footer-area p-4 relative z-10 border-t border-white/5 w-full flex justify-center mb-4 transition-all duration-300">
+        <button class="logout-btn w-12 h-12 flex items-center justify-center bg-gradient-to-r from-electric-blue to-blue-800 hover:from-blue-600 hover:to-blue-700 text-white rounded-lg shadow-[0_0_25px_rgba(0,82,255,0.4)] border border-white/10 transition-all transform active:scale-95 group relative" data-tooltip="Logout">
+            <span class="material-symbols-outlined text-lg group-hover:animate-pulse flex-shrink-0">logout</span>
+            <span class="md-label hidden font-bold text-sm tracking-wide ml-3 transition-opacity whitespace-nowrap">Logout</span>
+        </button>
+    </div>
+</aside>
+
+<!-- Sidebar Logic & Interaction -->
+<script id="sidebar-core-logic">
+    (function () {
+        const sidebar = document.querySelector('aside.dashboard-sidebar');
+        if (!sidebar) return;
+        
+        const toggleBtn = document.querySelector('.side-bar-toggle');
+        const headerInner = document.querySelector('.header-inner');
+        const headerArea = document.querySelector('.sidebar-header-area');
+        const logoText = document.querySelector('.logo-text');
+        const logoImg = document.querySelector('.sidebar-logo-img');
+        const navLinks = document.querySelectorAll('.nav-link-btn');
+        const dividerLine = document.querySelector('.sidebar-divider-line');
+        const logoutBtn = document.querySelector('.logout-btn');
+        const sidebarNav = sidebar.querySelector('nav');
+
+        // Set Active State based on current URL
+        const currentPath = window.location.pathname.split('/').pop() || 'dashboard_overview.html';
+        navLinks.forEach(link => {
+            if (link.getAttribute('href') === currentPath) {
+                link.classList.add('active-nav-item', 'text-electric-blue', 'neon-text-blue');
+                link.classList.remove('text-slate-400');
+                const icon = link.querySelector('.nav-icon');
+                if (icon) icon.classList.add('text-electric-blue', 'neon-text-blue');
+            }
+        });
+
+        // Toggle functionality
+        if (toggleBtn) {
+            toggleBtn.addEventListener('click', () => {
+                const isExpanded = !sidebar.classList.contains('w-72');
+                localStorage.setItem('sidebarExpanded', isExpanded);
+                applySidebarState(isExpanded);
+            });
+        }
+
+        function applySidebarState(expanded) {
+            if (expanded) {
+                sidebar.classList.remove('w-20', 'items-center');
+                sidebar.classList.add('w-72');
+                if (logoText) {
+                    logoText.classList.remove('hidden', 'opacity-0');
+                    logoText.classList.add('opacity-100', 'pl-12');
+                    logoText.textContent = "ALCONIO";
+                }
+                if (logoImg) {
+                    logoImg.classList.remove('left-1/2', '-translate-x-1/2');
+                    logoImg.classList.add('left-4');
+                }
+                const icon = toggleBtn?.querySelector('.toggle-icon');
+                if (icon) icon.textContent = 'keyboard_tab_rtl';
+                
+                headerArea?.classList.replace('px-0', 'px-6');
+                headerArea?.classList.replace('justify-end', 'justify-between');
+                headerInner?.classList.replace('justify-center', 'justify-between');
+                sidebarNav?.classList.replace('items-center', 'items-stretch');
+                
+                if (dividerLine) dividerLine.style.left = '18rem';
+
+                navLinks.forEach(link => {
+                    link.classList.remove('w-12', 'h-12', 'justify-center');
+                    link.classList.add('w-full', 'h-12', 'justify-start', 'pl-5');
+                    const label = link.querySelector('.md-label');
+                    if (label) { label.classList.remove('hidden'); label.classList.add('inline'); }
+                });
+
+                if (logoutBtn) {
+                    logoutBtn.classList.remove('w-12');
+                    logoutBtn.classList.add('w-full', 'justify-start', 'pl-5');
+                    const label = logoutBtn.querySelector('.md-label');
+                    if (label) { label.classList.remove('hidden'); label.classList.add('inline'); }
+                }
+            } else {
+                sidebar.classList.remove('w-72');
+                sidebar.classList.add('w-20', 'items-center');
+                if (logoText) {
+                    logoText.classList.remove('opacity-100', 'pl-12');
+                    logoText.classList.add('hidden', 'opacity-0');
+                }
+                if (logoImg) {
+                    logoImg.classList.remove('left-4');
+                    logoImg.classList.add('left-1/2', '-translate-x-1/2');
+                }
+                const icon = toggleBtn?.querySelector('.toggle-icon');
+                if (icon) icon.textContent = 'start';
+
+                headerArea?.classList.replace('px-6', 'px-0');
+                headerArea?.classList.replace('justify-between', 'justify-end');
+                headerInner?.classList.replace('justify-between', 'justify-center');
+                sidebarNav?.classList.replace('items-stretch', 'items-center');
+                
+                if (dividerLine) dividerLine.style.left = '5rem';
+
+                navLinks.forEach(link => {
+                    link.classList.add('w-12', 'h-12', 'justify-center');
+                    link.classList.remove('w-full', 'justify-start', 'pl-5');
+                    const label = link.querySelector('.md-label');
+                    if (label) { label.classList.add('hidden'); label.classList.remove('inline'); }
+                });
+
+                if (logoutBtn) {
+                    logoutBtn.classList.add('w-12', 'justify-center');
+                    logoutBtn.classList.remove('w-full', 'pl-5');
+                    const label = logoutBtn.querySelector('.md-label');
+                    if (label) { label.classList.add('hidden'); label.classList.remove('inline'); }
+                }
+            }
+        }
+
+        // Initial State
+        const isExpanded = localStorage.getItem('sidebarExpanded') !== 'false';
+        
+        // Anti-FOUC (Kill transitions for first load)
+        const transitionEls = [sidebar, headerArea, headerInner, sidebarNav, dividerLine, toggleBtn, logoText, logoImg, ...navLinks, logoutBtn].filter(Boolean);
+        transitionEls.forEach(el => el.style.transition = 'none');
+        
+        applySidebarState(isExpanded);
+
+        requestAnimationFrame(() => {
+            requestAnimationFrame(() => {
+                transitionEls.forEach(el => el.style.transition = '');
+            });
+        });
+    })();
+</script>
+
+
+        <div class="flex-1 flex flex-col h-full relative z-10 overflow-hidden">
+            <header class="w-full h-[72px] z-50 header-glass flex items-center justify-between px-8 shrink-0 relative">
+                <div class="flex items-center gap-6">
+                    <div class="flex items-center">
+                        <div
+                            class="pill-tag px-3 py-1.5 rounded-full text-[11px] font-medium text-slate-400 tracking-wide flex items-center gap-2 hover:border-white/20 transition-colors cursor-pointer group client-website-display">
+                            <span
+                                class="w-1.5 h-1.5 rounded-full bg-electric-blue shadow-[0_0_6px_#0052ff] animate-pulse"></span>
+                            ClientSite.com
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute left-1/2 transform -translate-x-1/2 flex items-center justify-center pointer-events-none w-full max-w-[400px]">
+                    <h2 class="text-xl font-bold text-white tracking-wide whitespace-nowrap"
+                        style="text-shadow: 0 0 20px rgba(255,255,255,0.2);">Analytics</h2>
+                </div>
+                <div class="flex items-center gap-4">
+                    <span class="text-xs text-slate-500 font-medium hidden lg:block tracking-wide mr-2">Last updated:
+                        <span class="text-slate-300">2h ago</span></span>
+                    <div class="housed-profile-container group">
+                        <button
+                            class="w-8 h-8 flex items-center justify-center rounded-full text-slate-400 hover:text-white hover:bg-white/10 transition-all relative mr-2">
+                             <span class="material-symbols-outlined text-[20px]">notifications</span>
+                             <span
+                                 class="absolute top-1.5 right-1.5 w-1.5 h-1.5 bg-electric-blue rounded-full shadow-[0_0_8px_#0052ff]"></span>
+                        </button>
+                        <div class="w-[1px] h-6 bg-white/10 mr-3"></div>
+                        <div class="flex items-center gap-3 cursor-pointer">
+                            <div
+                                class="w-8 h-8 rounded-full bg-slate-900 overflow-hidden ring-1 ring-white/10 group-hover:ring-electric-blue/50 transition-all shadow-lg relative">
+                                <img alt="User avatar" class="w-full h-full object-cover"
+                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-n-gT0hmTLr68Q785q7si3dFoLMf7H3GynEF6Z2J24-oBY6nDcs61FaN_0-30RLylxw003MUNZjpmJEexdEOJj6EEIbz0kZyi3H7h8vYFqMgF4VyTUf3tatWeOJc4rj5wEdq1c8r291KAyy2Koyp1ed59PBohstiFLTdn9RH0JY9xz4enWsYbeYg0rREdlR6xdaOfvqCBbaSbgP_7p5ElqBZWky_f-ZvrE4SNxQiwFsigcG5W4EJdfdSofsdUwfj2bTUS2j4nyW6y" />
+                            </div>
+                            <div class="flex flex-col text-left">
+                                <span
+                                    class="text-[9px] text-slate-400 uppercase tracking-widest leading-none mb-0.5">Admin</span>
+                                <p
+                                    class="text-xs font-bold text-white group-hover:text-electric-blue transition-colors leading-none">
+                                    Administrator</p>
+                            </div>
+                            <span
+                                class="material-symbols-outlined text-slate-500 text-lg group-hover:text-white transition-colors ml-1">expand_more</span>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <main class="flex-1 overflow-y-auto overflow-x-hidden h-full p-4 md:p-6 scroll-smooth">
+                <div class="max-w-[1800px] mx-auto flex flex-col gap-8 pb-12">
+                    <div>
+                        <div class="section-header !mt-2">
+                            <h2 class="section-title">User Traffic</h2>
+                        </div>
+                        <div class="flex flex-col gap-4">
+                            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                                <div
+                                    class="micro-card rounded-lg p-3 relative flex flex-col justify-between h-[90px] overflow-hidden">
+                                    <div class="light-streak"></div>
+                                    <div class="flex justify-between items-start">
+                                        <span
+                                            class="text-slate-400 text-[10px] uppercase font-bold tracking-wider">Total
+                                            Users</span>
+                                        <span data-trend="totalUsers"
+                                            class="text-emerald-400 text-[9px] font-bold bg-emerald-900/30 px-1 rounded"></span>
+                                    </div>
+                                    <div class="flex justify-between items-end mt-1">
+                                        <h3 class="text-3xl font-bold text-white neon-text" data-metric="totalUsers">
+                                        </h3>
+                                        <div class="w-16 h-6">
+                                            <svg class="w-full h-full sparkline-container" data-sparkline="visitors"
+                                                preserveAspectRatio="none" viewBox="0 0 100 30">
+                                                <path d="" fill="none"
+                                                    filter="drop-shadow(0 1px 2px rgba(13,51,242,0.5))" stroke="#0d33f2"
+                                                    stroke-width="2"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                    class="micro-card rounded-lg p-3 relative flex flex-col justify-between h-[90px] overflow-hidden">
+                                    <div class="light-streak"></div>
+                                    <div class="flex justify-between items-start">
+                                        <span
+                                            class="text-slate-400 text-[10px] uppercase font-bold tracking-wider">Total
+                                            Sessions</span>
+                                        <span data-trend="totalSessions"
+                                            class="text-emerald-400 text-[9px] font-bold bg-emerald-900/30 px-1 rounded"></span>
+                                    </div>
+                                    <div class="flex justify-between items-end mt-1">
+                                        <h3 class="text-xl font-bold text-white" data-metric="totalSessions"></h3>
+                                        <div class="w-16 h-6 overflow-visible pl-1 pt-1 pb-1">
+                                            <svg class="w-full h-full sparkline-container" data-sparkline="sessions"
+                                                preserveAspectRatio="none" viewBox="0 -2 100 34">
+                                                <path d="" fill="none"
+                                                    filter="drop-shadow(0 1px 2px rgba(13,51,242,0.5))" stroke="#0d33f2"
+                                                    stroke-width="2"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                    class="micro-card rounded-lg p-3 relative flex flex-col justify-between h-[90px] overflow-hidden">
+                                    <div class="light-streak"></div>
+                                    <div class="flex justify-between items-start">
+                                        <span class="text-slate-400 text-[10px] uppercase font-bold tracking-wider">New
+                                            Users</span>
+                                        <span data-trend="newUsers"
+                                            class="text-rose-400 text-[9px] font-bold bg-rose-900/30 px-1 rounded"></span>
+                                    </div>
+                                    <div class="flex items-center gap-3 mt-2">
+                                        <h3 class="text-xl font-bold text-white" data-metric="newUsersRatio"></h3>
+                                        <div class="flex-1 bg-white/10 h-1.5 rounded-full overflow-hidden">
+                                            <div class="h-full bg-[#0d33f2] shadow-[0_0_8px_#0d33f2] w-[45%]" data-progress-bar="newUsersRatio"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                    class="micro-card rounded-lg p-3 relative flex flex-col justify-between h-[90px] overflow-hidden">
+                                    <div class="light-streak"></div>
+                                    <div class="flex justify-between items-start">
+                                        <span
+                                            class="text-slate-400 text-[10px] uppercase font-bold tracking-wider">Sessions</span>
+                                        <span data-trend="totalSessions"
+                                            class="text-emerald-400 text-[9px] font-bold bg-emerald-900/30 px-1 rounded"></span>
+                                    </div>
+                                    <div class="flex justify-between items-end mt-1">
+                                        <h3 class="text-xl font-bold text-white" data-metric="totalSessions"></h3>
+                                        <div class="w-16 h-6">
+                                            <svg class="w-full h-full" preserveAspectRatio="none" viewBox="0 0 100 30">
+                                                <path d="" fill="rgba(13,51,242,0.2)"></path>
+                                                <path d="" fill="none" stroke="#0d33f2" stroke-dasharray="2,2"
+                                                    stroke-width="1"></path>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+                                <div
+                                    class="lg:col-span-4 glass-panel rounded-lg p-3 border border-white/10 flex flex-col relative h-[350px] items-center justify-center">
+                                    <div class="neon-border-top"></div>
+                                    <h3
+                                        class="absolute top-4 left-4 text-[13px] font-bold text-white uppercase tracking-wider">
+                                        New vs Returning</h3>
+                                    <div class="relative w-44 h-44 mt-6 premium-donut">
+                                        <div class="dynamic-pie-chart w-full h-full" data-values="0, 0"
+                                            id="new-returning-pie-chart" data-colors="#0052FF, #ffffff"
+                                            data-labels="New, Returning">
+                                        </div>
+                                        <div class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                                            <div class="flex flex-col items-center">
+                                                <span class="text-3xl font-bold text-white leading-tight"><span
+                                                        id="metric-new-vs-returning-pct">100.0</span>%</span>
+                                                <span
+                                                    class="text-[10px] text-slate-400 uppercase tracking-widest -mt-1">New</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="w-full mt-6 flex justify-center gap-6 text-[10px]">
+                                        <div>
+                                            <div class="flex items-center gap-1 mb-1 text-slate-300">
+                                                <span class="w-2 h-2 bg-[#0d33f2]"></span> New
+                                            </div>
+                                            <span class="font-mono text-white font-bold ml-3"
+                                                data-new-users>57.6K</span>
+                                        </div>
+                                        <div>
+                                            <div class="flex items-center gap-1 mb-1 text-white">
+                                                <span class="w-2 h-2 bg-white"></span>
+                                                Returning
+                                            </div>
+                                            <span class="font-mono text-white font-bold ml-3"
+                                                data-returning-users>26.6K</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div
+                                    class="lg:col-span-8 glass-panel rounded-lg p-3 border border-white/10 flex flex-col relative h-[380px]">
+                                    <div class="neon-border-top"></div>
+                                    <div class="flex justify-between items-center mb-4 relative z-10">
+                                        <div class="flex items-center gap-6">
+                                            <div>
+                                                <div class="flex items-center gap-3 mb-0.5">
+                                                    <h3 class="text-base font-bold text-white whitespace-nowrap">Visitors Over Time</h3>
+                                                    <span class="bg-blue-900/30 text-blue-300 text-[9px] px-1.5 py-0.5 rounded border border-blue-500/20 whitespace-nowrap">Live Data</span>
+                                                </div>
+                                                <div class="flex items-center gap-4">
+                                                    <div class="flex items-baseline gap-2">
+                                                        <span data-metric="chartTotal" class="text-2xl font-bold text-white tracking-tight neon-text">--</span>
+                                                        <span class="text-emerald-400 text-xs font-bold flex items-center gap-0.5">
+                                                            <span class="material-symbols-outlined text-xs" data-trend-icon="chartTotal"></span>
+                                                            <span data-trend="chartTotal">--%</span>
+                                                        </span>
+                                                    </div>
+                                                    <span class="text-slate-500 text-[10px] text-trend-label whitespace-nowrap">vs last 30d</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="flex items-center gap-4">
+                                             <div class="flex group gap-3 text-[9px] border-r border-white/10 pr-4 mr-1">
+                                                <div class="flex items-center gap-1.5">
+                                                    <span class="w-1.5 h-1.5 rounded-full bg-electric-blue shadow-[0_0_5px_#0052ff]"></span>
+                                                    <span class="text-slate-300">Current</span>
+                                                </div>
+                                                <div class="flex items-center gap-1.5">
+                                                    <span class="w-1.5 h-1.5 rounded-full bg-white/30"></span>
+                                                    <span class="text-slate-500">Previous</span>
+                                                </div>
+                                            </div>
+                                            <div class="flex gap-0.5 p-0.5 bg-black/40 rounded-lg border border-white/10">
+                                                <button id="chart-btn-daily" data-period="daily"
+                                                    class="chart-period-btn px-2 py-1 text-[9px] font-medium rounded hover:bg-white/10 text-slate-400 hover:text-white transition-colors">Daily</button>
+                                                <button id="chart-btn-weekly" data-period="weekly"
+                                                    class="chart-period-btn px-2 py-1 text-[9px] font-medium rounded hover:bg-white/10 text-slate-400 hover:text-white transition-colors">Weekly</button>
+                                                <button id="chart-btn-monthly" data-period="monthly"
+                                                    class="chart-period-btn active px-2 py-1 text-[9px] font-bold rounded bg-electric-blue text-white shadow-[0_0_10px_rgba(0,82,255,0.4)]">Monthly</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="flex-1 w-full h-full relative pl-8 pb-10 pr-4">
+                                        <div id="main-chart-y-axis"
+                                            class="absolute left-0 top-0 bottom-4 w-8 flex flex-col justify-between text-[9px] text-slate-500 font-mono text-right pr-2">
+                                            <span>20k</span>
+                                            <span>15k</span>
+                                            <span>10k</span>
+                                            <span>5k</span>
+                                            <span>0</span>
+                                        </div>
+                                        <svg class="w-full h-full overflow-visible" preserveAspectRatio="none"
+                                            viewBox="0 0 1000 300">
+                                            <path d="M0,75 L1000,75 M0,150 L1000,150 M0,225 L1000,225"
+                                                stroke="rgba(255,255,255,0.05)" stroke-width="1"></path>
+                                            <path class="main-chart-previous" d="" fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="2" stroke-dasharray="4,4"></path>
+                                            <path class="main-chart-line" d="" fill="none" filter="drop-shadow(0 0 8px rgba(13,51,242,0.8))"
+                                                stroke="#0d33f2" stroke-width="3"></path>
+                                            <path class="main-chart-line-glow" d="" fill="none" filter="blur(4px)" stroke="#0d33f2" stroke-width="1" opacity="0.6"></path>
+                                            <path class="main-chart-fill" d="" fill="url(#blue-gradient)" opacity="0.5"></path>
+                                            <defs>
+                                                <linearGradient id="blue-gradient" x1="0" x2="0" y1="0" y2="1">
+                                                    <stop offset="0%" stop-color="#0d33f2" stop-opacity="0.8"></stop>
+                                                    <stop offset="100%" stop-color="#0d33f2" stop-opacity="0"></stop>
+                                                </linearGradient>
+                                            </defs>
+                                        </svg>
+                                        <div id="main-chart-x-axis"
+                                            class="absolute bottom-2 left-8 right-4 flex justify-between text-[9px] text-slate-500 font-mono pl-2 pr-2">
+                                            <span>1st</span><span>5th</span><span>10th</span><span>15th</span><span>20th</span><span>25th</span><span>30th</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+                                <div
+                                    class="glass-panel rounded-lg p-4 border border-white/10 relative h-[300px] flex flex-col">
+                                    <div class="neon-border-top"></div>
+                                    <h3 class="text-[13px] font-bold text-white uppercase tracking-wider mb-4">Default
+                                        Channel Group</h3>
+                                    <div class="flex-1">
+                                        <table class="w-full text-left border-collapse">
+                                            <thead>
+                                                <tr class="text-[9px] text-slate-500 uppercase border-b border-white/5">
+                                                    <th class="py-2 font-medium">Channel Group</th>
+                                                    <th class="py-2 font-medium text-right">Users</th>
+                                                    <th class="py-2 font-medium text-right">Sessions</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="channel-group-list" class="text-[10px] divide-y divide-white/5">
+                                                <tr>
+                                                    <td colspan="3" class="p-8 text-center text-slate-500 italic">
+                                                        Fetching channel data...</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="mt-2 pt-2 border-t border-white/5 flex justify-end gap-2 text-[10px]">
+                                        <button id="channel-prev"
+                                            class="text-slate-400 hover:text-white transition-colors cursor-pointer">&lt;</button>
+                                        <span id="channel-indicator" class="text-slate-500">1 / 1</span>
+                                        <button id="channel-next"
+                                            class="text-slate-400 hover:text-white transition-colors cursor-pointer">&gt;</button>
+                                    </div>
+                                </div>
+                                <div
+                                    class="glass-panel rounded-lg p-4 border border-white/10 relative h-[300px] flex flex-col">
+                                    <div class="neon-border-top"></div>
+                                    <h3 class="text-[13px] font-bold text-white uppercase tracking-wider mb-4">Source /
+                                        Medium</h3>
+                                    <div class="flex-1">
+                                        <table class="w-full text-left border-collapse">
+                                            <thead>
+                                                <tr class="text-[9px] text-slate-500 uppercase border-b border-white/5">
+                                                    <th class="py-2 font-medium">Source / Medium</th>
+                                                    <th class="py-2 font-medium text-right">Users</th>
+                                                    <th class="py-2 font-medium text-right">Engagement Rate</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody id="source-medium-list" class="text-[10px] divide-y divide-white/5">
+                                                <tr>
+                                                    <td colspan="3" class="p-8 text-center text-slate-500 italic">
+                                                        Fetching source data...</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="mt-2 pt-2 border-t border-white/5 flex justify-end gap-2 text-[10px]">
+                                        <button id="source-prev"
+                                            class="text-slate-400 hover:text-white transition-colors cursor-pointer">&lt;</button>
+                                        <span id="source-indicator" class="text-slate-500">1 / 1</span>
+                                        <button id="source-next"
+                                            class="text-slate-400 hover:text-white transition-colors cursor-pointer">&gt;</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="section-header">
+                            <h2 class="section-title">Engagement</h2>
+                        </div>
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+                            <div class="lg:col-span-4 flex flex-col gap-4">
+                                <div
+                                    class="glass-panel rounded-lg p-4 border border-white/10 h-[140px] flex flex-col justify-center relative">
+                                    <div class="neon-border-top"></div>
+                                    <span class="text-slate-400 text-[10px] uppercase font-bold tracking-wider mb-2">Avg
+                                        Session Duration</span>
+                                    <div class="flex items-baseline gap-2 mb-3">
+                                        <h3 class="text-3xl font-bold text-white neon-text" data-metric="avgSession">
+                                        </h3>
+                                        <span class="text-[10px] text-emerald-400 font-mono"
+                                            data-trend="avgSession">+12s</span>
+                                    </div>
+                                    <div class="w-full bg-white/5 h-1 rounded-full overflow-hidden">
+                                        <div class="h-full bg-gradient-to-r from-[#0d33f2] to-white/80 w-[45%]" data-progress-bar="avgSession"></div>
+                                    </div>
+                                    <div class="flex justify-between text-[8px] text-slate-500 mt-1 font-mono">
+                                        <span>0m</span><span>Target: 3m</span>
+                                    </div>
+                                </div>
+                                <div
+                                    class="glass-panel rounded-lg p-4 border border-white/10 h-[140px] flex flex-col justify-center relative">
+                                    <div class="neon-border-top"></div>
+                                    <span
+                                        class="text-slate-400 text-[10px] uppercase font-bold tracking-wider mb-2">User
+                                        Engagement Duration</span>
+                                    <div class="flex items-baseline gap-2 mb-3">
+                                        <h3 class="text-3xl font-bold text-white neon-text"
+                                            data-metric="userEngagementDuration"></h3>
+                                        <span class="text-[10px] text-rose-400 font-mono"
+                                            data-trend="userEngagementDuration">-5s</span>
+                                    </div>
+                                    <div class="w-full bg-white/5 h-1 rounded-full overflow-hidden">
+                                        <div class="h-full bg-gradient-to-r from-blue-600 to-white/80 w-[35%]" data-progress-bar="userEngagementDuration"></div>
+                                    </div>
+                                    <div class="flex justify-between text-[8px] text-slate-500 mt-1 font-mono">
+                                        <span>0m</span><span>Target: 2m</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div
+                                class="lg:col-span-8 glass-panel rounded-lg p-4 border border-white/10 flex flex-col relative h-auto">
+                                <div class="neon-border-top"></div>
+                                <div class="flex justify-between items-center mb-4">
+                                    <h3 class="text-[13px] font-bold text-white uppercase tracking-wider">Screen Page
+                                        Views</h3>
+                                    <h3 class="text-xl font-bold text-white neon-text" id="screen-page-views-total" data-metric="screenPageViews">
+                                        ...</h3>
+                                </div>
+                                <div class="w-full relative pl-8 pb-4 pr-4" style="height:160px">
+                                    <div id="page-views-y-axis-labels"
+                                        class="absolute left-0 top-0 bottom-6 w-8 flex flex-col justify-between text-[9px] text-slate-500 font-mono text-right pr-2">
+                                        <!-- Labels dynamically injected by JS -->
+                                    </div>
+                                    <svg id="page-views-chart-svg" class="w-full h-full overflow-visible" preserveAspectRatio="none"
+                                        viewBox="0 0 1000 200">
+                                        <path d="M0,50 L1000,50 M0,100 L1000,100 M0,150 L1000,150"
+                                            stroke="rgba(255,255,255,0.05)" stroke-width="1"></path>
+                                        <path id="page-views-chart-path" d="" fill="none" filter="drop-shadow(0 0 8px rgba(13,51,242,0.8))"
+                                            stroke="#0d33f2" stroke-width="3"></path>
+                                    </svg>
+                                    <div id="page-views-x-axis"
+                                        class="mt-2 text-[9px] text-slate-500 font-mono flex justify-between px-2 w-full min-h-[14px]">
+                                        <!-- Labels injected by JS -->
+                                    </div>
+                                </div>
+                                <div class="mt-3 pt-3 border-t border-white/10 grid grid-cols-2 gap-4">
+                                    <div>
+                                        <span
+                                            class="text-[10px] text-slate-400 uppercase font-bold tracking-wider mb-1 block">Scrolled
+                                            Users</span>
+                                        <div class="flex items-end gap-2">
+                                            <span id="scrolled-users-value" class="text-lg font-bold text-white">-</span>
+                                            <span id="scrolled-users-trend" data-trend="scrolledUsers"
+                                                class="text-[10px] text-slate-500 font-mono mb-1"></span>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <span
+                                            class="text-[10px] text-slate-400 uppercase font-bold tracking-wider mb-1 flex items-center gap-2">Views
+                                            per User</span>
+                                        <div class="flex items-end gap-2">
+                                            <span id="views-per-user-value" class="text-lg font-bold text-white">-</span>
+                                            <span id="views-per-user-trend" data-trend="viewsPerUser"
+                                                class="text-[10px] text-emerald-400 font-mono mb-1"></span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="section-header">
+                            <h2 class="section-title">Audience</h2>
+                        </div>
+                        <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+                            <div
+                                class="lg:col-span-7 glass-panel rounded-lg p-0 border border-white/10 relative h-[400px] overflow-hidden">
+                                <div class="neon-border-top"></div>
+                                <div class="absolute top-4 left-4 z-20">
+                                    <h3 class="text-[13px] font-bold text-white uppercase tracking-wider mb-1">Global
+                                        Distribution</h3>
+                                </div>
+                                <div class="w-full h-full relative bg-[#010102]" id="world-map-container">
+                                    <div id="jsvectormap-world" style="width:100%; height:100%;"></div>
+
+                                    <!-- 7-Shade Blue Legend -->
+                                    <div
+                                        class="absolute bottom-2 right-2 z-30 flex flex-col items-center gap-1.5 bg-[#010102]/80 backdrop-blur-md px-3 py-2 rounded-lg border border-white/5">
+                                        <div
+                                            class="flex justify-between w-full text-[9px] text-slate-400 font-medium tracking-wide px-0.5">
+                                            <span>Less</span>
+                                            <span>More</span>
+                                        </div>
+                                        <div class="flex gap-1 h-2 rounded-full overflow-hidden" id="map-legend-colors">
+                                            <div id="legend-color-0" class="w-8 h-full bg-[rgba(30,84,255,0.10)]"></div>
+                                            <div id="legend-color-1" class="w-8 h-full bg-[rgba(30,84,255,0.20)]"></div>
+                                            <div id="legend-color-2" class="w-8 h-full bg-[rgba(30,84,255,0.35)]"></div>
+                                            <div id="legend-color-3" class="w-8 h-full bg-[rgba(30,84,255,0.50)]"></div>
+                                            <div id="legend-color-4" class="w-8 h-full bg-[rgba(30,84,255,0.65)]"></div>
+                                            <div id="legend-color-5" class="w-8 h-full bg-[rgba(30,84,255,0.82)]"></div>
+                                            <div id="legend-color-6" class="w-8 h-full bg-[#1E54FF]"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <style>
+                                    .jvm-tooltip {
+                                        pointer-events: none !important;
+                                        background: rgba(0, 0, 0, 0.92) !important;
+                                        border: 1px solid rgba(30, 84, 255, 0.15) !important;
+                                        border-radius: 8px !important;
+                                        padding: 10px 14px !important;
+                                        color: white !important;
+                                        font-family: 'Space Grotesk', sans-serif !important;
+                                        font-size: 11px !important;
+                                        box-shadow: 0 0 12px rgba(30, 84, 255, 0.08) !important;
+                                        backdrop-filter: blur(12px) !important;
+                                        z-index: 100 !important;
+                                    }
+
+                                    #jsvectormap-world .jvm-zoom-btn {
+                                        display: none !important;
+                                    }
+
+                                    #jsvectormap-world svg {
+                                        background: transparent !important;
+                                    }
+                                </style>
+
+                            </div>
+                            <div class="lg:col-span-5 flex flex-col gap-4">
+                                <div class="glass-panel rounded-lg p-4 border border-white/10 relative flex-1">
+                                    <div class="neon-border-top"></div>
+                                    <div class="flex justify-between items-center mb-3">
+                                        <h3 class="text-[11px] font-bold text-white uppercase tracking-wider">Top
+                                            Countries</h3>
+                                    </div>
+                                    <div class="overflow-y-auto max-h-[280px] scrollbar-thin">
+                                        <table class="w-full text-left border-collapse">
+                                            <tbody id="top-countries-list" class="text-[10px] divide-y divide-white/5">
+                                                <tr>
+                                                    <td colspan="2" class="p-4 text-center text-slate-500 italic">
+                                                        Loading
+                                                        countries...</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                                <div class="glass-panel rounded-lg p-4 border border-white/10 relative flex-1">
+                                    <div class="neon-border-top"></div>
+                                    <div class="flex justify-between items-center mb-3">
+                                        <h3 class="text-[11px] font-bold text-white uppercase tracking-wider">Top Cities
+                                        </h3>
+                                    </div>
+                                    <div class="overflow-y-auto max-h-[280px] scrollbar-thin">
+                                        <table class="w-full text-left border-collapse">
+                                            <tbody id="top-cities-list" class="text-[10px] divide-y divide-white/5">
+                                                <tr>
+                                                    <td colspan="2" class="p-4 text-center text-slate-500 italic">
+                                                        Loading
+                                                        cities...</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="section-header">
+                            <h2 class="section-title">Device &amp; Tech</h2>
+                        </div>
+                        <div class="grid grid-cols-1 lg:grid-cols-4 gap-4">
+                            <div
+                                class="glass-panel rounded-lg p-4 border border-white/10 flex flex-col relative h-[250px] items-center justify-center">
+                                <div class="neon-border-top"></div>
+                                <h3
+                                    class="absolute top-4 left-4 text-[13px] font-bold text-white uppercase tracking-wider">
+                                    Device</h3>
+                                <div class="relative w-36 h-36 mt-4 premium-donut">
+                                    <div class="dynamic-pie-chart w-full h-full" data-values="0, 0, 0"
+                                        id="device-pie-chart" data-colors="#0052FF, #ffffff, #93c5fd"
+                                        data-labels="Mobile, Desktop, Tablet">
+                                    </div>
+                                    <div
+                                        class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                                        <span class="text-2xl font-bold text-white"><span
+                                                id="device-dominant-percentage">--</span><span
+                                                class="text-sm">%</span></span>
+                                        <span class="text-[8px] text-slate-400 uppercase tracking-widest mt-0.5"
+                                            id="device-dominant-label">Mobile</span>
+                                    </div>
+                                </div>
+                                <div class="w-full mt-4 flex justify-between px-2 text-[9px] text-slate-300">
+                                    <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 bg-[#0d33f2]"></span>
+                                        Mob <span id="device-mobile-pct">--</span></span>
+                                    <span class="flex items-center gap-1 font-bold text-white"><span
+                                            class="w-1.5 h-1.5 bg-white"></span>
+                                        Desk <span id="device-desktop-pct">--</span></span>
+                                    <span class="flex items-center gap-1 font-bold text-blue-300"><span
+                                            class="w-1.5 h-1.5 bg-blue-300"></span> Tab <span
+                                            id="device-tablet-pct">--</span></span>
+                                </div>
+                            </div>
+                            <div
+                                class="glass-panel rounded-lg p-4 border border-white/10 flex flex-col relative h-[250px] items-center justify-center">
+                                <div class="neon-border-top"></div>
+                                <h3
+                                    class="absolute top-4 left-4 text-[13px] font-bold text-white uppercase tracking-wider">
+                                    Platform</h3>
+                                <div class="relative w-36 h-36 mt-4 premium-donut">
+                                    <div class="dynamic-pie-chart w-full h-full" data-values="0, 0"
+                                        id="platform-pie-chart" data-colors="#0052FF, #ffffff" data-labels="Web, App">
+                                    </div>
+                                    <div
+                                        class="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
+                                        <span class="text-2xl font-bold text-white"><span
+                                                id="platform-dominant-percentage">--</span><span
+                                                class="text-sm">%</span></span>
+                                        <span class="text-[8px] text-slate-400 uppercase tracking-widest mt-0.5"
+                                            id="platform-dominant-label">Web</span>
+                                    </div>
+                                </div>
+                                <div class="w-full mt-4 flex justify-around px-2 text-[9px] text-slate-300">
+                                    <span class="flex items-center gap-1"><span class="w-1.5 h-1.5 bg-[#0d33f2]"></span>
+                                        Web <span id="platform-web-pct">--</span></span>
+                                    <span class="flex items-center gap-1 font-bold text-white"><span
+                                            class="w-1.5 h-1.5 bg-white"></span>
+                                        App <span id="platform-app-pct">--</span></span>
+                                </div>
+                            </div>
+                            <div
+                                class="glass-panel rounded-lg p-4 border border-white/10 flex flex-col relative h-[250px]">
+                                <div class="neon-border-top"></div>
+                                <h3 class="text-[13px] font-bold text-white uppercase tracking-wider mb-4">Browser</h3>
+                                <div id="browser-list" class="flex-1 flex flex-col justify-around">
+                                    <p class="text-[10px] text-slate-500 text-center">Loading hardware data...</p>
+                                </div>
+                            </div>
+                            <div
+                                class="glass-panel rounded-lg p-4 border border-white/10 flex flex-col relative h-[250px]">
+                                <div class="neon-border-top"></div>
+                                <h3 class="text-[13px] font-bold text-white uppercase tracking-wider mb-4">OPERATING
+                                    SYSTEM</h3>
+                                <div id="os-list" class="flex-1 flex flex-col justify-around">
+                                    <p class="text-[10px] text-slate-500 text-center">Syncing...</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="content-section" class="scroll-mt-24">
+                        <div class="section-header">
+                            <h2 class="section-title">Content</h2>
+                        </div>
+                        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+                            <div
+                                class="glass-panel rounded-lg p-4 border border-white/10 relative h-[350px] flex flex-col">
+                                <div class="neon-border-top"></div>
+                                <h3 class="text-[13px] font-bold text-white uppercase tracking-wider mb-4">Page Path
+                                </h3>
+                                <div class="flex-1">
+                                    <table class="w-full text-left border-collapse">
+                                        <thead>
+                                            <tr class="text-[9px] text-slate-500 uppercase border-b border-white/5">
+                                                <th class="pb-2 font-medium">Path</th>
+                                                <th class="pb-2 font-medium text-right">Views</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="page-path-list" class="text-[10px] divide-y divide-white/5">
+                                            <tr>
+                                                <td colspan="2" class="p-8 text-center text-slate-500 italic">Syncing
+                                                    page data...</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="mt-2 pt-2 border-t border-white/5 flex justify-end gap-2 text-[10px]">
+                                    <button id="page-path-prev"
+                                        class="text-slate-400 hover:text-white transition-colors cursor-pointer">&lt;</button>
+                                    <span id="page-path-indicator" class="text-slate-500">1 / 1</span>
+                                    <button id="page-path-next"
+                                        class="text-slate-400 hover:text-white transition-colors cursor-pointer">&gt;</button>
+                                </div>
+                            </div>
+                            <div
+                                class="glass-panel rounded-lg p-4 border border-white/10 relative h-[350px] flex flex-col">
+                                <div class="neon-border-top"></div>
+                                <h3 class="text-[13px] font-bold text-white uppercase tracking-wider mb-4">Landing Page
+                                </h3>
+                                <div class="flex-1">
+                                    <table class="w-full text-left border-collapse">
+                                        <thead>
+                                            <tr class="text-[9px] text-slate-500 uppercase border-b border-white/5">
+                                                <th class="pb-2 font-medium">Path</th>
+                                                <th class="pb-2 font-medium text-right">Sessions</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="landing-page-list" class="text-[10px] divide-y divide-white/5">
+                                            <tr>
+                                                <td colspan="2" class="p-8 text-center text-slate-500 italic">Loading
+                                                    landing pages...</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="mt-2 pt-2 border-t border-white/5 flex justify-end gap-2 text-[10px]">
+                                    <button id="landing-page-prev"
+                                        class="text-slate-400 hover:text-white transition-colors cursor-pointer">&lt;</button>
+                                    <span id="landing-page-indicator" class="text-slate-500">1 / 1</span>
+                                    <button id="landing-page-next"
+                                        class="text-slate-400 hover:text-white transition-colors cursor-pointer">&gt;</button>
+                                </div>
+                            </div>
+                            <div
+                                class="glass-panel rounded-lg p-4 border border-white/10 relative h-[350px] flex flex-col">
+                                <div class="neon-border-top"></div>
+                                <h3 class="text-[13px] font-bold text-white uppercase tracking-wider mb-4">Referrers
+                                </h3>
+                                <div class="flex-1">
+                                    <table class="w-full text-left border-collapse">
+                                        <thead>
+                                            <tr class="text-[9px] text-slate-500 uppercase border-b border-white/5">
+                                                <th class="pb-2 font-medium">Domain</th>
+                                                <th class="pb-2 font-medium text-right">Users</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="referrer-list" class="text-[10px] divide-y divide-white/5">
+                                            <tr>
+                                                <td colspan="2" class="p-8 text-center text-slate-500 italic">Syncing
+                                                    referrers...</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                                <div class="mt-2 pt-2 border-t border-white/5 flex justify-end gap-2 text-[10px]">
+                                    <button id="referrer-prev"
+                                        class="text-slate-400 hover:text-white transition-colors cursor-pointer">&lt;</button>
+                                    <span id="referrer-indicator" class="text-slate-500">1 / 1</span>
+                                    <button id="referrer-next"
+                                        class="text-slate-400 hover:text-white transition-colors cursor-pointer">&gt;</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div>
+                        <div class="section-header">
+                            <h2 class="section-title">Traffic Heatmap</h2>
+                        </div>
+                        <div class="glass-panel rounded-lg p-4 border border-white/10 relative">
+                            <div class="neon-border-top"></div>
+                            <h3 class="text-[13px] font-bold text-white uppercase tracking-wider mb-4">Traffic Calendar</h3>
+
+                            <div class="w-full pt-8">
+                                <div class="pt-2">
+                                    <!-- Month Labels Row -->
+                                    <div id="heatmap-month-labels"
+                                        class="grid grid-cols-[50px_repeat(23,1fr)] gap-0.5 mb-2 h-4 pointer-events-none">
+                                        <div></div>
+                                        <!-- Placeholders for Month labels -->
+                                    </div>
+
+                                    <div class="grid grid-cols-[50px_repeat(23,1fr)] gap-0.5" id="heatmap-grid-7row">
+                                        <!-- Row Labels (Sun-Sat) -->
+                                        <!-- Cells will be dynamically injected here -->
+                                        <div
+                                            class="flex items-center justify-center col-span-24 p-8 text-slate-500 italic text-xs">
+                                            Loading traffic data...
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="flex items-center justify-end gap-2 mt-4 text-[9px] text-slate-400">
+                                <span>Less</span>
+                                <div class="flex gap-0.5 w-24 h-2 rounded overflow-hidden">
+                                    <div class="flex-1 bg-[rgba(30,81,255,0.1)]"></div>
+                                    <div class="flex-1 bg-[rgba(30,81,255,0.3)]"></div>
+                                    <div class="flex-1 bg-[rgba(30,81,255,0.6)]"></div>
+                                    <div class="flex-1 bg-[rgba(30,81,255,1)]"></div>
+                                </div>
+                                <span>More</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <!-- Render Dynamic Pie Charts Script -->
+    <script>
+        window.renderDynamicPies = () => {
+            const charts = document.querySelectorAll('.dynamic-pie-chart');
+            charts.forEach((chart) => {
+                // Clear existing SVG and Tooltip to prevent stacking
+                const existingSvg = chart.querySelector('svg');
+                if (existingSvg) existingSvg.remove();
+
+                const valuesAttr = chart.getAttribute('data-values');
+                const colorsAttr = chart.getAttribute('data-colors');
+                const labelsAttr = chart.getAttribute('data-labels');
+
+                if (!valuesAttr || !colorsAttr) return;
+
+                const values = valuesAttr.split(',').map(v => parseFloat(v.trim()));
+                const colors = colorsAttr.split(',').map(c => c.trim());
+                const labels = labelsAttr ? labelsAttr.split(',').map(l => l.trim()) : [];
+
+                const total = values.reduce((sum, val) => sum + val, 0);
+
+                const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+                svg.setAttribute("class", "w-full h-full transform -rotate-90");
+                svg.setAttribute("viewBox", "0 0 144 144");
+
+                // Base track - always draw this
+                const track = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+                track.setAttribute("cx", "72"); track.setAttribute("cy", "72"); track.setAttribute("r", "60");
+                track.setAttribute("fill", "none"); track.setAttribute("stroke", "rgba(255,255,255,0.05)");
+                track.setAttribute("stroke-width", "12");
+                svg.appendChild(track);
+
+                if (total === 0) {
+                    chart.appendChild(svg);
+                    return;
+                }
+
+                // Shared Tooltip Element
+                let tooltip = document.querySelector('.dynamic-pie-tooltip');
+                if (!tooltip) {
+                    tooltip = document.createElement('div');
+                    tooltip.className = 'dynamic-pie-tooltip fixed pointer-events-none opacity-0 transition-opacity duration-200 bg-black/80 backdrop-blur-md border border-white/10 p-2 rounded-lg shadow-xl z-[99999] flex items-center gap-2 whitespace-nowrap';
+                    tooltip.style.transform = 'translate(-50%, -100%)';
+                    document.body.appendChild(tooltip);
+                }
+
+                let currentOffsetPercentage = 0;
+                const circumference = 2 * Math.PI * 60;
+
+                values.forEach((val, index) => {
+                    const proportion = val / total;
+                    const dasharray = `${proportion * circumference} ${circumference}`;
+                    const dashoffset = -(currentOffsetPercentage * circumference);
+
+                    const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+                    circle.setAttribute("cx", "72"); circle.setAttribute("cy", "72"); circle.setAttribute("r", "60");
+                    circle.setAttribute("fill", "none"); circle.setAttribute("stroke-width", "12");
+                    circle.style.pointerEvents = "stroke";
+
+                    const color = colors[index % colors.length];
+                    circle.setAttribute("stroke", color);
+                    circle.setAttribute("stroke-dasharray", dasharray);
+                    circle.setAttribute("stroke-dashoffset", dashoffset);
+                    circle.style.transition = 'stroke-width 0.2s, stroke-opacity 0.2s';
+                    circle.style.cursor = 'pointer';
+
+                    const labelText = labels[index] || `Segment ${index + 1}`;
+                    const percentageText = ((val / total) * 100).toFixed(1) + '%';
+
+                    circle.addEventListener('mouseenter', (e) => {
+                        circle.setAttribute("stroke-width", "14");
+                        tooltip.innerHTML = `
+                            <span class="w-2 h-2 rounded-full" style="background-color: ${color};"></span>
+                            <span class="text-xs text-slate-300">${labelText}:</span>
+                            <span class="text-xs font-bold text-white">${percentageText}</span>
+                        `;
+                        tooltip.style.opacity = '1';
+                    });
+
+                    circle.addEventListener('mousemove', (e) => {
+                        tooltip.style.left = `${e.clientX}px`;
+                        tooltip.style.top = `${e.clientY - 10}px`;
+                    });
+
+                    circle.addEventListener('mouseleave', () => {
+                        circle.setAttribute("stroke-width", "12");
+                        tooltip.style.opacity = '0';
+                    });
+
+                    svg.appendChild(circle);
+                    currentOffsetPercentage += proportion;
+                });
+
+                chart.appendChild(svg);
+            });
+        };
+        document.addEventListener('DOMContentLoaded', window.renderDynamicPies);
+
+        // Handle initial hash scroll for overflowing main element
+        window.addEventListener('load', () => {
+            if (window.location.hash) {
+                const id = window.location.hash.substring(1);
+                const element = document.getElementById(id);
+                if (element) {
+                    const mainElement = document.querySelector('main');
+                    if (mainElement) {
+                        // Small timeout to ensure any dynamic layout is fairly stable
+                        setTimeout(() => {
+                            element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        }, 100);
+                    }
+                }
+            }
+        });
+    </script>
+    <script src="dashboard_ui.js"></script>
+    <script src="dashboard_data.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,26 @@
+[dotenv@17.3.1] injecting env (3) from .env -- tip: 🛠️  run anywhere with `dotenvx run -- yourcommand`
+Analytics API proxy server running on http://localhost:3000
+[SERVER] GA4 Request for period: 30days
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
+[DIAGNOSTIC] Row Date: 20260303, Data: {"sessions":6,"users":4,"views":12,"scrolledUsers":4}
+[DIAGNOSTIC] Row Date: 20260307, Data: {"sessions":3,"users":3,"views":14,"scrolledUsers":3}
+[DIAGNOSTIC] Row Date: 20260308, Data: {"sessions":3,"users":2,"views":33,"scrolledUsers":1}
+[DIAGNOSTIC] Row Date: 20260309, Data: {"sessions":1,"users":1,"views":11,"scrolledUsers":1}
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 30
+[SERVER] Current Totals: {
+  "totalUsers": 5,
+  "totalSessions": 7,
+  "avgBounce": 0.2857142857142857,
+  "avgDuration": 123.07098985714286,
+  "totalNewUsers": 5,
+  "userEngagementDuration": 808,
+  "avgUserDuration": 161.6,
+  "screenPageViews": 58,
+  "scrolledUsers": 5,
+  "screenPageViewsPerUser": 11.6
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
+[DIAGNOSTIC] Row Date: 20260303, Data: {"sessions":0,"users":0,"views":12,"scrolledUsers":4}
+[DIAGNOSTIC] Row Date: 20260307, Data: {"sessions":0,"users":0,"views":14,"scrolledUsers":3}
+[DIAGNOSTIC] Row Date: 20260308, Data: {"sessions":0,"users":0,"views":33,"scrolledUsers":1}
+[DIAGNOSTIC] Row Date: 20260309, Data: {"sessions":0,"users":0,"views":11,"scrolledUsers":1}

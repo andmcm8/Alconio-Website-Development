@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Alconio | Bespoke Digital Pricing</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+        rel="stylesheet" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0e00a3",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#02010A",
+                        "card-dark": "#0b0a1a",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "0.5rem",
+                        "lg": "1rem",
+                        "xl": "1.5rem",
+                        "full": "9999px"
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        .glass-card {
+            background: rgba(11, 10, 26, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(14, 0, 163, 0.2);
+            transition: all 0.3s ease;
+        }
+
+        .glass-card:hover {
+            border-color: rgba(14, 0, 163, 0.6);
+            box-shadow: 0 0 30px rgba(14, 0, 163, 0.15);
+            transform: translateY(-4px);
+        }
+
+        .glow-bg {
+            background: radial-gradient(circle at 50% -20%, rgba(14, 0, 163, 0.15), transparent 70%);
+        }
+
+        .apple-table tr {
+            border-bottom: 1px solid rgba(60, 57, 86, 0.3);
+        }
+
+        .apple-table tr:last-child {
+            border-bottom: none;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+
+    <!-- Global sizing overrides -->
+    <style>
+        html {
+            font-size: 18px;
+        }
+
+        .max-w-7xl {
+            max-width: 100% !important;
+        }
+
+        .max-w-4xl {
+            max-width: 90% !important;
+        }
+
+        .max-w-3xl {
+            max-width: 85% !important;
+        }
+
+        .max-w-2xl {
+            max-width: 80% !important;
+        }
+
+        .px-6 {
+            padding-left: 3rem !important;
+            padding-right: 3rem !important;
+        }
+
+        .px-4 {
+            padding-left: 2rem !important;
+            padding-right: 2rem !important;
+        }
+    </style>
+
+</head>
+
+<body
+    class="bg-background-light dark:bg-background-dark font-display text-slate-900 dark:text-white selection:bg-primary/30">
+    <nav class="sticky top-0 z-50 w-full border-b border-white/5 bg-background-dark/80 backdrop-blur-md">
+        <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+            <div class="flex items-center gap-2">
+                <a href="index.html" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
+                    <span class="text-xl font-bold tracking-tight text-white font-display">ALCONIO</span>
+                </a>
+            </div>
+            <div class="hidden items-center gap-8 md:flex">
+                <a class="text-sm font-medium text-slate-400 transition-colors hover:text-white"
+                    href="services.html">Services</a>
+                <a class="text-sm font-medium text-slate-400 transition-colors hover:text-white"
+                    href="our-work.html">Our Work</a>
+                <a class="text-sm font-medium text-slate-400 transition-colors hover:text-white" href="about.html">About
+                    Us</a>
+                <a class="text-sm font-medium text-white transition-colors" href="pricing.html">Pricing</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="dashboard_signin.html">
+                    <button
+                        class="rounded-full bg-white/10 px-4 py-2 text-sm font-bold text-white transition-all hover:bg-white/20 border border-white/10 hover:border-white/30">
+                        Client Dashboard
+                    </button>
+                </a>
+                <a href="contact.html">
+                    <button
+                        class="rounded-full bg-primary px-6 py-2 text-sm font-bold text-white transition-all hover:bg-primary/80 hover:shadow-[0_0_20px_rgba(14,0,163,0.4)]">
+                        Get Started
+                    </button>
+                </a>
+                <button class="md:hidden text-white" aria-label="Open menu">
+                    <span class="material-symbols-outlined">menu</span>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="glow-bg relative min-h-screen overflow-hidden">
+        <!-- Background Accents -->
+        <div class="absolute -top-24 left-1/2 h-96 w-96 -translate-x-1/2 rounded-full bg-primary/10 blur-[120px]"></div>
+        <!-- Hero Section -->
+        <section class="relative px-6 py-20 text-center">
+            <div class="mx-auto max-w-3xl">
+                <span
+                    class="mb-4 inline-block rounded-full border border-primary/30 bg-primary/10 px-4 py-1 text-xs font-bold uppercase tracking-widest text-primary">Pricing
+                    Plans</span>
+                <h1 class="mb-6 text-5xl font-bold leading-tight tracking-tight text-white md:text-6xl">
+                    Elevate Your Digital Presence
+                </h1>
+                <p class="text-lg text-slate-400">
+                    Choose the perfect plan for your business goals. High-end, bespoke digital solutions tailored to
+                    your specific technical needs.
+                </p>
+            </div>
+        </section>
+        <!-- Pricing Cards Section -->
+        <section class="relative mx-auto max-w-7xl px-6 pb-24">
+            <div class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-4">
+                <!-- Standard Card -->
+                <div class="glass-card flex flex-col rounded-xl p-8">
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold text-white">Standard</h3>
+                        <div class="mt-4 flex items-baseline gap-1">
+                            <span class="text-sm text-slate-400">Starting at</span>
+                            <span class="text-4xl font-black text-white">$1300</span>
+                        </div>
+                    </div>
+                    <button
+                        class="mb-8 w-full rounded-lg bg-white/5 py-3 text-sm font-bold text-white transition-all hover:bg-white/10">
+                        Select Standard
+                    </button>
+                    <ul class="flex flex-col gap-4">
+                        <li class="flex items-start gap-3 text-sm text-slate-300">
+                            <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                            Fully custom design
+                        </li>
+                        <li class="flex items-start gap-3 text-sm text-slate-300">
+                            <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                            7-10 pages
+                        </li>
+                        <li class="flex items-start gap-3 text-sm text-slate-300">
+                            <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                            Mobile responsive
+                        </li>
+                        <li class="flex items-start gap-3 text-sm text-slate-300">
+                            <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                            SEO optimization
+                        </li>
+                        <li class="flex items-start gap-3 text-sm text-slate-300">
+                            <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                            1 round of revisions
+                        </li>
+                    </ul>
+                </div>
+                <!-- Premium Card -->
+                <div
+                    class="glass-card relative flex flex-col rounded-xl border-primary/40 p-8 shadow-[0_0_40px_rgba(14,0,163,0.1)]">
+                    <div
+                        class="absolute -top-3 left-1/2 -translate-x-1/2 rounded-full bg-primary px-3 py-1 text-[10px] font-bold uppercase tracking-widest text-white">
+                        Most Popular</div>
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold text-white">Premium</h3>
+                        <div class="mt-4 flex items-baseline gap-1">
+                            <span class="text-sm text-slate-400">Starting at</span>
+                            <span class="text-4xl font-black text-white">$1800</span>
+                        </div>
+                    </div>
+                    <button
+                        class="mb-8 w-full rounded-lg bg-primary py-3 text-sm font-bold text-white transition-all hover:bg-primary/80">
+                        Select Premium
+                    </button>
+                    <ul class="flex flex-col gap-4">
+                        <li class="flex items-start gap-3 text-sm font-semibold text-white">
+                            Everything in Standard
+                        </li>
+                        <li class="flex items-start gap-3 text-sm text-slate-300">
+                            <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                            CMS capability
+                        </li>
+                        <li class="flex items-start gap-3 text-sm text-slate-300">
+                            <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                            Analytics integration
+                        </li>
+                        <li class="flex items-start gap-3 text-sm text-slate-300">
+                            <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                            Light e-commerce (10 items)
+                        </li>
+                        <li class="flex items-start gap-3 text-sm text-slate-300">
+                            <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                            2 rounds of revisions
+                        </li>
+                    </ul>
+                </div>
+                <!-- E-commerce Card -->
+                <div class="glass-card flex flex-col rounded-xl p-8">
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold text-white">E-commerce</h3>
+                        <div class="mt-4 flex items-baseline gap-1">
+                            <span class="text-sm text-slate-400">Starting at</span>
+                            <span class="text-4xl font-black text-white">$2500</span>
+                        </div>
+                    </div>
+                    <button
+                        class="mb-8 w-full rounded-lg bg-white/5 py-3 text-sm font-bold text-white transition-all hover:bg-white/10">
+                        Select E-commerce
+                    </button>
+                    <ul class="flex flex-col gap-4">
+                        <li class="flex items-start gap-3 text-sm font-semibold text-white">
+                            Everything in Premium
+                        </li>
+                        <li class="flex items-start gap-3 text-sm text-slate-300">
+                            <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                            Full-scale store (100+)
+                        </li>
+                        <li class="flex items-start gap-3 text-sm text-slate-300">
+                            <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                            Advanced inventory
+                        </li>
+                        <li class="flex items-start gap-3 text-sm text-slate-300">
+                            <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                            Shipping integrations
+                        </li>
+                        <li class="flex items-start gap-3 text-sm text-slate-300">
+                            <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                            Product reviews
+                        </li>
+                    </ul>
+                </div>
+                <!-- Custom Card -->
+                <div class="glass-card flex flex-col rounded-xl p-8">
+                    <div class="mb-8">
+                        <h3 class="text-xl font-bold text-white">Custom</h3>
+                        <div class="mt-4 flex items-baseline gap-1">
+                            <span class="text-sm text-slate-400">Starting at</span>
+                            <span class="text-4xl font-black text-white">$3500+</span>
+                        </div>
+                    </div>
+                    <button
+                        class="mb-8 w-full rounded-lg bg-white/5 py-3 text-sm font-bold text-white transition-all hover:bg-white/10">
+                        Contact Us
+                    </button>
+                    <ul class="flex flex-col gap-4">
+                        <li class="flex items-start gap-3 text-sm text-slate-300">
+                            <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                            Enterprise solutions
+                        </li>
+                        <li class="flex items-start gap-3 text-sm text-slate-300">
+                            <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                            Complex architecture
+                        </li>
+                        <li class="flex items-start gap-3 text-sm text-slate-300">
+                            <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                            Dedicated support
+                        </li>
+                        <li class="flex items-start gap-3 text-sm text-slate-300">
+                            <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                            Unlimited revisions
+                        </li>
+                        <li class="flex items-start gap-3 text-sm text-slate-300">
+                            <span class="material-symbols-outlined text-primary text-lg">check_circle</span>
+                            Full security audit
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+        <!-- Detailed Comparison Section -->
+        <section class="mx-auto max-w-7xl px-6 pb-32">
+            <h2 class="mb-12 text-center text-3xl font-bold text-white">Compare All Features</h2>
+            <div class="overflow-x-auto rounded-xl border border-white/5 bg-card-dark/40 backdrop-blur-sm">
+                <table class="apple-table w-full text-left">
+                    <thead>
+                        <tr class="bg-white/5">
+                            <th class="px-6 py-5 text-sm font-bold text-slate-300 uppercase tracking-widest">Feature Set
+                            </th>
+                            <th class="px-6 py-5 text-sm font-bold text-white text-center">Standard</th>
+                            <th class="px-6 py-5 text-sm font-bold text-white text-center">Premium</th>
+                            <th class="px-6 py-5 text-sm font-bold text-white text-center">E-commerce</th>
+                            <th class="px-6 py-5 text-sm font-bold text-white text-center">Custom</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-slate-400">
+                        <!-- Design Category -->
+                        <tr class="bg-white/[0.02]">
+                            <td class="px-6 py-3 text-xs font-bold text-primary uppercase" colspan="5">Design &amp;
+                                Experience</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 text-sm font-medium text-white">Custom UI Design</td>
+                            <td class="px-6 py-4 text-center"><span
+                                    class="material-symbols-outlined text-primary">done</span></td>
+                            <td class="px-6 py-4 text-center"><span
+                                    class="material-symbols-outlined text-primary">done</span></td>
+                            <td class="px-6 py-4 text-center"><span
+                                    class="material-symbols-outlined text-primary">done</span></td>
+                            <td class="px-6 py-4 text-center"><span
+                                    class="material-symbols-outlined text-primary">done</span></td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 text-sm font-medium text-white">Page Limit</td>
+                            <td class="px-6 py-4 text-center text-sm">7-10</td>
+                            <td class="px-6 py-4 text-center text-sm">20</td>
+                            <td class="px-6 py-4 text-center text-sm">Unlimited</td>
+                            <td class="px-6 py-4 text-center text-sm">Bespoke</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 text-sm font-medium text-white">Mobile Optimized</td>
+                            <td class="px-6 py-4 text-center"><span
+                                    class="material-symbols-outlined text-primary">done</span></td>
+                            <td class="px-6 py-4 text-center"><span
+                                    class="material-symbols-outlined text-primary">done</span></td>
+                            <td class="px-6 py-4 text-center"><span
+                                    class="material-symbols-outlined text-primary">done</span></td>
+                            <td class="px-6 py-4 text-center"><span
+                                    class="material-symbols-outlined text-primary">done</span></td>
+                        </tr>
+                        <!-- Functionality Category -->
+                        <tr class="bg-white/[0.02]">
+                            <td class="px-6 py-3 text-xs font-bold text-primary uppercase" colspan="5">Advanced Features
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 text-sm font-medium text-white">CMS Integration</td>
+                            <td class="px-6 py-4 text-center text-sm">Optional</td>
+                            <td class="px-6 py-4 text-center"><span
+                                    class="material-symbols-outlined text-primary">done</span></td>
+                            <td class="px-6 py-4 text-center"><span
+                                    class="material-symbols-outlined text-primary">done</span></td>
+                            <td class="px-6 py-4 text-center"><span
+                                    class="material-symbols-outlined text-primary">done</span></td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 text-sm font-medium text-white">E-commerce Tools</td>
+                            <td class="px-6 py-4 text-center text-sm">—</td>
+                            <td class="px-6 py-4 text-center text-sm">Light</td>
+                            <td class="px-6 py-4 text-center text-sm">Full Suite</td>
+                            <td class="px-6 py-4 text-center text-sm">Custom</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 text-sm font-medium text-white">Complex Portals</td>
+                            <td class="px-6 py-4 text-center text-sm">—</td>
+                            <td class="px-6 py-4 text-center text-sm">Basic</td>
+                            <td class="px-6 py-4 text-center text-sm">Advanced</td>
+                            <td class="px-6 py-4 text-center text-sm">Enterprise</td>
+                        </tr>
+                        <!-- Strategy Category -->
+                        <tr class="bg-white/[0.02]">
+                            <td class="px-6 py-3 text-xs font-bold text-primary uppercase" colspan="5">Strategy &amp;
+                                Growth</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 text-sm font-medium text-white">SEO Optimization</td>
+                            <td class="px-6 py-4 text-center text-sm">Basic</td>
+                            <td class="px-6 py-4 text-center text-sm">Advanced</td>
+                            <td class="px-6 py-4 text-center text-sm">Advanced</td>
+                            <td class="px-6 py-4 text-center text-sm">Tailored</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 text-sm font-medium text-white">Support Level</td>
+                            <td class="px-6 py-4 text-center text-sm">Email</td>
+                            <td class="px-6 py-4 text-center text-sm">Priority</td>
+                            <td class="px-6 py-4 text-center text-sm">24/7 Chat</td>
+                            <td class="px-6 py-4 text-center text-sm">Dedicated</td>
+                        </tr>
+                        <tr>
+                            <td class="px-6 py-4 text-sm font-medium text-white">Revision Cycles</td>
+                            <td class="px-6 py-4 text-center text-sm">1 Round</td>
+                            <td class="px-6 py-4 text-center text-sm">2 Rounds</td>
+                            <td class="px-6 py-4 text-center text-sm">3 Rounds</td>
+                            <td class="px-6 py-4 text-center text-sm">Unlimited</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </main>
+    <!-- Footer -->
+    <!-- Standardized Footer -->
+    <footer class="bg-background-dark py-20 px-6 border-t border-white/5">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
+            <div class="col-span-1 md:col-span-1">
+                <div class="flex items-center gap-3 mb-6">
+                    <a href="index.html" class="flex items-center gap-3">
+                        <img src="alconio-logo.png" alt="Alconio Logo" class="h-6 w-auto" />
+                        <h2 class="text-lg font-bold tracking-tighter">ALCONIO</h2>
+                    </a>
+                </div>
+                <p class="text-gray-500 text-sm leading-relaxed mb-6">Building next-generation digital experiences
+                    through intelligence and automation.</p>
+                <div class="flex items-center gap-4">
+                    <a class="text-gray-500 hover:text-white transition-colors" href="#" aria-label="Email"><span
+                            class="material-symbols-outlined">alternate_email</span></a>
+                    <a class="text-gray-500 hover:text-white transition-colors" href="#" aria-label="Website"><span
+                            class="material-symbols-outlined">public</span></a>
+                    <a class="text-gray-500 hover:text-white transition-colors" href="#" aria-label="Community"><span
+                            class="material-symbols-outlined">groups</span></a>
+                </div>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 text-white">Services</h4>
+                <ul class="space-y-4 text-gray-500 text-sm">
+                    <li><a class="hover:text-primary transition-colors" href="services.html">Web Development</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="services.html">AI &amp; Automation</a>
+                    </li>
+                    <li><a class="hover:text-primary transition-colors" href="services.html">Cloud Architecture</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="services.html">Tech Consulting</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 text-white">Company</h4>
+                <ul class="space-y-4 text-gray-500 text-sm">
+                    <li><a class="hover:text-primary transition-colors" href="about.html">About Us</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="our-work.html">Our Work</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="pricing.html">Pricing</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="contact.html">Contact</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="font-bold mb-6 text-white">Newsletter</h4>
+                <p class="text-sm text-gray-500 mb-4">Get the latest insights on tech and AI.</p>
+                <form class="flex gap-2">
+                    <input
+                        class="bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-primary w-full"
+                        placeholder="Email address" type="email" aria-label="Email address" />
+                    <button class="bg-primary p-2 rounded-lg hover:bg-primary/80 transition-colors"
+                        aria-label="Subscribe">
+                        <span class="material-symbols-outlined text-sm">send</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div
+            class="max-w-7xl mx-auto border-t border-white/5 mt-16 pt-8 flex flex-col md:flex-row justify-between text-gray-600 text-xs gap-4">
+            <p>&copy; 2025 ALCONIO. All rights reserved.</p>
+            <div class="flex gap-6">
+                <a class="hover:text-white transition-colors" href="#">Privacy Policy</a>
+                <a class="hover:text-white transition-colors" href="#">Terms of Service</a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

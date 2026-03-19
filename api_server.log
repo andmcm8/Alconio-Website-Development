@@ -1,0 +1,2169 @@
+[dotenv@17.3.1] injecting env (13) from .env -- tip: ⚙️  suppress all logs with { quiet: true }
+Analytics API proxy server running on http://localhost:3000
+[SERVER] Database initialization failed: connect ECONNREFUSED 127.0.0.1:3306
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: today
+[GA4] Retention report success
+[SERVER] fillGaps for "today" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "today" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 30days
+[SERVER] Heatmap request for property: 526584649
+[SERVER] Heatmap success: 6 days
+[GA4] Retention report success
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[CRON] Running Website Health Check...
+[CRON] Health Check Failed: connect ECONNREFUSED 127.0.0.1:3306
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 30days
+[GA4] Retention report success
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: today
+[GA4] Retention report success
+[SERVER] fillGaps for "today" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "today" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: today
+[GA4] Retention report success
+[SERVER] fillGaps for "today" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "today" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 30days
+[GA4] Retention report success
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: today
+[SERVER] GA4 Request for period: 30days
+[SERVER] Heatmap request for property: 526584649
+[SERVER] Heatmap success: 6 days
+[GA4] Retention report success
+[SERVER] fillGaps for "today" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "today" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 30days
+[SERVER] Heatmap request for property: 526584649
+[SERVER] Heatmap success: 6 days
+[SERVER] GA4 Request for period: 30days
+[SERVER] Heatmap request for property: 526584649
+[SERVER] Heatmap success: 6 days
+[SERVER] GA4 Request for period: 30days
+[SERVER] Heatmap request for property: 526584649
+[SERVER] Heatmap success: 6 days
+[SERVER] GA4 Request for period: 30days
+[SERVER] Heatmap request for property: 526584649
+[SERVER] Heatmap success: 6 days
+[GA4] Retention report success
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 30days
+[SERVER] Heatmap request for property: 526584649
+[SERVER] Heatmap success: 6 days
+[GA4] Retention report success
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 30days
+[SERVER] Heatmap request for property: 526584649
+[SERVER] Heatmap success: 6 days
+[GA4] Retention report success
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[GA4] Retention report success
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] Current Totals: {
+  "totalUsers": 2,
+  "totalSessions": 2,
+  "avgBounce": 0.5,
+  "avgDuration": 62.270184,
+  "totalNewUsers": 2,
+  "userEngagementDuration": 117,
+  "avgUserDuration": 58.5,
+  "screenPageViews": 15,
+  "scrolledUsers": 1,
+  "screenPageViewsPerUser": 7.5
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[2026-03-17T19:42:07.065Z] [PID: 92322] [32m[NODE-CRON][32m [33m[WARN][0m missed execution at Tue Mar 17 2026 15:25:00 GMT-0400 (Eastern Daylight Time)! Possible blocking IO or high CPU user at the same process used by node-cron.
+[2026-03-17T19:58:39.956Z] [PID: 92322] [32m[NODE-CRON][32m [33m[WARN][0m missed execution at Tue Mar 17 2026 15:50:00 GMT-0400 (Eastern Daylight Time)! Possible blocking IO or high CPU user at the same process used by node-cron.
+[2026-03-17T20:15:12.642Z] [PID: 92322] [32m[NODE-CRON][32m [33m[WARN][0m missed execution at Tue Mar 17 2026 16:00:00 GMT-0400 (Eastern Daylight Time)! Possible blocking IO or high CPU user at the same process used by node-cron.
+[2026-03-17T21:20:33.087Z] [PID: 92322] [32m[NODE-CRON][32m [33m[WARN][0m missed execution at Tue Mar 17 2026 16:25:00 GMT-0400 (Eastern Daylight Time)! Possible blocking IO or high CPU user at the same process used by node-cron.
+[2026-03-17T21:20:33.121Z] [PID: 92322] [32m[NODE-CRON][32m [33m[WARN][0m missed execution at Tue Mar 17 2026 16:50:00 GMT-0400 (Eastern Daylight Time)! Possible blocking IO or high CPU user at the same process used by node-cron.
+[2026-03-17T21:20:33.122Z] [PID: 92322] [32m[NODE-CRON][32m [33m[WARN][0m missed execution at Tue Mar 17 2026 17:00:00 GMT-0400 (Eastern Daylight Time)! Possible blocking IO or high CPU user at the same process used by node-cron.

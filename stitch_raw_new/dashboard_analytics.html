@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Alconio Dashboard - Detailed Analytics</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "electric-blue": "#0052FF",
+                        "electric-blue-light": "#3374ff",
+                        "obsidian": "#000000",
+                        "obsidian-panel": "#050508",
+                        "glass-border": "rgba(0, 82, 255, 0.3)",
+                        "glass-highlight": "rgba(255, 255, 255, 0.15)",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Space Grotesk", "sans-serif"]
+                    },
+                    boxShadow: {
+                        'neon-blue': '0 0 20px rgba(0, 82, 255, 0.4), inset 0 0 10px rgba(0, 82, 255, 0.1)',
+                        'neon-white': '0 0 15px rgba(255, 255, 255, 0.3)',
+                        'glass-edge': 'inset 1px 1px 0 0 rgba(255, 255, 255, 0.2), inset -1px -1px 0 0 rgba(0, 0, 0, 0.5)',
+                        'header-glow': '0 4px 30px rgba(0, 0, 0, 0.8), 0 1px 0 rgba(0, 82, 255, 0.5)',
+                        'icon-glass': '0 4px 12px rgba(0,0,0,0.3), inset 0 1px 0 rgba(255,255,255,0.15)',
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        ::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #000000; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #1e1e24; 
+            border-radius: 3px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #0052FF; 
+        }
+        .glass-panel {
+            background: linear-gradient(160deg, rgba(10, 10, 15, 0.85) 0%, rgba(0, 0, 0, 0.95) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 82, 255, 0.15);
+            border-top: 1px solid rgba(100, 150, 255, 0.3);
+            border-left: 1px solid rgba(100, 150, 255, 0.3);
+            box-shadow: 
+                0 0 30px rgba(0, 0, 0, 0.8),
+                inset 0 0 20px rgba(0, 82, 255, 0.03);
+            position: relative;
+            overflow: hidden;
+        }
+        .glass-panel::before {
+            content: '';
+            position: absolute;
+            top: -50px;
+            left: -50px;
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.2) 0%, transparent 70%);
+            filter: blur(20px);
+            opacity: 0.6;
+            pointer-events: none;
+            z-index: 1;
+        }
+        .glass-panel::after {
+            content: '';
+            position: absolute;
+            bottom: -50px;
+            right: -50px;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(0, 82, 255, 0.15) 0%, transparent 70%);
+            filter: blur(30px);
+            pointer-events: none;
+            z-index: 1;
+        }
+        .glass-card {
+            background: linear-gradient(135deg, rgba(15, 20, 35, 0.9) 0%, rgba(5, 5, 8, 0.95) 100%);
+            border: 1px solid rgba(0, 82, 255, 0.2);
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-left: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.9), inset 0 0 30px rgba(0, 82, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover {
+            box-shadow: 0 0 25px rgba(0, 82, 255, 0.25), inset 0 0 20px rgba(0, 82, 255, 0.1);
+            border-color: rgba(0, 82, 255, 0.5);
+            transform: translateY(-2px);
+        }
+        .active-nav-item {
+            background: linear-gradient(90deg, rgba(0, 82, 255, 0.2) 0%, rgba(0, 0, 0, 0) 100%);
+            border-left: 3px solid #0052FF;
+            box-shadow: inset 10px 0 20px -10px rgba(0, 82, 255, 0.3);
+        }
+        .neon-text {
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.5), 0 0 20px rgba(0, 82, 255, 0.5);
+        }
+        .neon-text-blue {
+            color: #0052FF;
+            text-shadow: 0 0 10px rgba(0, 82, 255, 0.8);
+        }
+        .neon-border-top {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(0, 82, 255, 1), transparent);
+            opacity: 0.6;
+        }
+        tr.group:hover td {
+            background: rgba(0, 82, 255, 0.05);
+        }
+        .header-glass {
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);box-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
+        }
+        .sidebar-header-area {
+            height: 72px;display: flex;
+            align-items: center;
+        }
+        .pill-tag {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: inset 0 0 10px rgba(255,255,255,0.02);
+            backdrop-filter: blur(5px);
+        }
+        .icon-glass-container {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0.02) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.5), inset 0 0 15px rgba(0, 82, 255, 0.1);
+            backdrop-filter: blur(8px);
+        }
+        .icon-glass-container:hover {
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.12) 0%, rgba(255, 255, 255, 0.05) 100%);
+            box-shadow: 0 0 15px rgba(0, 82, 255, 0.3), inset 0 0 20px rgba(0, 82, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+        .profile-glass-pill {
+            background: linear-gradient(135deg, rgba(20, 20, 25, 0.8) 0%, rgba(5, 5, 8, 0.9) 100%);
+            border: 1px solid rgba(0, 82, 255, 0.3);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.6), inset 0 0 15px rgba(0, 82, 255, 0.15);
+            backdrop-filter: blur(12px);
+        }
+        .profile-glass-pill:hover {
+            background: linear-gradient(135deg, rgba(30, 30, 40, 0.9) 0%, rgba(10, 10, 15, 0.95) 100%);
+            box-shadow: 0 0 20px rgba(0, 82, 255, 0.3), inset 0 0 25px rgba(0, 82, 255, 0.2);
+            border-color: rgba(0, 82, 255, 0.5);
+        }
+        .mini-spark {
+            filter: drop-shadow(0 0 4px rgba(0,82,255,0.6));
+        }
+        .micro-card {
+            background: linear-gradient(135deg, rgba(15, 20, 35, 0.7) 0%, rgba(5, 5, 8, 0.8) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-left: 1px solid rgba(255, 255, 255, 0.15);
+            border-top: 1px solid rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+        .micro-card:hover {
+            background: linear-gradient(135deg, rgba(20, 25, 45, 0.8) 0%, rgba(10, 10, 15, 0.9) 100%);
+            border-color: rgba(0, 82, 255, 0.4);
+            box-shadow: 0 0 15px rgba(0, 82, 255, 0.15);
+        }
+        .tooltip-custom {
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.2s ease;
+        }
+        .group:hover .tooltip-custom {
+            opacity: 1;
+            visibility: visible;
+        }
+        .progress-ring__circle {
+            transition: stroke-dashoffset 0.35s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+        .device-box {
+            background: linear-gradient(145deg, rgba(10, 10, 15, 0.9) 0%, rgba(5, 5, 10, 0.95) 100%);
+            box-shadow: 0 0 25px rgba(0, 82, 255, 0.15), inset 0 0 40px rgba(0, 82, 255, 0.1);
+        }
+        .housed-profile-container {
+            display: flex;
+            align-items: center;
+            background: rgba(10, 10, 14, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 9999px;
+            padding: 4px;
+            padding-right: 16px;
+            backdrop-filter: blur(8px);
+            transition: border-color 0.2s;
+        }
+        .housed-profile-container:hover {
+            border-color: rgba(0, 82, 255, 0.3);
+            background: rgba(15, 15, 22, 0.8);
+        }
+        .unified-header-line {
+            position: fixed;top: 72px;
+            left: 0;
+            width: 100vw;height: 1px;
+            background: rgba(0, 82, 255, 0.15);
+            box-shadow: 0 0 2px rgba(0, 82, 255, 0.1);
+            z-index: 9999;pointer-events: none;
+        }
+        .sidebar-divider-line {
+            position: fixed;
+            top: 0;
+            left: 18rem;width: 1px;
+            height: 100vh;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.05), rgba(0, 82, 255, 0.9), rgba(255,255,255,0.05));
+            box-shadow: 0 0 12px rgba(0, 82, 255, 0.5);
+            z-index: 40;
+            pointer-events: none;
+        }
+        .map-dot {
+            animation: pulse-dot 2s infinite;
+        }
+        @keyframes pulse-dot {
+            0% { transform: scale(1); opacity: 0.8; box-shadow: 0 0 0 0 rgba(0, 82, 255, 0.7); }
+            70% { transform: scale(1.5); opacity: 0; box-shadow: 0 0 0 10px rgba(0, 82, 255, 0); }
+            100% { transform: scale(1); opacity: 0; }
+        }
+    </style>
+</head>
+<body class="bg-obsidian text-slate-200 font-display antialiased overflow-x-hidden selection:bg-electric-blue selection:text-white">
+<div class="flex h-screen w-full overflow-hidden relative">
+<div class="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
+<div class="absolute top-[-20%] left-[20%] w-[60%] h-[60%] bg-[#0052FF] opacity-[0.06] rounded-full blur-[150px]"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-[#0052FF] opacity-[0.04] rounded-full blur-[120px]"></div>
+</div>
+<div class="unified-header-line"></div>
+<div class="sidebar-divider-line"></div>
+<aside class="relative z-30 w-72 h-full glass-panel flex flex-col border-r-0 hidden md:flex shrink-0">
+<div class="sidebar-header-area px-6 shrink-0">
+<div class="flex items-center justify-between w-full h-full">
+<h1 class="text-2xl font-bold tracking-tight text-white pl-1" style="letter-spacing: -0.02em;">ALCONIO</h1>
+<button class="w-8 h-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition-all border border-transparent hover:border-white/10 group">
+<span class="material-symbols-outlined text-lg group-hover:text-electric-blue transition-colors">keyboard_tab_rtl</span>
+</button>
+</div>
+</div>
+<nav class="flex-1 overflow-y-auto px-4 space-y-2 relative z-10 pt-6">
+<a class="flex items-center justify-between px-4 py-3 rounded-lg hover:bg-white/5 hover:text-white group transition-all duration-300 text-slate-400" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined group-hover:text-electric-blue transition-colors">dashboard</span>
+<span class="text-sm font-medium">Overview</span>
+</div>
+</a>
+<a class="flex items-center justify-between px-4 py-3 rounded-lg active-nav-item group transition-all duration-300" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-electric-blue neon-text-blue">pie_chart</span>
+<span class="text-sm font-medium text-white tracking-wide">Analytics</span>
+</div>
+</a>
+<a class="flex items-center justify-between px-4 py-3 rounded-lg hover:bg-white/5 hover:text-white group transition-all duration-300 text-slate-400" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined group-hover:text-electric-blue transition-colors">trending_up</span>
+<span class="text-sm font-medium">Performance</span>
+</div>
+</a>
+<a class="flex items-center justify-between px-4 py-3 rounded-lg hover:bg-white/5 hover:text-white group transition-all duration-300 text-slate-400" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined group-hover:text-electric-blue transition-colors">schedule</span>
+<span class="text-sm font-medium">Activity Log</span>
+</div>
+</a>
+<a class="flex items-center justify-between px-4 py-3 rounded-lg hover:bg-white/5 hover:text-white group transition-all duration-300 text-slate-400" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined group-hover:text-electric-blue transition-colors">folder_open</span>
+<span class="text-sm font-medium">Resources</span>
+</div>
+</a>
+<a class="flex items-center justify-between px-4 py-3 rounded-lg hover:bg-white/5 hover:text-white group transition-all duration-300 text-slate-400" href="#">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined group-hover:text-electric-blue transition-colors">settings</span>
+<span class="text-sm font-medium">Settings</span>
+</div>
+</a>
+</nav>
+<div class="p-4 relative z-10 border-t border-white/5">
+<button class="w-full flex items-center justify-center gap-2 bg-gradient-to-r from-electric-blue to-blue-800 hover:from-blue-600 hover:to-blue-700 text-white p-3 rounded-lg text-sm font-bold tracking-wide shadow-[0_0_25px_rgba(0,82,255,0.4)] border border-white/10 transition-all transform active:scale-95 group">
+<span class="material-symbols-outlined text-lg group-hover:animate-pulse">logout</span>
+                Logout
+            </button>
+</div>
+</aside>
+<div class="flex-1 flex flex-col h-full relative z-10 overflow-hidden">
+<header class="w-full h-[72px] z-50 header-glass flex items-center justify-between px-8 shrink-0 relative">
+<div class="flex items-center gap-6">
+<div class="flex items-center">
+<div class="pill-tag px-3 py-1.5 rounded-full text-[11px] font-medium text-slate-400 tracking-wide flex items-center gap-2 hover:border-white/20 transition-colors cursor-pointer group">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_6px_rgba(16,185,129,0.8)] animate-pulse"></span>
+                        ClientSite.com
+                    </div>
+</div>
+</div>
+<div class="absolute left-1/2 transform -translate-x-1/2">
+<h2 class="text-xl font-bold text-white tracking-wide" style="text-shadow: 0 0 20px rgba(255,255,255,0.2);">Dashboard</h2>
+</div>
+<div class="flex items-center gap-4">
+<span class="text-xs text-slate-500 font-medium hidden lg:block tracking-wide mr-2">Last updated: <span class="text-slate-300">2h ago</span></span>
+<div class="housed-profile-container group">
+<button class="w-8 h-8 flex items-center justify-center rounded-full text-slate-400 hover:text-white hover:bg-white/10 transition-all relative mr-2">
+<span class="material-symbols-outlined text-[20px]">notifications</span>
+<span class="absolute top-1.5 right-1.5 w-1.5 h-1.5 bg-electric-blue rounded-full shadow-[0_0_8px_#0052ff]"></span>
+</button>
+<div class="w-[1px] h-6 bg-white/10 mr-3"></div>
+<div class="flex items-center gap-3 cursor-pointer">
+<div class="w-8 h-8 rounded-full bg-slate-900 overflow-hidden ring-1 ring-white/10 group-hover:ring-electric-blue/50 transition-all shadow-lg relative">
+<img alt="User avatar" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-n-gT0hmTLr68Q785q7si3dFoLMf7H3GynEF6Z2J24-oBY6nDcs61FaN_0-30RLylxw003MUNZjpmJEexdEOJj6EEIbz0kZyi3H7h8vYFqMgF4VyTUf3tatWeOJc4rj5wEdq1c8r291KAyy2Koyp1ed59PBohstiFLTdn9RH0JY9xz4enWsYbeYg0rREdlR6xdaOfvqCBbaSbgP_7p5ElqBZWky_f-ZvrE4SNxQiwFsigcG5W4EJdfdSofsdUwfj2bTUS2j4nyW6y"/>
+</div>
+<div class="flex flex-col text-left">
+<span class="text-[9px] text-slate-400 uppercase tracking-widest leading-none mb-0.5">Admin</span>
+<p class="text-xs font-bold text-white group-hover:text-electric-blue transition-colors leading-none">@ethan_reynolds</p>
+</div>
+<span class="material-symbols-outlined text-slate-500 text-lg group-hover:text-white transition-colors ml-1">expand_more</span>
+</div>
+</div>
+</div>
+</header>
+<main class="flex-1 overflow-y-auto h-full p-4 md:p-6 scroll-smooth">
+<div class="max-w-[1600px] mx-auto flex flex-col gap-6">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-2">
+<div class="micro-card rounded-xl p-4 relative group flex flex-col justify-between h-[120px]">
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<span class="text-slate-400 text-[11px] uppercase font-bold tracking-wider mb-1">Direct Traffic</span>
+<h3 class="text-2xl font-bold text-white neon-text">43%</h3>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-emerald-400 flex items-center text-[10px] font-bold bg-emerald-900/40 border border-emerald-500/30 px-1.5 py-0.5 rounded shadow-[0_0_8px_rgba(16,185,129,0.2)] mb-1">+5.4%</span>
+</div>
+</div>
+<div class="w-full bg-white/10 h-1.5 rounded-full overflow-hidden mt-4">
+<div class="h-full bg-electric-blue shadow-[0_0_10px_#0052ff] w-[43%]"></div>
+</div>
+</div>
+<div class="micro-card rounded-xl p-4 relative group flex flex-col justify-between h-[120px]">
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<span class="text-slate-400 text-[11px] uppercase font-bold tracking-wider mb-1">Social Referrals</span>
+<h3 class="text-2xl font-bold text-white">28%</h3>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-emerald-400 flex items-center text-[10px] font-bold bg-emerald-900/40 border border-emerald-500/30 px-1.5 py-0.5 rounded shadow-[0_0_8px_rgba(16,185,129,0.2)] mb-1">+12%</span>
+</div>
+</div>
+<div class="w-full bg-white/10 h-1.5 rounded-full overflow-hidden mt-4">
+<div class="h-full bg-purple-500 shadow-[0_0_10px_#a855f7] w-[28%]"></div>
+</div>
+</div>
+<div class="micro-card rounded-xl p-4 relative group flex flex-col justify-between h-[120px]">
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<span class="text-slate-400 text-[11px] uppercase font-bold tracking-wider mb-1">Organic Search</span>
+<h3 class="text-2xl font-bold text-white">19%</h3>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-rose-400 flex items-center text-[10px] font-bold bg-rose-900/40 border border-rose-500/30 px-1.5 py-0.5 rounded shadow-[0_0_8px_rgba(244,63,94,0.2)] mb-1">-2.1%</span>
+</div>
+</div>
+<div class="w-full bg-white/10 h-1.5 rounded-full overflow-hidden mt-4">
+<div class="h-full bg-teal-400 shadow-[0_0_10px_#2dd4bf] w-[19%]"></div>
+</div>
+</div>
+<div class="micro-card rounded-xl p-4 relative group flex flex-col justify-between h-[120px]">
+<div class="flex justify-between items-start">
+<div class="flex flex-col">
+<span class="text-slate-400 text-[11px] uppercase font-bold tracking-wider mb-1">Paid Campaigns</span>
+<h3 class="text-2xl font-bold text-white">10%</h3>
+</div>
+<div class="flex flex-col items-end">
+<span class="text-emerald-400 flex items-center text-[10px] font-bold bg-emerald-900/40 border border-emerald-500/30 px-1.5 py-0.5 rounded shadow-[0_0_8px_rgba(16,185,129,0.2)] mb-1">+8.4%</span>
+</div>
+</div>
+<div class="w-full bg-white/10 h-1.5 rounded-full overflow-hidden mt-4">
+<div class="h-full bg-orange-400 shadow-[0_0_10px_#fb923c] w-[10%]"></div>
+</div>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+<div class="glass-panel lg:col-span-2 rounded-2xl p-0 border border-white/10 shadow-[0_0_30px_rgba(0,0,0,0.8)] relative h-[450px] overflow-hidden">
+<div class="neon-border-top"></div>
+<div class="p-6 absolute top-0 left-0 w-full z-20 flex justify-between items-start pointer-events-none">
+<div>
+<h3 class="text-lg font-bold text-white mb-1">Global Traffic Sources</h3>
+<p class="text-xs text-slate-400">Real-time visitor distribution</p>
+</div>
+<div class="flex gap-2 pointer-events-auto">
+<button class="p-2 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-colors text-white">
+<span class="material-symbols-outlined text-sm">zoom_in</span>
+</button>
+<button class="p-2 rounded-lg bg-white/5 border border-white/10 hover:bg-white/10 transition-colors text-white">
+<span class="material-symbols-outlined text-sm">zoom_out</span>
+</button>
+</div>
+</div>
+<div class="w-full h-full relative bg-[#02040a]">
+<svg class="w-full h-full opacity-30" preserveAspectRatio="xMidYMid slice" viewBox="0 0 1000 450">
+<path d="M150,120 Q200,80 250,110 T350,140 T450,100 T550,130 T650,90 T750,120 T850,80" fill="none" opacity="0.3" stroke="#334155" stroke-width="1"></path>
+<path d="M120,250 Q200,280 280,220 T400,260 T500,200 T600,240 T700,210 T800,250" fill="none" opacity="0.3" stroke="#334155" stroke-width="1"></path>
+<path d="M180,350 Q250,320 320,360 T450,310 T550,340 T650,300" fill="none" opacity="0.3" stroke="#334155" stroke-width="1"></path>
+<path d="M100,100 C150,50 250,50 300,150 C250,250 150,200 100,100" fill="#1e293b" opacity="0.3"></path> 
+<path d="M350,100 C400,50 500,50 550,120 C500,200 400,200 350,100" fill="#1e293b" opacity="0.3"></path> 
+<path d="M600,80 C700,50 850,80 900,150 C850,250 700,200 600,80" fill="#1e293b" opacity="0.3"></path> 
+<path d="M150,250 C200,200 280,200 300,350 C250,400 150,350 150,250" fill="#1e293b" opacity="0.3"></path> 
+<path d="M400,200 C450,180 550,180 580,300 C500,350 420,300 400,200" fill="#1e293b" opacity="0.3"></path> 
+<path d="M700,250 C750,220 850,220 880,320 C800,350 720,300 700,250" fill="#1e293b" opacity="0.3"></path> 
+</svg>
+<div class="absolute top-[28%] left-[22%] w-4 h-4 bg-electric-blue rounded-full shadow-[0_0_20px_#0052ff] map-dot"></div>
+<div class="absolute top-[35%] left-[45%] w-3 h-3 bg-purple-500 rounded-full shadow-[0_0_20px_#a855f7] map-dot" style="animation-delay: 0.5s;"></div>
+<div class="absolute top-[25%] left-[75%] w-5 h-5 bg-electric-blue rounded-full shadow-[0_0_25px_#0052ff] map-dot" style="animation-delay: 1.2s;"></div>
+<div class="absolute top-[65%] left-[78%] w-2 h-2 bg-emerald-400 rounded-full shadow-[0_0_15px_#34d399] map-dot" style="animation-delay: 0.8s;"></div>
+<div class="absolute top-[45%] left-[18%] w-2 h-2 bg-white rounded-full shadow-[0_0_15px_#ffffff] map-dot" style="animation-delay: 1.5s;"></div>
+<div class="absolute bottom-6 right-6 bg-black/60 backdrop-blur-md border border-white/10 p-4 rounded-xl max-w-[200px]">
+<h4 class="text-xs font-bold text-white uppercase mb-3">Top Regions</h4>
+<div class="space-y-3">
+<div class="flex justify-between items-center text-xs">
+<span class="text-slate-400 flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-electric-blue"></span>North America</span>
+<span class="text-white font-bold">45%</span>
+</div>
+<div class="flex justify-between items-center text-xs">
+<span class="text-slate-400 flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-purple-500"></span>Europe</span>
+<span class="text-white font-bold">32%</span>
+</div>
+<div class="flex justify-between items-center text-xs">
+<span class="text-slate-400 flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-emerald-400"></span>Asia Pacific</span>
+<span class="text-white font-bold">18%</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="glass-panel rounded-2xl p-6 border border-white/10 flex flex-col h-[450px]">
+<div class="flex justify-between items-start mb-6">
+<div>
+<h3 class="text-lg font-bold text-white mb-1">Session Duration</h3>
+<p class="text-xs text-slate-400">Avg time spent per user</p>
+</div>
+<span class="text-2xl font-bold text-white neon-text">4m 32s</span>
+</div>
+<div class="flex-1 relative w-full h-full">
+<svg class="w-full h-full overflow-visible" preserveAspectRatio="none" viewBox="0 0 100 100">
+<line stroke="rgba(255,255,255,0.05)" stroke-dasharray="2 2" stroke-width="0.5" x1="0" x2="100" y1="20" y2="20"></line>
+<line stroke="rgba(255,255,255,0.05)" stroke-dasharray="2 2" stroke-width="0.5" x1="0" x2="100" y1="40" y2="40"></line>
+<line stroke="rgba(255,255,255,0.05)" stroke-dasharray="2 2" stroke-width="0.5" x1="0" x2="100" y1="60" y2="60"></line>
+<line stroke="rgba(255,255,255,0.05)" stroke-dasharray="2 2" stroke-width="0.5" x1="0" x2="100" y1="80" y2="80"></line>
+<defs>
+<linearGradient id="lineGradient" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#0052FF" stop-opacity="0.5"></stop>
+<stop offset="100%" stop-color="#0052FF" stop-opacity="0"></stop>
+</linearGradient>
+</defs>
+<path d="M0,80 C10,75 20,60 30,65 C40,70 50,40 60,45 C70,50 80,30 90,35 C95,38 100,20 100,20 V 100 H 0 Z" fill="url(#lineGradient)" opacity="0.3"></path>
+<path d="M0,80 C10,75 20,60 30,65 C40,70 50,40 60,45 C70,50 80,30 90,35 C95,38 100,20 100,20" fill="none" filter="drop-shadow(0 0 4px #0052FF)" stroke="#0052FF" stroke-linecap="round" stroke-width="2"></path>
+<path d="M0,90 C15,85 25,75 35,78 C45,80 55,60 65,65 C75,70 85,50 100,55" fill="none" stroke="rgba(255,255,255,0.3)" stroke-dasharray="3 3" stroke-width="1"></path>
+<circle cx="30" cy="65" fill="#fff" r="1.5" stroke="#0052FF" stroke-width="0.5"></circle>
+<circle cx="60" cy="45" fill="#fff" r="1.5" stroke="#0052FF" stroke-width="0.5"></circle>
+<circle class="animate-pulse" cx="90" cy="35" fill="#0052FF" r="2" stroke="#fff" stroke-width="1"></circle>
+<rect fill="rgba(0,0,0,0.8)" height="12" rx="2" stroke="rgba(0,82,255,0.5)" stroke-width="0.2" width="25" x="70" y="10"></rect>
+<text fill="white" font-size="4" font-weight="bold" text-anchor="middle" x="82.5" y="18">5m 12s</text>
+</svg>
+</div>
+<div class="flex justify-between text-[10px] text-slate-500 mt-2 font-mono">
+<span>00:00</span>
+<span>06:00</span>
+<span>12:00</span>
+<span>18:00</span>
+<span>24:00</span>
+</div>
+</div>
+</div>
+<div class="glass-panel rounded-2xl overflow-hidden border border-white/10 relative mt-2">
+<div class="neon-border-top"></div>
+<div class="p-6 border-b border-white/5 flex flex-col md:flex-row justify-between items-start md:items-center gap-4 relative z-10">
+<div class="flex flex-col">
+<h3 class="text-base font-bold text-white">Top Referring Domains</h3>
+<p class="text-xs text-slate-400 mt-1">Sites driving the most traffic this month</p>
+</div>
+<button class="text-xs text-electric-blue hover:text-white transition-colors font-medium flex items-center gap-1">
+                            View Full Report <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+<div class="overflow-x-auto relative z-10 p-2">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="text-[10px] text-slate-500 uppercase tracking-widest border-b border-white/5">
+<th class="p-4 font-semibold w-1/3">Source Domain</th>
+<th class="p-4 font-semibold">Users</th>
+<th class="p-4 font-semibold">New Users</th>
+<th class="p-4 font-semibold">Sessions</th>
+<th class="p-4 font-semibold">Bounce Rate</th>
+<th class="p-4 font-semibold text-right">Trend</th>
+</tr>
+</thead>
+<tbody class="text-xs divide-y divide-white/5">
+<tr class="group transition-colors hover:bg-white/[0.02]">
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center">
+<span class="text-lg">G</span>
+</div>
+<div>
+<span class="block font-bold text-white group-hover:text-electric-blue transition-colors">google.com</span>
+<span class="text-[10px] text-slate-500">Organic Search</span>
+</div>
+</div>
+</td>
+<td class="p-4 font-mono text-slate-300">125,402</td>
+<td class="p-4 font-mono text-slate-300">89,231</td>
+<td class="p-4 font-mono text-slate-300">165,882</td>
+<td class="p-4">
+<div class="flex items-center gap-2">
+<span class="text-slate-300">42%</span>
+<div class="w-12 h-1 bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-emerald-400 w-[42%]"></div>
+</div>
+</div>
+</td>
+<td class="p-4 text-right">
+<span class="text-emerald-400 text-[10px] font-bold">+12%</span>
+</td>
+</tr>
+<tr class="group transition-colors hover:bg-white/[0.02]">
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center">
+<span class="text-lg text-blue-400">t</span>
+</div>
+<div>
+<span class="block font-bold text-white group-hover:text-electric-blue transition-colors">twitter.com</span>
+<span class="text-[10px] text-slate-500">Social Media</span>
+</div>
+</div>
+</td>
+<td class="p-4 font-mono text-slate-300">45,120</td>
+<td class="p-4 font-mono text-slate-300">12,450</td>
+<td class="p-4 font-mono text-slate-300">58,900</td>
+<td class="p-4">
+<div class="flex items-center gap-2">
+<span class="text-slate-300">65%</span>
+<div class="w-12 h-1 bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-yellow-400 w-[65%]"></div>
+</div>
+</div>
+</td>
+<td class="p-4 text-right">
+<span class="text-emerald-400 text-[10px] font-bold">+8.5%</span>
+</td>
+</tr>
+<tr class="group transition-colors hover:bg-white/[0.02]">
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center">
+<span class="text-lg text-blue-600">L</span>
+</div>
+<div>
+<span class="block font-bold text-white group-hover:text-electric-blue transition-colors">linkedin.com</span>
+<span class="text-[10px] text-slate-500">Social Media</span>
+</div>
+</div>
+</td>
+<td class="p-4 font-mono text-slate-300">32,890</td>
+<td class="p-4 font-mono text-slate-300">5,600</td>
+<td class="p-4 font-mono text-slate-300">41,200</td>
+<td class="p-4">
+<div class="flex items-center gap-2">
+<span class="text-slate-300">35%</span>
+<div class="w-12 h-1 bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-emerald-400 w-[35%]"></div>
+</div>
+</div>
+</td>
+<td class="p-4 text-right">
+<span class="text-rose-400 text-[10px] font-bold">-2.4%</span>
+</td>
+</tr>
+<tr class="group transition-colors hover:bg-white/[0.02]">
+<td class="p-4">
+<div class="flex items-center gap-3">
+<div class="w-8 h-8 rounded-lg bg-white/5 border border-white/10 flex items-center justify-center">
+<span class="text-lg text-red-500">P</span>
+</div>
+<div>
+<span class="block font-bold text-white group-hover:text-electric-blue transition-colors">producthunt.com</span>
+<span class="text-[10px] text-slate-500">Referral</span>
+</div>
+</div>
+</td>
+<td class="p-4 font-mono text-slate-300">15,400</td>
+<td class="p-4 font-mono text-slate-300">14,200</td>
+<td class="p-4 font-mono text-slate-300">18,500</td>
+<td class="p-4">
+<div class="flex items-center gap-2">
+<span class="text-slate-300">78%</span>
+<div class="w-12 h-1 bg-white/10 rounded-full overflow-hidden">
+<div class="h-full bg-red-400 w-[78%]"></div>
+</div>
+</div>
+</td>
+<td class="p-4 text-right">
+<span class="text-emerald-400 text-[10px] font-bold">+150%</span>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</main>
+</div>
+</div>
+
+</body></html>

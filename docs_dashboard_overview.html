@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Alconio Docs - Dashboard Overview</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "electric-blue": "#0052FF",
+                        "electric-blue-light": "#3374ff",
+                        "obsidian": "#000000",
+                        "obsidian-panel": "#050508",
+                        "glass-border": "rgba(0, 82, 255, 0.3)",
+                        "glass-highlight": "rgba(255, 255, 255, 0.15)",
+                    },
+                    fontFamily: {
+                        "display": ["Space Grotesk", "sans-serif"],
+                        "body": ["Space Grotesk", "sans-serif"]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #000000; }
+        ::-webkit-scrollbar-thumb { background: #1e1e24; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #0052FF; }
+
+        .glass-panel {
+            background: linear-gradient(160deg, rgba(10, 10, 15, 0.85) 0%, rgba(0, 0, 0, 0.95) 100%);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 82, 255, 0.15);
+            border-top: 1px solid rgba(100, 150, 255, 0.3);
+            border-left: 1px solid rgba(100, 150, 255, 0.3);
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.8), inset 0 0 20px rgba(0, 82, 255, 0.03);
+            position: relative;
+        }
+
+        .header-glass {
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.8);
+        }
+
+        .sidebar-header-area { height: 72px; display: flex; align-items: center; }
+
+        .pill-tag {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: inset 0 0 10px rgba(255,255,255,0.02);
+            backdrop-filter: blur(5px);
+        }
+
+        .housed-profile-container {
+            display: flex; align-items: center; background: rgba(10, 10, 14, 0.6);
+            border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 9999px;
+            padding: 4px; padding-right: 16px; backdrop-filter: blur(8px);
+            transition: border-color 0.2s;
+        }
+        .housed-profile-container:hover { border-color: rgba(0, 82, 255, 0.3); background: rgba(15, 15, 22, 0.8); }
+
+        .unified-header-line {
+            position: fixed; top: 72px; left: 0; width: 100%; height: 1px;
+            background: rgba(0, 82, 255, 0.15); z-index: 9999;
+        }
+
+        .sidebar-divider-line {
+            position: fixed; top: 0; left: 5rem; width: 1px; height: 100vh;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.05), rgba(0, 82, 255, 0.9), rgba(255,255,255,0.05));
+            box-shadow: 0 0 12px rgba(0, 82, 255, 0.5); z-index: 40;
+        }
+
+        .article-content h1 { font-size: 2.5rem; font-weight: 700; color: #fff; margin-bottom: 1.5rem; }
+        .article-content h2 { font-size: 1.75rem; font-weight: 600; color: #fff; margin-top: 2.5rem; margin-bottom: 1rem; }
+        .article-content p { color: #94a3b8; line-height: 1.7; margin-bottom: 1.25rem; }
+        .article-content ul { color: #94a3b8; margin-bottom: 1.25rem; padding-left: 1.5rem; }
+        .article-content li { margin-bottom: 0.5rem; list-style: disc; }
+        
+        .sub-nav-item {
+            display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem 1rem;
+            border-radius: 8px; color: #94a3b8; transition: all 0.2s; font-size: 0.875rem;
+        }
+        .sub-nav-item:hover { background: rgba(255, 255, 255, 0.05); color: #fff; }
+        .sub-nav-item.active { background: rgba(0, 82, 255, 0.1); color: #0052FF; font-weight: 600; }
+    </style>
+</head>
+<body class="bg-obsidian text-slate-200 font-display antialiased overflow-x-hidden selection:bg-electric-blue selection:text-white">
+<div class="flex h-screen w-full overflow-hidden relative">
+    <div class="absolute top-0 left-0 w-full h-full pointer-events-none z-0">
+        <div class="absolute top-[-20%] left-[20%] w-[60%] h-[60%] bg-[#0052FF] opacity-[0.06] rounded-full blur-[150px]"></div>
+        <div class="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-[#0052FF] opacity-[0.04] rounded-full blur-[120px]"></div>
+    </div>
+    <div class="unified-header-line"></div>
+    <div class="sidebar-divider-line"></div>
+    
+    <aside class="dashboard-sidebar relative z-50 w-20 h-full glass-panel flex flex-col border-r-0 hidden md:flex shrink-0 items-center transition-all duration-300 !border-l-transparent border-l-0">
+        <div class="sidebar-header-area relative h-16 px-0 w-full flex justify-end pr-4 shrink-0 transition-all duration-300">
+            <div class="header-inner flex items-center justify-end w-full h-full gap-4 transition-all duration-300">
+                <h1 class="logo-text text-2xl font-bold tracking-tight text-white transition-all duration-300"></h1>
+                <img src="logo.png" alt="Logo" class="sidebar-logo-img w-12 h-12 object-contain transition-all duration-300 absolute top-1/2 -translate-y-1/2 z-10">
+                <button class="side-bar-toggle w-6 h-6 rounded flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition-all border border-transparent hover:border-white/10 group">
+                    <span class="toggle-icon material-symbols-outlined text-sm group-hover:text-electric-blue transition-colors">start</span>
+                </button>
+            </div>
+        </div>
+        <nav class="flex-1 px-2 space-y-1 relative z-10 pt-6 w-full flex flex-col items-center overflow-x-hidden sidebar-scroll-hide transition-all duration-300">
+            <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 hover:bg-white/5 text-slate-400" href="dashboard_overview.html">
+                <span class="material-symbols-outlined text-2xl group-hover:text-electric-blue">dashboard</span>
+                <span class="md-label hidden ml-4">Overview</span>
+            </a>
+            <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 hover:bg-white/5 text-slate-400" href="dashboard_analytics.html">
+                <span class="material-symbols-outlined text-2xl group-hover:text-electric-blue">pie_chart</span>
+                <span class="md-label hidden ml-4">Analytics</span>
+            </a>
+            <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 hover:bg-white/5 text-slate-400" href="dashboard_docs.html">
+                <span class="material-symbols-outlined text-2xl text-electric-blue">article</span>
+                <span class="md-label hidden ml-4 text-electric-blue">Documentation</span>
+            </a>
+        </nav>
+        <div class="sidebar-footer-area p-4 w-full flex justify-center mb-4 transition-all duration-300">
+            <button class="logout-btn w-12 h-12 flex items-center justify-center bg-gradient-to-r from-electric-blue to-blue-800 text-white rounded-lg shadow-lg group relative">
+                <span class="material-symbols-outlined text-lg">logout</span>
+                <span class="md-label hidden ml-3">Logout</span>
+            </button>
+        </div>
+    </aside>
+
+    <script>
+        (function () {
+            var sidebar = document.querySelector('.dashboard-sidebar');
+            var isExpanded = localStorage.getItem('sidebarExpanded') !== 'false';
+            if (isExpanded) {
+                sidebar.classList.remove('w-20', 'items-center');
+                sidebar.classList.add('w-72');
+                var logoText = sidebar.querySelector('.logo-text');
+                if (logoText) { logoText.textContent = "ALCONIO"; logoText.classList.add('pl-12'); }
+                var logoImg = sidebar.querySelector('.sidebar-logo-img');
+                if (logoImg) { logoImg.classList.remove('left-1/2', '-translate-x-1/2'); logoImg.classList.add('left-4'); }
+                var toggleBtn = sidebar.querySelector('.side-bar-toggle');
+                if (toggleBtn) { toggleBtn.querySelector('.toggle-icon').textContent = 'keyboard_tab_rtl'; }
+                sidebar.querySelectorAll('.md-label').forEach(el => el.classList.remove('hidden'));
+                sidebar.querySelectorAll('.nav-link-btn').forEach(el => { el.classList.add('w-full', 'justify-start', 'pl-5'); el.classList.remove('justify-center'); });
+            }
+        })();
+    </script>
+
+    <div class="flex-1 flex flex-col h-full relative z-10 overflow-hidden">
+        <header class="w-full h-[72px] z-50 header-glass flex items-center justify-between px-8 shrink-0 relative">
+            <div class="flex items-center gap-6">
+                <a href="dashboard_docs.html" class="flex items-center gap-2 text-slate-400 hover:text-white transition-colors">
+                    <span class="material-symbols-outlined text-lg">arrow_back</span>
+                    <span class="text-sm font-medium">Back to Docs</span>
+                </a>
+            </div>
+            <div class="absolute left-1/2 transform -translate-x-1/2">
+                <h2 class="text-xl font-bold text-white tracking-wide">Dashboard Overview</h2>
+            </div>
+            <div class="flex items-center gap-4">
+                <div class="housed-profile-container group">
+                    <div class="flex items-center gap-3 cursor-pointer">
+                        <div class="w-8 h-8 rounded-full bg-slate-900 overflow-hidden ring-1 ring-white/10">
+                            <img alt="User" class="w-full h-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD-n-gT0hmTLr68Q785q7si3dFoLMf7H3GynEF6Z2J24-oBY6nDcs61FaN_0-30RLylxw003MUNZjpmJEexdEOJj6EEIbz0kZyi3H7h8vYFqMgF4VyTUf3tatWeOJc4rj5wEdq1c8r291KAyy2Koyp1ed59PBohstiFLTdn9RH0JY9xz4enWsYbeYg0rREdlR6xdaOfvqCBbaSbgP_7p5ElqBZWky_f-ZvrE4SNxQiwFsigcG5W4EJdfdSofsdUwfj2bTUS2j4nyW6y"/>
+                        </div>
+                        <p class="text-xs font-bold text-white leading-none">Administrator</p>
+                    </div>
+                </div>
+            </div>
+        </header>
+
+        <main class="flex-1 overflow-hidden h-full flex">
+            <!-- Table of Contents -->
+            <div class="w-64 border-r border-white/5 p-6 overflow-y-auto hidden lg:block">
+                <h5 class="text-[10px] font-bold text-slate-500 uppercase tracking-widest mb-4 px-2">On this page</h5>
+                <nav class="space-y-1">
+                    <a href="#main-nav" class="sub-nav-item active">Main Navigation</a>
+                    <a href="#header-actions" class="sub-nav-item">Header Actions</a>
+                    <a href="#sidebar-logic" class="sub-nav-item">Sidebar Control</a>
+                    <a href="#content-area" class="sub-nav-item">Primary Content Area</a>
+                </nav>
+            </div>
+
+            <!-- Main Content -->
+            <div class="flex-1 overflow-y-auto p-8 md:p-12 scroll-smooth">
+                <article class="max-w-3xl article-content">
+                    <section id="main-nav">
+                        <h1>Dashboard Overview</h1>
+                        <p>The Alconio Dashboard is your command center for everything related to your application's health and user engagement. It is divided into several key sections to help you find information quickly.</p>
+                        
+                        <h2>Main Navigation</h2>
+                        <p>The sidebar on the left provides quick access to the primary modules of the platform:</p>
+                        <ul>
+                            <li><strong>Overview</strong>: A high-level view of your project's current status and key metrics.</li>
+                            <li><strong>Analytics</strong>: Deep dive into user behavior, session trends, and geographical data.</li>
+                            <li><strong>Performance</strong>: Monitor core web vitals, response times, and system health.</li>
+                            <li><strong>Resources</strong>: Access documentation, support guides, and community resources.</li>
+                            <li><strong>Settings</strong>: Manage your account, team members, and developer preferences.</li>
+                        </ul>
+                    </section>
+
+                    <section id="header-actions">
+                        <h2>Header Actions</h2>
+                        <p>The top header remains consistent throughout the dashboard, providing context and quick actions:</p>
+                        <ul>
+                            <li><strong>App Selector</strong>: Switch between different projects or properties you manage.</li>
+                            <li><strong>Notifications</strong>: View real-time alerts for performance drops or security events.</li>
+                            <li><strong>Profile Menu</strong>: Update your personal details or manage your individual account settings.</li>
+                        </ul>
+                    </section>
+
+                    <section id="sidebar-logic">
+                        <h2>Sidebar Control</h2>
+                        <p>You can expand or collapse the sidebar for more screen real estate. Your preference is automatically saved to your browser, so the dashboard looks exactly how you want it every time you return. Use the arrow icon at the top of the sidebar to toggle between compact and full view.</p>
+                    </section>
+
+                    <section id="content-area">
+                        <h2>Primary Content Area</h2>
+                        <p>The central portion of the screen is where your data comes to life. Most pages feature "Glass Panels"—semi-transparent containers that elegantly organize charts, tables, and configuration options. All panels are fully responsive and optimized for both desktop and mobile viewing.</p>
+                    </section>
+                </article>
+            </div>
+        </main>
+    </div>
+</div>
+
+<script src="dashboard_ui.js"></script>
+</body></html>

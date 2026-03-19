@@ -1,0 +1,81 @@
+{
+  "dimensionHeaders": [
+    {
+      "name": "date"
+    }
+  ],
+  "metricHeaders": [
+    {
+      "name": "totalUsers",
+      "type": "TYPE_INTEGER"
+    },
+    {
+      "name": "activeUsers",
+      "type": "TYPE_INTEGER"
+    },
+    {
+      "name": "sessions",
+      "type": "TYPE_INTEGER"
+    }
+  ],
+  "rows": [
+    {
+      "dimensionValues": [
+        {
+          "value": "20260303",
+          "oneValue": "value"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "4",
+          "oneValue": "value"
+        },
+        {
+          "value": "4",
+          "oneValue": "value"
+        },
+        {
+          "value": "6",
+          "oneValue": "value"
+        }
+      ]
+    },
+    {
+      "dimensionValues": [
+        {
+          "value": "20260307",
+          "oneValue": "value"
+        }
+      ],
+      "metricValues": [
+        {
+          "value": "3",
+          "oneValue": "value"
+        },
+        {
+          "value": "3",
+          "oneValue": "value"
+        },
+        {
+          "value": "3",
+          "oneValue": "value"
+        }
+      ]
+    }
+  ],
+  "totals": [],
+  "maximums": [],
+  "minimums": [],
+  "rowCount": 2,
+  "metadata": {
+    "samplingMetadatas": [],
+    "dataLossFromOtherRow": false,
+    "currencyCode": "USD",
+    "_currencyCode": "currencyCode",
+    "timeZone": "America/Los_Angeles",
+    "_timeZone": "timeZone"
+  },
+  "propertyQuota": null,
+  "kind": "analyticsData#runReport"
+}
