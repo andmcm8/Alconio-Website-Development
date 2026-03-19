@@ -393,10 +393,10 @@
     <div class="sidebar-header-area relative h-18 px-6 w-full flex items-center justify-between shrink-0 transition-all duration-300 overflow-hidden">
         <div class="header-inner flex items-center justify-between w-full h-full gap-4 transition-all duration-300">
             <div class="flex items-center gap-3">
-                <span class="material-symbols-outlined text-electric-blue text-3xl neon-text-blue sidebar-logo-img transition-all duration-300">lightning</span>
+                <img src="alconio-logo.png" alt="Alconio" class="sidebar-logo-img w-8 h-8 object-contain transition-all duration-300 flex-shrink-0" />
                 <h1 class="logo-text text-xl font-bold tracking-tighter text-white transition-all duration-300 opacity-100 uppercase">ALCONIO</h1>
             </div>
-            <button class="side-bar-toggle w-8 h-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition-all border border-white/10 group relative">
+            <button class="side-bar-toggle w-8 h-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition-all border border-white/10 group relative flex-shrink-0">
                 <span class="toggle-icon material-symbols-outlined text-sm transition-colors group-hover:text-electric-blue">keyboard_tab_rtl</span>
             </button>
         </div>
@@ -480,28 +480,32 @@
         }
 
         function applySidebarState(expanded) {
+            const icon = toggleBtn?.querySelector('.toggle-icon');
             if (expanded) {
+                // --- EXPANDED STATE ---
                 sidebar.classList.remove('w-20', 'items-center');
                 sidebar.classList.add('w-72');
+
+                // Logo: show text next to image
                 if (logoText) {
                     logoText.classList.remove('hidden', 'opacity-0');
-                    logoText.classList.add('opacity-100', 'pl-12');
-                    logoText.textContent = "ALCONIO";
+                    logoText.classList.add('opacity-100');
                 }
-                if (logoImg) {
-                    logoImg.classList.remove('left-1/2', '-translate-x-1/2');
-                    logoImg.classList.add('left-4');
-                }
-                const icon = toggleBtn?.querySelector('.toggle-icon');
+
+                // Toggle arrow: points LEFT (collapse)
                 if (icon) icon.textContent = 'keyboard_tab_rtl';
+                if (toggleBtn) toggleBtn.classList.remove('hidden');
                 
+                // Header layout
                 headerArea?.classList.replace('px-0', 'px-6');
-                headerArea?.classList.replace('justify-end', 'justify-between');
+                headerArea?.classList.replace('justify-center', 'justify-between');
                 headerInner?.classList.replace('justify-center', 'justify-between');
+                headerInner?.classList.replace('flex-col', 'flex-row');
                 sidebarNav?.classList.replace('items-center', 'items-stretch');
                 
                 if (dividerLine) dividerLine.style.left = '18rem';
 
+                // Nav links: show text labels
                 navLinks.forEach(link => {
                     link.classList.remove('w-12', 'h-12', 'justify-center');
                     link.classList.add('w-full', 'h-12', 'justify-start', 'pl-5');
@@ -509,6 +513,7 @@
                     if (label) { label.classList.remove('hidden'); label.classList.add('inline'); }
                 });
 
+                // Logout: full width with text
                 if (logoutBtn) {
                     logoutBtn.classList.remove('w-12');
                     logoutBtn.classList.add('w-full', 'justify-start', 'pl-5');
@@ -516,26 +521,31 @@
                     if (label) { label.classList.remove('hidden'); label.classList.add('inline'); }
                 }
             } else {
+                // --- CONDENSED STATE ---
                 sidebar.classList.remove('w-72');
                 sidebar.classList.add('w-20', 'items-center');
+
+                // Logo: hide text, keep image visible & centered
                 if (logoText) {
-                    logoText.classList.remove('opacity-100', 'pl-12');
+                    logoText.classList.remove('opacity-100');
                     logoText.classList.add('hidden', 'opacity-0');
                 }
-                if (logoImg) {
-                    logoImg.classList.remove('left-4');
-                    logoImg.classList.add('left-1/2', '-translate-x-1/2');
-                }
-                const icon = toggleBtn?.querySelector('.toggle-icon');
-                if (icon) icon.textContent = 'start';
 
+                // Toggle arrow: points RIGHT (expand)
+                if (icon) icon.textContent = 'keyboard_tab';
+                // Hide the toggle button in condensed — the logo takes its place
+                // Users click logo area or anywhere at top to toggle
+                if (toggleBtn) toggleBtn.classList.add('hidden');
+
+                // Header layout: center the logo
                 headerArea?.classList.replace('px-6', 'px-0');
-                headerArea?.classList.replace('justify-between', 'justify-end');
+                headerArea?.classList.replace('justify-between', 'justify-center');
                 headerInner?.classList.replace('justify-between', 'justify-center');
                 sidebarNav?.classList.replace('items-stretch', 'items-center');
                 
                 if (dividerLine) dividerLine.style.left = '5rem';
 
+                // Nav links: icon only
                 navLinks.forEach(link => {
                     link.classList.add('w-12', 'h-12', 'justify-center');
                     link.classList.remove('w-full', 'justify-start', 'pl-5');
@@ -543,6 +553,7 @@
                     if (label) { label.classList.add('hidden'); label.classList.remove('inline'); }
                 });
 
+                // Logout: icon only
                 if (logoutBtn) {
                     logoutBtn.classList.add('w-12', 'justify-center');
                     logoutBtn.classList.remove('w-full', 'pl-5');
@@ -552,8 +563,21 @@
             }
         }
 
-        // Initial State
-        const isExpanded = localStorage.getItem('sidebarExpanded') !== 'false';
+        // Make the header area clickable to expand when in condensed mode
+        if (headerArea) {
+            headerArea.addEventListener('click', (e) => {
+                // Only expand when condensed (clicking on logo/header area)
+                if (sidebar.classList.contains('w-20') && !e.target.closest('.side-bar-toggle')) {
+                    localStorage.setItem('sidebarExpanded', 'true');
+                    applySidebarState(true);
+                }
+            });
+            headerArea.style.cursor = 'pointer';
+        }
+
+        // Initial State — default to EXPANDED
+        const stored = localStorage.getItem('sidebarExpanded');
+        const isExpanded = stored === null ? true : stored !== 'false';
         
         // Anti-FOUC (Kill transitions for first load)
         const transitionEls = [sidebar, headerArea, headerInner, sidebarNav, dividerLine, toggleBtn, logoText, logoImg, ...navLinks, logoutBtn].filter(Boolean);
@@ -568,8 +592,6 @@
         });
     })();
 </script>
-
-
 <div class="flex-1 flex flex-col h-full relative z-10 overflow-hidden">
             <header class="w-full h-[72px] z-50 header-glass flex items-center justify-between px-8 shrink-0 relative">
                 <div class="flex items-center gap-6">
