@@ -19,3 +19,9 @@ This workflow ensures that the project state is always preserved before any majo
      git add . && git commit -m "Pre-change snapshot: [Description of work]"
      ```
    - This allows for easy rollback if the change causes issues.
+
+4. **Push to Remote (Sync)**
+   - Immediately after committing, push the changes to keep GitHub in sync:
+     ```bash
+     git push origin main
+     ```
