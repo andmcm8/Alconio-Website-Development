@@ -95,7 +95,29 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (clerkAvailable) {
             try {
                 await Clerk.load();
-                
+
+                // --- Dynamic Website Display ---
+                const syncWebsiteDisplay = (user) => {
+                    const displays = document.querySelectorAll('.client-website-display');
+                    if (!displays.length) return;
+                    
+                    const siteUrl = user?.publicMetadata?.websiteurl || user?.unsafeMetadata?.websiteurl || (localStorage.getItem('alconio_mock_session') === 'true' ? 'YourWebsite.com' : 'ClientSite.com');
+                    
+                    displays.forEach(display => {
+                        // Clear text nodes but keep the dot span
+                        Array.from(display.childNodes).forEach(node => {
+                            if (node.nodeType === Node.TEXT_NODE) {
+                                node.remove();
+                            }
+                        });
+                        // Append the new text
+                        display.appendChild(document.createTextNode(' ' + siteUrl));
+                    });
+                };
+
+                if (Clerk.user) syncWebsiteDisplay(Clerk.user);
+                Clerk.addListener(({ user }) => { if (user) syncWebsiteDisplay(user); });
+
                 // --- Bug 2: Cross-Tab Session Sync ---
                 Clerk.addListener(({ session }) => {
                     if (!session && !localStorage.getItem('alconio_mock_session')) {
@@ -168,7 +190,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (sidebar && toggleBtn && logoText) {
 
-
         // Read sidebar state from localStorage, default to expanded (true)
         const storedState = localStorage.getItem('sidebarExpanded');
         let isExpanded = storedState === null ? true : storedState === 'true';
@@ -199,6 +220,31 @@ document.addEventListener('DOMContentLoaded', async () => {
         navLinks.forEach(attachTooltip);
         if (logoutBtn) attachTooltip(logoutBtn);
 
+        /**
+         * Highlight the active navigation link based on the current URL
+         */
+        const highlightActiveLink = () => {
+            const currentPath = window.location.pathname;
+            const currentPage = currentPath.split('/').pop() || 'dashboard_overview.html';
+            
+            navLinks.forEach(link => {
+                const href = link.getAttribute('href');
+                if (href === currentPage) {
+                    link.classList.add('active-nav-item', 'text-white');
+                    link.classList.remove('text-slate-400', 'hover:bg-white/5');
+                    const icon = link.querySelector('.material-symbols-outlined');
+                    if (icon) icon.classList.add('text-electric-blue');
+                } else {
+                    link.classList.remove('active-nav-item', 'text-white');
+                    link.classList.add('text-slate-400', 'hover:bg-white/5');
+                    const icon = link.querySelector('.material-symbols-outlined');
+                    if (icon) icon.classList.remove('text-electric-blue');
+                }
+            });
+        };
+
+        highlightActiveLink();
+
         // Function to apply sidebar state (used on load and toggle)
         function applySidebarState(animate = false) {
             globalTooltip.style.opacity = '0';
@@ -208,37 +254,51 @@ document.addEventListener('DOMContentLoaded', async () => {
                 sidebar.classList.remove('w-20', 'items-center');
                 sidebar.classList.add('w-72');
 
-                logoText.classList.remove('hidden');
-                if (animate) {
-                    logoText.classList.add('opacity-0', 'transition-opacity', 'duration-300');
-
-                    // Delay text appearance to prevent overlap with expanding sidebar
-                    setTimeout(() => {
-                        logoText.classList.remove('opacity-0');
-                        logoText.classList.add('opacity-100');
-                    }, 150);
-                } else {
-                    logoText.classList.remove('opacity-0');
+                if (logoText) {
+                    logoText.classList.remove('hidden', 'opacity-0');
                     logoText.classList.add('opacity-100');
+                    logoText.textContent = "ALCONIO";
+                    // Clear Structure C ad-hoc styles
+                    logoText.style.position = '';
+                    logoText.style.left = '';
+                    logoText.style.top = '';
+                    logoText.style.transform = '';
+                    logoText.style.fontSize = '';
+                    logoText.style.letterSpacing = '';
                 }
-
-                logoText.textContent = "ALCONIO";
-                logoText.classList.remove('neon-text-blue', 'pl-1');
-                logoText.classList.add('pl-12');
 
                 if (logoImg) {
-                    logoImg.classList.remove('left-1/2', '-translate-x-1/2');
-                    logoImg.classList.add('left-4');
+                    // Clear Structure C ad-hoc styles
+                    logoImg.style.width = '';
+                    logoImg.style.height = '';
+                    logoImg.style.left = '';
+                    logoImg.style.top = '';
+                    logoImg.style.transform = '';
+                    logoImg.style.position = '';
                 }
 
-                const icon = toggleBtn.querySelector('.toggle-icon');
-                if (icon) icon.textContent = 'keyboard_tab_rtl';
-                toggleBtn.classList.remove('w-6', 'h-6', 'absolute', 'right-[2px]', 'translate-x-[2px]');
-                toggleBtn.classList.add('w-8', 'h-8', 'rounded-lg', 'relative');
+                const toggleIcon = toggleBtn ? toggleBtn.querySelector('.toggle-icon') : null;
+                if (toggleIcon) {
+                    toggleIcon.textContent = 'keyboard_tab_rtl';
+                    toggleIcon.style.fontSize = '';
+                }
+                
+                if (toggleBtn) {
+                    toggleBtn.classList.remove('w-6', 'h-6', 'absolute', 'right-[2px]', 'translate-x-[2px]');
+                    toggleBtn.classList.add('w-8', 'h-8', 'rounded-lg', 'relative');
+                    // Clear Structure C ad-hoc styles
+                    toggleBtn.style.width = '';
+                    toggleBtn.style.height = '';
+                    toggleBtn.style.right = '';
+                    toggleBtn.style.top = '';
+                    toggleBtn.style.transform = '';
+                    toggleBtn.style.position = '';
+                }
 
                 if (headerArea) {
                     headerArea.classList.remove('px-0', 'justify-end', 'pr-4');
                     headerArea.classList.add('px-6', 'justify-between');
+                    headerArea.style.padding = '';
                 }
                 if (headerInner) {
                     headerInner.classList.remove('justify-center', 'justify-end');
@@ -247,11 +307,9 @@ document.addEventListener('DOMContentLoaded', async () => {
                 if (sidebarNav) {
                     sidebarNav.classList.remove('items-center');
                     sidebarNav.classList.add('items-stretch');
-                    sidebarNav.classList.remove('space-y-1');
-                    sidebarNav.classList.add('space-y-1');
                 }
 
-                if (dividerLine) dividerLine.style.left = '18rem';
+                if (dividerLine) dividerLine.style.left = '18.5rem';
 
                 navLinks.forEach(link => {
                     link.classList.remove('w-12', 'h-12', 'justify-center');
@@ -273,45 +331,52 @@ document.addEventListener('DOMContentLoaded', async () => {
                     }
                 }
 
-
             } else {
                 // --- CONDENSED STATE ---
                 sidebar.classList.remove('w-72');
                 sidebar.classList.add('w-20', 'items-center');
 
-                if (animate) {
+                if (logoText) {
                     logoText.classList.remove('opacity-100');
-                    logoText.classList.add('opacity-0');
-
-                    // Hide text immediately upon collapse
-                    setTimeout(() => {
-                        logoText.classList.add('hidden');
-                        logoText.textContent = "A";
-                        logoText.classList.remove('pl-12');
-                        logoText.classList.add('neon-text-blue', 'pl-1');
-                    }, 50);
-                } else {
-                    logoText.classList.remove('opacity-100', 'pl-12');
-                    logoText.classList.add('opacity-0', 'hidden', 'neon-text-blue', 'pl-1');
-                    logoText.textContent = "A";
+                    logoText.classList.add('hidden', 'opacity-0');
+                    // Clear Structure C ad-hoc styles
+                    logoText.style.position = '';
+                    logoText.style.left = '';
                 }
 
                 if (logoImg) {
-                    logoImg.classList.remove('left-4');
-                    logoImg.classList.add('left-1/2', '-translate-x-1/2');
+                    // Clear Structure C ad-hoc styles
+                    logoImg.style.position = '';
+                    logoImg.style.left = '';
+                    logoImg.style.top = '';
+                    logoImg.style.transform = '';
                 }
 
-                const icon = toggleBtn.querySelector('.toggle-icon');
-                if (icon) icon.textContent = 'start';
-                toggleBtn.classList.remove('w-6', 'h-6', 'absolute', 'right-[2px]', 'translate-x-[2px]');
-                toggleBtn.classList.add('w-8', 'h-8', 'rounded-lg', 'relative');
+                const toggleIcon = toggleBtn ? toggleBtn.querySelector('.toggle-icon') : null;
+                if (toggleIcon) {
+                    toggleIcon.textContent = 'start';
+                    toggleIcon.style.fontSize = '';
+                }
+                
+                if (toggleBtn) {
+                    toggleBtn.classList.remove('w-8', 'h-8', 'rounded-lg', 'relative');
+                    toggleBtn.classList.add('w-6', 'h-6', 'absolute', 'right-[2px]', 'translate-x-[2px]');
+                    // Clear Structure C ad-hoc styles
+                    toggleBtn.style.position = '';
+                    toggleBtn.style.right = '';
+                    toggleBtn.style.top = '';
+                    toggleBtn.style.transform = '';
+                    toggleBtn.style.width = '';
+                    toggleBtn.style.height = '';
+                }
 
                 if (headerArea) {
                     headerArea.classList.remove('px-6', 'justify-between');
                     headerArea.classList.add('px-0', 'justify-end', 'pr-4');
+                    headerArea.style.padding = '0';
                 }
                 if (headerInner) {
-                    headerInner.classList.remove('justify-between', 'justify-end');
+                    headerInner.classList.remove('justify-between');
                     headerInner.classList.add('justify-center');
                 }
                 if (sidebarNav) {
@@ -340,7 +405,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                         label.classList.add('hidden');
                     }
                 }
-
             }
         }
 
@@ -357,6 +421,11 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // Re-enable transitions for future toggles
         transitionEls.forEach(el => el.style.transition = '');
+        
+        // Remove the temporary class now that JS has control
+        setTimeout(() => {
+            document.documentElement.classList.remove('sidebar-condensed');
+        }, 100);
 
         // Toggle button click handler
         toggleBtn.addEventListener('click', () => {

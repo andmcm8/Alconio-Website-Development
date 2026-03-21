@@ -4,6 +4,10 @@
   "description": "",
   "main": "dashboard_data.js",
   "scripts": {
+    "dev": "node run_servers.js",
+    "stop": "node force_restart.js",
+    "restart": "npm run stop && npm run dev",
+    "db:status": "mysqladmin -u root -ppassword ping",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],

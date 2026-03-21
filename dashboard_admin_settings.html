@@ -94,6 +94,19 @@
             theme: {
                 extend: {
                     colors: {
+                        blue: {
+                            50: "#E6EBFF",
+                            100: "#CCD6FF",
+                            200: "#99ADFF",
+                            300: "#6685FF",
+                            400: "#335CFF",
+                            500: "#1E51FF",
+                            600: "#1A46DB",
+                            700: "#1436A8",
+                            800: "#0F2875",
+                            900: "#0A1A42",
+                            950: "#050D21"
+                        },
                         "electric-blue": "#0052FF",
                         "electric-blue-light": "#3374ff",
                         "obsidian": "#000000",
@@ -363,10 +376,28 @@
 
 
 
+
+    <!-- Anti-Flicker Sidebar Guard -->
+    <style id="anti-flicker-style">
+        html.sidebar-condensed aside.dashboard-sidebar { width: 5rem !important; transition: none !important; }
+        html.sidebar-condensed aside.dashboard-sidebar .md-label { display: none !important; }
+        html.sidebar-condensed aside.dashboard-sidebar .logo-text { display: none !important; }
+        html.sidebar-condensed .sidebar-divider-line { left: 5rem !important; transition: none !important; }
+    </style>
+    <script id="anti-flicker-script">
+        (function() {
+            const expanded = localStorage.getItem('sidebarExpanded') !== 'false';
+            if (!expanded) {
+                document.documentElement.classList.add('sidebar-condensed');
+            }
+        })();
+    </script>
 </head>
 
 <body
     class="bg-obsidian text-slate-200 font-display antialiased overflow-x-hidden selection:bg-electric-blue selection:text-white">
+    
+
     <!-- Instant Cache Loader -->
     <script id="instant-loader">
             (function () {
@@ -419,217 +450,91 @@
         <div class="unified-header-line"></div>
         <div class="sidebar-divider-line"></div>
         <aside
-            class="dashboard-sidebar relative z-50 w-20 h-full glass-panel flex flex-col border-r-0 hidden md:flex shrink-0 items-center transition-all duration-300 !border-l-transparent border-l-0">
-            <div class="sidebar-header-area relative h-18 px-6 w-full flex items-center justify-between shrink-0 transition-all duration-300 overflow-hidden">
-                <div class="header-inner flex items-center justify-between w-full h-full gap-4 transition-all duration-300">
-                    <div class="flex items-center gap-3">
-                        <span class="material-symbols-outlined text-electric-blue text-3xl neon-text-blue sidebar-logo-img transition-all duration-300">lightning</span>
-                        <h1 class="logo-text text-xl font-bold tracking-tighter text-white transition-all duration-300 opacity-100 uppercase">ALCONIO</h1>
-                    </div>
-                    <button class="side-bar-toggle w-8 h-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition-all border border-white/10 group relative">
-                        <span class="toggle-icon material-symbols-outlined text-sm transition-colors group-hover:text-electric-blue">keyboard_tab_rtl</span>
-                    </button>
-                </div>
+            class="dashboard-sidebar relative z-50 w-20 h-full glass-panel flex flex-col border-r-0 hidden md:flex shrink-0 items-center transition-all duration-300 !border-l-transparent border-l-0">    <div class="sidebar-header-area relative h-18 px-6 w-full flex items-center justify-between shrink-0 transition-all duration-300 overflow-hidden">
+        <div class="header-inner flex items-center justify-between w-full h-full gap-4 transition-all duration-300">
+            <div class="flex items-center gap-3">
+                <img src="logo.png" alt="Alconio Logo" class="sidebar-logo-img h-10 w-auto transition-all duration-300">
+                <h1 class="logo-text text-2xl font-bold tracking-tight text-white transition-all duration-300 opacity-100 uppercase">ALCONIO</h1>
             </div>
+            <button class="side-bar-toggle w-8 h-8 rounded-lg flex items-center justify-center text-slate-400 hover:text-white hover:bg-white/10 transition-all border border-white/10 group relative">
+                <span class="toggle-icon material-symbols-outlined text-sm transition-colors group-hover:text-electric-blue">keyboard_tab_rtl</span>
+            </button>
+        </div>
+    </div>
             <nav
-                class="flex-1 px-2 space-y-1 relative z-10 pt-6 w-full flex flex-col items-center overflow-x-hidden sidebar-scroll-hide transition-all duration-300">
-                <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative "
+                class="flex-1 px-2 space-y-1 relative z-10 pt-6 w-full flex flex-col items-stretch overflow-x-hidden sidebar-scroll-hide transition-all duration-300">
+                <a class="nav-link-btn flex items-center justify-start w-full pl-5 h-12 rounded-lg group transition-all duration-300 relative "
                     href="dashboard_admin.html" data-tooltip="Clients">
                     <span
                         class="material-symbols-outlined text-slate-400 neon-text-blue text-2xl nav-icon flex-shrink-0">group</span>
                     <span
-                        class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Clients</span>
+                        class="md-label inline text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Clients</span>
                 </a>
-                <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400"
+                <a class="nav-link-btn flex items-center justify-start w-full pl-5 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400"
                     href="dashboard_admin_onboarding.html" data-tooltip="Onboarding">
                     <span
                         class="material-symbols-outlined group-hover:text-slate-400 transition-colors text-2xl nav-icon flex-shrink-0">person_add</span>
                     <span
-                        class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Onboarding</span>
+                        class="md-label inline text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Onboarding</span>
                 </a>
-                <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400"
+                <a class="nav-link-btn flex items-center justify-start w-full pl-5 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400"
                     href="dashboard_admin_billing.html" data-tooltip="Billing & Revenue">
                     <span
                         class="material-symbols-outlined group-hover:text-slate-400 transition-colors text-2xl nav-icon flex-shrink-0">payments</span>
                     <span
-                        class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Billing & Revenue</span>
+                        class="md-label inline text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Billing & Revenue</span>
                 </a>
-                <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400"
+                <a class="nav-link-btn flex items-center justify-start w-full pl-5 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400"
                     href="dashboard_admin_analytics.html" data-tooltip="Analytics Overview">
                     <span
                         class="material-symbols-outlined group-hover:text-slate-400 transition-colors text-2xl nav-icon flex-shrink-0">monitoring</span>
                     <span
-                        class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Analytics Overview</span>
+                        class="md-label inline text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Analytics Overview</span>
                 </a>
-                <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400"
+                <a class="nav-link-btn flex items-center justify-start w-full pl-5 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400"
                     href="dashboard_admin_performance.html" data-tooltip="Performance Monitor">
                     <span
                         class="material-symbols-outlined group-hover:text-slate-400 transition-colors text-2xl nav-icon flex-shrink-0">speed</span>
                     <span
-                        class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Performance Monitor</span>
+                        class="md-label inline text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Performance Monitor</span>
                 </a>
-                <a class="nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400"
+                <a class="nav-link-btn flex items-center justify-start w-full pl-5 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400"
                     href="dashboard_admin_activity.html" data-tooltip="Activity Log">
                     <span
                         class="material-symbols-outlined group-hover:text-slate-400 transition-colors text-2xl nav-icon flex-shrink-0">history</span>
                     <span
-                        class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Activity Log</span>
+                        class="md-label inline text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Activity Log</span>
                 </a>
-                <a class="active-nav-item bg-gradient-to-br from-electric-blue/20 to-electric-blue/5 border border-electric-blue/30 text-electric-blue shadow-[0_0_15px_rgba(0,82,255,0.2)] nav-link-btn flex items-center justify-center w-12 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400"
+                <a class="active-nav-item bg-gradient-to-br from-electric-blue/20 to-electric-blue/5 border border-electric-blue/30 text-electric-blue shadow-[0_0_15px_rgba(0,82,255,0.2)] nav-link-btn flex items-center justify-start w-full pl-5 h-12 rounded-lg group transition-all duration-300 relative hover:bg-white/5 hover:text-white text-slate-400"
                     href="dashboard_admin_settings.html" data-tooltip="Settings">
                     <span
                         class="material-symbols-outlined group-hover:text-slate-400 transition-colors text-2xl nav-icon flex-shrink-0 neon-text-blue text-electric-blue">admin_panel_settings</span>
                     <span
-                        class="md-label hidden text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Settings</span>
+                        class="md-label inline text-sm font-medium tracking-wide transition-opacity duration-300 ml-4 whitespace-nowrap">Settings</span>
                 </a>
             </nav>
             <div
                 class="sidebar-footer-area p-4 relative z-10 border-t border-white/5 w-full flex justify-center mb-4 transition-all duration-300">
                 <button
-                    class="logout-btn w-12 h-12 flex items-center justify-center bg-gradient-to-r from-electric-blue to-blue-800 hover:from-blue-600 hover:to-blue-700 text-white rounded-lg shadow-[0_0_25px_rgba(0,82,255,0.4)] border border-white/10 transition-all transform active:scale-95 group relative"
+                    class="logout-btn w-full pl-5 h-12 flex items-center justify-start bg-gradient-to-r from-electric-blue to-blue-800 hover:from-blue-600 hover:to-blue-700 text-white rounded-lg shadow-[0_0_25px_rgba(0,82,255,0.4)] border border-white/10 transition-all transform active:scale-95 group relative"
                     data-tooltip="Logout">
                     <span
                         class="material-symbols-outlined text-lg group-hover:animate-pulse flex-shrink-0">logout</span>
                     <span
-                        class="md-label hidden font-bold text-sm tracking-wide ml-3 transition-opacity whitespace-nowrap">Logout</span>
+                        class="md-label inline font-bold text-sm tracking-wide ml-3 transition-opacity whitespace-nowrap">Logout</span>
                 </button>
             </div>
 
         </aside>
-        <!-- Sync Sidebar Anti-FOUC Script -->
+                <!-- Sidebar State Handler -->
         <script>
-            (function () {
-                var sidebar = document.querySelector('aside.dashboard-sidebar');
-                if (!sidebar) return;
-                var toggleBtn = document.querySelector('.side-bar-toggle');
-                var headerInner = document.querySelector('.header-inner');
-                var headerArea = document.querySelector('.sidebar-header-area');
-                var logoText = document.querySelector('.logo-text');
-                var logoImg = document.querySelector('.sidebar-logo-img');
-                var navLinks = document.querySelectorAll('.nav-link-btn');
-                var dividerLine = document.querySelector('.sidebar-divider-line');
-                var logoutBtn = document.querySelector('.logout-btn');
-                var sidebarNav = document.querySelector('aside.dashboard-sidebar nav');
-
-                var isExpanded = localStorage.getItem('sidebarExpanded') !== 'false';
-
-                // Kill ALL transitions instantly
-                var transitionEls = [sidebar, headerArea, headerInner, sidebarNav, dividerLine, toggleBtn, logoText, logoImg].filter(Boolean);
-                navLinks.forEach(function (l) { transitionEls.push(l); });
-                if (logoutBtn) transitionEls.push(logoutBtn);
-                transitionEls.forEach(function (el) { el.style.transition = 'none'; });
-
-                if (isExpanded) {
-                    sidebar.classList.remove('w-20', 'items-center');
-                    sidebar.classList.add('w-72');
-
-                    if (logoText) {
-                        logoText.classList.remove('hidden', 'opacity-0');
-                        logoText.classList.add('opacity-100');
-                        logoText.textContent = "ALCONIO";
-                        logoText.classList.remove('neon-text-blue', 'pl-1');
-                        logoText.classList.add('pl-12');
-                    }
-
-                    if (logoImg) {
-                        logoImg.classList.remove('left-1/2', '-translate-x-1/2');
-                        logoImg.classList.add('left-4');
-                    }
-
-                    var icon = toggleBtn ? toggleBtn.querySelector('.toggle-icon') : null;
-                    if (icon) icon.textContent = 'keyboard_tab_rtl';
-                    if (toggleBtn) {
-                        toggleBtn.classList.remove('w-6', 'h-6', 'absolute', 'right-[2px]', 'translate-x-[2px]');
-                        toggleBtn.classList.add('w-8', 'h-8', 'rounded-lg', 'relative');
-                    }
-
-                    if (headerArea) {
-                        headerArea.classList.remove('px-0', 'justify-end', 'pr-4');
-                        headerArea.classList.add('px-6', 'justify-between');
-                    }
-                    if (headerInner) {
-                        headerInner.classList.remove('justify-center', 'justify-end');
-                        headerInner.classList.add('justify-between');
-                    }
-                    if (sidebarNav) {
-                        sidebarNav.classList.remove('items-center');
-                        sidebarNav.classList.add('items-stretch');
-                        sidebarNav.classList.remove('space-y-1');
-                        sidebarNav.classList.add('space-y-1');
-                    }
-                    if (dividerLine) dividerLine.style.left = '18rem';
-
-                    navLinks.forEach(function (link) {
-                        link.classList.remove('w-12', 'h-12', 'justify-center');
-                        link.classList.add('w-full', 'h-12', 'justify-start', 'pl-5');
-                        var label = link.querySelector('.md-label');
-                        if (label) { label.classList.remove('hidden'); label.classList.add('inline'); }
-                    });
-
-                    if (logoutBtn) {
-                        logoutBtn.classList.remove('w-12');
-                        logoutBtn.classList.add('w-full');
-                        var lLabel = logoutBtn.querySelector('.md-label');
-                        if (lLabel) { lLabel.classList.remove('hidden'); lLabel.classList.add('inline'); }
-                    }
-                } else {
-                    // Collapsed state
-                    sidebar.classList.remove('w-72');
-                    sidebar.classList.add('w-20', 'items-center');
-
-                    if (logoText) {
-                        logoText.classList.remove('opacity-100', 'pl-12');
-                        logoText.classList.add('hidden', 'opacity-0', 'neon-text-blue', 'pl-1');
-                        logoText.textContent = "A";
-                    }
-
-                    if (logoImg) {
-                        logoImg.classList.remove('left-4');
-                        logoImg.classList.add('left-1/2', '-translate-x-1/2');
-                    }
-
-                    var icon = toggleBtn ? toggleBtn.querySelector('.toggle-icon') : null;
-                    if (icon) icon.textContent = 'start';
-                    if (toggleBtn) {
-                        toggleBtn.classList.remove('w-8', 'h-8', 'rounded-lg', 'relative');
-                        toggleBtn.classList.add('w-6', 'h-6', 'absolute', 'right-[2px]', 'translate-x-[2px]');
-                    }
-
-                    if (headerArea) {
-                        headerArea.classList.remove('px-6', 'justify-between');
-                        headerArea.classList.add('px-0', 'justify-end', 'pr-4');
-                    }
-                    if (headerInner) {
-                        headerInner.classList.remove('justify-between', 'justify-end');
-                        headerInner.classList.add('justify-center');
-                    }
-                    if (sidebarNav) {
-                        sidebarNav.classList.remove('items-stretch');
-                        sidebarNav.classList.add('items-center');
-                    }
-                    if (dividerLine) dividerLine.style.left = '5rem';
-
-                    navLinks.forEach(function (link) {
-                        link.classList.remove('w-full', 'justify-start', 'pl-5');
-                        link.classList.add('w-12', 'h-12', 'justify-center');
-                        var label = link.querySelector('.md-label');
-                        if (label) { label.classList.remove('inline'); label.classList.add('hidden'); }
-                    });
-
-                    if (logoutBtn) {
-                        logoutBtn.classList.remove('w-full');
-                        logoutBtn.classList.add('w-12');
-                        var lLabel = logoutBtn.querySelector('.md-label');
-                        if (lLabel) { lLabel.classList.remove('inline'); lLabel.classList.add('hidden'); }
-                    }
+            (function() {
+                const sidebar = document.querySelector('aside.dashboard-sidebar');
+                if (sidebar) {
+                    const isExpanded = localStorage.getItem('sidebarExpanded') !== 'false';
+                    sidebar.classList.add(isExpanded ? 'w-72' : 'w-20');
+                    if (!isExpanded) sidebar.classList.add('items-center');
                 }
-
-                // Re-enable transitions
-                requestAnimationFrame(function () {
-                    requestAnimationFrame(function () {
-                        transitionEls.forEach(function (el) { el.style.transition = ''; });
-                    });
-                });
             })();
         </script>
 

@@ -90,6 +90,19 @@
             theme: {
                 extend: {
                     colors: {
+                        blue: {
+                            50: "#E6EBFF",
+                            100: "#CCD6FF",
+                            200: "#99ADFF",
+                            300: "#6685FF",
+                            400: "#335CFF",
+                            500: "#1E51FF",
+                            600: "#1A46DB",
+                            700: "#1436A8",
+                            800: "#0F2875",
+                            900: "#0A1A42",
+                            950: "#050D21"
+                        },
                         "electric-blue": "#0052FF",
                         "obsidian": "#000000",
                         "obsidian-panel": "#050508",
@@ -101,8 +114,26 @@
             },
         }
     </script>
+
+    <!-- Anti-Flicker Sidebar Guard -->
+    <style id="anti-flicker-style">
+        html.sidebar-condensed aside.dashboard-sidebar { width: 5rem !important; transition: none !important; }
+        html.sidebar-condensed aside.dashboard-sidebar .md-label { display: none !important; }
+        html.sidebar-condensed aside.dashboard-sidebar .logo-text { display: none !important; }
+        html.sidebar-condensed .sidebar-divider-line { left: 5rem !important; transition: none !important; }
+    </style>
+    <script id="anti-flicker-script">
+        (function() {
+            const expanded = localStorage.getItem('sidebarExpanded') !== 'false';
+            if (!expanded) {
+                document.documentElement.classList.add('sidebar-condensed');
+            }
+        })();
+    </script>
 </head>
 <body class="bg-obsidian text-slate-200 font-display antialiased overflow-x-hidden">
+    
+
     <div class="flex min-h-screen">
         <main class="flex-1 p-8">
             <div class="max-w-2xl mx-auto">
