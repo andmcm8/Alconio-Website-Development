@@ -394,9 +394,25 @@ async function initDashboardWithLiveAnalytics(options = {}) {
         mapOverview('userEngagementDuration', 'userEngagementDuration');
         // NOTE: chartTotal is NOT mapped from API. It is computed in drawMainChart by summing visible graph values.
 
+        // Derived Metrics for Engagement Rate and New Users
+        const bounceData = liveData.overview['bounceRate'];
+        if (bounceData) {
+            let bCurr = typeof bounceData.value === 'string' ? parseFloat(bounceData.value) : bounceData.value;
+            let eCurr = Math.max(0, 100 - bCurr);
+            let bPrev = bCurr / (1 + (bounceData.trend / 100));
+            let ePrev = Math.max(0, 100 - bPrev);
+            let eTrend = ePrev ? ((eCurr - ePrev) / ePrev) * 100 : 0;
+            MOCK_DATA.overview['engagementRate'] = { current: eCurr, previous: ePrev, trend: eTrend >= 0 ? 'up' : 'down' };
+            MOCK_DATA.overview['engagementRate_trend_raw'] = eTrend;
+        }
+
+        const newUsersCurr = Math.round(liveData.breakdowns?.userType?.new || 0);
+        MOCK_DATA.overview['newUsers'] = { current: newUsersCurr, previous: newUsersCurr, trend: 'up' };
+
         // 2. Timeseries Mapping
         const targetPeriod = periodParam === 'daily' ? 'daily' : (periodParam === 'monthly' ? 'monthly' : 'weekly');
         const prevKey = 'prev' + targetPeriod.charAt(0).toUpperCase() + targetPeriod.slice(1);
+
 
         MOCK_DATA.timeseries.visitors[targetPeriod] = liveData.timeseries.current.map((v, i) => ({
             label: liveData.timeseries.labels[i],
@@ -634,25 +650,26 @@ async function initPerformanceData(forceRefresh = false) {
         }
 
         // --- STAGE 1: Instant Load (Cached Data) ---
-        // Always try to show cache first on fresh load or switch
-        try {
-            const cachedRes = await fetch(getApiUrl(`/api/performance?strategy=${requestedStrategy}&cachedOnly=true`), {
-                headers: { 'Authorization': `Bearer ${token}` }
-            });
-            if (cachedRes.ok) {
-                const cachedData = await cachedRes.json();
-                // ONLY UPDATE if the user hasn't switched strategies while we were fetching the cache
-                if (cachedData && cachedData.isCached && currentPerfStrategy === requestedStrategy) {
-                    updatePerformanceUI(cachedData);
-                    if (tsLabel && cachedData.dbTimestamp) {
-                        const date = new Date(cachedData.dbTimestamp);
-                        tsLabel.innerText = `Last updated: ${date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
-                        tsLabel.classList.add('opacity-100');
+        // Only show cache first if NOT a forced refresh
+        if (!forceRefresh) {
+            try {
+                const cachedRes = await fetch(getApiUrl(`/api/performance?strategy=${requestedStrategy}&cachedOnly=true`), {
+                    headers: { 'Authorization': `Bearer ${token}` }
+                });
+                if (cachedRes.ok) {
+                    const cachedData = await cachedRes.json();
+                    if (cachedData && cachedData.isCached && currentPerfStrategy === requestedStrategy) {
+                        updatePerformanceUI(cachedData);
+                        if (tsLabel && cachedData.dbTimestamp) {
+                            const date = new Date(cachedData.dbTimestamp);
+                            tsLabel.innerText = `Last updated: ${date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}`;
+                            tsLabel.classList.add('opacity-100');
+                        }
                     }
                 }
+            } catch (e) {
+                console.warn("Cached load failed:", e);
             }
-        } catch (e) {
-            console.warn("Cached load failed:", e);
         }
 
         // --- STAGE 2: Background Refresh (Synchronous for the API, but async to user click) ---
@@ -764,13 +781,28 @@ function renderRollingSparklines() {
         'visitors': sparklineData.visitors,
         'sessions': sparklineData.sessions,
         'bounceRate': sparklineData.bounceRate,
-        'avgSession': sparklineData.avgSession
+        'avgSession': sparklineData.avgSession,
+        'engagementRate': sparklineData.bounceRate ? sparklineData.bounceRate.map(v => Math.max(0, 100 - (typeof v === 'object' ? v.value : v))) : []
     };
 
     document.querySelectorAll('.sparkline-container').forEach(svg => {
         const metric = svg.getAttribute('data-sparkline');
-        const values = metricMap[metric];
+        let values = metricMap[metric];
+        
+        // Fallback for engagementRate to sessions shape if bounce array is missing
+        if (metric === 'engagementRate' && (!values || values.length === 0)) {
+            values = metricMap['sessions'];
+        }
+
         if (!values || values.length === 0) return;
+
+        let strokeColor = '#0052FF';
+        let dropShadowColor = 'rgba(0,82,255,0.8)';
+        
+        if (metric === 'engagementRate') {
+            strokeColor = '#10B981'; // emerald-500
+            dropShadowColor = 'rgba(16,185,129,0.8)';
+        }
 
         // Generate path for the sparkline (3px padding prevents the 2.5px stroke from clipping at the top/bottom)
         // With viewBox="0 0 100 30"
@@ -784,12 +816,12 @@ function renderRollingSparklines() {
         svg.innerHTML = `
             <defs>
                 <linearGradient id="${gradientId}" x1="0" x2="0" y1="0" y2="1">
-                    <stop offset="0%" stop-color="#0052FF" stop-opacity="0.3"></stop>
-                    <stop offset="100%" stop-color="#0052FF" stop-opacity="0.0"></stop>
+                    <stop offset="0%" stop-color="${strokeColor}" stop-opacity="0.3"></stop>
+                    <stop offset="100%" stop-color="${strokeColor}" stop-opacity="0.0"></stop>
                 </linearGradient>
             </defs>
             <path d="${areaData}" fill="url(#${gradientId})" stroke="none"></path>
-            <path d="${pathData}" fill="none" class="drop-shadow-[0_0_4px_rgba(0,82,255,0.8)]" vector-effect="non-scaling-stroke" stroke="#0052FF" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="${pathData}" fill="none" class="drop-shadow-[0_0_5px_${dropShadowColor.replace(/ /g, '')}]" vector-effect="non-scaling-stroke" stroke="${strokeColor}" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"></path>
         `;
     });
 }
@@ -805,15 +837,25 @@ function bindDashboardUI() {
             let val = MOCK_DATA.overview[key];
             if (typeof val === 'object') val = val.current;
 
-            // Final safety rounding for UI
-            const roundedVal = Math.round(val);
+            let roundedVal = Math.round(val);
+            if (key === 'engagementRate') {
+                roundedVal = val.toFixed(1); // keep 1 decimal for engagement rate
+            }
 
             if (key === 'avgSession' || key === 'userEngagementDuration') {
-                el.innerText = formatDuration(roundedVal);
-            } else if (key === 'bounceRate') {
+                el.innerText = formatDuration(Math.round(val));
+            } else if (key === 'bounceRate' || key === 'engagementRate') {
                 el.innerText = roundedVal + '%';
             } else {
-                el.innerText = roundedVal.toLocaleString();
+                el.innerText = Math.round(val).toLocaleString();
+            }
+            
+            // Special handling for New Users bar
+            if (key === 'newUsers') {
+                const total = MOCK_DATA.currentMetrics?.totalUsers || val || 1;
+                const pct = Math.min(100, Math.max(0, (val / total) * 100));
+                const bar = document.getElementById('newUsersProgressBar');
+                if (bar) bar.style.width = pct + '%';
             }
         }
     });
@@ -825,15 +867,17 @@ function bindDashboardUI() {
         if (key === 'chartTotal') return;
         const data = MOCK_DATA.overview[key];
         
-        // Show something even if previous is 0, so the pill doesn't disappear
         if (data) {
             let isPositive = data.current >= (data.previous || 0);
-            // Removed: Lower is better for bounce rate logic to align with universal 0/pos = green rule
 
             let displayVal = '';
             if (key === 'avgSession' || key === 'userEngagementDuration') {
                 const diff = data.current - data.previous;
                 displayVal = (diff >= 0 ? '+' : '') + Math.round(diff) + 's';
+            } else if (key === 'engagementRate' && MOCK_DATA.overview['engagementRate_trend_raw'] !== undefined) {
+                const diff = MOCK_DATA.overview['engagementRate_trend_raw'];
+                isPositive = diff >= 0;
+                displayVal = (diff >= 0 ? '+' : '') + diff.toFixed(1) + '%';
             } else {
                 const pct = calculatePercentageChange(data.current, data.previous);
                 displayVal = (pct >= 0 ? '+' : '') + pct + '%';
@@ -841,8 +885,11 @@ function bindDashboardUI() {
 
             el.innerText = displayVal;
             el.className = isPositive 
-                ? 'text-emerald-400 flex items-center text-[10px] font-bold bg-emerald-900/40 border border-emerald-500/30 px-1.5 py-0.5 rounded shadow-[0_0_8px_rgba(16,185,129,0.2)] mb-1'
-                : 'text-rose-400 flex items-center text-[10px] font-bold bg-rose-900/40 border border-rose-500/30 px-1.5 py-0.5 rounded shadow-[0_0_8px_rgba(244,63,94,0.2)] mb-1';
+                ? 'text-emerald-400 flex items-center px-2 py-0.5 rounded-md text-[10px] font-bold bg-emerald-900/40 border border-emerald-500/30 shadow-sm mb-1'
+                : 'text-rose-400 flex items-center px-2 py-0.5 rounded-md text-[10px] font-bold bg-rose-900/40 border border-rose-500/30 shadow-sm mb-1';
+
+            // Hide trend label for newUsers if required
+            if (key === 'newUsers') el.classList.add('hidden');
 
             // Sync Trend Icons
             const iconEl = document.querySelector(`[data-trend-icon="${key}"]`);
@@ -2158,7 +2205,6 @@ document.addEventListener('DOMContentLoaded', () => {
     // Fetch and render the 4 stat card rolling sparklines
     fetchSparklineData();
 
-    // Initialize specific page logics
     if (window.location.pathname.includes('dashboard_resources.html')) {
         initResourcesPage();
     }
@@ -2168,7 +2214,23 @@ document.addEventListener('DOMContentLoaded', () => {
     if (window.location.pathname.includes('dashboard_docs.html')) {
         initDocsPage();
     }
+    if (window.location.pathname.includes('dashboard_performance.html')) {
+        initPerformancePage();
+    }
 });
+
+function initPerformancePage() {
+    const desktopBtn = document.getElementById('strategy-desktop');
+    const mobileBtn = document.getElementById('strategy-mobile');
+    const refreshBtn = document.getElementById('recalculate-perf');
+
+    if (desktopBtn) desktopBtn.addEventListener('click', () => updateStrategyUI('desktop'));
+    if (mobileBtn) mobileBtn.addEventListener('click', () => updateStrategyUI('mobile'));
+    if (refreshBtn) refreshBtn.addEventListener('click', () => initPerformanceData(true));
+
+    // Initial load
+    initPerformanceData();
+}
 
 /**
  * Resources Page Initialization

@@ -167,7 +167,196 @@ async function initDB() {
 initDB();
 
 app.use(cors());
-app.use(ClerkExpressWithAuth()); // Global middleware to populate req.auth
+
+// --- Stripe Webhook Endpoint (MUST be before express.json() to capture raw body) ---
+app.post('/api/webhooks/stripe', express.raw({ type: 'application/json' }), async (req, res) => {
+    const sig = req.headers['stripe-signature'];
+    let event;
+    try {
+        if (process.env.STRIPE_WEBHOOK_SECRET) {
+            event = stripe.webhooks.constructEvent(req.body, sig, process.env.STRIPE_WEBHOOK_SECRET);
+        } else {
+            console.warn("[WEBHOOK] Missing STRIPE_WEBHOOK_SECRET, parsing payload without signature verification.");
+            event = JSON.parse(req.body.toString());
+        }
+    } catch (err) {
+        console.error(`[WEBHOOK] Signature Error: ${err.message}`);
+        return res.status(400).send(`Webhook Error: ${err.message}`);
+    }
+    try {
+        if (event.type === 'invoice.payment_succeeded') {
+            const invoice = event.data.object;
+            const amount = (invoice.amount_paid / 100).toFixed(2);
+            await db.query(
+                `INSERT INTO activity_logs (user_email, type, title, message) VALUES (?, ?, ?, ?)`,
+                [invoice.customer_email || 'System', 'SUCCESS', 'Payment Received', `Your payment of $${amount} has been received. Thank you!`]
+            );
+            await db.query(`UPDATE client_late_fees SET status = 'paid' WHERE invoice_id = ?`, [invoice.id]);
+        } 
+        else if (event.type === 'invoice.payment_failed') {
+            const invoice = event.data.object;
+            const amount = (invoice.amount_due / 100).toFixed(2);
+            await db.query(
+                `INSERT INTO activity_logs (user_email, type, title, message) VALUES (?, ?, ?, ?)`,
+                [invoice.customer_email || 'System', 'ERROR', 'Payment Failed', `Your payment of $${amount} was unsuccessful. Please update your payment method to avoid service interruption.`]
+            );
+        }
+        else if (event.type === 'customer.subscription.updated') {
+            const subscription = event.data.object;
+            const previousAttr = event.data.previous_attributes;
+            if (previousAttr && previousAttr.cancel_at_period_end !== undefined) {
+                const autopayEnabled = !subscription.cancel_at_period_end;
+                const title = autopayEnabled ? 'Autopay Enabled' : 'Autopay Disabled';
+                let paymentMethod = 'XXXX';
+                if (subscription.default_payment_method) {
+                    try {
+                        const pm = await stripe.paymentMethods.retrieve(subscription.default_payment_method);
+                        if (pm.card) paymentMethod = pm.card.last4;
+                    } catch(e) {}
+                }
+                const message = autopayEnabled 
+                    ? `Automatic payments have been enabled. Your card ending in ${paymentMethod} will be charged automatically on the 1st of each month.`
+                    : `Automatic payments have been disabled. You will need to make payments manually each month.`;
+                let email = 'System';
+                try {
+                    const customer = await stripe.customers.retrieve(subscription.customer);
+                    email = customer.email || 'System';
+                } catch(e) {}
+                await db.query(`INSERT INTO activity_logs (user_email, type, title, message) VALUES (?, ?, ?, ?)`, [email, 'INFO', title, message]);
+            }
+        }
+        res.json({ received: true });
+    } catch (e) {
+        console.error('[WEBHOOK] Error handling event:', e);
+        res.status(500).json({ error: 'Webhook processing failed' });
+    }
+});
+
+// --- Clerk Webhooks Endpoint ---
+app.post('/api/webhooks/clerk', express.raw({ type: 'application/json' }), async (req, res) => {
+    try {
+        const payloadString = req.body.toString('utf8');
+        const svixHeaders = {
+            'svix-id': req.headers['svix-id'],
+            'svix-timestamp': req.headers['svix-timestamp'],
+            'svix-signature': req.headers['svix-signature']
+        };
+        const secret = process.env.CLERK_WEBHOOK_SECRET;
+        let evt;
+        if (secret && secret !== 'whsec_your_clerk_webhook_secret_here') {
+            const wh = new Webhook(secret);
+            try {
+                evt = wh.verify(payloadString, svixHeaders);
+            } catch (err) {
+                console.warn('[WEBHOOK] Clerk signature verification failed.');
+                return res.status(400).json({ error: 'Invalid Clerk Signature' });
+            }
+        } else {
+            try {
+                evt = JSON.parse(payloadString);
+            } catch (err) {
+                return res.status(400).json({ error: 'Invalid JSON payload' });
+            }
+        }
+        const { type, data } = evt || {};
+        if (!type || !data) return res.status(400).json({ error: 'Malformed webhook event' });
+        let email = 'unknown@system.com';
+        if (data.email_addresses && data.email_addresses.length > 0) {
+            email = data.email_addresses[0].email_address;
+        } else if (data.email_address) {
+            email = data.email_address;
+        } else if (data.identifier) {
+            email = data.identifier;
+        }
+        if (type === 'user.created') {
+            const msg = `Welcome to Alconio! Your dashboard is now active. Explore your performance, traffic, and more.`;
+            await db.query(`INSERT INTO activity_logs (user_email, type, title, message) VALUES (?, ?, ?, ?)`, 
+                [email, 'SUCCESS', 'Welcome to Alconio', msg]);
+        }
+        if (type === 'session.created') {
+            let device = data.browser || data.client_id || 'a new device';
+            let location = data.country || data.ip_address || 'an unknown location';
+            const isNewDevice = data.is_new_device || false;
+            const isNewLocation = data.is_new_location || false;
+            if (isNewDevice) {
+                const msg = `New device logged into your account from ${location}. If this wasn't you contact us immediately`;
+                await db.query(`INSERT INTO activity_logs (user_email, type, title, message) VALUES (?, ?, ?, ?)`, 
+                    [email, 'SECURITY', 'New Device Login', msg]);
+            } else if (isNewLocation) {
+                const msg = `New location logged into your account. If this wasn't you contact us immediately`;
+                await db.query(`INSERT INTO activity_logs (user_email, type, title, message) VALUES (?, ?, ?, ?)`, 
+                    [email, 'SECURITY', 'Unfamiliar Location Login', msg]);
+            } else {
+                const timeString = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
+                const msg = `You logged in from ${device} in ${location} at ${timeString}`;
+                await db.query(`INSERT INTO activity_logs (user_email, type, title, message) VALUES (?, ?, ?, ?)`, 
+                    [email, 'INFO', 'Successful Login', msg]);
+            }
+        }
+        else if (type === 'user.login_attempt') {
+            if (data.status === 'failed' || data.status === 'unverified') {
+                const msg = `Someone tried to log into your account incorrectly. If this wasn't you contact us`;
+                await db.query(`INSERT INTO activity_logs (user_email, type, title, message) VALUES (?, ?, ?, ?)`, 
+                    [email, 'ERROR', 'Failed Login Attempt', msg]);
+            }
+            if (data.status === 'locked' || (data.failed_attempts && data.failed_attempts >= 5)) {
+                await db.query(`INSERT INTO activity_logs (user_email, type, title, message) VALUES (?, ?, ?, ?)`, 
+                    [email, 'SECURITY', 'Account Automatically Locked', `Multiple failed login attempts detected on your account. Your account has been temporarily locked for your protection.`]);
+            }
+        }
+        else if (type === 'user.updated') {
+            const previous = data.previous_attributes || {};
+            if (previous.password_enabled !== undefined && previous.password_enabled !== data.password_enabled) {
+                await db.query(`INSERT INTO activity_logs (user_email, type, title, message) VALUES (?, ?, ?, ?)`, 
+                    [email, 'SECURITY', 'Password Updated', `Your password was successfully changed. If this wasn't you contact us immediately`]);
+            }
+            if (previous.email_addresses && previous.email_addresses.length !== data.email_addresses.length) {
+                await db.query(`INSERT INTO activity_logs (user_email, type, title, message) VALUES (?, ?, ?, ?)`, 
+                    [email, 'SECURITY', 'Email Updated', `Your email address was successfully changed. If this wasn't you contact us immediately`]);
+            }
+            if (previous.two_factor_enabled !== undefined && previous.two_factor_enabled !== data.two_factor_enabled) {
+                if (data.two_factor_enabled === true) {
+                    await db.query(`INSERT INTO activity_logs (user_email, type, title, message) VALUES (?, ?, ?, ?)`, 
+                        [email, 'SUCCESS', '2FA Enabled', `Two-factor authentication has been enabled on your account.`]);
+                } else {
+                    await db.query(`INSERT INTO activity_logs (user_email, type, title, message) VALUES (?, ?, ?, ?)`, 
+                        [email, 'WARNING', '2FA Disabled', `Two-factor authentication has been disabled on your account.`]);
+                }
+            }
+            if (previous.locked !== undefined && previous.locked === false && data.locked === true) {
+                 await db.query(`INSERT INTO activity_logs (user_email, type, title, message) VALUES (?, ?, ?, ?)`, 
+                    [email, 'SECURITY', 'Account Locked', `Your account has been locked due to suspicious login activity. Contact us to restore access.`]);
+            }
+        }
+        res.json({ received: true });
+    } catch (e) {
+        console.error('[WEBHOOK] Clerk processing error:', e);
+        res.status(500).json({ error: 'Failed to process Clerk event' });
+    }
+});
+
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+app.use((req, res, next) => {
+    const authHeader = req.headers.authorization;
+    if (authHeader === 'Bearer dev_token') {
+        const devUserId = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W'; 
+        req.auth = { 
+            userId: devUserId, 
+            sessionClaims: { 
+                email: 'dailyinternet2523@gmail.com',
+                publicMetadata: { role: 'client', websiteUrl: 'https://arcaico.vercel.app' }
+            } 
+        };
+        req.userRole = 'client';
+        req.clerkUserId = devUserId;
+        return next();
+    }
+    next();
+});
+
+// app.use(ClerkExpressWithAuth()); // Global middleware to populate req.auth
 
 // Initialize GA4 Client at top level
 let credentials;
@@ -182,59 +371,65 @@ try {
 const analyticsDataClient = credentials ? new BetaAnalyticsDataClient({ credentials }) : null;
 
 async function getPrimaryHostname(req) {
-    // 1. If we have Clerk auth metadata with a websiteUrl, use its hostname
-    if (req.auth && req.auth.metadata && req.auth.metadata.websiteUrl) {
-        try {
-            const url = new URL(req.auth.metadata.websiteUrl);
-            return url.hostname;
-        } catch (e) {
-            console.warn(`[AUTH] Invalid websiteUrl in metadata: ${req.auth.metadata.websiteUrl}`);
-        }
+    if (!req) {
+        console.warn('[SERVER] getPrimaryHostname called without request object');
+        return null;
     }
 
-    // 2. Fallback to session metadata if available
-    // Note: req.session is not directly populated by ClerkExpressWithAuth.
-    // This part might need adjustment based on how session metadata is stored/accessed.
-    // For now, assuming req.auth.sessionClaims might contain public metadata.
-    if (req.auth && req.auth.sessionClaims && req.auth.sessionClaims.publicMetadata && req.auth.sessionClaims.publicMetadata.websiteUrl) {
-        try {
-            const url = new URL(req.auth.sessionClaims.publicMetadata.websiteUrl);
-            return url.hostname;
-        } catch (e) {
-            console.warn(`[AUTH] Invalid websiteUrl in sessionClaims publicMetadata: ${req.auth.sessionClaims.publicMetadata.websiteUrl}`);
-        }
-    }
+    console.log('[DEBUG] getPrimaryHostname check. req has auth:', !!req.auth, 'req has userId:', !!req.auth?.userId);
 
-    // 3. If analyticsDataClient is not initialized, return a default fallback
-    if (!analyticsDataClient) return 'arcaico.vercel.app';
+    if (!req.auth || !req.auth.userId) return null;
 
-    // 4. Attempt to fetch from GA4 if a propertyId is available (e.g., for admin)
-    const propertyId = process.env.GA_PROPERTY_ID; // This would typically be the admin's property ID
-    if (propertyId) {
+    const clerkUserId = req.auth.userId;
+
+    // 1. Try to get from sessionClaims first (snappy)
+    const pub = req.auth.sessionClaims?.publicMetadata || {};
+    let websiteUrl = pub.websiteUrl || pub.websiteurl;
+
+    // 2. If missing from session, fetch directly from Clerk API (reliable)
+    if (!websiteUrl) {
         try {
-            const [response] = await analyticsDataClient.runReport({
-                property: 'properties/' + propertyId,
-                dateRanges: [{ startDate: '30daysAgo', endDate: 'today' }],
-                dimensions: [{ name: 'hostName' }],
-                metrics: [{ name: 'activeUsers' }],
-                limit: 5
+            console.log(`[AUTH] Fetching websiteUrl directly from Clerk API for ${clerkUserId}`);
+            const clerkRes = await fetch(`https://api.clerk.com/v1/users/${clerkUserId}`, {
+                headers: { 'Authorization': `Bearer ${process.env.CLERK_SECRET_KEY}` }
             });
-
-            if (response.rows && response.rows.length > 0) {
-                const validHosts = response.rows
-                    .map(row => row.dimensionValues[0].value)
-                    .filter(host => host && !host.includes('localhost') && host !== '(not set)');
-                if (validHosts.length > 0) {
-                    return validHosts[0];
-                }
+            if (clerkRes.ok) {
+                const user = await clerkRes.json();
+                websiteUrl = user.public_metadata?.websiteUrl || user.public_metadata?.websiteurl;
+                console.log(`[AUTH] Got websiteUrl: ${websiteUrl}`);
+            } else {
+                console.warn(`[AUTH] Clerk API returned ${clerkRes.status} for ${clerkUserId}`);
             }
         } catch (e) {
-            process.stderr.write("[SERVER] Failed to fetch hostname from GA4: " + e.message + "\n");
+            console.warn(`[AUTH] Failed to fetch user from Clerk API: ${e.message}`);
         }
     }
 
-    // 5. Last resort fallback
-    return 'arcaico.vercel.app';
+    if (websiteUrl) {
+        try {
+            const urlString = websiteUrl.startsWith('http') ? websiteUrl : `https://${websiteUrl}`;
+            const url = new URL(urlString);
+            return url.hostname;
+        } catch (e) {
+            console.warn(`[AUTH] Invalid websiteUrl: ${websiteUrl}`);
+        }
+    }
+
+    // 3. Last resort - check database
+    try {
+        const [rows] = await db.query('SELECT website_url FROM clients WHERE clerk_user_id = ? OR email = ?', 
+            [clerkUserId, req.auth?.sessionClaims?.email]);
+        if (rows.length > 0 && rows[0].website_url) {
+            const dbUrl = rows[0].website_url;
+            const urlString = dbUrl.startsWith('http') ? dbUrl : `https://${dbUrl}`;
+            const url = new URL(urlString);
+            return url.hostname;
+        }
+    } catch (dbErr) {
+        console.warn(`[AUTH] DB fallback for hostname failed: ${dbErr.message}`);
+    }
+
+    return null;
 }
 
 // --- CLERK METADATA SECURE FETCHING & CACHING ---
@@ -392,30 +587,19 @@ async function getTrafficVolume(propertyId, startDate, endDate) {
 
 // Middleware to ensure user is authenticated
 const requireAuth = (req, res, next) => {
-    // DEV BYPASS for local testing
-    const authHeader = req.headers.authorization;
-    if (authHeader === 'Bearer dev_token') {
-        req.auth = { 
-            userId: 'dev_user_123', 
-            sessionClaims: { 
-                email: 'and.mcm123@gmail.com',
-                publicMetadata: { role: 'admin' }
-            } 
-        };
-        req.userRole = 'admin';
-        return next();
+    // Role and Context extraction from PUBLIC metadata (in JWT)
+    if (req.auth?.sessionClaims?.publicMetadata) {
+        const metadata = req.auth.sessionClaims.publicMetadata;
+        req.userRole = metadata.role || 'client';
+        req.clerkUserId = req.auth.userId;
+    } else if (req.auth?.userId) {
+        req.userRole = 'client';
+        req.clerkUserId = req.auth.userId;
     }
 
-    if (!req.auth?.userId) {
+    if (!req.clerkUserId) {
         return res.status(401).json({ error: "Unauthorized. Please sign in." });
     }
-
-    // Role and Context extraction from PUBLIC metadata (in JWT)
-    const metadata = req.auth.sessionClaims?.publicMetadata || {};
-    req.userRole = metadata.role || 'client';
-    req.clientId = metadata.clientId;
-    req.websiteUrl = metadata.websiteUrl;
-    req.clerkUserId = req.auth.userId;
 
     next();
 };
@@ -518,17 +702,18 @@ app.get('/api/modifications', requireAuth, async (req, res) => {
 
 app.post('/api/modifications', requireAuth, async (req, res) => {
     try {
-        const { title, description } = req.body;
+        const { title, description, category, urgency, page_section } = req.body;
         const clerkUserId = req.clerkUserId;
         const userEmail = req.auth?.sessionClaims?.email || '';
 
         await db.query(
-            'INSERT INTO modification_requests (clerk_user_id, user_email, title, description, status) VALUES (?, ?, ?, ?, ?)',
-            [clerkUserId, userEmail, title, description, 'received']
+            'INSERT INTO modification_requests (clerk_user_id, user_email, title, category, description, urgency, page_section, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?)',
+            [clerkUserId, userEmail, title, category || 'General', description, urgency || 'normal', page_section || 'all', 'received']
         );
 
         res.json({ success: true });
     } catch (err) {
+        console.error("[SERVER] Post Modification Error:", err);
         res.status(500).json({ error: err.message });
     }
 });
@@ -1213,11 +1398,10 @@ const CACHE_DURATION = 24 * 60 * 60 * 1000; // 24 hours in ms
  * Reusable function to perform PageSpeed Insights analysis
  * Saves result to DB and updates memory cache
  */
-async function performPSIAnalysis(userEmail, strategy) {
-    const hostname = await getPrimaryHostname();
-    const url = `https://${hostname}`;
+async function performPSIAnalysis(userEmail, clerkUserId, strategy, targetUrl = null) {
+    const url = targetUrl.startsWith('http') ? targetUrl : `https://${targetUrl}`;
 
-    console.log(`[SERVER] Performance analysis (fetch) for: ${url} (${strategy})`);
+    console.log(`[SERVER] Performance analysis (fetch) for: ${url} (${strategy}) for user ${clerkUserId}`);
 
     // Use API Key first if available, then JWT/Service Account
     let psiClient;
@@ -1241,9 +1425,18 @@ async function performPSIAnalysis(userEmail, strategy) {
         strategy: strategy
     });
 
+    if (!psiRes.data || !psiRes.data.lighthouseResult) {
+        console.error('[SERVER] PSI Response missing lighthouseResult:', JSON.stringify(psiRes.data, null, 2));
+        throw new Error("PageSpeed Insights returned invalid data (lighthouseResult missing)");
+    }
+
     const data = psiRes.data;
     const lighthouse = data.lighthouseResult;
-    const audits = lighthouse.audits;
+    const audits = lighthouse.audits || {};
+    
+    if (Object.keys(audits).length === 0) {
+        console.warn('[SERVER] PSI audits object is empty!');
+    }
 
     const getStatus = (score) => {
         if (score >= 0.9) return 'good';
@@ -1296,12 +1489,6 @@ async function performPSIAnalysis(userEmail, strategy) {
             status: getStatus(audits['max-potential-fid'].score)
         };
     }
-
-    // Update memory cache
-    performanceCache[strategy] = {
-        data: response,
-        timestamp: Date.now()
-    };
 
     // Save to DB
     try {
@@ -1422,59 +1609,60 @@ async function checkTrafficMilestones(email, propertyId) {
 app.get('/api/performance', requireAuth, async (req, res) => {
     try {
         const strategy = req.query.strategy === 'mobile' ? 'mobile' : 'desktop';
-        const hostname = await getPrimaryHostname();
+        const hostname = await getPrimaryHostname(req);
         const url = `https://${hostname}`;
         const forceRefresh = req.query.refresh === 'true';
 
         // Check for cachedOnly request
         const cachedOnly = req.query.cachedOnly === 'true';
         const userEmail = req.auth?.sessionClaims?.email || 'admin@alconio.com';
+        const clerkUserId = req.clerkUserId;
 
-        if (cachedOnly || !forceRefresh) {
-            try {
-                const [rows] = await db.query(
-                    'SELECT metrics_json, timestamp FROM performance_metrics WHERE clerk_user_id = ? AND strategy = ? ORDER BY timestamp DESC LIMIT 1',
-                    [req.clerkUserId, strategy]
-                );
+        try {
+            const [rows] = await db.query(
+                'SELECT metrics_json, timestamp FROM performance_metrics WHERE clerk_user_id = ? AND strategy = ? ORDER BY timestamp DESC LIMIT 1',
+                [clerkUserId, strategy]
+            );
 
-                if (rows.length > 0) {
-                    const cachedData = rows[0].metrics_json;
-                    const dbTimestamp = rows[0].timestamp;
-                    
-                    // Add freshness info
-                    const result = { 
+            if (rows.length > 0) {
+                const cachedData = rows[0].metrics_json;
+                const dbTimestamp = new Date(rows[0].timestamp).getTime();
+                const now = Date.now();
+                
+                // If data is older than 24 hours, auto-refresh (as per requirements)
+                const isStale = (now - dbTimestamp > 24 * 60 * 60 * 1000);
+                
+                if (!forceRefresh && !isStale) {
+                    return res.json({ 
                         ...cachedData, 
                         isCached: true, 
-                        dbTimestamp,
+                        dbTimestamp: rows[0].timestamp,
                         serverTime: new Date().toISOString()
-                    };
-
-                    if (cachedOnly) {
-                        return res.json(result);
-                    }
-
-                    // For non-forceRefresh, still check standard performanceCache first
-                    const now = Date.now();
-                    const inMemory = performanceCache[strategy];
-                    if (inMemory.data && (now - inMemory.timestamp < CACHE_DURATION)) {
-                        return res.json(inMemory.data);
-                    }
-                    
-                    // If no recent in-memory cache, but we have DB data, return that immediately for snappy feel
-                    if (!forceRefresh) {
-                        return res.json(result);
-                    }
+                    });
                 }
-            } catch (dbError) {
-                console.error('[SERVER] Database cache fetch failed:', dbError.message);
+                
+                if (cachedOnly && !isStale) {
+                    return res.json({ 
+                        ...cachedData, 
+                        isCached: true, 
+                        dbTimestamp: rows[0].timestamp,
+                        serverTime: new Date().toISOString()
+                    });
+                }
             }
+        } catch (dbError) {
+            console.error('[SERVER] Database cache fetch failed:', dbError.message);
         }
 
-        const response = await performPSIAnalysis(userEmail, strategy);
+        if (!hostname) {
+            return res.status(400).json({ error: "No website URL found in your account metadata." });
+        }
+        
+        const response = await performPSIAnalysis(userEmail, clerkUserId, strategy, hostname);
         res.json(response);
     } catch (error) {
-        console.error("[SERVER] PSI Error:", error);
-        res.status(500).json({ error: error.message });
+        console.error("[SERVER] PSI Error at:", error.stack);
+        res.status(500).json({ error: error.message, stack: error.stack });
     }
 });
 
@@ -1538,211 +1726,7 @@ function generateSecurePassword() {
     return password.sort(() => Math.random() - 0.5).join('');
 }
 
-// --- Stripe Webhook Endpoint (MUST be before express.json() to capture raw body) ---
-app.post('/api/webhooks/stripe', express.raw({ type: 'application/json' }), async (req, res) => {
-    const sig = req.headers['stripe-signature'];
-    let event;
-
-    try {
-        if (process.env.STRIPE_WEBHOOK_SECRET) {
-            event = stripe.webhooks.constructEvent(req.body, sig, process.env.STRIPE_WEBHOOK_SECRET);
-        } else {
-            console.warn("[WEBHOOK] Missing STRIPE_WEBHOOK_SECRET, parsing payload without signature verification.");
-            event = JSON.parse(req.body.toString());
-        }
-    } catch (err) {
-        console.error(`[WEBHOOK] Signature Error: ${err.message}`);
-        return res.status(400).send(`Webhook Error: ${err.message}`);
-    }
-
-    try {
-        if (event.type === 'invoice.payment_succeeded') {
-            const invoice = event.data.object;
-            const amount = (invoice.amount_paid / 100).toFixed(2);
-            await db.query(
-                `INSERT INTO activity_logs (user_email, type, title, message) VALUES (?, ?, ?, ?)`,
-                [invoice.customer_email || 'System', 'SUCCESS', 'Payment Received', `Your payment of $${amount} has been received. Thank you!`]
-            );
-            // If they had late fees for this invoice, mark them paid
-            await db.query(`UPDATE client_late_fees SET status = 'paid' WHERE invoice_id = ?`, [invoice.id]);
-        } 
-        else if (event.type === 'invoice.payment_failed') {
-            const invoice = event.data.object;
-            const amount = (invoice.amount_due / 100).toFixed(2);
-            await db.query(
-                `INSERT INTO activity_logs (user_email, type, title, message) VALUES (?, ?, ?, ?)`,
-                [invoice.customer_email || 'System', 'ERROR', 'Payment Failed', `Your payment of $${amount} was unsuccessful. Please update your payment method to avoid service interruption.`]
-            );
-        }
-        else if (event.type === 'customer.subscription.updated') {
-            const subscription = event.data.object;
-            const previousAttr = event.data.previous_attributes;
-            
-            // AutoPay logic
-            if (previousAttr && previousAttr.cancel_at_period_end !== undefined) {
-                const autopayEnabled = !subscription.cancel_at_period_end;
-                const title = autopayEnabled ? 'Autopay Enabled' : 'Autopay Disabled';
-                
-                let paymentMethod = 'XXXX';
-                if (subscription.default_payment_method) {
-                    try {
-                        const pm = await stripe.paymentMethods.retrieve(subscription.default_payment_method);
-                        if (pm.card) paymentMethod = pm.card.last4;
-                    } catch(e) {}
-                }
-                
-                const message = autopayEnabled 
-                    ? `Automatic payments have been enabled. Your card ending in ${paymentMethod} will be charged automatically on the 1st of each month.`
-                    : `Automatic payments have been disabled. You will need to make payments manually each month.`;
-                
-                let email = 'System';
-                try {
-                    const customer = await stripe.customers.retrieve(subscription.customer);
-                    email = customer.email || 'System';
-                } catch(e) {}
-
-                await db.query(`INSERT INTO activity_logs (user_email, type, title, message) VALUES (?, ?, ?, ?)`, [email, 'INFO', title, message]);
-            }
-        }
-        res.json({ received: true });
-    } catch (e) {
-        console.error('[WEBHOOK] Error handling event:', e);
-        res.status(500).json({ error: 'Webhook processing failed' });
-    }
-});
-
-// --- Clerk Webhooks Endpoint ---
-app.post('/api/webhooks/clerk', express.raw({ type: 'application/json' }), async (req, res) => {
-    try {
-        const payloadString = req.body.toString('utf8');
-        const svixHeaders = {
-            'svix-id': req.headers['svix-id'],
-            'svix-timestamp': req.headers['svix-timestamp'],
-            'svix-signature': req.headers['svix-signature']
-        };
-
-        const secret = process.env.CLERK_WEBHOOK_SECRET;
-        let evt;
-
-        // Verify with Svix if secret is provided in production
-        if (secret && secret !== 'whsec_your_clerk_webhook_secret_here') {
-            const wh = new Webhook(secret);
-            try {
-                evt = wh.verify(payloadString, svixHeaders);
-            } catch (err) {
-                console.warn('[WEBHOOK] Clerk signature verification failed.');
-                return res.status(400).json({ error: 'Invalid Clerk Signature' });
-            }
-        } else {
-            // Bypass verification for local prototyping if no secret configured
-            try {
-                evt = JSON.parse(payloadString);
-            } catch (err) {
-                return res.status(400).json({ error: 'Invalid JSON payload' });
-            }
-        }
-
-        const { type, data } = evt || {};
-        if (!type || !data) return res.status(400).json({ error: 'Malformed webhook event' });
-
-        // Retrieve best-effort email address from Clerk payloads
-        let email = 'unknown@system.com';
-        if (data.email_addresses && data.email_addresses.length > 0) {
-            email = data.email_addresses[0].email_address;
-        } else if (data.email_address) {
-            email = data.email_address;
-        } else if (data.identifier) {
-            email = data.identifier;
-        }
-
-        // --- 0. USER.CREATED (New Account) ---
-        if (type === 'user.created') {
-            const msg = `Welcome to Alconio! Your dashboard is now active. Explore your performance, traffic, and more.`;
-            await db.query(`INSERT INTO activity_logs (user_email, type, title, message) VALUES (?, ?, ?, ?)`, 
-                [email, 'SUCCESS', 'Welcome to Alconio', msg]);
-        }
-
-        // --- 1. SESSION.CREATED (Login Activity) ---
-        if (type === 'session.created') {
-            // Extract device/location metadata if Clerk has passed it (usually in browser_info or similar metadata depending on plan)
-            let device = data.browser || data.client_id || 'a new device';
-            let location = data.country || data.ip_address || 'an unknown location';
-            
-            // Check if Clerk provided flags for "new_device" or "new_location" which sometimes appear in session metadata
-            const isNewDevice = data.is_new_device || false;
-            const isNewLocation = data.is_new_location || false;
-
-            if (isNewDevice) {
-                const msg = `New device logged into your account from ${location}. If this wasn't you contact us immediately`;
-                await db.query(`INSERT INTO activity_logs (user_email, type, title, message) VALUES (?, ?, ?, ?)`, 
-                    [email, 'SECURITY', 'New Device Login', msg]);
-            } else if (isNewLocation) {
-                const msg = `New location logged into your account. If this wasn't you contact us immediately`;
-                await db.query(`INSERT INTO activity_logs (user_email, type, title, message) VALUES (?, ?, ?, ?)`, 
-                    [email, 'SECURITY', 'Unfamiliar Location Login', msg]);
-            } else {
-                // Standard Login
-                const timeString = new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit' });
-                const msg = `You logged in from ${device} in ${location} at ${timeString}`;
-                await db.query(`INSERT INTO activity_logs (user_email, type, title, message) VALUES (?, ?, ?, ?)`, 
-                    [email, 'INFO', 'Successful Login', msg]);
-            }
-        }
-
-        // --- 2. USER.LOGIN_ATTEMPT (Failed attempts, Locking) ---
-        else if (type === 'user.login_attempt') {
-            if (data.status === 'failed' || data.status === 'unverified') {
-                const msg = `Someone tried to log into your account incorrectly. If this wasn't you contact us`;
-                await db.query(`INSERT INTO activity_logs (user_email, type, title, message) VALUES (?, ?, ?, ?)`, 
-                    [email, 'ERROR', 'Failed Login Attempt', msg]);
-            }
-            if (data.status === 'locked' || (data.failed_attempts && data.failed_attempts >= 5)) {
-                await db.query(`INSERT INTO activity_logs (user_email, type, title, message) VALUES (?, ?, ?, ?)`, 
-                    [email, 'SECURITY', 'Account Automatically Locked', `Multiple failed login attempts detected on your account. Your account has been temporarily locked for your protection.`]);
-            }
-        }
-
-        // --- 3. USER.UPDATED (Account Changes, MFA, Passwords) ---
-        else if (type === 'user.updated') {
-            // Check previous attributes to see WHAT changed exactly
-            const previous = data.previous_attributes || {};
-            
-            // Password change
-            if (previous.password_enabled !== undefined && previous.password_enabled !== data.password_enabled) {
-                await db.query(`INSERT INTO activity_logs (user_email, type, title, message) VALUES (?, ?, ?, ?)`, 
-                    [email, 'SECURITY', 'Password Updated', `Your password was successfully changed. If this wasn't you contact us immediately`]);
-            }
-            
-            // Email change
-            if (previous.email_addresses && previous.email_addresses.length !== data.email_addresses.length) {
-                await db.query(`INSERT INTO activity_logs (user_email, type, title, message) VALUES (?, ?, ?, ?)`, 
-                    [email, 'SECURITY', 'Email Updated', `Your email address was successfully changed. If this wasn't you contact us immediately`]);
-            }
-
-            // Two-Factor Authentication (MFA) Check
-            if (previous.two_factor_enabled !== undefined && previous.two_factor_enabled !== data.two_factor_enabled) {
-                if (data.two_factor_enabled === true) {
-                    await db.query(`INSERT INTO activity_logs (user_email, type, title, message) VALUES (?, ?, ?, ?)`, 
-                        [email, 'SUCCESS', '2FA Enabled', `Two-factor authentication has been enabled on your account.`]);
-                } else {
-                    await db.query(`INSERT INTO activity_logs (user_email, type, title, message) VALUES (?, ?, ?, ?)`, 
-                        [email, 'WARNING', '2FA Disabled', `Two-factor authentication has been disabled on your account.`]);
-                }
-            }
-
-            // Locked Check (In case locked comes through updated instead of login_attempt)
-            if (previous.locked !== undefined && previous.locked === false && data.locked === true) {
-                 await db.query(`INSERT INTO activity_logs (user_email, type, title, message) VALUES (?, ?, ?, ?)`, 
-                    [email, 'SECURITY', 'Account Locked', `Your account has been locked due to suspicious login activity. Contact us to restore access.`]);
-            }
-        }
-
-        res.json({ received: true });
-    } catch (e) {
-        console.error('[WEBHOOK] Clerk processing error:', e);
-        res.status(500).json({ error: 'Failed to process Clerk event' });
-    }
-});
+// Webhooks moved earlier
 
 // --- Admin Notification Endpoints ---
 app.post('/api/admin/notifications/modification', requireAuth, async (req, res) => {
@@ -1886,7 +1870,7 @@ app.get('/api/resources/modifications', requireAuth, async (req, res) => {
     }
 });
 
-app.use(express.json());
+// express.json() moved earlier
 
 const CLIENTS_FILE = path.join(__dirname, 'clients.json');
 
@@ -2604,15 +2588,17 @@ cron.schedule('0 9 * * *', async () => {
             }
         }
         // 3. PERFORMANCE HEALTH AUDITING (Daily CWV Checks)
-        const [clients] = await db.query('SELECT DISTINCT client_id FROM performance_metrics');
+        const [clients] = await db.query('SELECT email, clerk_user_id, website_url FROM clients WHERE website_url IS NOT NULL');
         for (const c of clients) {
-            const email = c.client_id;
-            console.log(`[CRON] Auditing performance for: ${email}`);
+            const email = c.email;
+            const clerkUserId = c.clerk_user_id;
+            const websiteUrl = c.website_url;
+            console.log(`[CRON] Auditing performance for: ${email} (${websiteUrl})`);
             
             for (const strategy of ['desktop', 'mobile']) {
                 try {
                     // 1. Perform fresh scan
-                    const currentData = await performPSIAnalysis(email, strategy);
+                    const currentData = await performPSIAnalysis(email, clerkUserId, strategy, websiteUrl);
                     
                     // 2. Compare with yesterday and notify
                     await compareMetricsAndNotify(email, strategy, currentData);

@@ -280,12 +280,12 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const toggleIcon = toggleBtn ? toggleBtn.querySelector('.toggle-icon') : null;
                 if (toggleIcon) {
                     toggleIcon.textContent = 'keyboard_tab_rtl';
-                    toggleIcon.style.fontSize = '';
+                    toggleIcon.style.fontSize = '20px';
                 }
                 
                 if (toggleBtn) {
-                    toggleBtn.classList.remove('w-6', 'h-6', 'absolute', 'right-[2px]', 'translate-x-[2px]');
-                    toggleBtn.classList.add('w-8', 'h-8', 'rounded-lg', 'relative');
+                    toggleBtn.classList.remove('absolute', 'right-[2px]', 'translate-x-[2px]');
+                    toggleBtn.classList.add('relative');
                     // Clear Structure C ad-hoc styles
                     toggleBtn.style.width = '';
                     toggleBtn.style.height = '';
@@ -322,8 +322,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                 });
 
                 if (logoutBtn) {
-                    logoutBtn.classList.remove('w-12');
-                    logoutBtn.classList.add('w-full');
+                    logoutBtn.classList.remove('w-12', 'justify-start', 'pl-5');
+                    logoutBtn.classList.add('w-full', 'justify-center');
                     const label = logoutBtn.querySelector('.md-label');
                     if (label) {
                         label.classList.remove('hidden');
@@ -355,12 +355,12 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const toggleIcon = toggleBtn ? toggleBtn.querySelector('.toggle-icon') : null;
                 if (toggleIcon) {
                     toggleIcon.textContent = 'start';
-                    toggleIcon.style.fontSize = '';
+                    toggleIcon.style.fontSize = '12px';
                 }
                 
                 if (toggleBtn) {
-                    toggleBtn.classList.remove('w-8', 'h-8', 'rounded-lg', 'relative');
-                    toggleBtn.classList.add('w-6', 'h-6', 'absolute', 'right-[2px]', 'translate-x-[2px]');
+                    toggleBtn.classList.remove('relative');
+                    toggleBtn.classList.add('absolute', 'right-[2px]', 'translate-x-[2px]');
                     // Clear Structure C ad-hoc styles
                     toggleBtn.style.position = '';
                     toggleBtn.style.right = '';
@@ -397,8 +397,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                 });
 
                 if (logoutBtn) {
-                    logoutBtn.classList.remove('w-full');
-                    logoutBtn.classList.add('w-12');
+                    logoutBtn.classList.remove('w-full', 'pl-5');
+                    logoutBtn.classList.add('w-12', 'justify-center');
                     const label = logoutBtn.querySelector('.md-label');
                     if (label) {
                         label.classList.remove('inline');
@@ -848,6 +848,38 @@ document.addEventListener('DOMContentLoaded', async () => {
             window.notifDropdown.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
         }
     });
+
+    // --- Global Toast System ---
+    const toastContainer = document.createElement('div');
+    toastContainer.id = 'toast-container';
+    toastContainer.className = 'fixed bottom-8 right-8 z-[9999] flex flex-col gap-3 pointer-events-none';
+    document.body.appendChild(toastContainer);
+
+    window.showToast = function(message, type = 'success') {
+        const toast = document.createElement('div');
+        const icon = type === 'success' ? 'check_circle' : (type === 'error' ? 'cancel' : 'info');
+        const color = type === 'success' ? 'text-emerald-400' : (type === 'error' ? 'text-red-400' : 'text-blue-400');
+        const border = type === 'success' ? 'border-emerald-500/20' : (type === 'error' ? 'border-red-500/20' : 'border-blue-500/20');
+        
+        toast.className = `glass-card flex items-center gap-3 px-6 py-4 rounded-2xl border ${border} shadow-2xl translate-x-12 opacity-0 pointer-events-auto transition-all duration-300`;
+        toast.innerHTML = `
+            <span class="material-symbols-outlined ${color}">${icon}</span>
+            <span class="text-sm font-bold text-white tracking-wide">${message}</span>
+        `;
+        
+        toastContainer.appendChild(toast);
+        
+        // Animate in
+        requestAnimationFrame(() => {
+            toast.classList.remove('translate-x-12', 'opacity-0');
+        });
+        
+        // Remove after 3s
+        setTimeout(() => {
+            toast.classList.add('translate-x-12', 'opacity-0');
+            setTimeout(() => toast.remove(), 300);
+        }, 3000);
+    };
 
 });
 

@@ -1,1243 +1,1712 @@
-[dotenv@17.3.1] injecting env (6) from .env -- tip: ⚙️  load multiple .env files with { path: ['.env.local', '.env'] }
+[dotenv@17.3.1] injecting env (14) from .env -- tip: ⚙️  specify custom .env file path with { path: '/custom/path/.env' }
+[SERVER] Syncing 2 clients from JSON to MySQL...
 Analytics API proxy server running on http://localhost:3000
-[SERVER] GA4 Request for period: 30days
-[GA4] Retention report success
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 30
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] GA4 Request for period: 30days
-[GA4] Retention report success
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 30
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] GA4 Request for period: 30days
-[GA4] Retention report success
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 30
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] GA4 Request for period: 30days
-[GA4] Retention report success
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 30
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] GA4 Request for period: 30days
-[GA4] Retention report success
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 30
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] GA4 Request for period: 30days
-[GA4] Retention report success
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 30
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
+[SERVER] Merchant sync complete.
+[SERVER] Migration warning for uptime_logs.clerk_user_id: Table 'alconio.uptime_logs' doesn't exist
+[SERVER] MySQL Tables initialized.
+[SERVER] Seeded site_content for user: user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W
 [SERVER] GA4 Request for period: 7days
-[GA4] Retention report success
 [SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
 [SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] GA4 Request for period: today
-[GA4] Retention report success
-[SERVER] fillGaps for "today" (rangeIdx: 0), numDays: 7
-[SERVER] fillGaps for "today" (rangeIdx: 1), numDays: 7
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
 [SERVER] GA4 Request for period: 7days
-[GA4] Retention report success
 [SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
 [SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] GA4 Request for period: 30days
-[GA4] Retention report success
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 30
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] GA4 Request for period: today
-[GA4] Retention report success
-[SERVER] fillGaps for "today" (rangeIdx: 0), numDays: 7
-[SERVER] fillGaps for "today" (rangeIdx: 1), numDays: 7
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
 [SERVER] GA4 Request for period: 7days
-[GA4] Retention report success
+[DEBUG] getPrimaryHostname check. req has auth: true req has userId: true
+[DEBUG] getPrimaryHostname check. req has auth: true req has userId: true
+[SERVER] Performance analysis (fetch) for: https://arcaico.vercel.app (desktop) for user user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
+}
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
+}
 [SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
 [SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
 }
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] GA4 Request for period: today
-[GA4] Retention report success
-[SERVER] fillGaps for "today" (rangeIdx: 0), numDays: 7
-[SERVER] fillGaps for "today" (rangeIdx: 1), numDays: 7
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
 }
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
+[CRON] Running Website Health Check...
+[CRON] Health Check Failed: Table 'alconio.uptime_logs' doesn't exist
 [SERVER] GA4 Request for period: 7days
-[GA4] Retention report success
+[DEBUG] getPrimaryHostname check. req has auth: true req has userId: true
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
+}
+[DEBUG] getPrimaryHostname check. req has auth: true req has userId: true
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
+}
+[SERVER] Performance analysis (fetch) for: https://arcaico.vercel.app (desktop) for user user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W
 [SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
 [SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
 }
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] GA4 Request for period: 30days
-[GA4] Retention report success
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 30
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] GA4 Request for period: 30days
-[GA4] Retention report success
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 30
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] GA4 Request for period: 30days
-[GA4] Retention report success
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 30
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
 [SERVER] GA4 Request for period: 7days
-[GA4] Retention report success
 [SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
 [SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] GA4 Request for period: today
-[GA4] Retention report success
-[SERVER] fillGaps for "today" (rangeIdx: 0), numDays: 7
-[SERVER] fillGaps for "today" (rangeIdx: 1), numDays: 7
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 30days
+[SERVER] Heatmap request for property: 526584649
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] Heatmap success: 10 days
 [SERVER] GA4 Request for period: 7days
-[GA4] Retention report success
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 7days
+[GA4] Report failed for date: 8 RESOURCE_EXHAUSTED: Exhausted concurrent requests quota. Please send fewer requests concurrently. For example, wait for requests to finish before sending more. To learn more, see https://developers.google.com/analytics/devguides/reporting/data/v1/quotas
 [SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
 [SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] GA4 Request for period: today
-[GA4] Retention report success
-[SERVER] fillGaps for "today" (rangeIdx: 0), numDays: 7
-[SERVER] fillGaps for "today" (rangeIdx: 1), numDays: 7
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] GA4 Request for period: 7days
-[GA4] Retention report success
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
 [SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
 [SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] GA4 Request for period: 30days
-[GA4] Retention report success
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 30
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] GA4 Request for period: 30days
-[SERVER] GA4 Request for period: 30days
-[GA4] Retention report success
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 30
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[GA4] Retention report success
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 30
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] GA4 Request for period: 30days
-[SERVER] GA4 Request for period: 30days
-[GA4] Retention report success
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 30
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] GA4 Request for period: 30days
-[SERVER] GA4 Request for period: 30days
-[GA4] Retention report success
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 30
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] GA4 Request for period: 30days
-[GA4] Retention report success
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 30
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[GA4] Retention report success
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 30
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[GA4] Retention report success
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 30
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] GA4 Request for period: 30days
-[GA4] Retention report success
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 30
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] GA4 Request for period: today
-[GA4] Retention report success
-[SERVER] fillGaps for "today" (rangeIdx: 0), numDays: 7
-[SERVER] fillGaps for "today" (rangeIdx: 1), numDays: 7
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] GA4 Request for period: 30days
-[GA4] Retention report success
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 30
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] GA4 Request for period: today
-[GA4] Retention report success
-[SERVER] fillGaps for "today" (rangeIdx: 0), numDays: 7
-[SERVER] fillGaps for "today" (rangeIdx: 1), numDays: 7
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] GA4 Request for period: 30days
-[GA4] Retention report success
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 30
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] GA4 Request for period: 7days
-[GA4] Retention report success
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
 [SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
 [SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
 [SERVER] GA4 Request for period: 7days
-[GA4] Retention report success
 [SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
 [SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
 [SERVER] GA4 Request for period: 7days
-[GA4] Retention report success
 [SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
 [SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
 [SERVER] GA4 Request for period: 30days
-[GA4] Retention report success
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 30
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
+[SERVER] Heatmap request for property: 526584649
 [SERVER] GA4 Request for period: 7days
-[GA4] Retention report success
+[DEBUG] getPrimaryHostname check. req has auth: true req has userId: true
+[DEBUG] getPrimaryHostname check. req has auth: true req has userId: true
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
+}
+[SERVER] Performance analysis (fetch) for: https://arcaico.vercel.app (desktop) for user user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] Heatmap success: 10 days
 [SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
 [SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
 [SERVER] GA4 Request for period: 7days
-[GA4] Retention report success
 [SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
 [SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
 [SERVER] GA4 Request for period: 30days
-[GA4] Retention report success
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 30
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] GA4 Request for period: 30days
-[GA4] Retention report success
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 30
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
+[SERVER] Heatmap request for property: 526584649
+[SERVER] Heatmap success: 10 days
 [SERVER] GA4 Request for period: 7days
-[GA4] Retention report success
+[DEBUG] getPrimaryHostname check. req has auth: true req has userId: true
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
+}
+[DEBUG] getPrimaryHostname check. req has auth: true req has userId: true
+[SERVER] Performance analysis (fetch) for: https://arcaico.vercel.app (desktop) for user user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
+}
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
+}
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
 [SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
 [SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
 }
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] GA4 Request for period: 30days
-[GA4] Retention report success
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 30
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
 [SERVER] GA4 Request for period: 7days
-[GA4] Retention report success
 [SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
 [SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] GA4 Request for period: 30days
-[GA4] Retention report success
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 30
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] GA4 Request for period: 30days
-[GA4] Retention report success
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 30
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
 [SERVER] GA4 Request for period: 7days
-[SERVER] GA4 Request for period: 30days
-[GA4] Retention report success
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 30
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[GA4] Retention report success
 [SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
 [SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
 [SERVER] GA4 Request for period: 7days
-[GA4] Retention report success
 [SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
 [SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] GA4 Request for period: 30days
-[GA4] Retention report success
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 30
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
 [SERVER] GA4 Request for period: 7days
-[SERVER] GA4 Request for period: 30days
-[GA4] Retention report success
 [SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
 [SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[GA4] Retention report success
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 30
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
 [SERVER] GA4 Request for period: 7days
-[GA4] Retention report success
 [SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
 [SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
 [SERVER] GA4 Request for period: 7days
-[GA4] Retention report success
 [SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
 [SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] GA4 Request for period: 30days
-[GA4] Retention report success
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 30
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[CRON] Running Website Health Check...
+[CRON] Health Check Failed: Table 'alconio.uptime_logs' doesn't exist
 [SERVER] GA4 Request for period: 7days
-[GA4] Retention report success
 [SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
 [SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] GA4 Request for period: 30days
-[GA4] Retention report success
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 30
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] GA4 Request for period: 30days
-[GA4] Retention report success
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 30
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
 [SERVER] GA4 Request for period: 7days
-[GA4] Retention report success
 [SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
 [SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] GA4 Request for period: 30days
-[GA4] Retention report success
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 30
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] GA4 Request for period: 30days
-[GA4] Retention report success
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 30
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] GA4 Request for period: 30days
-[GA4] Retention report success
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 30
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[BILLING] Setup intent error: The payment method type "paypal" is invalid. See https://stripe.com/docs/api/payment_methods/object#payment_method_object-type for the full list of supported payment method types. Please also ensure the provided types are activated in your dashboard (https://dashboard.stripe.com/account/payments/settings) and your account is enabled for any features that you are trying to use.
 [SERVER] GA4 Request for period: 7days
-[GA4] Retention report success
 [SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
 [SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] Heatmap request for property: 526584649
 [SERVER] GA4 Request for period: 30days
-[GA4] Retention report success
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 30
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] GA4 Request for period: 30days
-[GA4] Retention report success
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 30
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] GA4 Request for period: 30days
-[GA4] Retention report success
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 30
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
+[SERVER] Heatmap success: 10 days
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
 [SERVER] GA4 Request for period: 7days
-[GA4] Retention report success
+[DEBUG] getPrimaryHostname check. req has auth: true req has userId: true
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
+}
+[DEBUG] getPrimaryHostname check. req has auth: true req has userId: true
+[SERVER] Performance analysis (fetch) for: https://arcaico.vercel.app (desktop) for user user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
+}
 [SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
 [SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
 }
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] GA4 Request for period: 30days
-[GA4] Retention report success
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 30
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] GA4 Request for period: 30days
-[GA4] Retention report success
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 30
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] GA4 Request for period: 30days
-[GA4] Retention report success
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
-[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 30
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
-}
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
 [SERVER] GA4 Request for period: 7days
-[GA4] Retention report success
 [SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
 [SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
-[SERVER] Current Totals: {
-  "totalUsers": 6,
-  "totalSessions": 8,
-  "avgBounce": 0.25,
-  "avgDuration": 123.254662125,
-  "totalNewUsers": 6,
-  "userEngagementDuration": 925,
-  "avgUserDuration": 154.16666666666666,
-  "screenPageViews": 72,
-  "scrolledUsers": 6,
-  "screenPageViewsPerUser": 12
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[DEBUG] getPrimaryHostname check. req has auth: true req has userId: true
+[DEBUG] getPrimaryHostname check. req has auth: true req has userId: true
+[SERVER] Performance analysis (fetch) for: https://arcaico.vercel.app (desktop) for user user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
 }
-[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 30
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
+}
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
+}
+[SERVER] GA4 Request for period: 30days
+[SERVER] Heatmap request for property: 526584649
+[SERVER] GA4 Request for period: 7days
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] Heatmap success: 10 days
+[DEBUG] getPrimaryHostname check. req has auth: true req has userId: true
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
+}
+[DEBUG] getPrimaryHostname check. req has auth: true req has userId: true
+[SERVER] Performance analysis (fetch) for: https://arcaico.vercel.app (desktop) for user user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
+}
+[SERVER] GA4 Request for period: 7days
+[DEBUG] getPrimaryHostname check. req has auth: true req has userId: true
+[DEBUG] getPrimaryHostname check. req has auth: true req has userId: true
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
+}
+[SERVER] Performance analysis (fetch) for: https://arcaico.vercel.app (mobile) for user user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W
+[GA4] Report failed for deviceCategory: 8 RESOURCE_EXHAUSTED: Exhausted concurrent requests quota. Please send fewer requests concurrently. For example, wait for requests to finish before sending more. To learn more, see https://developers.google.com/analytics/devguides/reporting/data/v1/quotas
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
+}
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[DEBUG] getPrimaryHostname check. req has auth: true req has userId: true
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
+}
+[DEBUG] getPrimaryHostname check. req has auth: true req has userId: true
+[SERVER] Performance analysis (fetch) for: https://arcaico.vercel.app (desktop) for user user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
+}
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
+}
+[DEBUG] getPrimaryHostname check. req has auth: true req has userId: true
+[DEBUG] getPrimaryHostname check. req has auth: true req has userId: true
+[SERVER] Performance analysis (fetch) for: https://arcaico.vercel.app (mobile) for user user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
+}
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
+}
+[DEBUG] getPrimaryHostname check. req has auth: true req has userId: true
+[DEBUG] getPrimaryHostname check. req has auth: true req has userId: true
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
+}
+[SERVER] Performance analysis (fetch) for: https://arcaico.vercel.app (desktop) for user user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
+}
+[SERVER] GA4 Request for period: 30days
+[SERVER] Heatmap request for property: 526584649
+[SERVER] GA4 Request for period: 7days
+[SERVER] Heatmap success: 10 days
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[DEBUG] getPrimaryHostname check. req has auth: true req has userId: true
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
+}
+[DEBUG] getPrimaryHostname check. req has auth: true req has userId: true
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
+}
+[SERVER] Performance analysis (fetch) for: https://arcaico.vercel.app (desktop) for user user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
+}
+[SERVER] GA4 Request for period: 30days
+[SERVER] Heatmap request for property: 526584649
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] Heatmap success: 10 days
+[SERVER] GA4 Request for period: 7days
+[SERVER] GA4 Request for period: 30days
+[SERVER] Heatmap request for property: 526584649
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] Heatmap success: 10 days
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 30days
+[SERVER] Heatmap request for property: 526584649
+[SERVER] Heatmap success: 10 days
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 30days
+[SERVER] Heatmap request for property: 526584649
+[SERVER] Heatmap success: 10 days
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[CRON] Running Website Health Check...
+[CRON] Health Check Failed: Table 'alconio.uptime_logs' doesn't exist
+[SERVER] GA4 Request for period: 30days
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 30days
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[CRON] Running Website Health Check...
+[CRON] Health Check Failed: Table 'alconio.uptime_logs' doesn't exist
+[SERVER] GA4 Request for period: 7days
+[DEBUG] getPrimaryHostname check. req has auth: true req has userId: true
+[DEBUG] getPrimaryHostname check. req has auth: true req has userId: true
+[SERVER] Performance analysis (fetch) for: https://arcaico.vercel.app (desktop) for user user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
+}
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
+}
+[SERVER] GA4 Request for period: 30days
+[SERVER] Heatmap request for property: 526584649
+[SERVER] Heatmap success: 10 days
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 30days
+[SERVER] Heatmap request for property: 526584649
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] Heatmap success: 10 days
+[SERVER] GA4 Request for period: 7days
+[DEBUG] getPrimaryHostname check. req has auth: true req has userId: true
+[DEBUG] getPrimaryHostname check. req has auth: true req has userId: true
+[SERVER] Performance analysis (fetch) for: https://arcaico.vercel.app (desktop) for user user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
+}
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
+}
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
+}
+[DEBUG] getPrimaryHostname check. req has auth: true req has userId: true
+[DEBUG] getPrimaryHostname check. req has auth: true req has userId: true
+[SERVER] Performance analysis (fetch) for: https://arcaico.vercel.app (mobile) for user user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
+}
+[SERVER] GA4 Request for period: 30days
+[SERVER] Heatmap request for property: 526584649
+[SERVER] Heatmap success: 10 days
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 30days
+[SERVER] Heatmap request for property: 526584649
+[SERVER] Heatmap success: 10 days
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[DEBUG] getPrimaryHostname check. req has auth: true req has userId: true
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
+}
+[DEBUG] getPrimaryHostname check. req has auth: true req has userId: true
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
+}
+[SERVER] Performance analysis (fetch) for: https://arcaico.vercel.app (desktop) for user user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
+}
+[SERVER] GA4 Request for period: 7days
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 30days
+[SERVER] Heatmap request for property: 526584649
+[SERVER] Heatmap success: 10 days
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 30days
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[CRON] Running Website Health Check...
+[CRON] Health Check Failed: Table 'alconio.uptime_logs' doesn't exist
+[SERVER] GA4 Request for period: 30days
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 30days
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 30days
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 30days
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 30days
+[SERVER] Heatmap request for property: 526584649
+[SERVER] Heatmap success: 10 days
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 30days
+[SERVER] Heatmap request for property: 526584649
+[SERVER] Heatmap success: 10 days
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 30days
+[SERVER] Heatmap request for property: 526584649
+[SERVER] Heatmap success: 10 days
+[SERVER] GA4 Request for period: 30days
+[SERVER] Heatmap request for property: 526584649
+[SERVER] GA4 Request for period: 30days
+[SERVER] Heatmap request for property: 526584649
+[SERVER] Heatmap success: 10 days
+[SERVER] Heatmap success: 10 days
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 30days
+[SERVER] Heatmap request for property: 526584649
+[SERVER] Heatmap success: 10 days
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 30days
+[SERVER] Heatmap request for property: 526584649
+[SERVER] Heatmap success: 10 days
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[CRON] Running Website Health Check...
+[CRON] Health Check Failed: Table 'alconio.uptime_logs' doesn't exist
+[SERVER] GA4 Request for period: 7days
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[CRON] Running Website Health Check...
+[CRON] Health Check Failed: Table 'alconio.uptime_logs' doesn't exist
+[SERVER] GA4 Request for period: 7days
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[DEBUG] getPrimaryHostname check. req has auth: true req has userId: true
+[DEBUG] getPrimaryHostname check. req has auth: true req has userId: true
+[SERVER] Performance analysis (fetch) for: https://arcaico.vercel.app (desktop) for user user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
+}
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
+}
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
+}
+[SERVER] GA4 Request for period: 30days
+[SERVER] Heatmap request for property: 526584649
+[SERVER] Heatmap success: 10 days
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[DEBUG] getPrimaryHostname check. req has auth: true req has userId: true
+[DEBUG] getPrimaryHostname check. req has auth: true req has userId: true
+[SERVER] Performance analysis (fetch) for: https://arcaico.vercel.app (desktop) for user user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
+}
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
+}
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
+}
+[SERVER] GA4 Request for period: 30days
+[SERVER] Heatmap request for property: 526584649
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[DEBUG] getPrimaryHostname check. req has auth: true req has userId: true
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
+}
+[DEBUG] getPrimaryHostname check. req has auth: true req has userId: true
+[SERVER] Performance analysis (fetch) for: https://arcaico.vercel.app (desktop) for user user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
+}
+[SERVER] Heatmap success: 10 days
+[SERVER] Uptime API Error: Error: Table 'alconio.uptime_logs' doesn't exist
+    at PromisePool.query (/Users/andresmcmahon/Documents/Alconio Website/node_modules/mysql2/lib/promise/pool.js:36:22)
+    at /Users/andresmcmahon/Documents/Alconio Website/server.js:1507:33
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at requireAuth (/Users/andresmcmahon/Documents/Alconio Website/server.js:436:5)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17)
+    at next (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:157:13)
+    at Route.dispatch (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/route.js:117:3)
+    at handle (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/index.js:435:11)
+    at Layer.handleRequest (/Users/andresmcmahon/Documents/Alconio Website/node_modules/router/lib/layer.js:152:17) {
+  code: 'ER_NO_SUCH_TABLE',
+  errno: 1146,
+  sql: '\n' +
+    '            SELECT status, response_time, checked_at \n' +
+    '            FROM uptime_logs \n' +
+    "            WHERE clerk_user_id = 'user_2uBvN6C8PjXJp9Q0R1S2T3U4V5W' \n" +
+    '            AND checked_at >= DATE_SUB(NOW(), INTERVAL 30 DAY)\n' +
+    '            ORDER BY checked_at ASC\n' +
+    '        ',
+  sqlState: '42S02',
+  sqlMessage: "Table 'alconio.uptime_logs' doesn't exist"
+}
+[SERVER] GA4 Request for period: 7days
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 30days
+[SERVER] Heatmap request for property: 526584649
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 1), numDays: 31
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] Heatmap success: 10 days
+[SERVER] GA4 Request for period: 7days
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
+[SERVER] GA4 Request for period: 7days
+[SERVER] fillGaps for "7days" (rangeIdx: 0), numDays: 7
+[SERVER] fillGaps for "7days" (rangeIdx: 1), numDays: 7
+[SERVER] fillGaps for "30days" (rangeIdx: 0), numDays: 31
