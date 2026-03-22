@@ -81,6 +81,7 @@
         body {
             font-family: 'Space Grotesk', sans-serif;
             scroll-behavior: smooth;
+            overflow-x: hidden !important;
         }
 
         .glow-border {
@@ -408,7 +409,7 @@
                         Client Dashboard
                     </button>
                 </a>
-                <a href="contact.html">
+                <a href="get-started.html">
                     <button
                         class="rounded-full bg-primary px-6 py-2 text-sm font-bold text-white transition-all hover:bg-primary/80 hover:shadow-[0_0_20px_rgba(14,0,163,0.4)]">
                         Get Started
@@ -450,7 +451,7 @@
                     
                     <div class="flex flex-wrap items-center gap-6">
                         <!-- Ultra-Modern Solid Primary -->
-                        <a href="contact.html">
+                        <a href="get-started.html">
                             <button class="group bg-white text-black px-10 py-5 rounded-xl font-bold text-lg transition-all hover:bg-slate-200 hover:translate-y-[-2px] active:translate-y-0 flex items-center gap-3">
                                 <span>Let's Build</span>
                                 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
@@ -517,6 +518,62 @@
                     onEnterBack: () => secVideo.play(),
                     onLeaveBack: () => { secVideo.pause(); secVideo.currentTime = 0; }
                 });
+            }
+
+            // 3. 3D Scroll Container Animation
+            const scrollWrapper = document.querySelector('.container-scroll-wrapper');
+            const scrollCard = document.querySelector('.scroll-card');
+            const scrollHeader = document.querySelector('.scroll-header');
+            const scrollShape = document.querySelector('.scroll-shape');
+            const dashboardVideo = document.getElementById('dashboard-video');
+
+                if (scrollWrapper && scrollCard) {
+                    // Initial state for header translation
+                    if (scrollHeader) {
+                        gsap.set(scrollHeader, { y: 0 });
+                    }
+
+                    // Initial state for 3D card
+                    gsap.set(scrollCard, {
+                    rotationX: 15,
+                    scale: 1,
+                    y: 0,
+                    transformPerspective: 1000,
+                    transformOrigin: "top center",
+                    boxShadow: "0 0 #0000004d, 0 9px 20px #0000004a, 0 37px 37px #00000042, 0 84px 50px #00000026, 0 149px 60px #0000000a, 0 233px 65px #00000003"
+                });
+
+                const scrollTimeline = gsap.timeline({
+                    scrollTrigger: {
+                        trigger: scrollWrapper,
+                        start: "top 70%", // Adjust for smoother start
+                        end: "bottom 30%",
+                        scrub: 1, // Tighter scrub
+                        onEnter: () => dashboardVideo && dashboardVideo.play(),
+                        onLeave: () => dashboardVideo && dashboardVideo.pause(),
+                        onEnterBack: () => dashboardVideo && dashboardVideo.play(),
+                        onLeaveBack: () => dashboardVideo && dashboardVideo.pause()
+                    }
+                });
+
+                scrollTimeline
+                    .to(scrollCard, {
+                        rotationX: 0,
+                        scale: 1,
+                        y: -50,
+                        duration: 1
+                    })
+                    .to(scrollShape, {
+                        opacity: 1,
+                        scale: 1.1,
+                        y: -80, // Moved up to emphasize title translation
+                        duration: 1
+                    }, 0)
+                    .to(scrollHeader, {
+                        y: -120, // Toned down translate for clear separation
+                        opacity: 1,
+                        duration: 1
+                    }, 0);
             }
 
             // Hero Reveal Animation
@@ -600,7 +657,7 @@
                         </div>
                     </div>
 
-                    <a href="contact.html">
+                    <a href="get-started.html">
                         <button class="bg-white text-black px-10 py-4 rounded-xl font-bold text-lg transition-all hover:bg-slate-200 hover:translate-y-[-2px] active:translate-y-0 flex items-center gap-3">
                             Explore Service
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
@@ -626,7 +683,7 @@
             <!-- Block 02: Services Ecosystem Grid (Redesigned) -->
             <div class="py-20 feature-block">
                 <div class="text-center max-w-4xl mx-auto mb-20 px-6">
-                    <div class="inline-flex items-center gap-2 bg-blue-500/10 text-blue-500 px-4 py-1.5 rounded-full text-xs font-bold uppercase tracking-widest mb-6 border border-blue-500/20">
+                    <div class="inline-flex items-center gap-2 bg-blue-500/10 text-blue-500 px-4 py-1.5 rounded-full mb-6 border border-blue-500/20">
                         <span class="w-1.5 h-1.5 bg-blue-500 rounded-full animate-pulse"></span>
                         Core Ecosystem
                     </div>
@@ -690,13 +747,51 @@
                         
                         <div class="mt-auto relative rounded-2xl overflow-hidden aspect-square border border-white/5 shadow-2xl bg-black p-4 flex items-center justify-center group-hover:scale-110 transition-transform duration-1000">
                              <img class="w-full h-auto drop-shadow-[0_0_30px_rgba(30,81,255,0.3)]" src="mobile_responsive_premium.png" alt="Multi-device support">
-                             <div class="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-black/60 to-transparent"></div>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- Block 03: Intelligence Section (Renumbered & Fixed Layout) -->
+            <!-- 3D Scroll Container: Final Polish - Repositioned higher -->
+            <div class="container-scroll-wrapper relative w-full pt-0 -mt-12 pb-[30vh] overflow-visible">
+                <!-- Background Shape (Blue Glow + Black Lines) - Restoration of the "Perfect" State -->
+                <div class="scroll-shape absolute inset-0 z-0 pointer-events-none overflow-hidden flex items-center justify-center opacity-0 scale-90" style="perspective: 1500px;">
+                    <!-- Blue Glows -->
+                    <div class="absolute w-[90vw] h-[90vw] bg-primary/15 rounded-full blur-[140px] opacity-60"></div>
+                    <div class="absolute w-[70vw] h-[70vw] bg-blue-600/10 rounded-full blur-[100px] opacity-40 -translate-x-1/4"></div>
+                    
+                    <!-- Diagonal Black Lines Pattern (half thickness 0.1) -->
+                    <div class="absolute inset-0 opacity-10 scale-150">
+                        <svg class="w-full h-full stroke-black stroke-[0.1] fill-none" viewBox="0 0 100 100" preserveAspectRatio="none">
+                            <path d="M-100 100 L100 -100 M-80 100 L100 -80 M-60 100 L100 -60 M-40 100 L100 -40 M-20 100 L100 -20 M0 100 L100 0 M20 100 L100 20 M40 100 L100 40 M60 100 L100 60 M80 100 L100 80 M100 100 L200 0 M120 100 L300 -80" />
+                        </svg>
+                    </div>
+                </div>
+                <div class="max-w-7xl mx-auto px-6 mb-20 text-center relative z-20">
+                    <h1 class="text-4xl md:text-5xl font-semibold text-white mb-2 block opacity-90">
+                        Take Control of Your Data
+                    </h1>
+                    <h2 class="text-6xl md:text-[6rem] font-bold text-white tracking-tighter leading-none scroll-header">
+                        <span class="text-transparent bg-clip-text bg-gradient-to-b from-white via-white to-blue-500">Track Your Success</span>
+                    </h2>
+                </div>
+                
+                <div class="scroll-card-container w-full flex justify-center perspective-[1500px] relative z-10 md:-mt-10 -mt-20 overflow-visible">
+                    <div class="scroll-card relative w-[88vw] md:w-[85vw] max-w-7xl aspect-[1.9/1] bg-[#222222] rounded-[30px] border-[4px] border-[#6C6C6C] p-1 md:p-4 overflow-hidden shadow-2xl">
+                        <div class="w-full h-full rounded-2xl overflow-hidden bg-[#0A0C16] relative flex items-center justify-center">
+                        <!-- Video Content -->
+                        <video id="dashboard-video" class="w-full h-full object-cover" muted playsinline loop
+                            src="INSTRUCTIONS/Dashboard Showcase.mov"></video>
+                        
+                            <!-- Inner Glow Overlay -->
+                            <div class="absolute inset-0 pointer-events-none shadow-[inset_0_0_100px_rgba(30,81,255,0.1)]"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="max-w-7xl mx-auto px-6 space-y-40">
+                <!-- Block 03: Intelligence Section (Renumbered & Fixed Layout) -->
             <div class="flex flex-col lg:flex-row-reverse items-center gap-16 lg:gap-24 feature-block py-20">
                 <div class="flex-1 text-left z-20">
                     <span class="text-blue-500 font-bold tracking-[0.3em] uppercase text-sm mb-6 block opacity-80">03 / INTELLIGENCE</span>
@@ -720,7 +815,7 @@
                         </div>
                     </div>
 
-                    <a href="contact.html">
+                    <a href="get-started.html">
                         <button class="bg-white text-black px-10 py-4 rounded-xl font-bold text-lg transition-all hover:bg-slate-200 hover:translate-y-[-2px] active:translate-y-0 flex items-center gap-3">
                             View AI Solutions
                             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
@@ -894,10 +989,12 @@
                          - Same padding and rounded-full pill shape across all pages
                          - Consistent hover:scale and shadow 
                          - Base color is primary (#0e00a3) -->
-                    <button
-                        class="bg-primary hover:bg-blue-700 text-white px-6 py-2.5 rounded-full font-bold transition-all hover:scale-105 shadow-[0_0_20px_rgba(14,0,163,0.4)] hover:shadow-[0_0_30px_rgba(14,0,163,0.6)]">
-                        Get Started
-                    </button>
+                    <a href="get-started.html">
+                        <button
+                            class="bg-primary hover:bg-blue-700 text-white px-6 py-2.5 rounded-full font-bold transition-all hover:scale-105 shadow-[0_0_20px_rgba(14,0,163,0.4)] hover:shadow-[0_0_30px_rgba(14,0,163,0.6)]">
+                            Get Started
+                        </button>
+                    </a>
                 </div>
             </div>
         </div>

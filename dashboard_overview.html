@@ -550,59 +550,71 @@
             <main class="flex-1 overflow-y-auto h-full p-4 md:p-6 scroll-smooth">
                 <div class="max-w-[1600px] mx-auto flex flex-col gap-6">
                     <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-2">
-                        <!-- Card 1: TOTAL USERS -->
-                        <div class="glass-panel border border-white-[0.03] rounded-xl p-4 flex flex-col justify-between h-[110px] shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
-                            <div class="flex justify-between items-start">
-                                <span class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Total Users</span>
-                                <span data-trend="totalUsers" class="px-2 py-0.5 rounded-md text-[10px] font-bold shadow-sm">--</span>
-                            </div>
-                            <div class="flex justify-between items-end mt-2">
-                                <h3 class="text-3xl font-bold text-white tracking-tight leading-none" data-metric="totalUsers">--</h3>
-                                <div class="w-20 h-8">
-                                    <svg class="w-full h-full sparkline-container" data-sparkline="visitors" preserveAspectRatio="none" viewBox="0 0 100 30"></svg>
+                        <!-- Card 1 -->
+                        <div class="micro-card rounded-xl relative group flex flex-col justify-between overflow-hidden h-[120px]">
+                            <div class="flex justify-between items-start p-4 relative z-10">
+                                <div class="flex flex-col">
+                                    <span class="text-[10px] text-slate-400 font-bold uppercase tracking-widest mb-1">Total Users</span>
+                                    <h3 class="text-3xl font-bold text-white tracking-tight" data-metric="totalUsers"></h3>
                                 </div>
+                                <div class="flex flex-col items-end">
+                                    <span data-trend="totalUsers" class="flex items-center text-[10px] font-bold px-1.5 py-0.5 rounded shadow-sm mb-1"></span>
+                                    <span class="text-slate-500 text-[10px]">vs last week</span>
+                                </div>
+                            </div>
+                            <div class="absolute bottom-0 left-0 w-full h-[42%] z-0">
+                                <svg class="w-full h-full sparkline-container" data-sparkline="visitors" preserveAspectRatio="none" viewBox="0 0 100 30"></svg>
                             </div>
                         </div>
                         
-                        <!-- Card 2: TOTAL SESSIONS -->
-                        <div class="glass-panel border border-white-[0.03] rounded-xl p-4 flex flex-col justify-between h-[110px] shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
-                            <div class="flex justify-between items-start">
-                                <span class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Total Sessions</span>
-                                <span data-trend="totalSessions" class="px-2 py-0.5 rounded-md text-[10px] font-bold shadow-sm">--</span>
-                            </div>
-                            <div class="flex justify-between items-end mt-2">
-                                <h3 class="text-3xl font-bold text-white tracking-tight leading-none" data-metric="totalSessions">--</h3>
-                                <div class="w-20 h-8">
-                                    <svg class="w-full h-full sparkline-container" data-sparkline="sessions" preserveAspectRatio="none" viewBox="0 0 100 30"></svg>
+                        <!-- Card 2 -->
+                        <div class="micro-card rounded-xl relative group flex flex-col justify-between overflow-hidden h-[120px]">
+                            <div class="flex justify-between items-start p-4 relative z-10">
+                                <div class="flex flex-col">
+                                    <span class="text-[10px] text-slate-400 font-bold uppercase tracking-widest mb-1">Total Sessions</span>
+                                    <h3 class="text-3xl font-bold text-white tracking-tight" data-metric="totalSessions"></h3>
                                 </div>
+                                <div class="flex flex-col items-end">
+                                    <span data-trend="totalSessions" class="flex items-center text-[10px] font-bold px-1.5 py-0.5 rounded shadow-sm mb-1"></span>
+                                    <span class="text-slate-500 text-[10px]">vs last week</span>
+                                </div>
+                            </div>
+                            <div class="absolute bottom-0 left-0 w-full h-[42%] z-0">
+                                <svg class="w-full h-full sparkline-container" data-sparkline="sessions" preserveAspectRatio="none" viewBox="0 0 100 30"></svg>
                             </div>
                         </div>
 
-                        <!-- Card 3: NEW USERS -->
-                        <div class="glass-panel border border-white-[0.03] rounded-xl p-4 flex flex-col justify-between h-[110px] shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
-                            <div class="flex justify-between items-start">
-                                <span class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">New Users</span>
-                                <span data-trend="newUsers" class="px-2 py-0.5 rounded-md text-[10px] font-bold shadow-sm hidden">--</span>
-                            </div>
-                            <div class="flex items-center gap-4 mt-auto pb-1">
-                                <h3 class="text-3xl font-bold text-white tracking-tight leading-none" data-metric="newUsers">--</h3>
-                                <div class="flex-1 h-1.5 bg-white/5 rounded-full overflow-hidden shadow-inner">
-                                    <div class="h-full bg-blue-600 shadow-[0_0_10px_rgba(37,99,235,0.8)] transition-all duration-1000 w-0" id="newUsersProgressBar"></div>
+                        <!-- Card 3 -->
+                        <div class="micro-card rounded-xl relative group flex flex-col justify-between overflow-hidden h-[120px]">
+                            <div class="flex justify-between items-start p-4 relative z-10">
+                                <div class="flex flex-col">
+                                    <span class="text-[10px] text-slate-400 font-bold uppercase tracking-widest mb-1">Bounce Rate</span>
+                                    <h3 class="text-3xl font-bold text-white tracking-tight" data-metric="bounceRate"></h3>
                                 </div>
+                                <div class="flex flex-col items-end">
+                                    <span data-trend="bounceRate" class="flex items-center text-[10px] font-bold px-1.5 py-0.5 rounded shadow-sm mb-1"></span>
+                                    <span class="text-slate-500 text-[10px]">vs last week</span>
+                                </div>
+                            </div>
+                            <div class="absolute bottom-0 left-0 w-full h-[42%] z-0">
+                                <svg class="w-full h-full sparkline-container" data-sparkline="bounceRate" preserveAspectRatio="none" viewBox="0 0 100 30"></svg>
                             </div>
                         </div>
 
-                        <!-- Card 4: ENGAGEMENT RATE -->
-                        <div class="glass-panel border border-white-[0.03] rounded-xl p-4 flex flex-col justify-between h-[110px] shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
-                            <div class="flex justify-between items-start">
-                                <span class="text-[10px] text-slate-400 font-bold uppercase tracking-widest">Engagement Rate</span>
-                                <span data-trend="engagementRate" class="px-2 py-0.5 rounded-md text-[10px] font-bold shadow-sm">--</span>
-                            </div>
-                            <div class="flex justify-between items-end mt-2">
-                                <h3 class="text-3xl font-bold text-white tracking-tight leading-none" data-metric="engagementRate">--</h3>
-                                <div class="w-20 h-8">
-                                    <svg class="w-full h-full sparkline-container" data-sparkline="engagementRate" preserveAspectRatio="none" viewBox="0 0 100 30"></svg>
+                        <!-- Card 4 -->
+                        <div class="micro-card rounded-xl relative group flex flex-col justify-between overflow-hidden h-[120px]">
+                            <div class="flex justify-between items-start p-4 relative z-10">
+                                <div class="flex flex-col">
+                                    <span class="text-[10px] text-slate-400 font-bold uppercase tracking-widest mb-1">Avg. Session</span>
+                                    <h3 class="text-3xl font-bold text-white tracking-tight" data-metric="averageSessionDuration"></h3>
                                 </div>
+                                <div class="flex flex-col items-end">
+                                    <span data-trend="averageSessionDuration" class="flex items-center text-[10px] font-bold px-1.5 py-0.5 rounded shadow-sm mb-1"></span>
+                                    <span class="text-slate-500 text-[10px]">vs last week</span>
+                                </div>
+                            </div>
+                            <div class="absolute bottom-0 left-0 w-full h-[42%] z-0">
+                                <svg class="w-full h-full sparkline-container" data-sparkline="avgSession" preserveAspectRatio="none" viewBox="0 0 100 30"></svg>
                             </div>
                         </div>
                     </div>
