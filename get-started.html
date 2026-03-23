@@ -15,8 +15,20 @@
             theme: {
                 extend: {
                     colors: {
-                        "primary": "#1E51FF",
-                        "dark-depth": "#020305",
+                        "primary": "#1E51FF", // Alconio signature blue
+                        "primary-glow": "rgba(30, 81, 255, 0.4)",
+                        "electric-blue": "#1E51FF",
+                        "background-light": "#f6f5f8",
+                        "background-dark": "#05080e",
+                        "surface-dark": "#111620",
+                        "tech-blue": "#0A0C16",
+                        "deep-purple": "#050614",
+                        "glow-blue": "#1E51FF",
+                        blue: {
+                            50: "#E6EBFF", 100: "#CCD6FF", 200: "#99ADFF", 300: "#6685FF",
+                            400: "#335CFF", 500: "#1E51FF", 600: "#1A46DB", 700: "#1436A8",
+                            800: "#0F2875", 900: "#0A1A42", 950: "#050D21"
+                        }
                     },
                     fontFamily: {
                         "display": ["Space Grotesk", "sans-serif"]
@@ -75,7 +87,7 @@
     <div class="glow"></div>
 
     <!-- Navigation -->
-    <nav class="fixed top-0 z-[500] w-full bg-black/80 backdrop-blur-md border-b border-white/10 transition-all duration-300">
+    <nav class="sticky top-0 z-50 w-full bg-background-dark/80 backdrop-blur-md">
         <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
             <div class="flex items-center gap-2">
                 <a href="index.html" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
@@ -85,15 +97,16 @@
             </div>
             <div class="hidden items-center gap-8 md:flex">
                 <a class="text-sm font-medium text-slate-400 transition-colors hover:text-white"
-                    href="services.html">Services</a>
+                    href="index.html#services">Services</a>
                 <a class="text-sm font-medium text-slate-400 transition-colors hover:text-white"
                     href="our-work.html">Our Work</a>
-                <a class="text-sm font-medium text-slate-400 transition-colors hover:text-white" href="about.html">About Us</a>
+                <a class="text-sm font-medium text-slate-400 transition-colors hover:text-white" href="about.html">About
+                    Us</a>
                 <a class="text-sm font-medium text-slate-400 transition-colors hover:text-white"
                     href="pricing.html">Pricing</a>
             </div>
             <div class="flex items-center gap-4">
-                <a href="dashboard_signin.html" class="hidden sm:block">
+                <a href="dashboard_signin.html">
                     <button
                         class="rounded-full bg-white/10 px-4 py-2 text-sm font-bold text-white transition-all hover:bg-white/20 border border-white/10 hover:border-white/30">
                         Client Dashboard
@@ -112,128 +125,95 @@
         </div>
     </nav>
 
-    <main class="w-full max-w-[1400px] mx-auto px-6 md:px-10 pt-32 pb-32">
+    <main class="w-full max-w-7xl mx-auto px-6 md:px-10 pt-32 pb-32">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start">
             <!-- Left Side: Hero Text -->
-            <section class="lg:col-span-5 space-y-8 animate-hero lg:sticky lg:top-40">
+            <section class="lg:col-span-12 xl:col-span-5 space-y-8 animate-hero lg:sticky lg:top-40 mb-12 lg:mb-0">
                 <span class="inline-block px-4 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-[10px] font-bold uppercase tracking-[0.3em]">
                     Strategic Evolution
                 </span>
                 <h1 class="hero-title text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-black uppercase text-white leading-[0.9]">
-                    Elevate <br/>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-400 to-emerald-400">Everything</span>
+                    Free <br/>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary via-blue-400 to-emerald-400">Consultation</span>
                 </h1>
                 <p class="text-lg md:text-xl text-slate-400 max-w-xl font-light leading-relaxed">
-                    Connect with our lead architects to engineer your competitive advantage. High-fidelity systems for high-growth ventures.
+                    Schedule a high-fidelity strategy session with our lead architects. We’ll map out your digital evolution and engineer your competitive advantage.
                 </p>
                 
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-8 pt-10 border-t border-white/5">
-                    <div class="flex gap-4">
-                        <span class="material-symbols-outlined text-primary text-3xl">bolt</span>
-                        <div class="space-y-1">
-                            <h4 class="font-bold text-white uppercase text-xs tracking-widest">Rapid Response</h4>
-                            <p class="text-slate-500 text-sm">Strategic callbacks within 24 hours.</p>
+                <div class="pt-8 border-t border-white/5 space-y-6">
+                    <div class="flex items-center gap-4 group">
+                        <div class="flex h-12 w-12 items-center justify-center rounded-xl bg-white/5 border border-white/10 group-hover:border-primary/50 transition-colors">
+                            <span class="material-symbols-outlined text-primary">mail</span>
                         </div>
-                    </div>
-                    <div class="flex gap-4">
-                        <span class="material-symbols-outlined text-primary text-3xl">shield</span>
-                        <div class="space-y-1">
-                            <h4 class="font-bold text-white uppercase text-xs tracking-widest">Client Privacy</h4>
-                            <p class="text-slate-500 text-sm">NDAs strictly enforced for all projects.</p>
+                        <div>
+                            <h4 class="font-bold text-white uppercase text-[10px] tracking-widest opacity-50">General Inquiries</h4>
+                            <a href="mailto:hello@alconio.com" class="text-lg text-white hover:text-primary transition-colors">hello@alconio.com</a>
                         </div>
                     </div>
                 </div>
             </section>
 
-            <!-- Right Side: Command Interface (Form) -->
-            <div class="lg:col-span-7 animate-form relative bg-dark-depth/60 border border-white/10 rounded-[2.5rem] p-8 md:p-12 backdrop-blur-3xl shadow-[0_50px_100px_rgba(0,0,0,0.8)]">
-                <div class="absolute top-0 right-0 p-8 opacity-5 pointer-events-none">
-                    <span class="material-symbols-outlined text-7xl">shield_with_heart</span>
+            <!-- Right Side: Booking Form -->
+            <section class="lg:col-span-12 xl:col-span-7 animate-form">
+                <div class="glass-card rounded-3xl p-8 md:p-12 relative overflow-hidden group">
+                    <div class="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-transparent pointer-events-none"></div>
+                    
+                    <form class="relative z-10 space-y-10" id="consultationForm">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div class="space-y-3">
+                                <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Full Name</label>
+                                <input type="text" placeholder="John Doe" class="w-full px-6 py-4 rounded-2xl input-accent text-white placeholder:text-slate-600 focus:ring-0" required />
+                            </div>
+                            <div class="space-y-3">
+                                <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Business Email</label>
+                                <input type="email" placeholder="john@company.com" class="w-full px-6 py-4 rounded-2xl input-accent text-white placeholder:text-slate-600 focus:ring-0" required />
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                            <div class="space-y-3">
+                                <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Business Name</label>
+                                <input type="text" placeholder="Acme Corp" class="w-full px-6 py-4 rounded-2xl input-accent text-white placeholder:text-slate-600 focus:ring-0" required />
+                            </div>
+                            <div class="space-y-3">
+                                <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Build Tier</label>
+                                <div class="relative">
+                                    <select class="w-full px-6 py-4 rounded-2xl input-accent text-white appearance-none cursor-pointer custom-dropdown focus:ring-0" required>
+                                        <option value="" disabled selected>Select Tier</option>
+                                        <option value="standard">Standard - High Impact Web</option>
+                                        <option value="premium">Premium - Immersive Visuals</option>
+                                        <option value="ecommerce">E-Commerce - Sales Engine</option>
+                                        <option value="custom">Custom - Full Stack Solutions</option>
+                                        <option value="not_sure">Not Sure / Undecided</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="space-y-3">
+                            <label class="text-[10px] font-bold text-slate-500 uppercase tracking-widest ml-1">Project Brief</label>
+                            <textarea placeholder="Tell us about your project goals and requirements..." rows="5" class="w-full px-6 py-4 rounded-3xl input-accent text-white placeholder:text-slate-600 focus:ring-0" required></textarea>
+                        </div>
+
+                        <div class="pt-6">
+                            <button type="submit" class="group relative w-full inline-flex items-center justify-center px-8 py-5 font-black uppercase tracking-tighter text-white transition-all overflow-hidden rounded-2xl bg-primary hover:bg-primary/90 hover:scale-[1.01] active:scale-[0.99] shadow-2xl shadow-primary/40">
+                                <span class="relative z-10 flex items-center gap-4">
+                                    Book Free Consultation
+                                    <span class="material-symbols-outlined transition-transform group-hover:translate-x-2">arrow_forward</span>
+                                </span>
+                            </button>
+                            <p class="text-center mt-6 text-[10px] font-medium text-slate-600 uppercase tracking-widest flex items-center justify-center gap-2">
+                                <span class="material-symbols-outlined text-blue-500 text-sm">enhanced_encryption</span>
+                                Connection Secured via Alconio Core
+                            </p>
+                        </div>
+                    </form>
                 </div>
-
-                <form id="consultation-form" class="space-y-10 relative z-10">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
-                        <div class="space-y-2">
-                            <label class="text-[9px] font-black uppercase tracking-[0.4em] text-slate-500 ml-1">The Entity</label>
-                            <input type="text" placeholder="Organization Name" class="w-full input-accent rounded-2xl px-6 py-4 text-base text-white placeholder-slate-500" required>
-                        </div>
-                        <div class="space-y-2">
-                            <label class="text-[9px] font-black uppercase tracking-[0.4em] text-slate-500 ml-1">Direct Protocol</label>
-                            <input type="email" placeholder="email@address.com" class="w-full input-accent rounded-2xl px-6 py-4 text-base text-white placeholder-slate-500" required>
-                        </div>
-                        <div class="space-y-2">
-                            <label class="text-[9px] font-black uppercase tracking-[0.4em] text-slate-500 ml-1">Operation Focus</label>
-                            <input type="text" placeholder="e.g. AI Integration" class="w-full input-accent rounded-2xl px-6 py-4 text-base text-white placeholder-slate-500" required>
-                        </div>
-                        <div class="space-y-2">
-                            <label class="text-[9px] font-black uppercase tracking-[0.4em] text-slate-500 ml-1">Build Tier</label>
-                            <select class="w-full input-accent rounded-2xl px-6 py-4 text-base text-white custom-dropdown" required>
-                                <option value="" disabled selected class="bg-black">Select Tier</option>
-                                <option value="standard" class="bg-black text-slate-400">Standard Interface</option>
-                                <option value="premium" class="bg-black text-slate-400">Enterprise Core</option>
-                                <option value="ecommerce" class="bg-black text-slate-400">Merchant Engine</option>
-                                <option value="custom" class="bg-black text-slate-400">Custom Deep-Tech</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="space-y-2">
-                        <label class="text-[9px] font-black uppercase tracking-[0.4em] text-slate-500 ml-1">Strategic Objectives</label>
-                        <textarea rows="4" placeholder="Briefly describe the scale and complexity..." class="w-full input-accent rounded-[1.5rem] px-6 py-4 text-base text-white resize-none placeholder-slate-500" required></textarea>
-                    </div>
-
-                    <!-- Strategic Scheduler -->
-                    <div class="space-y-6 pt-10 border-t border-white/5">
-                        <div class="flex items-center justify-between">
-                            <div class="space-y-1">
-                                <h3 class="text-xl font-bold uppercase tracking-tight text-white">Select Window</h3>
-                            </div>
-                            <div class="bg-white/5 rounded-full px-4 py-2 border border-white/10 flex items-center gap-2">
-                                <span class="material-symbols-outlined text-primary text-sm">event_upcoming</span>
-                                <span class="text-xs font-bold uppercase tracking-widest text-slate-300" id="cal-month"></span>
-                            </div>
-                        </div>
-
-                        <div id="calendar-grid" class="grid grid-cols-7 gap-2 max-w-sm">
-                            <!-- Rendered via JS -->
-                        </div>
-                        <input type="hidden" id="selected-date" required>
-                    </div>
-
-                    <!-- Execute Button -->
-                    <button type="submit" class="w-full group relative overflow-hidden bg-white text-black rounded-full py-6 transition-all hover:scale-[1.02] active:scale-[0.98]">
-                        <div class="absolute inset-0 bg-primary opacity-0 group-hover:opacity-10 transition-opacity"></div>
-                        <div class="flex items-center justify-center gap-4">
-                            <span class="text-lg font-black uppercase tracking-[0.2em]">Initialize Deployment</span>
-                            <span class="material-symbols-outlined text-2xl group-hover:translate-x-3 transition-transform">bolt</span>
-                        </div>
-                    </button>
-                </form>
-            </div>
+            </section>
         </div>
     </main>
 
-    <!-- Success Feedback Overlay -->
-    <div id="success-overlay" class="fixed inset-0 bg-black/98 backdrop-blur-3xl z-[1000] flex items-center justify-center opacity-0 pointer-events-none transition-all duration-1000">
-        <div class="text-center space-y-12 max-w-3xl px-12">
-            <div class="w-40 h-40 bg-primary/10 rounded-full flex items-center justify-center text-primary border border-primary/20 mx-auto animate-pulse">
-                <span class="material-symbols-outlined text-7xl">security</span>
-            </div>
-            <div class="space-y-6">
-                <h2 class="text-7xl font-black uppercase tracking-tighter">Connection Secured</h2>
-                <p class="text-3xl text-slate-400 font-light leading-relaxed">System handshake complete. Our directors will initialize full deployment sequences within 24 hours.</p>
-            </div>
-            <button onclick="window.location.href='index.html'" class="bg-white text-black px-16 py-6 rounded-full font-black text-xl uppercase tracking-widest hover:bg-primary hover:text-white transition-all">
-                Terminate Link
-            </button>
-        </div>
-    </div>
-
     <script>
-        function initCalendar() {
-            const grid = document.getElementById('calendar-grid');
-            const monthLabel = document.getElementById('cal-month');
-            
             const now = new Date();
             const year = now.getFullYear();
             const month = now.getMonth();
