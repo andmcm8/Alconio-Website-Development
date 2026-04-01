@@ -124,34 +124,35 @@
 </head>
 
 <body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white overflow-x-hidden font-display">
-    <nav class="sticky top-0 z-50 w-full border-b border-white/5 bg-background-dark/80 backdrop-blur-md">
-        <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+    <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[85%] max-w-5xl rounded-full border border-white/10 bg-black/60 backdrop-blur-xl shadow-2xl transition-all duration-300">
+        <div class="mx-auto flex items-center justify-between px-3 py-2">
             <div class="flex items-center gap-2">
                 <a href="index.html" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
-                    <img src="logo.png" alt="Alconio Logo" class="h-12 w-auto" />
+                    <img src="logo.png" alt="Alconio Logo" class="h-6 w-auto" />
                     <span class="text-xl font-bold tracking-tight text-white font-display">ALCONIO</span>
                 </a>
             </div>
             <div class="hidden items-center gap-8 md:flex">
-                <a class="text-sm font-medium text-slate-400 transition-colors hover:text-white"
+                <a class="text-[13px] font-medium text-slate-400 transition-colors hover:text-white"
                     href="services.html">Services</a>
-                <a class="text-sm font-medium text-slate-400 transition-colors hover:text-white"
+                <a class="text-[13px] font-medium text-slate-400 transition-colors hover:text-white"
                     href="our-work.html">Our Work</a>
-                <a class="text-sm font-medium text-white transition-colors" href="about.html">About Us</a>
-                <a class="text-sm font-medium text-slate-400 transition-colors hover:text-white"
+                <a class="text-[13px] font-medium text-slate-400 transition-colors hover:text-white" href="about.html">About
+                    Us</a>
+                <a class="text-[13px] font-medium text-slate-400 transition-colors hover:text-white"
                     href="pricing.html">Pricing</a>
             </div>
             <div class="flex items-center gap-4">
                 <a href="dashboard_signin.html">
                     <button
-                        class="rounded-full bg-white/10 px-4 py-2 text-sm font-bold text-white transition-all hover:bg-white/20 border border-white/10 hover:border-white/30">
+                        class="rounded-full bg-white/10 px-5 py-2 text-[13px] font-bold text-white transition-all hover:bg-white/20 border border-white/10 hover:border-white/30">
                         Client Dashboard
                     </button>
                 </a>
                 <a href="get-started.html">
                     <button
-                        class="rounded-full bg-primary px-6 py-2 text-sm font-bold text-white transition-all hover:bg-primary/80 hover:shadow-[0_0_20px_rgba(14,0,163,0.4)]">
-                        Get Started
+                        class="rounded-full bg-primary px-6 py-2 text-[13px] font-bold text-white transition-all hover:bg-primary/80 hover:shadow-[0_0_20px_rgba(14,0,163,0.4)]">
+                        Book Consultation
                     </button>
                 </a>
                 <button class="md:hidden text-white" aria-label="Open menu">
@@ -162,199 +163,133 @@
     </nav>
 
     <main>
-        <!-- Hero Section -->
-        <section class="relative min-h-screen flex items-center justify-center pt-20 hero-gradient overflow-hidden">
+        <!-- New Minimalist Header -->
+        <section class="relative pt-48 pb-24 hero-gradient overflow-hidden">
             <div class="absolute inset-0 z-0">
-                <div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-[120px]"></div>
-                <div class="absolute bottom-1/4 right-1/4 w-96 h-96 bg-accent-deep/30 rounded-full blur-[120px]"></div>
+                <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[150px]"></div>
+                <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-accent-deep/20 rounded-full blur-[150px]"></div>
             </div>
-            <div class="relative z-10 max-w-5xl mx-auto px-6 text-center">
-                <h1
-                    class="text-6xl md:text-8xl font-bold tracking-tighter mb-8 bg-clip-text text-transparent bg-gradient-to-b from-white to-white/40 leading-tight">
-                    We Build the Future
-                </h1>
-                <p class="text-xl md:text-2xl text-slate-400 max-w-3xl mx-auto font-light leading-relaxed">
-                    Alconio is dedicated to pioneering technological impacts that reshape industries and empower
-                    humanity through scalable excellence.
-                </p>
-                <div class="mt-12">
-                    <span class="material-symbols-outlined text-primary text-5xl animate-bounce">expand_more</span>
+            <div class="relative z-10 max-w-7xl mx-auto px-6">
+                <div class="max-w-3xl">
+                    <div class="inline-block px-4 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-[10px] font-bold tracking-[0.3em] uppercase mb-8">
+                        The Alconio Philosophy
+                    </div>
+                    <h1 class="text-7xl md:text-9xl font-bold tracking-tighter mb-12 text-white leading-[0.85]">
+                        Architects of <br/>
+                        <span class="text-primary italic">Innovation.</span>
+                    </h1>
                 </div>
             </div>
-            <!-- Decorative geometric element -->
-            <div class="absolute bottom-0 right-0 p-10 hidden lg:block opacity-20">
-                <svg class="text-primary fill-none stroke-current stroke-[0.2]" height="400" viewbox="0 0 100 100"
-                    width="400">
-                    <path d="M0 100 L100 0 M20 100 L100 20 M40 100 L100 40 M60 100 L100 60 M80 100 L100 80"></path>
-                </svg>
-            </div>
         </section>
-        <!-- Story Section -->
-        <section class="relative py-24 bg-navy-dark/30">
+        <!-- Restructured Story Section -->
+        <section class="relative py-32 border-y border-white/5 bg-navy-dark/10">
             <div class="max-w-7xl mx-auto px-6">
-                <div class="grid lg:grid-cols-2 gap-16 items-start">
-                    <div class="space-y-8 relative">
-                        <div
-                            class="inline-block px-4 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-xs font-bold tracking-widest uppercase">
-                            Our Story
-                        </div>
-                        <h2 class="text-4xl font-bold">Bridging Complexity and Humanity</h2>
-                        <div class="prose prose-invert prose-lg text-slate-400">
+                <div class="grid lg:grid-cols-12 gap-16 items-center">
+                    <div class="lg:col-span-7 space-y-12">
+                        <h2 class="text-5xl md:text-6xl font-bold tracking-tight leading-tight">
+                            Bridging the gap between <br/>
+                            <span class="text-slate-500">Complexity & Humanity.</span>
+                        </h2>
+                        <div class="grid md:grid-cols-2 gap-8 text-slate-400 leading-relaxed font-light">
                             <p>
                                 Founded on the principles of architectural innovation, Alconio began as a vision to
                                 bridge the gap between complex engineering and human-centric design. Our journey is
-                                marked by a relentless pursuit of excellence and a commitment to building a smarter,
-                                more connected world.
+                                marked by a relentless pursuit of excellence.
                             </p>
                             <p>
                                 In an era where technology moves faster than the human experience, we provide the steady
-                                hand of craftsmanship and the visionary eye of progress. We don't just write code; we
-                                architect experiences that endure.
+                                hand of craftsmanship. We don't just write code; we architect experiences that endure.
                             </p>
                         </div>
                     </div>
-                    <div class="relative flex items-center justify-center py-10 lg:py-0">
-                        <div class="absolute -inset-4 bg-primary/10 rounded-xl blur-2xl"></div>
-                        <blockquote class="relative z-10">
-                            <span
-                                class="material-symbols-outlined text-primary text-7xl opacity-40 absolute -top-10 -left-10">format_quote</span>
-                            <h3 class="text-4xl md:text-5xl font-bold italic leading-tight text-white">
-                                "Innovation is not just about tools; it's about the <span
-                                    class="text-primary">architects</span> of the future."
+                    <div class="lg:col-span-5 relative">
+                        <div class="p-12 rounded-3xl bg-white/[0.02] border border-white/5 backdrop-blur-3xl relative overflow-hidden group">
+                            <div class="absolute top-0 right-0 w-32 h-32 bg-primary/20 rounded-full blur-3xl -mr-16 -mt-16 group-hover:bg-primary/40 transition-colors"></div>
+                            <span class="material-symbols-outlined text-primary text-6xl mb-6 block">format_quote</span>
+                            <h3 class="text-3xl font-medium italic leading-snug text-white mb-6">
+                                "Innovation is not just about tools; it's about the architects of the future."
                             </h3>
-                            <footer class="mt-6 text-slate-500 font-medium">— Alconio Founding Philosophy</footer>
-                        </blockquote>
+                            <footer class="text-slate-500 text-sm font-bold tracking-widest uppercase">— Founding Philosophy</footer>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- Values Section (Diagonal Grid) -->
-        <section class="py-32 relative overflow-hidden">
-            <div class="max-w-7xl mx-auto px-6 mb-20">
-                <div class="text-center max-w-3xl mx-auto">
-                    <h2 class="text-5xl font-bold mb-6">Our Core Values</h2>
-                    <p class="text-slate-400">The pillars that define every project we undertake and every solution we
-                        architect.</p>
+
+        <!-- Values Section (Modern Rhythmic Layout) -->
+        <section class="py-48 relative">
+            <div class="max-w-7xl mx-auto px-6 mb-32">
+                <div class="flex flex-col md:flex-row md:items-end justify-between gap-8">
+                    <div class="max-w-2xl">
+                        <h2 class="text-6xl font-bold tracking-tighter mb-6">Built on <span class="text-primary italic">Pillars</span> of Excellence.</h2>
+                        <p class="text-xl text-slate-400 font-light">The foundational values that guide our process and define our output.</p>
+                    </div>
+                    <div class="text-9xl font-bold text-white/[0.02] select-none leading-none">04</div>
                 </div>
             </div>
-            <div class="max-w-7xl mx-auto px-6 pb-20">
-                <div class="diagonal-grid">
-                    <!-- Value Card 1 -->
-                    <div
-                        class="value-card bg-navy-dark border border-white/5 p-10 rounded-xl hover:border-primary/50 transition-all group">
-                        <div
-                            class="w-16 h-16 bg-primary/20 rounded-lg flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
-                            <span class="material-symbols-outlined text-primary text-3xl">bolt</span>
-                        </div>
-                        <h4 class="text-2xl font-bold mb-4">Innovation First</h4>
-                        <p class="text-slate-400 leading-relaxed">We push the boundaries of what's possible, exploring
-                            uncharted technological territories to deliver breakthrough results.</p>
-                    </div>
-                    <!-- Value Card 2 -->
-                    <div
-                        class="value-card bg-navy-dark border border-white/5 p-10 rounded-xl hover:border-primary/50 transition-all group">
-                        <div
-                            class="w-16 h-16 bg-primary/20 rounded-lg flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
-                            <span class="material-symbols-outlined text-primary text-3xl">query_stats</span>
-                        </div>
-                        <h4 class="text-2xl font-bold mb-4">Results Driven</h4>
-                        <p class="text-slate-400 leading-relaxed">Our success is measured by the tangible impact we
-                            create for our partners and the communities they serve.</p>
-                    </div>
-                    <!-- Value Card 3 -->
-                    <div
-                        class="value-card bg-navy-dark border border-white/5 p-10 rounded-xl hover:border-primary/50 transition-all group">
-                        <div
-                            class="w-16 h-16 bg-primary/20 rounded-lg flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
-                            <span class="material-symbols-outlined text-primary text-3xl">dynamic_feed</span>
-                        </div>
-                        <h4 class="text-2xl font-bold mb-4">Scalable Excellence</h4>
-                        <p class="text-slate-400 leading-relaxed">Every solution is built to grow. We architect for the
-                            present with a rigorous focus on future-proof sustainability.</p>
-                    </div>
-                    <!-- Value Card 4 -->
-                    <div
-                        class="value-card bg-navy-dark border border-white/5 p-10 rounded-xl hover:border-primary/50 transition-all group">
-                        <div
-                            class="w-16 h-16 bg-primary/20 rounded-lg flex items-center justify-center mb-8 group-hover:scale-110 transition-transform">
-                            <span class="material-symbols-outlined text-primary text-3xl">diversity_3</span>
-                        </div>
-                        <h4 class="text-2xl font-bold mb-4">Human-Centric</h4>
-                        <p class="text-slate-400 leading-relaxed">Technology is a tool for people. We prioritize the
-                            human experience in every interface and infrastructure we build.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-        <!-- Founder Spotlight / Team Section -->
-        <section class="py-24 bg-background-dark relative">
-            <div class="max-w-7xl mx-auto px-6">
-                <div class="flex flex-col lg:flex-row gap-16 items-center">
-                    <div class="lg:w-1/2">
-                        <div class="relative group">
-                            <div
-                                class="absolute -inset-2 bg-gradient-to-r from-primary to-accent-deep rounded-xl blur opacity-30 group-hover:opacity-60 transition duration-1000">
-                            </div>
-                            <div class="relative bg-navy-dark rounded-xl overflow-hidden aspect-[4/5]">
-                                <img alt="Founder Portrait"
-                                    class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700"
-                                    data-alt="Professional portrait of founder in minimalist setting"
-                                    src="https://lh3.googleusercontent.com/aida-public/AB6AXuA_t5Q4Xv40cou747-phkz69AgleNoczltFep3NzsGkGWqbyzVneQ5Kqk8jGpIiKP-6iz2qgF25LMGJKFQ-YqfUohQnzUt8uq57t0HVMQbu2cq_1u7BAtEo_ICQUOrZ4EgX-sN0m1_AEBtkFY5rkywHzaaUxRwgRcp_JH7kvHBqgaOuFlV5iUyeEyVnkjK8bCF9fY3rZ4wQOAiX5sDCBVshYkCGrDUsa9rhRgRP5OXrIB17RGBcxETebkKejdfWLvJAaK8XXmT9_Znw" />
-                                <div
-                                    class="absolute bottom-0 left-0 right-0 p-8 bg-gradient-to-t from-background-dark to-transparent">
-                                    <h4 class="text-3xl font-bold">Julian Vane</h4>
-                                    <p class="text-primary font-medium tracking-widest uppercase text-sm mt-1">Chief
-                                        Architect &amp; Founder</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="lg:w-1/2 space-y-8">
-                        <h2 class="text-5xl font-bold leading-tight">Meet the Architects of Innovation</h2>
-                        <p class="text-xl text-slate-400 leading-relaxed">
-                            Our team is a collective of visionary engineers, designers, and strategists. We don't just
-                            hire talent; we recruit pioneers who are restless for what's next.
+
+            <div class="max-w-7xl mx-auto px-6 space-y-32">
+                <!-- Value 1 -->
+                <div class="grid md:grid-cols-2 gap-16 items-center">
+                    <div class="space-y-6">
+                        <div class="text-primary font-bold text-sm tracking-[0.3em] uppercase">01 / Spirit</div>
+                        <h3 class="text-4xl font-bold">Innovation First</h3>
+                        <p class="text-xl text-slate-400 font-light leading-relaxed">
+                            We push the boundaries of what's possible, exploring uncharted technological territories to deliver breakthrough results that set new industry standards.
                         </p>
-                        <div class="grid grid-cols-2 gap-8 py-4">
-                            <div>
-                                <h5 class="text-4xl font-bold text-primary">15+</h5>
-                                <p class="text-slate-500 uppercase text-xs tracking-widest mt-2 font-bold">Years of
-                                    Innovation</p>
-                            </div>
-                            <div>
-                                <h5 class="text-4xl font-bold text-primary">200+</h5>
-                                <p class="text-slate-500 uppercase text-xs tracking-widest mt-2 font-bold">Global
-                                    Projects</p>
-                            </div>
-                        </div>
-                        <button class="flex items-center gap-3 text-white font-bold group">
-                            <span
-                                class="w-12 h-12 bg-primary flex items-center justify-center rounded-full group-hover:bg-accent-deep transition-colors">
-                                <span class="material-symbols-outlined">group</span>
-                            </span>
-                            View All Team Members
-                        </button>
                     </div>
+                    <div class="h-px bg-gradient-to-r from-primary/50 to-transparent"></div>
+                </div>
+
+                <!-- Value 2 -->
+                <div class="grid md:grid-cols-2 gap-16 items-center direction-rtl">
+                    <div class="md:order-2 space-y-6 text-right">
+                        <div class="text-primary font-bold text-sm tracking-[0.3em] uppercase">02 / Outcome</div>
+                        <h3 class="text-4xl font-bold">Results Driven</h3>
+                        <p class="text-xl text-slate-400 font-light leading-relaxed">
+                            Our success is measured by the tangible impact we create for our partners. We don't just deliver projects; we deliver strategic growth.
+                        </p>
+                    </div>
+                    <div class="md:order-1 h-px bg-gradient-to-l from-primary/50 to-transparent"></div>
+                </div>
+
+                <!-- Value 3 -->
+                <div class="grid md:grid-cols-2 gap-16 items-center">
+                    <div class="space-y-6">
+                        <div class="text-primary font-bold text-sm tracking-[0.3em] uppercase">03 / Scale</div>
+                        <h3 class="text-4xl font-bold">Scalable Excellence</h3>
+                        <p class="text-xl text-slate-400 font-light leading-relaxed">
+                            Every solution is built to grow. We architect for the present with a rigorous focus on future-proof sustainability and technological longevity.
+                        </p>
+                    </div>
+                    <div class="h-px bg-gradient-to-r from-primary/50 to-transparent"></div>
+                </div>
+
+                <!-- Value 4 -->
+                <div class="grid md:grid-cols-2 gap-16 items-center">
+                    <div class="md:order-2 space-y-6 text-right">
+                        <div class="text-primary font-bold text-sm tracking-[0.3em] uppercase">04 / Focus</div>
+                        <h3 class="text-4xl font-bold">Human-Centric</h3>
+                        <p class="text-xl text-slate-400 font-light leading-relaxed">
+                            Technology is a tool for people. We prioritize the human experience in every interface and infrastructure we engineer.
+                        </p>
+                    </div>
+                    <div class="md:order-1 h-px bg-gradient-to-l from-primary/50 to-transparent"></div>
                 </div>
             </div>
         </section>
-        <!-- CTA Section -->
-        <section class="py-24">
+        <!-- Premium CTA Section -->
+        <section class="py-48 relative overflow-hidden">
+            <div class="absolute inset-0 bg-primary/5 pointer-events-none"></div>
             <div class="max-w-7xl mx-auto px-6">
-                <div
-                    class="bg-primary/10 border border-primary/20 rounded-3xl p-12 md:p-20 text-center relative overflow-hidden">
-                    <div class="absolute top-0 right-0 -mr-20 -mt-20 w-64 h-64 bg-primary/20 rounded-full blur-3xl">
-                    </div>
-                    <div class="relative z-10">
-                        <h2 class="text-4xl md:text-6xl font-bold mb-8">Ready to architect your future?</h2>
-                        <div class="flex flex-wrap justify-center gap-6">
-                            <a href="get-started.html"
-                                class="bg-primary hover:bg-opacity-90 text-white px-10 py-4 rounded-xl text-lg font-bold transition-all shadow-xl shadow-primary/20">Start
-                                a Project</a>
-                            <button
-                                class="border border-white/20 hover:border-white/50 text-white px-10 py-4 rounded-xl text-lg font-bold transition-all">
-                                Join the Team
-                            </button>
+                <div class="relative p-20 rounded-[3rem] bg-white/[0.01] border border-white/5 backdrop-blur-xl overflow-hidden text-center">
+                    <div class="absolute -top-24 -left-24 w-96 h-96 bg-primary/10 rounded-full blur-[100px]"></div>
+                    <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-accent-deep/10 rounded-full blur-[100px]"></div>
+                    
+                    <div class="relative z-10 max-w-3xl mx-auto">
+                        <h2 class="text-5xl md:text-7xl font-bold tracking-tighter mb-12">Ready to architect your <span class="text-primary italic">future</span>?</h2>
+                        <div class="flex justify-center">
+                            <div id="about-cta-root"></div>
                         </div>
                     </div>
                 </div>
@@ -399,7 +334,7 @@
                     <li><a class="hover:text-primary transition-colors" href="about.html">About Us</a></li>
                     <li><a class="hover:text-primary transition-colors" href="our-work.html">Our Work</a></li>
                     <li><a class="hover:text-primary transition-colors" href="pricing.html">Pricing</a></li>
-                    <li><a class="hover:text-primary transition-colors" href="get-started.html">Contact</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="get-started.html">Book Consultation</a></li>
                 </ul>
             </div>
             <div>
@@ -425,6 +360,7 @@
             </div>
         </div>
     </footer>
+    <script src="dist/star-button-bundle.iife.js"></script>
 </body>
 
 </html>

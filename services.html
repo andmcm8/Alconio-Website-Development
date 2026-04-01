@@ -9,11 +9,9 @@
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"
         rel="stylesheet" />
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet" />
+    <link rel="icon" type="image/png" href="favicon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
     <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
@@ -33,8 +31,8 @@
                             900: "#0A1A42",
                             950: "#050D21"
                         },
-                        "primary": "#0e00a3",
-                        "accent-deep": "#140152",
+                        "primary": "#1E51FF",
+                        "accent-deep": "#0A1A42",
                         "navy-dark": "#04052E",
                         "background-light": "#f6f5f8",
                         "background-dark": "#02010A",
@@ -96,7 +94,9 @@
         }
 
         .max-w-7xl {
-            max-width: 100% !important;
+            max-width: 1280px !important;
+            margin-left: auto !important;
+            margin-right: auto !important;
         }
 
         .max-w-4xl {
@@ -112,47 +112,48 @@
         }
 
         .px-6 {
-            padding-left: 3rem !important;
-            padding-right: 3rem !important;
+            padding-left: 1.5rem !important;
+            padding-right: 1.5rem !important;
         }
 
         .px-4 {
-            padding-left: 2rem !important;
-            padding-right: 2rem !important;
+            padding-left: 1rem !important;
+            padding-right: 1rem !important;
         }
     </style>
 
 </head>
 
 <body class="bg-background-light dark:bg-background-dark font-display text-white selection:bg-primary/30">
-    <nav class="sticky top-0 z-50 w-full border-b border-white/5 bg-background-dark/80 backdrop-blur-md">
-        <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+    <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[85%] max-w-5xl rounded-full border border-white/10 bg-black/60 backdrop-blur-xl shadow-2xl transition-all duration-300">
+        <div class="mx-auto flex items-center justify-between px-3 py-2">
             <div class="flex items-center gap-2">
                 <a href="index.html" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
-                    <img src="logo.png" alt="Alconio Logo" class="h-12 w-auto" />
+                    <img src="logo.png" alt="Alconio Logo" class="h-6 w-auto" />
                     <span class="text-xl font-bold tracking-tight text-white font-display">ALCONIO</span>
                 </a>
             </div>
             <div class="hidden items-center gap-8 md:flex">
-                <a class="text-sm font-medium text-white transition-colors" href="services.html">Services</a>
-                <a class="text-sm font-medium text-slate-400 transition-colors hover:text-white"
+                <a class="text-[13px] font-medium text-slate-400 transition-colors hover:text-white"
+                    href="services.html">Services</a>
+                <a class="text-[13px] font-medium text-slate-400 transition-colors hover:text-white"
                     href="our-work.html">Our Work</a>
-                <a class="text-sm font-medium text-slate-400 transition-colors hover:text-white" href="about.html">About
+                <a class="text-[13px] font-medium text-slate-400 transition-colors hover:text-white" href="about.html">About
                     Us</a>
-                <a class="text-sm font-medium text-slate-400 transition-colors hover:text-white"
+                <a class="text-[13px] font-medium text-slate-400 transition-colors hover:text-white"
                     href="pricing.html">Pricing</a>
             </div>
             <div class="flex items-center gap-4">
                 <a href="dashboard_signin.html">
                     <button
-                        class="rounded-full bg-white/10 px-4 py-2 text-sm font-bold text-white transition-all hover:bg-white/20 border border-white/10 hover:border-white/30">
+                        class="rounded-full bg-white/10 px-5 py-2 text-[13px] font-bold text-white transition-all hover:bg-white/20 border border-white/10 hover:border-white/30">
                         Client Dashboard
                     </button>
                 </a>
                 <a href="get-started.html">
                     <button
-                        class="rounded-full bg-primary px-6 py-2 text-sm font-bold text-white transition-all hover:bg-primary/80 hover:shadow-[0_0_20px_rgba(14,0,163,0.4)]">
-                        Get Started
+                        class="rounded-full bg-primary px-6 py-2 text-[13px] font-bold text-white transition-all hover:bg-primary/80 hover:shadow-[0_0_20px_rgba(14,0,163,0.4)]">
+                        Book Consultation
                     </button>
                 </a>
                 <button class="md:hidden text-white" aria-label="Open menu">
@@ -164,25 +165,6 @@
 
     <main class="scroll-container">
         <!-- Hero Section -->
-        <section class="snap-section flex items-center justify-center relative overflow-hidden pt-20">
-            <div class="absolute inset-0 bg-[radial-gradient(circle_at_50%_50%,#1E51FF_0%,transparent_50%)] opacity-20">
-            </div>
-            <div class="max-w-4xl px-6 text-center z-10">
-                <h1 class="text-6xl md:text-8xl font-black mb-6 tracking-tighter leading-none">
-                    WHAT WE <span class="text-primary italic">BUILD</span>
-                </h1>
-                <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed">
-                    Engineering excellence through high-end digital solutions and futuristic architecture. We transform
-                    complex challenges into elegant technological realities.
-                </p>
-                <div class="mt-10 flex justify-center gap-4">
-                    <a class="p-4 rounded-full border border-primary/40 hover:bg-primary/10 transition-all"
-                        href="#web-dev">
-                        <span class="material-symbols-outlined align-middle">expand_more</span>
-                    </a>
-                </div>
-            </div>
-        </section>
         <!-- Deep-Dive 1: Web Development -->
         <section class="snap-section bg-navy-dark/30 flex flex-col md:flex-row items-center border-y border-white/5"
             id="web-dev">
@@ -242,189 +224,249 @@
                 </div>
             </div>
         </section>
-        <!-- Deep-Dive 2: AI Automation -->
-        <section class="snap-section flex flex-col md:flex-row-reverse items-center">
-            <div class="w-full md:w-1/2 p-12 md:p-24 space-y-8">
-                <div
-                    class="inline-block px-3 py-1 rounded-full bg-accent-deep/50 text-white text-xs font-bold tracking-widest uppercase mb-4">
-                    Tier 02
-                </div>
-                <h2 class="text-5xl font-bold">AI Automation</h2>
-                <p class="text-gray-400 text-lg">Harnessing the power of neural intelligence to streamline enterprise
-                    operations.</p>
-                <ul class="space-y-6">
-                    <li class="flex items-start gap-4">
-                        <span class="material-symbols-outlined text-primary mt-1">psychology</span>
-                        <div>
-                            <h4 class="font-bold text-lg">Custom LLM Chatbots</h4>
-                            <p class="text-gray-500">Trained on your private documentation for 24/7 support.</p>
+
+        <!-- Management & Hosting Extension -->
+        <section class="snap-section bg-black py-24 px-6 relative overflow-hidden">
+            <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(14,0,163,0.1),transparent_50%)]"></div>
+            <div class="max-w-7xl mx-auto relative z-10">
+                <div class="grid lg:grid-cols-2 gap-16 items-center">
+                    <div>
+                        <h5 class="text-[#1E51FF] text-xs font-bold uppercase tracking-[0.3em] mb-6">Management Suite</h5>
+                        <h2 class="text-4xl md:text-5xl font-bold mb-8 leading-tight">Managed Excellence: <br/><span class="text-primary italic">The Command Center</span></h2>
+                        <p class="text-gray-400 text-lg mb-10 max-w-xl">We don't just hand you a website and walk away. Every Alconio build includes access to our proprietary management suite, giving you full control and visibility over your digital empire.</p>
+                        
+                        <div class="space-y-4">
+                            <a href="get-started.html" class="inline-flex items-center gap-3 bg-primary hover:bg-blue-700 text-white px-8 py-3.5 rounded-full font-bold transition-all hover:scale-105 shadow-[0_0_20px_rgba(14,0,163,0.3)]">
+                                Book Consultation <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                            </a>
                         </div>
-                    </li>
-                    <li class="flex items-start gap-4">
-                        <span class="material-symbols-outlined text-primary mt-1">auto_awesome</span>
-                        <div>
-                            <h4 class="font-bold text-lg">Workflow Automation</h4>
-                            <p class="text-gray-500">Eliminate repetitive tasks with intelligent triggers.</p>
-                        </div>
-                    </li>
-                    <li class="flex items-start gap-4">
-                        <span class="material-symbols-outlined text-primary mt-1">monitoring</span>
-                        <div>
-                            <h4 class="font-bold text-lg">Predictive Analytics</h4>
-                            <p class="text-gray-500">Identify trends before they happen with ML modeling.</p>
-                        </div>
-                    </li>
-                </ul>
-            </div>
-            <div
-                class="w-full md:w-1/2 h-full bg-accent-deep/10 neural-bg flex items-center justify-center p-12 relative overflow-hidden">
-                <!-- Neural Network Visualization Placeholder -->
-                <div class="relative w-80 h-80">
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <div class="w-full h-full border border-primary/20 rounded-full animate-pulse"></div>
                     </div>
-                    <div class="absolute top-0 left-1/2 -translate-x-1/2 w-4 h-4 bg-primary rounded-full glow-primary">
-                    </div>
-                    <div class="absolute bottom-10 right-0 w-4 h-4 bg-primary/60 rounded-full"></div>
-                    <div class="absolute bottom-10 left-0 w-4 h-4 bg-primary/60 rounded-full"></div>
-                    <div class="absolute top-1/4 left-0 w-3 h-3 bg-white/20 rounded-full"></div>
-                    <div class="absolute top-1/4 right-0 w-3 h-3 bg-white/20 rounded-full"></div>
-                    <!-- Lines (SVG) -->
-                    <svg class="absolute inset-0 w-full h-full opacity-30" viewbox="0 0 100 100">
-                        <line stroke="#0e00a3" stroke-width="0.5" x1="50" x2="100" y1="0" y2="90"></line>
-                        <line stroke="#0e00a3" stroke-width="0.5" x1="50" x2="0" y1="0" y2="90"></line>
-                        <line stroke="#0e00a3" stroke-width="0.5" x1="0" x2="100" y1="90" y2="90"></line>
-                        <line stroke="#0e00a3" stroke-dasharray="4" stroke-width="0.5" x1="50" x2="50" y1="0" y2="100">
-                        </line>
-                    </svg>
-                    <div class="absolute inset-0 flex items-center justify-center">
-                        <span class="material-symbols-outlined text-primary text-6xl">hub</span>
+                    
+                    <!-- Feature Grid -->
+                    <div class="grid sm:grid-cols-2 gap-6">
+                        <!-- Card 1: Dashboard -->
+                        <div class="p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-md hover:border-primary/50 transition-all hover:-translate-y-1 group">
+                            <div class="size-12 rounded-xl bg-primary/20 flex items-center justify-center mb-6 border border-primary/30 group-hover:bg-primary transition-colors">
+                                <span class="material-symbols-outlined text-primary group-hover:text-white transition-colors">analytics</span>
+                            </div>
+                            <h4 class="text-xl font-bold mb-3">Live Intelligence</h4>
+                            <p class="text-gray-500 text-sm leading-relaxed">Access real-time analytics, user behavior heatmaps, and performance metrics in one centralized dashboard.</p>
+                        </div>
+                        
+                        <!-- Card 2: CMS -->
+                        <div class="p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-md hover:border-primary/50 transition-all hover:-translate-y-1 group">
+                            <div class="size-12 rounded-xl bg-primary/20 flex items-center justify-center mb-6 border border-primary/30 group-hover:bg-primary transition-colors">
+                                <span class="material-symbols-outlined text-primary group-hover:text-white transition-colors">edit_note</span>
+                            </div>
+                            <h4 class="text-xl font-bold mb-3">Dynamic CMS</h4>
+                            <p class="text-gray-500 text-sm leading-relaxed">Update text, swap images, and manage content instantly with our intuitive visual editor. No code required.</p>
+                        </div>
+                        
+                        <!-- Card 3: Hosting -->
+                        <div class="p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-md hover:border-primary/50 transition-all hover:-translate-y-1 group">
+                            <div class="size-12 rounded-xl bg-primary/20 flex items-center justify-center mb-6 border border-primary/30 group-hover:bg-primary transition-colors">
+                                <span class="material-symbols-outlined text-primary group-hover:text-white transition-colors">cloud_done</span>
+                            </div>
+                            <h4 class="text-xl font-bold mb-3">Managed Edge</h4>
+                            <p class="text-gray-500 text-sm leading-relaxed">Global hosting on high-speed edge networks with automated security, SSL, and world-class optimization.</p>
+                        </div>
+                        
+                        <!-- Card 4: Support -->
+                        <div class="p-8 rounded-3xl bg-white/5 border border-white/10 backdrop-blur-md hover:border-primary/50 transition-all hover:-translate-y-1 group">
+                            <div class="size-12 rounded-xl bg-primary/20 flex items-center justify-center mb-6 border border-primary/30 group-hover:bg-primary transition-colors">
+                                <span class="material-symbols-outlined text-primary group-hover:text-white transition-colors">verified_user</span>
+                            </div>
+                            <h4 class="text-xl font-bold mb-3">Concierge Access</h4>
+                            <p class="text-gray-500 text-sm leading-relaxed">We pro-actively monitor performance and handle all maintenance, so you stay focused on growing your business.</p>
+                        </div>
                     </div>
                 </div>
             </div>
         </section>
-        <!-- Deep-Dive 3: Complete Solutions -->
-        <section class="snap-section bg-[#000] flex items-center justify-center overflow-hidden">
-            <div class="max-w-6xl w-full px-6 grid md:grid-cols-2 gap-12 items-center">
-                <div class="text-center md:text-left">
-                    <h2 class="text-5xl md:text-6xl font-black mb-8 leading-tight">Complete Digital <br /><span
-                            class="text-primary">Ecosystems</span></h2>
-                    <p class="text-gray-400 text-lg mb-8">End-to-end transformation. We don't just build tools; we build
-                        the future of your business infrastructure.</p>
-                    <button
-                        class="bg-primary px-8 py-4 rounded-xl font-bold hover:scale-105 transition-transform glow-primary">
-                        Request a Strategy Session
-                    </button>
-                </div>
-                <div class="relative aspect-square flex items-center justify-center">
-                    <!-- Spiral Icon Integration Grid -->
-                    <div
-                        class="absolute inset-0 flex items-center justify-center animate-[spin_60s_linear_infinite] opacity-40">
-                        <div class="w-full h-full border-[1px] border-dashed border-primary/40 rounded-full"></div>
-                    </div>
-                    <div
-                        class="absolute inset-10 flex items-center justify-center animate-[spin_40s_linear_infinite_reverse] opacity-20">
-                        <div class="w-full h-full border-[1px] border-solid border-primary/20 rounded-full"></div>
-                    </div>
-                    <div class="z-10 bg-background-dark p-8 rounded-full border border-primary/50 glow-primary">
-                        <span class="material-symbols-outlined text-6xl text-primary">all_inclusive</span>
-                    </div>
-                    <!-- Label Grid -->
-                    <div
-                        class="absolute top-0 left-1/2 -translate-x-1/2 bg-navy-dark border border-white/10 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider">
-                        Strategy</div>
-                    <div
-                        class="absolute bottom-0 left-1/2 -translate-x-1/2 bg-navy-dark border border-white/10 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider">
-                        Deployment</div>
-                    <div
-                        class="absolute left-0 top-1/2 -translate-y-1/2 bg-navy-dark border border-white/10 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider">
-                        Design</div>
-                    <div
-                        class="absolute right-0 top-1/2 -translate-y-1/2 bg-navy-dark border border-white/10 px-4 py-2 rounded-full text-xs font-bold uppercase tracking-wider">
-                        Scaling</div>
-                </div>
-            </div>
-        </section>
-        <!-- Pricing Section -->
-        <section class="snap-section py-32 px-6">
-            <div class="max-w-7xl mx-auto">
+        <!-- Website Tiers -->
+        <section class="snap-section bg-[#02010A] py-24 border-t border-white/5 relative z-10 overflow-hidden">
+            <div class="max-w-6xl mx-auto px-6">
                 <div class="text-center mb-20">
-                    <h2 class="text-4xl md:text-5xl font-bold mb-4">Investment Tiers</h2>
-                    <p class="text-gray-500">Scalable plans for every stage of your growth.</p>
+                    <h2 class="text-4xl md:text-5xl font-bold mb-4">Website Tiers</h2>
+                    <p class="text-gray-500 text-lg">Bespoke technical solutions for every scale of ambition.</p>
                 </div>
-                <div class="grid md:grid-cols-3 gap-8">
-                    <!-- Starter -->
+                <div class="grid md:grid-cols-3 gap-8 mb-32">
+                    <!-- Standard -->
                     <div
                         class="bg-navy-dark/40 border border-white/5 p-10 rounded-xl hover:border-primary/50 transition-all glow-primary group">
-                        <h3 class="text-xl font-bold mb-2">Starter</h3>
-                        <div class="text-4xl font-black mb-6">$4,999<span
+                        <h3 class="text-xl font-bold mb-2">Standard</h3>
+                        <div class="text-4xl font-black mb-6">$1,300<span
                                 class="text-sm font-normal text-gray-500">/project</span></div>
                         <ul class="space-y-4 mb-10 text-gray-400">
                             <li class="flex items-center gap-2"><span
-                                    class="material-symbols-outlined text-sm text-primary">done</span> 5-Page
-                                Performance Site</li>
-                            <li class="flex items-center gap-2"><span
-                                    class="material-symbols-outlined text-sm text-primary">done</span> AI Chatbot
-                                Integration</li>
-                            <li class="flex items-center gap-2"><span
-                                    class="material-symbols-outlined text-sm text-primary">done</span> Basic SEO Setup
+                                    class="material-symbols-outlined text-sm text-primary">done</span> Custom UI Design
                             </li>
-                            <li class="flex items-center gap-2 text-gray-600"><span
-                                    class="material-symbols-outlined text-sm">close</span> Dedicated Support</li>
+                            <li class="flex items-center gap-2"><span
+                                    class="material-symbols-outlined text-sm text-primary">done</span> 7-10 Dynamic Pages
+                            </li>
+                            <li class="flex items-center gap-2"><span
+                                    class="material-symbols-outlined text-sm text-primary">done</span> Mobile Optimization
+                            </li>
+                            <li class="flex items-center gap-2"><span
+                                    class="material-symbols-outlined text-sm text-primary">done</span> SEO Foundations
+                            </li>
+                            <li class="flex items-center gap-2"><span
+                                    class="material-symbols-outlined text-sm text-primary">done</span> 1 Revision Cycle
+                            </li>
                         </ul>
                         <button
-                            class="w-full py-4 rounded-lg bg-white/5 group-hover:bg-primary transition-colors font-bold">Choose
-                            Starter</button>
+                            class="w-full py-4 rounded-lg bg-white/5 group-hover:bg-primary transition-colors font-bold">Select
+                            Standard</button>
                     </div>
-                    <!-- Growth -->
+                    <!-- Premium -->
                     <div
                         class="bg-primary/10 border-2 border-primary p-10 rounded-xl glow-primary relative overflow-hidden">
                         <div
                             class="absolute top-5 right-5 bg-primary px-3 py-1 rounded text-[10px] font-bold uppercase tracking-widest">
                             Popular</div>
-                        <h3 class="text-xl font-bold mb-2">Growth</h3>
-                        <div class="text-4xl font-black mb-6">$12,499<span
+                        <h3 class="text-xl font-bold mb-2">Premium</h3>
+                        <div class="text-4xl font-black mb-6">$1,800<span
                                 class="text-sm font-normal text-gray-400">/project</span></div>
                         <ul class="space-y-4 mb-10 text-gray-300">
+                            <li class="flex items-center gap-2 text-primary font-bold"><span
+                                    class="material-symbols-outlined text-sm">done_all</span> Everything in Standard</li>
                             <li class="flex items-center gap-2"><span
-                                    class="material-symbols-outlined text-sm text-primary">done</span> Full E-commerce /
-                                Custom App</li>
-                            <li class="flex items-center gap-2"><span
-                                    class="material-symbols-outlined text-sm text-primary">done</span> Automated
-                                Workflows</li>
-                            <li class="flex items-center gap-2"><span
-                                    class="material-symbols-outlined text-sm text-primary">done</span> CRM Integration
+                                    class="material-symbols-outlined text-sm text-primary">done</span> Dashboard Access
                             </li>
                             <li class="flex items-center gap-2"><span
-                                    class="material-symbols-outlined text-sm text-primary">done</span> 3 Months Support
+                                    class="material-symbols-outlined text-sm text-primary">done</span> CMS Integration
+                            </li>
+                            <li class="flex items-center gap-2"><span
+                                    class="material-symbols-outlined text-sm text-primary">done</span> Analytics Suite
+                            </li>
+                            <li class="flex items-center gap-2"><span
+                                    class="material-symbols-outlined text-sm text-primary">done</span> Light E-commerce
                             </li>
                         </ul>
                         <button
-                            class="w-full py-4 rounded-lg bg-primary hover:bg-primary/80 transition-colors font-bold">Choose
-                            Growth</button>
+                            class="w-full py-4 rounded-lg bg-primary hover:bg-primary/80 transition-colors font-bold text-white shadow-lg">Select
+                            Premium</button>
                     </div>
-                    <!-- Enterprise -->
+                    <!-- E-commerce -->
                     <div
                         class="bg-navy-dark/40 border border-white/5 p-10 rounded-xl hover:border-primary/50 transition-all glow-primary group">
-                        <h3 class="text-xl font-bold mb-2">Enterprise</h3>
-                        <div class="text-4xl font-black mb-6">Custom</div>
+                        <h3 class="text-xl font-bold mb-2">E-commerce</h3>
+                        <div class="text-4xl font-black mb-6">$2,500<span
+                                class="text-sm font-normal text-gray-500">/project</span></div>
                         <ul class="space-y-4 mb-10 text-gray-400">
+                            <li class="flex items-center gap-2 text-primary font-bold"><span
+                                    class="material-symbols-outlined text-sm">done_all</span> Everything in Premium</li>
                             <li class="flex items-center gap-2"><span
-                                    class="material-symbols-outlined text-sm text-primary">done</span> Bespoke
-                                Infrastructure</li>
+                                    class="material-symbols-outlined text-sm text-primary">done</span> FullScale Storefront
+                            </li>
                             <li class="flex items-center gap-2"><span
-                                    class="material-symbols-outlined text-sm text-primary">done</span> Private LLM
-                                Training</li>
+                                    class="material-symbols-outlined text-sm text-primary">done</span> Advanced Inventory
+                            </li>
                             <li class="flex items-center gap-2"><span
-                                    class="material-symbols-outlined text-sm text-primary">done</span> 24/7 Dedicated
-                                Team</li>
+                                    class="material-symbols-outlined text-sm text-primary">done</span> Shipping Integration
+                            </li>
                             <li class="flex items-center gap-2"><span
-                                    class="material-symbols-outlined text-sm text-primary">done</span> Lifetime
-                                Maintenance</li>
+                                    class="material-symbols-outlined text-sm text-primary">done</span> Customer Reviews
+                            </li>
                         </ul>
                         <button
-                            class="w-full py-4 rounded-lg bg-white/5 group-hover:bg-primary transition-colors font-bold">Contact
-                            Us</button>
+                            class="w-full py-4 rounded-lg bg-white/5 group-hover:bg-primary transition-colors font-bold">Select
+                            E-commerce</button>
+                    </div>
+                </div>
+
+                <!-- Closing for Website Tiers Section -->
+            </div>
+        </section>
+
+                <!-- Vertical Project Roadmap -->
+                <div class="max-w-5xl mx-auto pt-16 border-t border-white/5 overflow-hidden">
+                    <div class="text-center mb-24">
+                        <h5 class="text-primary text-[10px] font-bold uppercase tracking-[0.4em] mb-4">The Workflow</h5>
+                        <h2 class="text-4xl font-bold mb-2">Project Roadmap</h2>
+                        <p class="text-gray-500 text-sm">A precision-guided path from idea to deployment.</p>
+                    </div>
+                    
+                    <div class="relative px-6 pb-24">
+                        <!-- Central Vertical Line -->
+                        <div class="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary/5 via-primary/40 to-transparent -translate-x-1/2 z-0"></div>
+                        
+                        <!-- Timeline Items -->
+                        <div class="space-y-4 md:space-y-0">
+                            <!-- Step 1: Left -->
+                            <div class="group relative flex flex-col md:flex-row items-center justify-center min-h-[160px] mb-16 px-4 md:px-0">
+                                <div class="w-full md:w-1/2 md:pr-16 md:text-right flex flex-col md:items-end order-2 md:order-1 mt-6 md:mt-0">
+                                    <h4 class="text-sm font-bold uppercase tracking-wider mb-2 text-white group-hover:text-primary transition-colors">01. Consultation</h4>
+                                    <p class="text-[13px] text-gray-500 max-w-xs leading-relaxed">Discovery session to define your vision, audit technical requirements, and map out the strategy.</p>
+                                </div>
+                                <!-- Node -->
+                                <div class="absolute left-1/2 -translate-x-1/2 z-10 hidden md:block">
+                                    <div class="size-3 rounded-full bg-navy-dark border border-primary/50 glow-primary transition-all group-hover:scale-150"></div>
+                                    <!-- Connector points Left -->
+                                    <div class="absolute top-1/2 right-3 w-12 h-px bg-primary/30"></div>
+                                </div>
+                                <div class="w-full md:w-1/2 order-1 md:order-2"></div>
+                            </div>
+                            
+                            <!-- Step 2: Right -->
+                            <div class="group relative flex flex-col md:flex-row items-center justify-center min-h-[160px] mb-16 px-4 md:px-0">
+                                <div class="w-full md:w-1/2 order-1"></div>
+                                <!-- Node -->
+                                <div class="absolute left-1/2 -translate-x-1/2 z-10 hidden md:block">
+                                    <div class="size-3 rounded-full bg-navy-dark border border-primary/50 glow-primary transition-all group-hover:scale-150"></div>
+                                    <!-- Connector points Right -->
+                                    <div class="absolute top-1/2 left-3 w-12 h-px bg-primary/30"></div>
+                                </div>
+                                <div class="w-full md:w-1/2 md:pl-16 order-2 mt-6 md:mt-0">
+                                    <h4 class="text-sm font-bold uppercase tracking-wider mb-2 text-white group-hover:text-primary transition-colors">02. Website Construction</h4>
+                                    <p class="text-[13px] text-gray-500 max-w-xs leading-relaxed">The architectural build where design meets development. We engineer your tech stack with precision.</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Step 3: Left -->
+                            <div class="group relative flex flex-col md:flex-row items-center justify-center min-h-[160px] mb-16 px-4 md:px-0">
+                                <div class="w-full md:w-1/2 md:pr-16 md:text-right flex flex-col md:items-end order-2 md:order-1 mt-6 md:mt-0">
+                                    <h4 class="text-sm font-bold uppercase tracking-wider mb-2 text-white group-hover:text-primary transition-colors">03. Refinement</h4>
+                                    <p class="text-[13px] text-gray-500 max-w-xs leading-relaxed">Collaborative review phase. We iterate on feedback and polish the digital experience to perfection.</p>
+                                </div>
+                                <!-- Node -->
+                                <div class="absolute left-1/2 -translate-x-1/2 z-10 hidden md:block">
+                                    <div class="size-3 rounded-full bg-navy-dark border border-primary/50 glow-primary transition-all group-hover:scale-150"></div>
+                                    <!-- Connector points Left -->
+                                    <div class="absolute top-1/2 right-3 w-12 h-px bg-primary/30"></div>
+                                </div>
+                                <div class="w-full md:w-1/2 order-1 md:order-2"></div>
+                            </div>
+                            
+                            <!-- Step 4: Right -->
+                            <div class="group relative flex flex-col md:flex-row items-center justify-center min-h-[160px] mb-16 px-4 md:px-0">
+                                <div class="w-full md:w-1/2 order-1"></div>
+                                <!-- Node -->
+                                <div class="absolute left-1/2 -translate-x-1/2 z-10 hidden md:block">
+                                    <div class="size-3 rounded-full bg-navy-dark border border-primary/50 glow-primary transition-all group-hover:scale-150"></div>
+                                    <!-- Connector points Right -->
+                                    <div class="absolute top-1/2 left-3 w-12 h-px bg-primary/30"></div>
+                                </div>
+                                <div class="w-full md:w-1/2 md:pl-16 order-2 mt-6 md:mt-0">
+                                    <h4 class="text-sm font-bold uppercase tracking-wider mb-2 text-white group-hover:text-primary transition-colors">04. Set up</h4>
+                                    <p class="text-[13px] text-gray-500 max-w-xs leading-relaxed">Configuring the backend engine: CMS, SEO meta-data, and 256-bit encryption for live launch.</p>
+                                </div>
+                            </div>
+                            
+                            <!-- Step 5: Final Call -->
+                            <div class="group relative flex flex-col items-center pt-12">
+                                <!-- Final Node (Rocket) -->
+                                <div class="z-20 relative mb-8">
+                                    <div class="size-16 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center glow-primary animate-pulse">
+                                        <span class="material-symbols-outlined text-primary text-3xl">rocket_launch</span>
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <h4 class="text-lg font-bold uppercase tracking-widest mb-3 text-primary">05. Launch & Support</h4>
+                                    <p class="text-[13px] text-gray-400 max-w-sm leading-relaxed mx-auto italic">Global deployment followed by proactive concierge maintenance to ensure your growth never stalls.</p>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -443,8 +485,7 @@
                                 class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
                         </summary>
                         <div class="p-6 text-gray-400 bg-[#000]/50 border-t border-white/5">
-                            Standard projects typically range from 4 to 12 weeks depending on complexity. Enterprise
-                            solutions may require phased rollouts over several months.
+                            Standard projects typically range from 3 to 7 business days depending on scope. Larger or multi-phase builds may take longer based on your requirements.
                         </div>
                     </details>
                     <!-- Q2 -->
@@ -456,8 +497,7 @@
                                 class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
                         </summary>
                         <div class="p-6 text-gray-400 bg-[#000]/50 border-t border-white/5">
-                            Yes, all our tiers include a warranty period. We also offer monthly maintenance retainers to
-                            ensure your systems remain cutting-edge.
+                            Yes, all our packages include a post-launch support period. We also offer ongoing maintenance retainers to keep your site and automations running smoothly.
                         </div>
                     </details>
                     <!-- Q3 -->
@@ -469,8 +509,7 @@
                                 class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
                         </summary>
                         <div class="p-6 text-gray-400 bg-[#000]/50 border-t border-white/5">
-                            Absolutely. We specialize in building custom middleware and API bridges to connect Alconio
-                            solutions with your current tech stack.
+                            Absolutely. We build custom API integrations and automation workflows that connect seamlessly with your existing tools and platforms.
                         </div>
                     </details>
                     <!-- Q4 -->
@@ -482,8 +521,7 @@
                                 class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
                         </summary>
                         <div class="p-6 text-gray-400 bg-[#000]/50 border-t border-white/5">
-                            Security is our priority. We use industry-standard encryption and can deploy models within
-                            your own virtual private cloud (VPC) for maximum data sovereignty.
+                            Security is a core priority. We follow industry best practices for data handling and can tailor deployment configurations to meet your privacy and compliance needs.
                         </div>
                     </details>
                     <!-- Q5 -->
@@ -495,8 +533,7 @@
                                 class="material-symbols-outlined transition-transform group-open:rotate-180">expand_more</span>
                         </summary>
                         <div class="p-6 text-gray-400 bg-[#000]/50 border-t border-white/5">
-                            We primarily leverage Next.js, React, Tailwind CSS, and headless CMS platforms like Sanity
-                            or Contentful for modern, scalable web ecosystems.
+                            We primarily build with Next.js, React, and Tailwind CSS for fast, modern, and fully custom websites built from the ground up.
                         </div>
                     </details>
                 </div>
@@ -529,9 +566,9 @@
                     <ul class="space-y-4 text-gray-500 text-sm">
                         <li><a class="hover:text-primary transition-colors" href="services.html">Web Development</a>
                         </li>
-                        <li><a class="hover:text-primary transition-colors" href="services.html">AI &amp; Automation</a>
+                        <li><a class="hover:text-primary transition-colors" href="services.html">Managed Hosting</a>
                         </li>
-                        <li><a class="hover:text-primary transition-colors" href="services.html">Cloud Architecture</a>
+                        <li><a class="hover:text-primary transition-colors" href="services.html">UX &amp; UI Design</a>
                         </li>
                         <li><a class="hover:text-primary transition-colors" href="services.html">Tech Consulting</a>
                         </li>
@@ -543,7 +580,7 @@
                         <li><a class="hover:text-primary transition-colors" href="about.html">About Us</a></li>
                         <li><a class="hover:text-primary transition-colors" href="our-work.html">Our Work</a></li>
                         <li><a class="hover:text-primary transition-colors" href="pricing.html">Pricing</a></li>
-                        <li><a class="hover:text-primary transition-colors" href="get-started.html">Contact</a></li>
+                        <li><a class="hover:text-primary transition-colors" href="get-started.html">Book Consultation</a></li>
                     </ul>
                 </div>
                 <div>

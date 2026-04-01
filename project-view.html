@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Project View | ALCONIO</title>
+    <link rel="icon" type="image/png" href="favicon.png">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Icons&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    
+    <script id="tailwind-config">
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#1E51FF",
+                        "background-dark": "#02010A",
+                    },
+                    fontFamily: {
+                        display: ["Space Grotesk", "sans-serif"],
+                    },
+                },
+            },
+        }
+    </script>
+    <style>
+        body {
+            background-color: #02010A;
+            color: #fff;
+            font-family: 'Space Grotesk', sans-serif;
+            overflow: hidden;
+            height: 100vh;
+            width: 100vw;
+        }
+
+        /* Viewport Atmospherics (1:1 Match) */
+        .stunning-gradient {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 50% 40%, rgba(30, 81, 255, 0.1) 0%, rgba(30, 81, 255, 0.03) 50%, rgba(2, 1, 10, 1) 95%);
+            z-index: -2;
+        }
+
+        .gradient-bloom {
+            position: fixed;
+            inset: 0;
+            background: radial-gradient(circle at 50% 40%, rgba(30, 81, 255, 0.15) 0%, transparent 60%);
+            mix-blend-mode: screen;
+            z-index: -1;
+            filter: blur(140px);
+            opacity: 1;
+        }
+
+        .bottom-crescent {
+            position: fixed;
+            bottom: -80px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100vw;
+            height: 200px;
+            background: radial-gradient(ellipse at center, rgba(30, 81, 255, 0.2) 0%, transparent 80%);
+            z-index: -1;
+            filter: blur(60px);
+            pointer-events: none;
+        }
+
+        /* 1-to-1 Reference Elements */
+        .neon-frame {
+            border: 2.5px solid #1E51FF;
+            padding: 10px; /* Structural Black Border */
+            background: #000;
+            box-shadow: 
+                0 0 100px rgba(30, 81, 255, 0.4),
+                0 0 40px rgba(30, 81, 255, 0.2);
+            border-radius: 8px; /* Sharp corners */
+            overflow: hidden;
+            position: relative;
+        }
+
+        .project-video-container {
+            border-radius: 4px;
+            overflow: hidden;
+            width: 100%;
+            height: 100%;
+        }
+
+        .vector-wave {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 500px;
+            height: 900px;
+            opacity: 0.1;
+            z-index: -1;
+            pointer-events: none;
+        }
+        .vector-wave-left { left: -180px; }
+        .vector-wave-right { right: -180px; transform: translateY(-50%) rotate(180deg); }
+
+        .spindle-path {
+            stroke: #1E51FF;
+            stroke-width: 0.3px;
+            fill: none;
+        }
+
+        .tag-pill {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.25);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-weight: 400;
+        }
+
+        .stat-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: rgba(255, 255, 255, 0.45);
+            font-size: 15px;
+            font-weight: 400;
+        }
+
+        .nav-btn-pair {
+            display: flex;
+            gap: 1rem;
+            position: fixed;
+            bottom: 2rem;
+            z-index: 100;
+        }
+
+        .pill-cta {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1E51FF;
+            color: white;
+            padding: 1rem 3rem;
+            border-radius: 9999px;
+            font-weight: 700;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            font-size: 14px;
+            box-shadow: 0 0 30px rgba(30, 81, 255, 0.4);
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            z-index: 100;
+        }
+        .pill-cta:hover {
+            transform: translateX(-50%) scale(1.05);
+            background: #2D5FFF;
+            box-shadow: 0 0 40px rgba(30, 81, 255, 0.6);
+        }
+
+        .nav-btn-pair span {
+            font-family: 'Material Symbols Outlined' !important;
+            font-size: 24px;
+        }
+
+        /* Magnificent Image Container */
+        #showcase-container {
+            margin-top: -5vh;
+        }
+        .project-image-container {
+            perspective: 2000px;
+            position: relative;
+        }
+
+        .project-image {
+            box-shadow: 0 0 120px rgba(30, 81, 255, 0.5), 
+                        inset 0 0 30px rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            position: relative;
+            z-index: 2;
+        }
+
+        .image-glow {
+            position: absolute;
+            inset: -4px;
+            background: linear-gradient(45deg, rgba(30, 81, 255, 0.6), transparent, rgba(255, 255, 255, 0.3));
+            border-radius: 3.2rem;
+            z-index: 1;
+            opacity: 0.7;
+            filter: blur(8px);
+        }
+
+        .nav-arrow {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            background: rgba(2, 1, 10, 0.4);
+            backdrop-filter: blur(8px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+            color: rgba(255, 255, 255, 0.7);
+            cursor: pointer;
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            z-index: 50;
+        }
+
+        .nav-arrow:hover {
+            background: rgba(30, 81, 255, 0.1);
+            border-color: rgba(30, 81, 255, 0.5);
+            color: #fff;
+            transform: translateY(-50%) scale(1.1);
+            box-shadow: 0 0 30px rgba(30, 81, 255, 0.1);
+        }
+
+        .nav-arrow-left { left: 3rem; }
+        .nav-arrow-right { right: 3rem; }
+
+        .nav-arrow .material-symbols-outlined {
+            font-size: 40px;
+            font-variation-settings: 'wght' 200;
+        }
+
+        /* Header Refinement */
+        .glass-header {
+            background: rgba(2, 1, 10, 0.7);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+        }
+
+        .nav-link {
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.4);
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #fff;
+        }
+
+        .nav-link.active {
+            color: #1E51FF;
+        }    
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 40;
+        }
+
+        /* Thumbnail Grid Styles (Centered 1x10) */
+        .thumb-grid {
+            position: absolute;
+            bottom: calc(100% + 12px);
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
+            z-index: 50;
+        }
+
+        .thumb-item {
+            width: 48px;
+            height: 48px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            flex-shrink: 0;
+        }
+        .thumb-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            filter: grayscale(100%);
+            transition: all 0.3s ease;
+            pointer-events: none; /* Ensure parent thumb-item catches hover */
+        }
+
+        .thumb-item.active img,
+        .thumb-item:hover img {
+            filter: grayscale(0%);
+        }
+
+        .thumb-item.active {
+            border-color: #1E51FF;
+        }
+
+        /* Gallery Navigation Arrows (In Frame) */
+        .gallery-nav {
+            position: absolute;
+            bottom: 24px;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 60;
+            transition: all 0.3s ease;
+        }
+
+        .gallery-nav:hover {
+            background: rgba(30, 81, 255, 0.6);
+            border-color: #1E51FF;
+            transform: scale(1.1);
+        }
+
+        .gallery-nav.prev { left: 24px; }
+        .gallery-nav.next { right: 24px; }
+
+        .gallery-nav i {
+            font-size: 20px;
+        }
+
+        /* Overflow overlay for the 10th thumbnail */
+        .thumb-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.6);
+            backdrop-filter: blur(2px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 10px;
+            font-weight: 600;
+            pointer-events: none; /* Ensure parent thumb-item catches hover */
+            opacity: 0.8;
+        }
+
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 200, 'GRAD' 0, 'opsz' 40;
+            display: inline-block;
+            line-height: 1;
+            font-size: 18px;
+        }
+
+        /* Back to Work link */
+        .back-link {
+            position: fixed;
+            top: 2rem;
+            left: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            opacity: 0.4;
+            transition: all 0.3s;
+            z-index: 50;
+        }
+        .back-link:hover {
+            opacity: 1;
+            transform: translateX(-4px);
+        }
+
+        #info-wrap {
+            position: fixed;
+            bottom: 3rem;
+            right: 4rem;
+            text-align: right;
+            z-index: 100;
+            max-width: 500px;
+        }
+
+        @keyframes pulse-bloom {
+            0% { transform: scale(1); opacity: 0.6; }
+            100% { transform: scale(1.1); opacity: 0.8; }
+        }
+    </style>
+</head>
+<body class="bg-black text-white selection:bg-primary selection:text-white font-display">
+    <a href="our-work.html" class="back-link-top">
+        <span class="material-symbols-outlined">west</span>
+        <span>BACK TO WORK</span>
+    </a>
+    <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[85%] max-w-5xl rounded-full border border-white/10 bg-black/60 backdrop-blur-xl shadow-2xl transition-all duration-300">
+        <div class="mx-auto flex items-center justify-between px-3 py-2">
+            <div class="flex items-center gap-2">
+                <a href="index.html" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
+                    <img src="logo.png" alt="Alconio Logo" class="h-6 w-auto" />
+                    <span class="text-xl font-bold tracking-tight text-white font-display uppercase">ALCONIO</span>
+                </a>
+            </div>
+            <div class="hidden items-center gap-8 md:flex">
+                <a class="text-[13px] font-medium text-slate-400 transition-colors hover:text-white" href="services.html">Services</a>
+                <a class="text-[13px] font-medium text-white transition-colors" href="our-work.html">Our Work</a>
+                <a class="text-[13px] font-medium text-slate-400 transition-colors hover:text-white" href="about.html">About Us</a>
+                <a class="text-[13px] font-medium text-slate-400 transition-colors hover:text-white" href="pricing.html">Pricing</a>
+            </div>
+            <div class="flex items-center gap-4">
+                <a href="dashboard_signin.html">
+                    <button class="rounded-full bg-white/10 px-4 py-2 text-sm font-bold text-white transition-all hover:bg-white/20 border border-white/10 overflow-hidden">
+                        Client Dashboard
+                    </button>
+                </a>
+                <a href="get-started.html">
+                    <button class="rounded-full bg-primary px-6 py-2 text-sm font-bold text-white transition-all hover:bg-primary/80">
+                        Get Started
+                    </button>
+                </a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Background Decorations -->
+    <div class="stunning-gradient"></div>
+    <div class="gradient-bloom"></div>
+    
+    <div class="bottom-crescent"></div>
+
+    <!-- Vector Waves (Technical Spindle) -->
+    <div class="vector-wave vector-wave-left">
+        <svg width="100%" height="100%" viewBox="0 0 200 400" preserveAspectRatio="none">
+            <!-- Spirograph spindeline effect -->
+            <path class="spindle-path" d="M0,0 Q180,200 0,400" style="opacity: 0.8;"/>
+            <path class="spindle-path" d="M10,0 Q170,200 10,400" style="opacity: 0.7;"/>
+            <path class="spindle-path" d="M20,0 Q160,200 20,400" style="opacity: 0.6;"/>
+            <path class="spindle-path" d="M30,0 Q150,200 30,400" style="opacity: 0.5;"/>
+            <path class="spindle-path" d="M40,0 Q140,200 40,400" style="opacity: 0.4;"/>
+            <path class="spindle-path" d="M50,0 Q130,200 50,400" style="opacity: 0.3;"/>
+            <path class="spindle-path" d="M60,0 Q120,200 60,400" style="opacity: 0.2;"/>
+            <path class="spindle-path" d="M70,0 Q110,200 70,400" style="opacity: 0.1;"/>
+        </svg>
+    </div>
+    <div class="vector-wave vector-wave-right">
+        <svg width="100%" height="100%" viewBox="0 0 200 400" preserveAspectRatio="none">
+            <path class="spindle-path" d="M0,0 Q180,200 0,400" style="opacity: 0.8;"/>
+            <path class="spindle-path" d="M10,0 Q170,200 10,400" style="opacity: 0.7;"/>
+            <path class="spindle-path" d="M20,0 Q160,200 20,400" style="opacity: 0.6;"/>
+            <path class="spindle-path" d="M30,0 Q150,200 30,400" style="opacity: 0.5;"/>
+            <path class="spindle-path" d="M40,0 Q140,200 40,400" style="opacity: 0.4;"/>
+            <path class="spindle-path" d="M50,0 Q130,200 50,400" style="opacity: 0.3;"/>
+            <path class="spindle-path" d="M60,0 Q120,200 60,400" style="opacity: 0.2;"/>
+            <path class="spindle-path" d="M70,0 Q110,200 70,400" style="opacity: 0.1;"/>
+        </svg>
+    </div>
+
+    <!-- Project Showcase -->
+    <main class="w-screen min-h-screen flex flex-col items-center relative overflow-hidden pt-[24vh]">
+
+        <div id="showcase-container" class="w-full max-w-6xl px-12 flex flex-col opacity-0 relative z-10 pb-32">
+            <!-- Project Gallery (Centered 1x10 Row - Positioned Absolute Above) -->
+            <div class="thumb-grid"></div>
+
+            <!-- Showcase Frame (1-to-1) -->
+            <div id="project-frame" class="neon-frame mb-8 relative">
+                <div class="project-video-container">
+                    <img id="project-image" src="" alt="Project Image" class="w-full h-full object-cover">
+                </div>
+                
+                <!-- Navigation Arrows -->
+                <button class="gallery-nav prev" onclick="showPrev()"><i class="material-symbols-outlined">chevron_left</i></button>
+                <button class="gallery-nav next" onclick="showNext()"><i class="material-symbols-outlined">chevron_right</i></button>
+            </div>
+
+            <!-- Metadata Dashboard (1-to-1) -->
+            <div class="flex flex-col md:flex-row justify-between items-start gap-8 w-full mt-2">
+                <!-- Left: Title & Tagline -->
+                <div class="flex-1">
+                    <h1 id="project-title" class="text-4xl font-bold text-white mb-2 leading-none tracking-tight"></h1>
+                    <p id="project-tagline" class="text-lg text-white/40 mb-2 font-light max-w-2xl"></p>
+                </div>
+
+                <!-- Right: Categorization Labels (Horizontal) -->
+                <div class="flex flex-col items-end pt-2">
+                    <div id="project-tags" class="flex items-center justify-end gap-x-6 text-right uppercase tracking-[0.2em] font-medium text-[10px] text-white/60"></div>
+                </div>
+            </div>
+        </div>
+
+        <button id="side-prev-btn" class="nav-arrow-side nav-arrow-left">
+            <span class="material-symbols-outlined">chevron_left</span>
+        </button>
+
+        <button class="pill-cta-floater">VIEW LIVE SITE</button>
+
+        <button id="side-next-btn" class="nav-arrow-side nav-arrow-right">
+            <span class="material-symbols-outlined">chevron_right</span>
+        </button>
+    </main>
+
+    <style>
+        .nav-arrow-side {
+            position: fixed;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 60px;
+            height: 60px;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+
+        .nav-arrow-left { left: 40px; }
+        .nav-arrow-right { right: 40px; }
+
+        .nav-arrow-side:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: rgba(255, 255, 255, 0.3);
+            transform: translateY(-50%) scale(1.1);
+        }
+        .pill-cta-floater {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #1E51FF;
+            color: #fff;
+            padding: 0.75rem 2.5rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            font-size: 13px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(30, 81, 255, 0.3);
+            z-index: 150;
+        }
+        .pill-cta-floater:hover {
+            transform: translateX(-50%) translateY(-3px);
+            box-shadow: 0 15px 40px rgba(30, 81, 255, 0.5);
+            background: #2a5dff;
+        }
+
+        /* Back Link Top Left */
+        .back-link-top {
+            position: fixed;
+            top: 100px;
+            left: 40px;
+            z-index: 250;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: white;
+            text-decoration: none;
+            font-size: 10px;
+            font-weight: 700;
+            letter-spacing: 0.2em;
+            opacity: 0.4;
+            transition: all 0.3s ease;
+        }
+        .back-link-top:hover {
+            opacity: 1;
+            gap: 18px;
+            color: #1E51FF;
+        }
+        .back-link-top span {
+            font-size: 18px;
+        }
+    </style>
+
+    <script>
+        const PROJECTS = [
+            {
+                id: 'arcaico',
+                name: 'Arcaica Design Studio',
+                tagline: 'Timeless Architectural Vision',
+                image: 'work_images/arcadia.png',
+                tags: ['Architecture', 'Interior', 'Sustainable'],
+                gallery: [
+                    'work_images/arcadia.png',
+                    'work_images/arcaico/arcaica_1.png',
+                    'work_images/arcaico/arcaica_2.png',
+                    'work_images/arcaico/arcaica_3.png',
+                    'work_images/arcaico/arcaica_4.png',
+                    'work_images/arcaico/arcaica_5.png',
+                    'work_images/arcaico/arcaica_6.png',
+                    'work_images/arcaico/arcaica_7.png',
+                    'work_images/arcaico/arcaica_8.png',
+                    'work_images/arcaico/arcaica_9.png',
+                    'work_images/arcaico/arcaica_10.png',
+                    'work_images/arcaico/arcaica_11.png',
+                    'work_images/arcaico/arcaica_12.png',
+                    'work_images/arcaico/arcaica_13.png',
+                    'work_images/arcaico/arcaica_14.png',
+                    'work_images/arcaico/arcaica_15.png',
+                    'work_images/arcaico/arcaica_16.png'
+                ],
+                desc: 'Innovative spatial design and architectural visualization systems.'
+            },
+            {
+                id: 'luna',
+                name: 'Luna Systems',
+                image: 'work_images/horizon.png',
+                gallery: Array(10).fill('work_images/horizon.png'),
+                tagline: 'Advanced orbital logistics and multi-planetary habitat protocols.',
+                tags: ['Aerospace', 'Infrastructure', 'Logistics'],
+                desc: 'Our systems power the next generation of celestial infrastructure.'
+            },
+            {
+                id: 'liquid',
+                name: 'Liquid Gold',
+                image: 'work_images/coffee.png',
+                gallery: Array(10).fill('work_images/coffee.png'),
+                tagline: 'Curated luxury coffee experience and roastery aesthetics.',
+                tags: ['Lifestyle', 'E-commerce', 'Sensory'],
+                desc: 'Transforming artisanal coffee into a high-end digital ritual.'
+            },
+            {
+                id: 'solaris',
+                name: 'Solaris Travel',
+                image: 'work_images/solaris.png',
+                gallery: Array(10).fill('work_images/solaris.png'),
+                tagline: 'Immersive zero-gravity travel and celestial hospitality.',
+                tags: ['Tourism', 'Experience', 'Zero-G'],
+                desc: 'Engineering the digital layer for luxury space tourism.'
+            },
+        ];
+
+        let currentIndex = 0;
+
+        function updateProject(index, animate = true) {
+            const project = PROJECTS[index];
+            if (animate) {
+                const direction = index > currentIndex ? 1 : -1;
+                gsap.to('#showcase-container', {
+                    opacity: 0,
+                    y: -30 * direction,
+                    duration: 0.5,
+                    ease: "power2.in",
+                    onComplete: () => {
+                        renderProject(project);
+                        currentIndex = index;
+                        gsap.fromTo('#showcase-container', 
+                            { opacity: 0, y: 30 * direction },
+                            { opacity: 1, y: 0, duration: 0.8, ease: "power4.out" }
+                        );
+                    }
+                });
+            } else {
+                renderProject(project);
+                currentIndex = index;
+                gsap.to('#showcase-container', { opacity: 1, y: 0, duration: 1, ease: "power4.out" });
+            }
+
+            // Update URL without reload
+            const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?id=' + project.id;
+            window.history.pushState({path:newUrl},'',newUrl);
+        }
+
+        function renderProject(project) {
+            const mainImage = document.getElementById('project-image');
+            mainImage.src = project.image;
+            document.getElementById('project-title').textContent = project.name;
+            document.getElementById('project-tagline').textContent = project.tagline;
+            
+            // Render Tags
+            const tagsContainer = document.getElementById('project-tags');
+            tagsContainer.innerHTML = '';
+            project.tags.forEach(tag => {
+                const span = document.createElement('span');
+                span.className = 'tag-pill';
+                span.textContent = tag;
+                tagsContainer.appendChild(span);
+            });
+
+            // Render Gallery Thumbnails
+            const grid = document.querySelector('.thumb-grid');
+            grid.innerHTML = "";
+            const maxThumbs = 17;
+            
+            // Tracking selection for hover/revert logic
+            window.selectedImageIndex = 0;
+            
+            project.gallery.forEach((link, index) => {
+                if (index < maxThumbs) {
+                    const thumb = document.createElement('div');
+                    thumb.className = `thumb-item ${index === 0 ? 'active' : ''}`;
+                    thumb.innerHTML = `<img src="${link}" alt="Thumbnail ${index + 1}">`;
+
+                    // Show overflow count on the 17th thumbnail (index 16)
+                    if (index === 16 && project.gallery.length > maxThumbs) {
+                        const overlay = document.createElement('div');
+                        overlay.className = 'thumb-overlay';
+                        overlay.textContent = `+${project.gallery.length - 16}`;
+                        thumb.appendChild(overlay);
+                    }
+
+                    const updateUI = (idx, isPersistent = false) => {
+                        const targetLink = project.gallery[idx];
+                        
+                        // Kill any active transitions on the main image
+                        gsap.killTweensOf(mainImage);
+                        
+                        // Instant source swap
+                        mainImage.src = targetLink;
+                        
+                        // Highlight logic: 
+                        // If it's a persistent click, we update the window state.
+                        // On hover, we highlight the hovered index visually.
+                        const activeIndexToHighlight = idx; 
+                        
+                        document.querySelectorAll('.thumb-item').forEach((t, i) => {
+                            const highlightIdx = activeIndexToHighlight < 17 ? activeIndexToHighlight : 16;
+                            if (i === highlightIdx) t.classList.add('active');
+                            else t.classList.remove('active');
+                        });
+
+                        // Premium fade transition
+                        gsap.fromTo(mainImage, 
+                            { opacity: 0, scale: 1.02 }, 
+                            { opacity: 1, scale: 1, duration: 0.4, ease: "power2.out" }
+                        );
+
+                        if (isPersistent) {
+                            window.selectedImageIndex = idx;
+                        }
+                    };
+
+                    thumb.onmouseenter = () => updateUI(index, false);
+                    thumb.onmouseleave = () => updateUI(window.selectedImageIndex, false);
+                    thumb.onclick = () => updateUI(index, true);
+                    
+                    grid.appendChild(thumb);
+                }
+            });
+
+            // Arrow Navigation Functions
+            window.showNext = () => {
+                const nextIdx = (window.selectedImageIndex + 1) % project.gallery.length;
+                window.selectedImageIndex = nextIdx;
+                
+                const targetLink = project.gallery[nextIdx];
+                mainImage.src = targetLink;
+                
+                document.querySelectorAll('.thumb-item').forEach((t, i) => {
+                    const highlightIdx = nextIdx < 17 ? nextIdx : 16;
+                    if (i === highlightIdx) t.classList.add('active');
+                    else t.classList.remove('active');
+                });
+
+                gsap.fromTo(mainImage, { opacity: 0, scale: 1.05 }, { opacity: 1, scale: 1, duration: 0.6, ease: "power2.out" });
+            };
+
+            window.showPrev = () => {
+                const prevIdx = (window.selectedImageIndex - 1 + project.gallery.length) % project.gallery.length;
+                window.selectedImageIndex = prevIdx;
+
+                const targetLink = project.gallery[prevIdx];
+                mainImage.src = targetLink;
+
+                document.querySelectorAll('.thumb-item').forEach((t, i) => {
+                    const highlightIdx = prevIdx < 17 ? prevIdx : 16;
+                    if (i === highlightIdx) t.classList.add('active');
+                    else t.classList.remove('active');
+                });
+
+                gsap.fromTo(mainImage, { opacity: 0, scale: 1.05 }, { opacity: 1, scale: 1, duration: 0.6, ease: "power2.out" });
+            };
+
+            document.title = `${project.name} | ALCONIO`;
+        }
+
+        // Initialize based on URL
+        function init() {
+            const params = new URLSearchParams(window.location.search);
+            const initialId = params.get('id');
+            const initialIndex = PROJECTS.findIndex(p => p.id === initialId);
+            
+            if (initialIndex !== -1) {
+                currentIndex = initialIndex;
+                renderProject(PROJECTS[currentIndex]);
+                gsap.to('#showcase-container', { opacity: 1, y: 0, duration: 1, delay: 0.2 });
+            } else {
+                renderProject(PROJECTS[0]);
+                gsap.to('#showcase-container', { opacity: 1, y: 0, duration: 1, delay: 0.2 });
+            }
+        }
+
+        init();
+
+        // Event Listeners for Side Navigation
+        document.getElementById('side-prev-btn').addEventListener('click', () => {
+            const newIndex = (currentIndex - 1 + PROJECTS.length) % PROJECTS.length;
+            updateProject(newIndex);
+        });
+
+        document.getElementById('side-next-btn').addEventListener('click', () => {
+            const newIndex = (currentIndex + 1) % PROJECTS.length;
+            updateProject(newIndex);
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') document.getElementById('side-prev-btn').click();
+            if (e.key === 'ArrowRight') document.getElementById('side-next-btn').click();
+            if (e.key === 'Escape') window.location.href = 'our-work.html';
+        });
+    </script>
+</body>
+</html>

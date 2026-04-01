@@ -5,6 +5,7 @@
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
     <title>ALCONIO - Building Digital Futures</title>
+    <link rel="icon" type="image/png" href="favicon.png">
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-431VG72CM9"></script>
     <script>
@@ -16,9 +17,7 @@
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&amp;display=swap"
         rel="stylesheet">
-    <link
-        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet">
     <script id="tailwind-config">
         tailwind.config = {
             darkMode: "class",
@@ -72,6 +71,15 @@
                         'razor-edge': '0 0 0 1px rgba(30, 81, 255, 0.5), 0 0 15px rgba(30, 81, 255, 0.3)',
                         'spotlight': '0 0 60px 20px rgba(30, 81, 255, 0.6)',
                         'inner-blue': 'inset 0 0 20px rgba(30, 81, 255, 0.2)',
+                    },
+                    animation: {
+                        'star-btn': 'star-btn calc(var(--duration, 3) * 1s) linear infinite',
+                    },
+                    keyframes: {
+                        'star-btn': {
+                            '0%': { offsetDistance: '0%' },
+                            '100%': { offsetDistance: '100%' },
+                        },
                     }
                 },
             },
@@ -384,35 +392,35 @@
     
     <!-- SVG Definitions for Masks removed -->
 
-    <nav class="sticky top-0 z-50 w-full bg-background-dark/80 backdrop-blur-md">
-        <div class="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
+    <nav class="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[85%] max-w-5xl rounded-full border border-white/10 bg-black/60 backdrop-blur-xl shadow-2xl transition-all duration-300">
+        <div class="mx-auto flex items-center justify-between px-3 py-2">
             <div class="flex items-center gap-2">
                 <a href="index.html" class="flex items-center gap-3 hover:opacity-80 transition-opacity">
-                    <img src="logo.png" alt="Alconio Logo" class="h-12 w-auto" />
+                    <img src="logo.png" alt="Alconio Logo" class="h-6 w-auto" />
                     <span class="text-xl font-bold tracking-tight text-white font-display">ALCONIO</span>
                 </a>
             </div>
             <div class="hidden items-center gap-8 md:flex">
-                <a class="text-sm font-medium text-slate-400 transition-colors hover:text-white"
+                <a class="text-[13px] font-medium text-slate-400 transition-colors hover:text-white"
                     href="services.html">Services</a>
-                <a class="text-sm font-medium text-slate-400 transition-colors hover:text-white"
+                <a class="text-[13px] font-medium text-slate-400 transition-colors hover:text-white"
                     href="our-work.html">Our Work</a>
-                <a class="text-sm font-medium text-slate-400 transition-colors hover:text-white" href="about.html">About
+                <a class="text-[13px] font-medium text-slate-400 transition-colors hover:text-white" href="about.html">About
                     Us</a>
-                <a class="text-sm font-medium text-slate-400 transition-colors hover:text-white"
+                <a class="text-[13px] font-medium text-slate-400 transition-colors hover:text-white"
                     href="pricing.html">Pricing</a>
             </div>
             <div class="flex items-center gap-4">
                 <a href="dashboard_signin.html">
                     <button
-                        class="rounded-full bg-white/10 px-4 py-2 text-sm font-bold text-white transition-all hover:bg-white/20 border border-white/10 hover:border-white/30">
+                        class="rounded-full bg-white/10 px-5 py-2 text-[13px] font-bold text-white transition-all hover:bg-white/20 border border-white/10 hover:border-white/30">
                         Client Dashboard
                     </button>
                 </a>
                 <a href="get-started.html">
                     <button
-                        class="rounded-full bg-primary px-6 py-2 text-sm font-bold text-white transition-all hover:bg-primary/80 hover:shadow-[0_0_20px_rgba(14,0,163,0.4)]">
-                        Get Started
+                        class="rounded-full bg-primary px-6 py-2 text-[13px] font-bold text-white transition-all hover:bg-primary/80 hover:shadow-[0_0_20px_rgba(14,0,163,0.4)]">
+                        Book Consultation
                     </button>
                 </a>
                 <button class="md:hidden text-white" aria-label="Open menu">
@@ -423,65 +431,873 @@
     </nav>
 
 
-    <!-- Final Polished Hero Section -->
-    <section class="relative min-h-[90vh] flex items-start pt-20 pb-0 overflow-hidden bg-black">
-        <!-- Background: Purest Black -->
-        <div class="absolute inset-0 z-0 bg-black"></div>
+    <!-- ═══════════════════════════════════════════════════════════════
+         HERO SECTION: "Website Being Built" Animation
+         ═══════════════════════════════════════════════════════════════ -->
+    <style>
+        /* ── Hero Layout ── */
+        #hero-build {
+            background: #020510;
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
 
-        <div class="relative z-10 max-w-7xl mx-auto px-6 w-full h-full">
-            <div class="flex flex-col lg:flex-row items-start gap-12 lg:gap-20 h-full">
-                <!-- Left Content: High-Impact Minimalist -->
-                <div class="flex-1 text-left pt-12 lg:pt-24 z-20">
-                    <div class="flex flex-col mb-12">
-                        <h1 class="font-bold tracking-tighter leading-[0.8] text-white">
-                            <span class="block text-[100px] md:text-[130px] lg:text-[150px] uppercase">BUILD</span>
-                            <div class="relative inline-block mt-6">
-                                <!-- Sharp Blue Stripe for TOMORROW -->
-                                <div class="absolute inset-y-1 -inset-x-8 bg-blue-600 transform skew-x-[-12deg]"></div>
-                                <span class="relative block text-[90px] md:text-[110px] lg:text-[135px] italic uppercase tracking-tighter leading-none">TOMORROW</span>
+        /* ── Geometric Canvas ── */
+        #geo-canvas {
+            position: absolute;
+            inset: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        /* ── Film Grain ── */
+        #hero-build .hero-grain {
+            position: absolute;
+            inset: 0;
+            z-index: 3;
+            opacity: 0.025;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+        }
+
+        /* ── Ambient Glows ── */
+        #hero-build .hero-glow-orb {
+            position: absolute;
+            right: -2%;
+            top: 40%;
+            transform: translateY(-50%);
+            width: 900px;
+            height: 900px;
+            background: radial-gradient(circle, rgba(30, 81, 255, 0.10) 0%, transparent 60%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+            filter: blur(80px);
+        }
+
+        #hero-build .hero-glow-center {
+            position: absolute;
+            left: 30%;
+            top: 45%;
+            transform: translate(-50%, -50%);
+            width: 800px;
+            height: 600px;
+            background: radial-gradient(ellipse, rgba(30, 81, 255, 0.03) 0%, transparent 55%);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* ── Thin Accent Lines ── */
+        .hero-accent-line {
+            position: absolute;
+            z-index: 2;
+            pointer-events: none;
+        }
+        /* ── Super Unique: Stroke Background Text ── */
+        .hero-stroke-text {
+            position: absolute;
+            font-size: clamp(12rem, 25vw, 40rem);
+            font-weight: 800;
+            line-height: 1;
+            color: transparent;
+            -webkit-text-stroke: 1px rgba(30, 81, 255, 0.08);
+            pointer-events: none;
+            z-index: 1;
+            white-space: nowrap;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+        }
+
+        .hero-bg-text-left {
+            display: none;
+        }
+
+        /* ── Blueprint Labels & Vertical Markers ── */
+        .blueprint-tag {
+            font-family: monospace;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: rgba(30, 81, 255, 0.5);
+            padding: 4px 8px;
+            border-left: 1px solid rgba(30, 81, 255, 0.3);
+            background: rgba(30, 81, 255, 0.03);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .vertical-marker {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%) rotate(-90deg);
+            font-family: monospace;
+            font-size: 10px;
+            letter-spacing: 0.3em;
+            color: rgba(30, 81, 255, 0.3);
+            text-transform: uppercase;
+            white-space: nowrap;
+            z-index: 30;
+        }
+
+        .marker-dot {
+            display: inline-block;
+            width: 4px;
+            height: 4px;
+            background: #1E51FF;
+            border-radius: 50%;
+            margin-right: 8px;
+            box-shadow: 0 0 8px #1E51FF;
+        }
+
+        /* ── Mockup 3D Container ── */
+        .perspective-container {
+            perspective: 2000px;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .mockup-3d-wrap {
+            transform-style: preserve-3d;
+            transition: transform 0.1s ease-out;
+            /* Inital base rotation for 'Architectural' angle */
+            transform: rotateY(-18deg) rotateX(4deg) skewY(-2deg);
+        }
+
+        .browser-frame {
+            background: rgba(10, 12, 22, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            backdrop-filter: blur(35px) saturate(180%);
+            box-shadow:
+                0 45px 100px rgba(0, 0, 15, 0.9),
+                0 0 30px rgba(30, 81, 255, 0.08);
+            position: relative;
+        }
+
+        /* ── Grid/Blueprint Accent Lines ── */
+        .blueprint-canvas-overlay {
+            position: absolute;
+            inset: 0;
+            background-image: 
+                linear-gradient(rgba(30, 81, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(30, 81, 255, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        /* ── Floating Geometric Shapes ── */
+        .geo-shape {
+            position: absolute;
+            z-index: 2;
+            pointer-events: none;
+            opacity: 0;
+        }
+        .geo-diamond {
+            width: 22px;
+            height: 22px;
+            border: 1px solid rgba(30, 81, 255, 0.18);
+            transform: rotate(45deg);
+        }
+        .geo-ring {
+            width: 40px;
+            height: 40px;
+            border: 1px solid rgba(30, 81, 255, 0.12);
+            border-radius: 50%;
+        }
+        .geo-cross {
+            width: 14px;
+            height: 14px;
+            position: relative;
+        }
+        .geo-cross::before, .geo-cross::after {
+            content: '';
+            position: absolute;
+            background: rgba(30, 81, 255, 0.22);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .geo-cross::before { width: 14px; height: 1px; }
+        .geo-cross::after { width: 1px; height: 14px; }
+        .geo-dot-accent {
+            width: 3px;
+            height: 3px;
+            background: rgba(30, 81, 255, 0.5);
+            border-radius: 50%;
+        }
+
+        /* ── Browser Chrome ── */
+        .browser-frame {
+            background: rgba(12, 14, 20, 0.85);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            overflow: hidden;
+            backdrop-filter: blur(20px);
+            box-shadow:
+                0 0 0 1px rgba(30, 81, 255, 0.1),
+                0 25px 80px rgba(0, 0, 0, 0.8),
+                0 0 60px rgba(30, 81, 255, 0.05);
+            position: relative;
+        }
+
+        .browser-chrome {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 12px 16px;
+            background: rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .traffic-dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+        }
+
+        .browser-url {
+            flex: 1;
+            margin-left: 12px;
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 6px;
+            padding: 6px 14px;
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.35);
+            font-family: 'Space Grotesk', monospace;
+            letter-spacing: 0.03em;
+        }
+
+        .browser-viewport {
+            position: relative;
+            padding: 0;
+            height: 480px;
+            overflow: hidden;
+            background: #0a0a0f;
+        }
+
+        /* ── Wireframe Grid ── */
+        .wire-grid {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            z-index: 1;
+        }
+
+        .wire-grid-line {
+            position: absolute;
+            background: rgba(30, 81, 255, 0.06);
+        }
+
+        .wire-grid-line.horizontal {
+            height: 1px;
+            width: 100%;
+        }
+
+        .wire-grid-line.vertical {
+            width: 1px;
+            height: 100%;
+        }
+
+        /* ── Mockup Elements ── */
+        .mock-nav {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 36px;
+            background: rgba(255, 255, 255, 0.03);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            display: flex;
+            align-items: center;
+            padding: 0 16px;
+            gap: 12px;
+            z-index: 5;
+            opacity: 0;
+            transform: translateY(-100%);
+        }
+
+        .mock-nav-logo {
+            width: 18px;
+            height: 18px;
+            border-radius: 4px;
+            background: rgba(255, 255, 255, 0.08);
+        }
+
+        .mock-nav-item {
+            width: 36px;
+            height: 6px;
+            border-radius: 3px;
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .mock-hero-img {
+            position: absolute;
+            top: 48px;
+            left: 16px;
+            right: 16px;
+            height: 130px;
+            border-radius: 8px;
+            background: linear-gradient(135deg, rgba(255,255,255,0.03) 0%, rgba(30, 81, 255, 0.05) 100%);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            z-index: 4;
+            opacity: 0;
+            overflow: hidden;
+        }
+
+        .mock-hero-img::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(135deg, transparent 40%, rgba(30, 81, 255, 0.08) 100%);
+        }
+
+        .mock-text-block {
+            position: absolute;
+            left: 16px;
+            z-index: 4;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            opacity: 0;
+        }
+
+        .mock-text-line {
+            height: 6px;
+            border-radius: 3px;
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .mock-btn-group {
+            position: absolute;
+            left: 16px;
+            display: flex;
+            gap: 8px;
+            z-index: 4;
+            opacity: 0;
+        }
+
+        .mock-btn {
+            height: 24px;
+            border-radius: 6px;
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .mock-cards-row {
+            position: absolute;
+            left: 16px;
+            right: 16px;
+            display: flex;
+            gap: 10px;
+            z-index: 4;
+            opacity: 0;
+        }
+
+        .mock-card {
+            flex: 1;
+            height: 90px;
+            border-radius: 8px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            display: flex;
+            flex-direction: column;
+            padding: 10px;
+            gap: 6px;
+        }
+
+        .mock-card-icon {
+            width: 20px;
+            height: 20px;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        .mock-card-line {
+            height: 4px;
+            border-radius: 2px;
+            background: rgba(255, 255, 255, 0.04);
+        }
+
+        /* ── Color Splash State ── */
+        .color-active .mock-nav {
+            background: rgba(30, 81, 255, 0.08);
+            border-color: rgba(30, 81, 255, 0.15);
+        }
+        .color-active .mock-nav-logo { background: #1E51FF; }
+        .color-active .mock-nav-item { background: rgba(255,255,255,0.25); }
+
+        .color-active .mock-hero-img {
+            background: linear-gradient(135deg, #0c1a3a 0%, #1E51FF 100%);
+            border-color: rgba(30, 81, 255, 0.3);
+        }
+
+        .color-active .mock-text-line:nth-child(1) { background: rgba(255,255,255,0.7); width: 70% !important; }
+        .color-active .mock-text-line:nth-child(2) { background: rgba(255,255,255,0.3); }
+        .color-active .mock-text-line:nth-child(3) { background: rgba(255,255,255,0.2); }
+
+        .color-active .mock-btn:first-child { background: #1E51FF; }
+        .color-active .mock-btn:last-child { background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.2); }
+
+        .color-active .mock-card {
+            background: rgba(30, 81, 255, 0.06);
+            border-color: rgba(30, 81, 255, 0.2);
+        }
+        .color-active .mock-card-icon { background: #1E51FF; }
+        .color-active .mock-card-line { background: rgba(255,255,255,0.15); }
+
+        /* ── Light Sweep ── */
+        .light-sweep {
+            position: absolute;
+            inset: 0;
+            z-index: 10;
+            pointer-events: none;
+            opacity: 0;
+            background: linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.08) 50%, transparent 60%);
+        }
+
+        /* ── Floating Code Snippets ── */
+        .floating-code {
+            position: absolute;
+            font-family: 'Space Grotesk', monospace;
+            font-size: 10px;
+            color: rgba(30, 81, 255, 0.10);
+            pointer-events: none;
+            white-space: nowrap;
+            z-index: 2;
+            opacity: 0;
+            letter-spacing: 0.05em;
+        }
+
+        /* ── Left Side Typography ── */
+        .hero-headline {
+            font-family: 'Space Grotesk', sans-serif;
+            font-weight: 700;
+            letter-spacing: -0.04em;
+            line-height: 1.05;
+            color: #fff;
+        }
+
+        .hero-headline .highlight {
+            color: #1E51FF;
+            position: relative;
+        }
+
+        .hero-sub {
+            color: rgba(255, 255, 255, 0.4);
+            font-size: 18px;
+            line-height: 1.7;
+            max-width: 420px;
+        }
+
+        .hero-tag {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.35em;
+            color: #1E51FF;
+            text-transform: uppercase;
+        }
+
+        /* ── CTA Button ── */
+        .hero-cta {
+            position: relative;
+            display: inline-block;
+            background: #fff;
+            color: #000;
+            padding: 18px 42px;
+            border-radius: 99px;
+            font-weight: 700;
+            font-size: 13px;
+            letter-spacing: 0.15em;
+            text-transform: uppercase;
+            overflow: hidden;
+            transition: color 0.5s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .hero-cta:hover { color: #fff; }
+
+        .hero-cta .cta-fill {
+            position: absolute;
+            inset: 0;
+            background: #1E51FF;
+            transform: translateY(101%);
+            transition: transform 0.5s cubic-bezier(0.65, 0, 0.35, 1);
+            z-index: 0;
+        }
+
+        .hero-cta:hover .cta-fill { transform: translateY(0); }
+        .hero-cta span { position: relative; z-index: 1; }
+    </style>
+
+    <section id="hero-build" class="relative">
+        <!-- Geometric Constellation Canvas -->
+        <canvas id="geo-canvas"></canvas>
+
+        <!-- Ambient Glows -->
+        <div class="hero-glow-orb"></div>
+        <div class="hero-glow-center"></div>
+
+        <!-- Film grain -->
+        <div class="hero-grain"></div>
+
+        <!-- Thin Accent Lines -->
+        <div class="hero-accent-line hero-accent-line-h" style="top: 22%;"></div>
+        <div class="hero-stroke-text" id="stroke-bg">ALCONIO</div>
+        
+        <!-- ── Markers ── -->
+
+
+        <!-- ── Floating Geometric Shapes ── -->
+        <div class="geo-diamond geo-shape" style="left: 8%; top: 20%;"></div>
+        <div class="geo-ring geo-shape" style="right: 12%; top: 15%;"></div>
+        <div class="geo-cross geo-shape" style="left: 45%; top: 12%;"></div>
+        <div class="geo-dot-accent geo-shape" style="right: 30%; top: 25%;"></div>
+        <div class="geo-diamond geo-shape" style="right: 15%; bottom: 15%;"></div>
+        <div class="geo-ring geo-shape" style="left: 20%; bottom: 10%;"></div>
+        
+        <!-- ── Floating Code Snippets ── -->
+        <div class="floating-code" style="left: 12%; bottom: 25%;">const design = "premium";</div>
+        <div class="floating-code" style="right: 18%; bottom: 20%;">display: grid;</div>
+        <div class="floating-code" style="right: 5%; top: 48%;">border-radius: 12px;</div>
+
+        <div class="relative z-10 w-full" style="min-height: 100vh; overflow: hidden;">
+            
+            <!-- ══ LEFT: Typography ══ -->
+            <div class="absolute z-20" style="left: clamp(2rem, 8vw, 10rem); top: 48%; transform: translateY(-50%); max-width: 600px;">
+                
+                <h1 class="hero-headline text-5xl md:text-7xl lg:text-8xl mb-6 font-bold tracking-tight text-white" id="main-headline" style="line-height: 0.9;">
+                    <span class="block mb-2">Architecting</span>
+                    <span class="block highlight italic">Digital</span>
+                    <span class="block">Excellence.</span>
+                </h1>
+
+                <p class="hero-sub mb-10 text-lg opacity-0 max-w-md text-white font-medium" style="line-height: 1.6;">
+                    We engineer high-performance digital environments where code and aesthetics converge flawlessly.
+                </p>
+
+                <div class="hero-entrance-cta flex items-center gap-6">
+                    <div id="star-button-root"></div>
+                </div>
+            </div>
+
+            <!-- ══ RIGHT: 3D Browser Mockup ══ -->
+            <div class="perspective-container">
+                <div class="mockup-3d-wrap hero-entrance-mockup opacity-0 mt-32" style="width: 55vw; max-width: 800px; margin-right: 5%;">
+                    <div class="browser-frame" id="build-browser">
+                    <!-- Chrome -->
+                    <div class="browser-chrome">
+                        <div class="traffic-dot" style="background: #ff5f57;"></div>
+                        <div class="traffic-dot" style="background: #febc2e;"></div>
+                        <div class="traffic-dot" style="background: #28c840;"></div>
+                        <div class="browser-url">alconio.com</div>
+                    </div>
+
+                    <!-- Viewport -->
+                    <div class="browser-viewport" id="build-viewport">
+                        <!-- Phase 1: Wireframe Grid -->
+                        <div class="wire-grid" id="wire-grid">
+                            <div class="wire-grid-line horizontal" style="top: 36px;"></div>
+                            <div class="wire-grid-line horizontal" style="top: 178px;"></div>
+                            <div class="wire-grid-line horizontal" style="top: 280px;"></div>
+                            <div class="wire-grid-line vertical" style="left: 25%;"></div>
+                            <div class="wire-grid-line vertical" style="left: 50%;"></div>
+                            <div class="wire-grid-line vertical" style="left: 75%;"></div>
+                        </div>
+
+                        <!-- Phase 2: Navigation -->
+                        <div class="mock-nav" id="mock-nav">
+                            <div class="mock-nav-logo"></div>
+                            <div style="flex:1;"></div>
+                            <div class="mock-nav-item" style="width: 30px;"></div>
+                            <div class="mock-nav-item" style="width: 40px;"></div>
+                            <div class="mock-nav-item" style="width: 28px;"></div>
+                            <div class="mock-nav-item" style="width: 35px;"></div>
+                        </div>
+
+                        <!-- Phase 3: Hero Image Block -->
+                        <div class="mock-hero-img" id="mock-hero-img" style="height: 160px;">
+                            <div style="position:absolute; left:20px; top:35px; width:45%; display:flex; flex-direction:column; gap:5px;">
+                                <div style="height:8px; width:80%; border-radius:4px; background:rgba(255,255,255,0.1);"></div>
+                                <div style="height:8px; width:60%; border-radius:4px; background:rgba(255,255,255,0.06);"></div>
+                                <div style="height:20px; width:50px; border-radius:5px; background:rgba(255,255,255,0.06); margin-top:8px;"></div>
                             </div>
-                        </h1>
-                    </div>
-                    
-                    <div class="flex items-start gap-8 mb-16 border-l-[4px] border-blue-600 pl-8">
-                        <p class="text-xl md:text-2xl text-slate-400 font-medium leading-relaxed max-w-lg">
-                            We build websites and AI automations that grow your business online
-                        </p>
-                    </div>
-                    
-                    <div class="flex flex-wrap items-center gap-6">
-                        <!-- Ultra-Modern Solid Primary -->
-                        <a href="get-started.html">
-                            <button class="group bg-white text-black px-10 py-5 rounded-xl font-bold text-lg transition-all hover:bg-slate-200 hover:translate-y-[-2px] active:translate-y-0 flex items-center gap-3">
-                                <span>Let's Build</span>
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
-                                    <path stroke-linecap="round" stroke-linejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                                </svg>
-                            </button>
-                        </a>
-                        
-                        <!-- Ultra-Modern Solid Secondary -->
-                        <a href="our-work.html">
-                            <button class="group bg-black border border-white/10 text-white px-10 py-5 rounded-xl font-bold text-lg transition-all hover:border-white/30 hover:bg-white/5 hover:translate-y-[-2px] active:translate-y-0 flex items-center justify-center">
-                                <span>View our work</span>
-                            </button>
-                        </a>
-                    </div>
-                </div>
+                            <div style="position:absolute; right:20px; top:15px; width:40%; height:100px; border-radius:6px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.04);"></div>
+                        </div>
 
-                <!-- Right Mockup: Balanced Scale -->
-                <div class="flex-[1.3] relative w-full lg:h-[110vh] z-10">
-                    <div class="hero-mockup-container relative w-[130%] -mt-10 lg:-mt-10 lg:ml-0">
-                        <!-- Extreme Mockup: Bleeds off right and bottom -->
-                <div class="flex-[1.5] relative hero-mockup-container pt-16">
-                    <img src="hero_mockup_hq.png" alt="Alconio Platform Interface" 
-                        class="w-[130%] lg:w-[130%] h-auto object-cover object-top -translate-y-[15%] lg:-ml-0 relative z-10 hero-mockup">
-                </div>
+                        <!-- Phase 4: Text Block -->
+                        <div class="mock-text-block" id="mock-text" style="top: 230px;">
+                            <div class="mock-text-line" style="width: 200px;"></div>
+                            <div class="mock-text-line" style="width: 260px;"></div>
+                            <div class="mock-text-line" style="width: 180px;"></div>
+                        </div>
+
+                        <!-- Phase 5: Buttons -->
+                        <div class="mock-btn-group" id="mock-btns" style="top: 290px;">
+                            <div class="mock-btn" style="width: 80px;"></div>
+                            <div class="mock-btn" style="width: 65px;"></div>
+                        </div>
+
+                        <!-- Phase 6: Cards -->
+                        <div class="mock-cards-row" id="mock-cards" style="top: 340px;">
+                            <div class="mock-card">
+                                <div class="mock-card-icon"></div>
+                                <div class="mock-card-line" style="width: 70%;"></div>
+                                <div class="mock-card-line" style="width: 90%;"></div>
+                                <div class="mock-card-line" style="width: 50%;"></div>
+                            </div>
+                            <div class="mock-card">
+                                <div class="mock-card-icon"></div>
+                                <div class="mock-card-line" style="width: 60%;"></div>
+                                <div class="mock-card-line" style="width: 85%;"></div>
+                                <div class="mock-card-line" style="width: 55%;"></div>
+                            </div>
+                            <div class="mock-card">
+                                <div class="mock-card-icon"></div>
+                                <div class="mock-card-line" style="width: 75%;"></div>
+                                <div class="mock-card-line" style="width: 80%;"></div>
+                                <div class="mock-card-line" style="width: 45%;"></div>
+                            </div>
+                        </div>
+
+                        <!-- Phase 8: Light Sweep -->
+                        <div class="light-sweep" id="light-sweep"></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
+
+    <!-- Hero Animation Script -->
+    <script>
+    document.addEventListener('DOMContentLoaded', () => {
+        if (typeof gsap === 'undefined') return;
+
+        // ═══════════════════════════════════════════
+        // GEOMETRIC CONSTELLATION CANVAS
+        // ═══════════════════════════════════════════
+        const canvas = document.getElementById('geo-canvas');
+        if (canvas) {
+            const ctx = canvas.getContext('2d');
+            let w, h, nodes = [];
+            const SPACING = 120;
+            const MAX_DIST = 170;
+            const DRIFT = 0.15;
+
+            function resize() {
+                const rect = canvas.parentElement.getBoundingClientRect();
+                w = canvas.width = rect.width;
+                h = canvas.height = rect.height;
+            }
+
+            function initNodes() {
+                nodes = [];
+                const cols = Math.ceil(w / SPACING) + 1;
+                const rows = Math.ceil(h / SPACING) + 1;
+                for (let i = 0; i < cols; i++) {
+                    for (let j = 0; j < rows; j++) {
+                        // Skip some nodes randomly for organic feel
+                        if (Math.random() < 0.35) continue;
+                        const bx = i * SPACING + (j % 2 ? SPACING * 0.5 : 0);
+                        const by = j * SPACING;
+                        nodes.push({
+                            x: bx + (Math.random() - 0.5) * SPACING * 0.4,
+                            y: by + (Math.random() - 0.5) * SPACING * 0.4,
+                            bx: bx,
+                            by: by,
+                            vx: (Math.random() - 0.5) * DRIFT,
+                            vy: (Math.random() - 0.5) * DRIFT,
+                            r: Math.random() * 1.2 + 0.4,
+                            phase: Math.random() * Math.PI * 2
+                        });
+                    }
+                }
+            }
+
+            function drawFrame(time) {
+                ctx.clearRect(0, 0, w, h);
+
+                // Draw connections
+                for (let i = 0; i < nodes.length; i++) {
+                    for (let j = i + 1; j < nodes.length; j++) {
+                        const dx = nodes[i].x - nodes[j].x;
+                        const dy = nodes[i].y - nodes[j].y;
+                        const d = Math.sqrt(dx * dx + dy * dy);
+                        if (d < MAX_DIST) {
+                            const a = 0.09 * (1 - d / MAX_DIST);
+                            ctx.beginPath();
+                            ctx.moveTo(nodes[i].x, nodes[i].y);
+                            ctx.lineTo(nodes[j].x, nodes[j].y);
+                            ctx.strokeStyle = `rgba(30, 81, 255, ${a})`;
+                            ctx.lineWidth = 0.5;
+                            ctx.stroke();
+                        }
+                    }
+                }
+
+                // Draw & update nodes
+                const t = time * 0.001;
+                for (const n of nodes) {
+                    // Gentle oscillation around base position
+                    const ox = Math.sin(t * 0.3 + n.phase) * 8;
+                    const oy = Math.cos(t * 0.25 + n.phase * 1.3) * 6;
+                    n.x = n.bx + ox;
+                    n.y = n.by + oy;
+
+                    ctx.beginPath();
+                    ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+                    ctx.fillStyle = `rgba(30, 81, 255, ${0.22 + Math.sin(t + n.phase) * 0.10})`;
+                    ctx.fill();
+                }
+
+                requestAnimationFrame(drawFrame);
+            }
+
+            resize();
+            initNodes();
+            requestAnimationFrame(drawFrame);
+            window.addEventListener('resize', () => { resize(); initNodes(); });
+        }
+
+        // ═══════════════════════════════════════════
+        // GEOMETRIC SHAPES ENTRANCE + FLOAT
+        // ═══════════════════════════════════════════
+        document.querySelectorAll('.geo-shape').forEach((el, i) => {
+            gsap.to(el, {
+                opacity: 1,
+                duration: 2,
+                delay: 0.8 + i * 0.15,
+                ease: "power2.out"
+            });
+            gsap.to(el, {
+                y: -10 - Math.random() * 15,
+                x: Math.random() * 10 - 5,
+                rotation: el.classList.contains('geo-diamond') ? '+=8' : '+=0',
+                duration: 5 + Math.random() * 4,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut",
+                delay: Math.random() * 3
+            });
+        });
+
+        // ── Left Side Entrance ──
+        const entranceTL = gsap.timeline({ defaults: { ease: "expo.out" }});
+        entranceTL
+            .to(".hero-entrance-tag", { opacity: 1, y: 0, duration: 1.2, delay: 0.3 })
+            .fromTo(".hero-entrance-title", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 1.8 }, "-=0.8")
+            .fromTo(".hero-entrance-sub", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 1.4 }, "-=1.2")
+            .fromTo(".hero-entrance-cta", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 1.2 }, "-=0.8")
+            .fromTo(".hero-entrance-mockup", { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 2 }, "-=1.5");
+
+        // ── Floating Code Snippets ──
+        document.querySelectorAll('.floating-code').forEach((el, i) => {
+            gsap.to(el, {
+                opacity: 0.10,
+                duration: 2.5,
+                delay: 1.5 + i * 0.4
+            });
+            gsap.to(el, {
+                y: -15 - Math.random() * 20,
+                x: Math.random() * 15 - 7,
+                duration: 7 + Math.random() * 5,
+                repeat: -1,
+                yoyo: true,
+                ease: "sine.inOut",
+                delay: Math.random() * 3
+            });
+        });
+
+        // ── Website Build Animation (infinite loop) ──
+        const viewport = document.getElementById('build-viewport');
+        const wireGrid = document.getElementById('wire-grid');
+        const mockNav = document.getElementById('mock-nav');
+        const mockHeroImg = document.getElementById('mock-hero-img');
+        const mockText = document.getElementById('mock-text');
+        const mockBtns = document.getElementById('mock-btns');
+        const mockCards = document.getElementById('mock-cards');
+        const lightSweep = document.getElementById('light-sweep');
+
+        function createBuildTimeline() {
+            const tl = gsap.timeline({
+                repeat: -1,
+                repeatDelay: 2.5,
+                delay: 2
+            });
+
+            // Phase 1: Wireframe grid fades in
+            tl.to(wireGrid, { opacity: 1, duration: 1, ease: "power2.out" })
+
+            // Phase 2: Nav slides down
+            .to(mockNav, { opacity: 1, y: 0, duration: 0.6, ease: "back.out(1.5)" }, "+=0.3")
+
+            // Phase 3: Hero image fades in
+            .to(mockHeroImg, { opacity: 1, duration: 0.8, ease: "power2.out" }, "+=0.2")
+
+            // Phase 4: Text lines type in
+            .to(mockText, { opacity: 1, duration: 0.1 }, "+=0.3")
+            .fromTo(mockText.children[0], { width: 0 }, { width: "200px", duration: 0.5, ease: "power2.out" })
+            .fromTo(mockText.children[1], { width: 0 }, { width: "260px", duration: 0.5, ease: "power2.out" }, "-=0.2")
+            .fromTo(mockText.children[2], { width: 0 }, { width: "180px", duration: 0.4, ease: "power2.out" }, "-=0.2")
+
+            // Phase 5: Buttons pop in
+            .to(mockBtns, { opacity: 1, duration: 0.1 }, "+=0.2")
+            .fromTo(mockBtns.children[0], { scale: 0 }, { scale: 1, duration: 0.4, ease: "back.out(2)" })
+            .fromTo(mockBtns.children[1], { scale: 0 }, { scale: 1, duration: 0.4, ease: "back.out(2)" }, "-=0.2")
+
+            // Phase 6: Cards slide up
+            .to(mockCards, { opacity: 1, duration: 0.1 }, "+=0.2")
+            .fromTo(mockCards.children[0], { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "back.out(1.2)" })
+            .fromTo(mockCards.children[1], { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "back.out(1.2)" }, "-=0.4")
+            .fromTo(mockCards.children[2], { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 0.6, ease: "back.out(1.2)" }, "-=0.4")
+
+            // Phase 7: Wireframe fades out, COLOR SPLASH
+            .to(wireGrid, { opacity: 0, duration: 0.8 }, "+=0.5")
+            .add(() => { viewport.classList.add('color-active'); })
+            .to({}, { duration: 0.8 })
+
+            // Phase 8: Light sweep
+            .fromTo(lightSweep,
+                { opacity: 0, x: "-100%" },
+                { opacity: 1, x: "100%", duration: 1.2, ease: "power2.inOut" }
+            )
+            .to(lightSweep, { opacity: 0, duration: 0.3 })
+
+            // Hold the colored state
+            .to({}, { duration: 3 })
+
+            // Reset: fade everything out
+            .to([mockNav, mockHeroImg, mockText, mockBtns, mockCards], {
+                opacity: 0, duration: 0.8, ease: "power2.in"
+            })
+            .add(() => { viewport.classList.remove('color-active'); })
+            // Reset transforms for next loop
+            .set(mockNav, { y: "-100%" })
+            .set([mockText.children[0], mockText.children[1], mockText.children[2]], { width: 0 })
+            .set([mockBtns.children[0], mockBtns.children[1]], { scale: 0 })
+            .set([mockCards.children[0], mockCards.children[1], mockCards.children[2]], { y: 40, opacity: 0 });
+
+            return tl;
+        }
+
+        createBuildTimeline();
+    });
+    </script>
 
     <script>
         document.addEventListener('DOMContentLoaded', () => {
@@ -576,14 +1392,98 @@
                     }, 0);
             }
 
-            // Hero Reveal Animation
-            const tl = gsap.timeline({ defaults: { ease: "expo.out" }});
-            
-            tl.from("section:first-of-type h1 span:first-child", { y: 60, opacity: 0, duration: 1.5, delay: 0.2 })
-              .from("section:first-of-type h1 .relative", { x: -30, opacity: 0, duration: 1.2 }, "-=1.1")
-              .from("section:first-of-type p", { opacity: 0, x: -10, duration: 1 }, "-=1.1")
-              .from("section:first-of-type .flex-wrap > a", { opacity: 0, y: 20, duration: 0.8, stagger: 0.1 }, "-=0.8")
-              .from(".hero-mockup-container", { x: 80, opacity: 0, duration: 2, ease: "power4.out" }, "-=1.5");
+            // ═══════════════════════════════════════════
+            // HERO ARCHITECTURAL ANIMATION
+            // ═══════════════════════════════════════════
+            const heroBuild = document.getElementById('hero-build');
+            if (heroBuild) {
+                const strokeText = document.getElementById('stroke-bg');
+                const headline = document.getElementById('main-headline');
+                const headlineSpans = headline.querySelectorAll('span');
+                const mockupWrap = document.querySelector('.mockup-3d-wrap');
+                const heroSub = document.querySelector('.hero-sub');
+                const heroCTA = document.querySelector('.hero-entrance-cta');
+
+                // 1. Initial Entrance Reveal
+                const revealTL = gsap.timeline({ defaults: { ease: "expo.out", duration: 1.5 }});
+                
+                // Hide initially for clean reveal
+                gsap.set([strokeText, headlineSpans, heroSub, heroCTA, mockupWrap], { opacity: 0 });
+                gsap.set(mockupWrap, { x: 100, rotateY: -30 });
+
+                revealTL
+                    .to(strokeText, { opacity: 1, duration: 2.5, ease: "power2.inOut" })
+                    .to(headlineSpans, { 
+                        opacity: 1, 
+                        y: 0, 
+                        stagger: 0.25, 
+                        duration: 1.8,
+                        transformOrigin: "left center",
+                        filter: "blur(0px)"
+                    }, "-=1.8")
+                    .to(heroSub, { opacity: 1, y: 0, duration: 1.2 }, "-=1.2")
+                    .to(heroCTA, { opacity: 1, y: 0, duration: 1 }, "-=1")
+                    .to(mockupWrap, { 
+                        opacity: 1, 
+                        x: 0, 
+                        rotateY: -18,
+                        duration: 2.2, 
+                        ease: "power4.out",
+                        onComplete: () => {
+                            if (typeof createBuildTimeline === 'function') createBuildTimeline();
+                        }
+                    }, "-=1.8");
+
+                // 2. Interactive Mouse Parallax
+                window.addEventListener('mousemove', (e) => {
+                    const { clientX, clientY } = e;
+                    const xPct = (clientX / window.innerWidth - 0.5) * 2;
+                    const yPct = (clientY / window.innerHeight - 0.5) * 2;
+
+                    // Tilt the 3D Mockup
+                    gsap.to(mockupWrap, {
+                        rotationY: -18 + (xPct * 4),
+                        rotationX: 4 + (yPct * -4),
+                        x: xPct * 15,
+                        duration: 1.5,
+                        ease: "power2.out"
+                    });
+
+                    // Float the background stroke text
+                    gsap.to(strokeText, {
+                        xPercent: -50 + (xPct * 3),
+                        yPercent: -50 + (yPct * 3),
+                        duration: 2.5,
+                        ease: "power1.out"
+                    });
+
+                    // Parallax for geometric shapes
+                    gsap.to(".geo-shape", {
+                        x: xPct * 40,
+                        y: yPct * 40,
+                        stagger: 0.05,
+                        duration: 2,
+                        ease: "power1.out"
+                    });
+
+                    // Subtle shift for headline
+                    gsap.to(headline, {
+                        x: xPct * 10,
+                        y: yPct * 5,
+                        duration: 1.8,
+                        ease: "power2.out"
+                    });
+                });
+
+                // 3. Rhythmic Breathing Animation
+                gsap.to(mockupWrap, {
+                    y: "-=20",
+                    duration: 5,
+                    repeat: -1,
+                    yoyo: true,
+                    ease: "sine.inOut"
+                });
+            }
 
             // 2. Feature Stagger Animations
             gsap.utils.toArray('.feature-block').forEach((block, i) => {
@@ -610,15 +1510,6 @@
                 if (gridItems.length) tl_feature.from(gridItems, { opacity: 0, y: 20, stagger: 0.1, duration: 0.8 }, "-=0.6");
                 if (btnEl) tl_feature.from(btnEl, { opacity: 0, y: 10, duration: 0.6 }, "-=0.4");
                 tl_feature.from(mockup, { opacity: 0, x: isLeft ? 50 : -50, scale: 0.95, duration: 1.5, ease: "power4.out" }, "-=1.2");
-            });
-
-            // Extreme Slow Pan
-            gsap.to(".hero-mockup-container", {
-                y: -30,
-                duration: 8,
-                repeat: -1,
-                yoyo: true,
-                ease: "sine.inOut"
             });
         });
     </script>
@@ -992,81 +1883,96 @@
                     <a href="get-started.html">
                         <button
                             class="bg-primary hover:bg-blue-700 text-white px-6 py-2.5 rounded-full font-bold transition-all hover:scale-105 shadow-[0_0_20px_rgba(14,0,163,0.4)] hover:shadow-[0_0_30px_rgba(14,0,163,0.6)]">
-                            Get Started
+                            Book Consultation
                         </button>
                     </a>
                 </div>
             </div>
         </div>
     </section>
-    <footer class="bg-background-dark py-20 px-6 border-t border-white/5">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-12">
-            <div class="col-span-1 md:col-span-1">
-                <div class="flex items-center gap-3 mb-6">
-                    <div class="size-6 bg-primary rounded flex items-center justify-center">
-                        <span class="material-symbols-outlined text-white text-xs" >deployed_code</span>
-                    </div>
-                    <h2 class="text-lg font-bold tracking-tighter" >ALCONIO</h2>
-                </div>
-                <p class="text-gray-500 text-sm leading-relaxed mb-6" >Building next-generation digital
-                    experiences through intelligence and automation.</p>
-                <div class="flex items-center gap-4">
-                    <a class="text-gray-500 hover:text-white transition-colors" href="#" ><span
-                            class="material-symbols-outlined" >alternate_email</span></a>
-                    <a class="text-gray-500 hover:text-white transition-colors" href="#" ><span
-                            class="material-symbols-outlined" >public</span></a>
-                    <a class="text-gray-500 hover:text-white transition-colors" href="#" ><span
-                            class="material-symbols-outlined" >groups</span></a>
-                </div>
-            </div>
-            <div>
-                <h4 class="font-bold mb-6 text-white" >Services</h4>
-                <ul class="space-y-4 text-gray-500 text-sm">
-                    <li class="" ><a class="hover:text-primary transition-colors" href="#" >Web
-                            Development</a></li>
-                    <li class="" ><a class="hover:text-primary transition-colors" href="#" >AI &amp;
-                            Automation</a></li>
-                    <li class="" ><a class="hover:text-primary transition-colors" href="#" >Cloud
-                            Architecture</a></li>
-                    <li class="" ><a class="hover:text-primary transition-colors" href="#" >Tech
-                            Consulting</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="font-bold mb-6 text-white" >Company</h4>
-                <ul class="space-y-4 text-gray-500 text-sm">
-                    <li class="" ><a class="hover:text-primary transition-colors" href="#" >About Us</a>
-                    </li>
-                    <li class="" ><a class="hover:text-primary transition-colors" href="#" >Process</a>
-                    </li>
-                    <li class="" ><a class="hover:text-primary transition-colors" href="#"
-                            >Portfolio</a></li>
-                    <li class="" ><a class="hover:text-primary transition-colors" href="#" >Careers</a>
-                    </li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="font-bold mb-6 text-white" >Newsletter</h4>
-                <p class="text-sm text-gray-500 mb-4" >Get the latest insights on tech and AI.</p>
-                <form class="flex gap-2">
-                    <input
-                        class="bg-white/5 border border-white/10 rounded-lg px-4 py-2 text-sm focus:outline-none focus:border-primary w-full"
-                        placeholder="Email address" type="email">
-                    <button class="bg-primary p-2 rounded-lg hover:bg-glow-blue transition-colors" >
-                        <span class="material-symbols-outlined text-sm" >send</span>
-                    </button>
-                </form>
-            </div>
-        </div>
-        <div
-            class="max-w-7xl mx-auto border-t border-white/5 mt-16 pt-8 flex flex-col md:flex-row justify-between text-gray-600 text-xs gap-4">
-            <p class="" >© 2024 ALCONIO. All rights reserved.</p>
-            <div class="flex gap-6">
-                <a class="hover:text-white transition-colors" href="#" >Privacy Policy</a>
-                <a class="hover:text-white transition-colors" href="#" >Terms of Service</a>
-            </div>
-        </div>
-    </footer>
-</body>
+    <!-- ═══════════════════════════════════════════════════════════════
+         SUPER PROFESSIONAL FOOTER
+         ═══════════════════════════════════════════════════════════════ -->
+    <!-- ═══════════════════════════════════════════════════════════════
+         TYPOGRAPHY FOOTER
+         ═══════════════════════════════════════════════════════════════ -->
+    <footer class="bg-[#02010A] pt-24 pb-12 px-6 font-display border-t border-white/5 relative z-10">
+        <div class="max-w-7xl mx-auto w-[95%]">
+            
+            <!-- Top Section -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-16 lg:gap-8 mb-24">
+                
+                <!-- Left Column (Contact & Vision) - takes up 5 cols -->
+                <div class="lg:col-span-5">
+                    <h5 class="text-[#1E51FF] text-[10px] font-bold uppercase tracking-[0.2em] mb-4">Contact Us</h5>
+                    <h2 class="text-white text-3xl md:text-4xl lg:text-5xl font-black tracking-tight leading-[1.1] mb-8">
+                        Let's Build Your<br/>Digital Future. With Us.
+                    </h2>
+                    <a href="get-started.html" class="inline-flex items-center justify-center gap-3 bg-white text-black px-8 py-3.5 rounded-full font-bold text-sm tracking-wide transition-transform hover:scale-105 hover:bg-gray-200 mb-14">
+                        Book Consultation <span class="material-symbols-outlined text-[18px]">arrow_forward</span>
+                    </a>
 
+                    <h5 class="text-[#1E51FF] text-[10px] font-bold uppercase tracking-[0.2em] mb-4">Or Contact Us At</h5>
+                    <div class="flex flex-col sm:flex-row gap-4 items-start">
+                        <button class="flex items-center gap-4 bg-transparent border border-white/20 hover:border-[#1E51FF] transition-colors rounded-full px-6 py-3 text-white text-sm relative group" onclick="{ navigator.clipboard.writeText('hello@alconio.com'); const icon = this.querySelector('span'); const originalMailText = icon.innerText; icon.innerText = 'check'; setTimeout(() => icon.innerText = originalMailText, 2000); }">
+                            hello@alconio.com 
+                            <span class="material-symbols-outlined text-[16px] text-white/50 group-hover:text-white transition-all">content_copy</span>
+                        </button>
+                        <button class="flex items-center gap-4 bg-transparent border border-white/20 hover:border-[#1E51FF] transition-colors rounded-full px-6 py-3 text-white text-sm relative group" onclick="{ navigator.clipboard.writeText('(475) 215-1350'); const icon = this.querySelector('span'); const originalPhoneText = icon.innerText; icon.innerText = 'check'; setTimeout(() => icon.innerText = originalPhoneText, 2000); }">
+                            (475) 215-1350 
+                            <span class="material-symbols-outlined text-[16px] text-white/50 group-hover:text-white transition-all">content_copy</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Spacer -->
+                <div class="hidden lg:block lg:col-span-3"></div>
+
+                <!-- Middle Column (Quick Links) - takes up 2 cols -->
+                <div class="lg:col-span-2">
+                    <h5 class="text-[#1E51FF] text-[10px] font-bold uppercase tracking-[0.2em] mb-6">Quick Links</h5>
+                    <ul class="flex flex-col gap-4 text-white/70 text-sm font-medium">
+                        <li><a href="index.html" class="hover:text-white transition-colors">Home</a></li>
+                        <li><a href="services.html" class="hover:text-white transition-colors">Services</a></li>
+                        <li><a href="our-work.html" class="hover:text-white transition-colors">Our Work</a></li>
+                        <li><a href="about.html" class="hover:text-white transition-colors">About Us</a></li>
+                        <li><a href="pricing.html" class="hover:text-white transition-colors">Pricing</a></li>
+                        <li><a href="dashboard_signin.html" class="hover:text-white transition-colors flex items-center gap-2">Client Dashboard <span class="size-1.5 rounded-full bg-[#1E51FF] animate-pulse"></span></a></li>
+                        <li><a href="get-started.html" class="hover:text-white transition-colors">Book Consultation</a></li>
+                    </ul>
+                </div>
+
+                <!-- Right Column (Information) - takes up 2 cols -->
+                <div class="lg:col-span-2">
+                    <h5 class="text-[#1E51FF] text-[10px] font-bold uppercase tracking-[0.2em] mb-6">Information</h5>
+                    <ul class="flex flex-col gap-4 text-white/70 text-sm font-medium">
+                        <li><a href="#" class="hover:text-white transition-colors">Terms of Service</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Privacy Policy</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Cookies Settings</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Divider Line -->
+            <div class="w-full h-px bg-white/10 mb-8"></div>
+
+            <!-- Bottom Section -->
+            <div class="flex flex-col md:flex-row justify-between items-center text-[10px] uppercase font-bold tracking-[0.2em]">
+                <p class="text-[#1E51FF]/80 mb-6 md:mb-0">© 2026 Alconio Core. All rights reserved.</p>
+                <div class="flex gap-4 text-white">
+                    <!-- Twitter/X -->
+                    <a href="https://twitter.com/alconiowebservices" target="_blank" class="hover:text-[#1E51FF] transition-colors"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 256 209"><path d="M256 25.45c-9.42 4.177-19.542 7-30.166 8.27 10.845-6.5 19.172-16.793 23.093-29.057a105.183 105.183 0 0 1-33.351 12.745C205.995 7.201 192.346.822 177.239.822c-29.006 0-52.523 23.516-52.523 52.52 0 4.117.465 8.125 1.36 11.97-43.65-2.191-82.35-23.1-108.255-54.876-4.52 7.757-7.11 16.78-7.11 26.404 0 18.222 9.273 34.297 23.365 43.716a52.312 52.312 0 0 1-23.79-6.57c-.003.22-.003.44-.003.661 0 25.447 18.104 46.675 42.13 51.5a52.592 52.592 0 0 1-23.718.9c6.683 20.866 26.08 36.05 49.062 36.475-17.975 14.086-40.622 22.483-65.228 22.483-4.24 0-8.42-.249-12.529-.734 23.243 14.902 50.85 23.597 80.51 23.597 96.607 0 149.434-80.031 149.434-149.435 0-2.278-.05-4.543-.152-6.795A106.748 106.748 0 0 0 256 25.45"/></svg></a>
+                    <!-- Instagram -->
+                    <a href="https://www.instagram.com/alconiowebservices/" target="_blank" class="hover:text-[#1E51FF] transition-colors"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 1.173.055 1.805.249 2.227.415.562.217.96.477 1.382.896.42.42.68.819.897 1.381.166.422.36 1.057.414 2.227.058 1.266.07 1.646.07 4.85s-.012 3.584-.07 4.85c-.055 1.173-.249 1.805-.415 2.227-.217.562-.477.96-.896 1.382-.42.42-.819.68-1.381.897-.422.166-1.057.36-2.227.414-1.266.058-1.646.07-4.85.07s-3.584-.012-4.85-.07c-1.173-.055-1.805-.249-2.227-.415-.562-.217-.96-.477-1.382-.896-.42-.42-.68-.819-.897-1.381-.166-.422-.36-1.057-.414-2.227-.058-1.266-.07-1.646-.07-4.85s.012-3.584.07-4.85c.055-1.173.249-1.805.415-2.227.217-.562.477-.96.896-1.382.42-.42.819-.68 1.381-.897.422-.166 1.057-.36 2.227-.414 1.266-.058 1.646-.07 4.85-.07m0-2.163c-3.259 0-3.667.014-4.947.072-1.277.06-2.148.262-2.913.558-.788.306-1.459.717-2.126 1.384-.666.667-1.079 1.335-1.384 2.126-.296.765-.499 1.636-.558 2.913-.06 1.28-.072 1.687-.072 4.947s.014 3.667.072 4.947c.06 1.277.262 2.148.558 2.913.306.788.717 1.459 1.384 2.126.667.667 1.335 1.079 2.126 1.384.765.296 1.636.499 2.913.558 1.28.06 1.687.072 4.947.072s3.667-.014 4.947-.072c1.277-.06 2.148-.262 2.913-.558.788-.306 1.459-.717 2.126-1.384.667-.667 1.079-1.335 1.384-2.126.296-.765.499-1.636.558-2.913.06-1.28.072-1.687.072-4.947s-.014-3.667-.072-4.947c-.06-1.277-.262-2.148-.558-2.913-.306-.788-.717-1.459-1.384-2.126-.667-.667-1.335-1.079-2.126-1.384-.765-.296-1.636-.499-2.913-.558C15.667.014 15.26 0 12 0z"/><path d="M12 5.838a6.162 6.162 0 1 0 0 12.324 6.162 6.162 0 0 0 0-12.324zm0 10.162a4 4 0 1 1 0-8 4 4 0 0 1 0 8z"/><circle cx="18.406" cy="5.594" r="1.44"/></svg></a>
+                    <!-- LinkedIn -->
+                    <a href="https://linkedin.com/company/alconiowebservices" target="_blank" class="hover:text-[#1E51FF] transition-colors"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 256 256"><path d="M218.123 218.127h-37.931v-59.403c0-14.165-.253-32.4-19.728-32.4-19.756 0-22.779 15.434-22.779 31.369v60.43h-37.93V95.967h36.413v16.694h.51a39.907 39.907 0 0 1 35.928-19.733c38.445 0 45.533 25.288 45.533 58.186l-.016 67.013ZM56.955 79.27c-12.157.002-22.014-9.852-22.016-22.009-.002-12.157 9.851-22.014 22.008-22.016 12.157-.003 22.014 9.851 22.016 22.008A22.013 22.013 0 0 1 56.955 79.27m18.966 138.858H37.95V95.967h37.97v122.16ZM237.033.018H18.89C8.58-.098.125 8.161-.001 18.471v219.053c.122 10.315 8.576 18.582 18.89 18.474h218.144c10.336.128 18.823-8.139 18.966-18.474V18.454c-.147-10.33-8.635-18.588-18.966-18.453"/></svg></a>
+                    <!-- TikTok -->
+                    <a href="https://www.tiktok.com/@alconiowebservices" target="_blank" class="hover:text-[#1E51FF] transition-colors"><svg class="w-4 h-4" fill="currentColor" viewBox="0 0 352.28 398.67"><path d="M137.17 156.98v-15.56c-5.34-.73-10.76-1.18-16.29-1.18C54.23 140.24 0 194.47 0 261.13c0 40.9 20.43 77.09 51.61 98.97-20.12-21.6-32.46-50.53-32.46-82.31 0-65.7 52.69-119.28 118.03-120.81Z"/><path d="M140.02 333c29.74 0 54-23.66 55.1-53.13l.11-263.2h48.08c-1-5.41-1.55-10.97-1.55-16.67h-65.67l-.11 263.2c-1.1 29.47-25.36 53.13-55.1 53.13-9.24 0-17.95-2.31-25.61-6.34C105.3 323.9 121.6 333 140.02 333ZM333.13 106V91.37c-18.34 0-35.43-5.45-49.76-14.8 12.76 14.65 30.09 25.22 49.76 29.43Z"/><path d="M283.38 76.57c-13.98-16.05-22.47-37-22.47-59.91h-17.59c4.63 25.02 19.48 46.49 40.06 59.91ZM120.88 205.92c-30.44 0-55.21 24.77-55.21 55.21 0 21.2 12.03 39.62 29.6 48.86-6.55-9.08-10.45-20.18-10.45-32.2 0-30.44 24.77-55.21 55.21-55.21 5.68 0 11.13.94 16.29 2.55v-67.05c-5.34-.73-10.76-1.18-16.29-1.18-.96 0-1.9.05-2.85.07v51.49c-5.16-1.61-10.61-2.55-16.29-2.55Z"/><path d="M333.13 106v51.04c-34.05 0-65.61-10.89-91.37-29.38v133.47c0 66.66-54.23 120.88-120.88 120.88-25.76 0-49.64-8.12-69.28-21.91 22.08 23.71 53.54 38.57 88.42 38.57 66.66 0 120.88-54.23 120.88-120.88V144.33c25.76 18.49 57.32 29.38 91.37 29.38v-65.68c-6.57 0-12.97-.71-19.14-2.03Z"/><path d="M241.76 261.13V127.66c25.76 18.49 57.32 29.38 91.37 29.38V106c-19.67-4.21-37-14.77-49.76-29.43-20.58-13.42-35.43-34.88-40.06-59.91h-48.08l-.11 263.2c-1.1 29.47-25.36 53.13-55.1 53.13-18.42 0-34.72-9.1-44.75-23.01-17.57-9.25-29.6-27.67-29.6-48.86 0-30.44 24.77-55.21 55.21-55.21 5.68 0 11.13.94 16.29 2.55v-51.49C71.83 158.5 19.14 212.08 19.14 277.78c0 31.78 12.34 60.71 32.46 82.31C71.23 373.87 95.12 382 120.88 382c66.65 0 120.88-54.23 120.88-120.88Z"/></svg></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- StarButton React Bundle -->
+    <script src="dist/star-button-bundle.iife.js"></script>
+</body>
 </html>

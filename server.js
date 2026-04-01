@@ -1,5 +1,6 @@
 const express = require('express');
 const fs = require('fs');
+const fsPromises = require('fs').promises;
 const path = require('path');
 const cors = require('cors');
 const { BetaAnalyticsDataClient } = require('@google-analytics/data');
@@ -15,10 +16,19 @@ const app = express();
 const nodemailer = require('nodemailer');
 const fetch = require('node-fetch');
 
+// --- Gmail API Initialization (Enterprise Relay) ---
+const credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS || '{}');
+const gmailAuth = new google.auth.JWT({
+    email: credentials.client_email,
+    key: credentials.private_key,
+    scopes: ['https://www.googleapis.com/auth/gmail.send']
+});
+const gmail = google.gmail({ version: 'v1', auth: gmailAuth });
+
 const transporter = nodemailer.createTransport({
-    host: process.env.EMAIL_HOST || 'smtp.gmail.com',
-    port: process.env.EMAIL_PORT || 587,
-    secure: false, 
+    host: 'smtp.gmail.com',
+    port: 465,
+    secure: true,
     auth: {
         user: process.env.EMAIL_USER,
         pass: process.env.EMAIL_PASS
@@ -359,16 +369,8 @@ app.use((req, res, next) => {
 // app.use(ClerkExpressWithAuth()); // Global middleware to populate req.auth
 
 // Initialize GA4 Client at top level
-let credentials;
-try {
-    if (process.env.GOOGLE_CREDENTIALS) {
-        credentials = JSON.parse(process.env.GOOGLE_CREDENTIALS);
-    }
-} catch (e) {
-    console.error("[SERVER] Failed to parse GOOGLE_CREDENTIALS:", e.message);
-}
+const analyticsDataClient = (credentials && Object.keys(credentials).length > 0) ? new BetaAnalyticsDataClient({ credentials }) : null;
 
-const analyticsDataClient = credentials ? new BetaAnalyticsDataClient({ credentials }) : null;
 
 async function getPrimaryHostname(req) {
     if (!req) {
@@ -2797,6 +2799,163 @@ cron.schedule('*/25 * * * *', async () => {
         }
     } catch (err) {
         console.error('[CRON] Health Check Failed:', err.message);
+    }
+});
+
+// --- Consultation Lead API ---
+app.post('/api/consultation', async (req, res) => {
+    try {
+        const { name, email, business, tier, brief } = req.body;
+
+        if (!name || !email || !business || !tier || !brief) {
+            return res.status(400).json({ error: "All fields are required to initiate consultation." });
+        }
+
+        // 1. Audit Log (FAIL-SAFE: Always capture data first)
+        const leadEntry = {
+            timestamp: new Date().toISOString(),
+            name, email, business, tier, brief
+        };
+        
+        try {
+            const leadsFilePath = path.join(__dirname, 'leads.json');
+            
+            let leads = [];
+            try {
+                if (fs.existsSync(leadsFilePath)) {
+                    const existingData = fs.readFileSync(leadsFilePath, 'utf8');
+                    leads = JSON.parse(existingData);
+                }
+            } catch (e) { console.error("[SERVER] Lead read error:", e); }
+            
+            leads.push(leadEntry);
+            fs.writeFileSync(leadsFilePath, JSON.stringify(leads, null, 2));
+            console.log(`[LEAD] Audit log updated for ${business}`);
+        } catch (auditErr) {
+            console.error("[SERVER] Audit log failure:", auditErr);
+        }
+
+        // 2. Email Relay
+        const mailOptions = {
+            from: `"Alconio Leads" <${process.env.EMAIL_USER}>`,
+            to: 'hello@alconio.com',
+            subject: `[LEAD] New Strategy Consultation: ${business}`,
+            html: `
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <style>
+                        body { font-family: 'Space Grotesk', -apple-system, sans-serif; background-color: #05080e; color: #ffffff; margin: 0; padding: 0; }
+                        .container { max-width: 600px; margin: 40px auto; background-color: #111620; border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 32px; overflow: hidden; box-shadow: 0 40px 100px rgba(0, 0, 0, 0.6); }
+                        .header { background: linear-gradient(135deg, #1E51FF 0%, #0A1635 100%); padding: 60px 40px; text-align: center; position: relative; }
+                        .header::after { content: ''; position: absolute; inset: 0; background: radial-gradient(circle at 50% 50%, rgba(30, 81, 255, 0.2), transparent); }
+                        .logo-text { font-size: 28px; font-weight: 900; letter-spacing: 0.2em; color: #ffffff; position: relative; z-index: 1; }
+                        .content { padding: 48px; }
+                        .title { font-size: 12px; font-weight: 800; text-transform: uppercase; letter-spacing: 0.4em; color: #1E51FF; margin-bottom: 40px; text-align: center; }
+                        .lead-card { background: rgba(255, 255, 255, 0.02); border: 1px solid rgba(255, 255, 255, 0.05); border-radius: 24px; padding: 32px; }
+                        .field { margin-bottom: 28px; }
+                        .field:last-child { margin-bottom: 0; }
+                        .label { font-size: 9px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.2em; color: #4b5563; margin-bottom: 10px; display: block; }
+                        .value { font-size: 16px; color: #e5e7eb; line-height: 1.6; font-weight: 500; }
+                        .tier-badge { display: inline-block; padding: 6px 16px; border-radius: 100px; background: rgba(30, 81, 255, 0.1); border: 1px solid rgba(30, 81, 255, 0.2); color: #1E51FF; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; }
+                        .footer { padding: 40px; text-align: center; font-size: 11px; color: #374151; border-top: 1px solid rgba(255, 255, 255, 0.03); letter-spacing: 0.05em; }
+                        .accent { color: #1E51FF; }
+                    </style>
+                </head>
+                <body>
+                    <div class="container">
+                        <div class="header">
+                            <div class="logo-text">ALCONIO</div>
+                        </div>
+                        <div class="content">
+                            <h1 class="title">Strategic Intake Report</h1>
+                            <div class="lead-card">
+                                <div class="field">
+                                    <span class="label">Principal Correspondent</span>
+                                    <div class="value">${name}</div>
+                                </div>
+                                <div class="field">
+                                    <span class="label">Direct Communication</span>
+                                    <div class="value accent">${email}</div>
+                                </div>
+                                <div class="field">
+                                    <span class="label">Corporate Entity</span>
+                                    <div class="value">${business}</div>
+                                </div>
+                                <div class="field">
+                                    <span class="label">Architecture Tier</span>
+                                    <div class="tier-badge">${tier}</div>
+                                </div>
+                                <div class="field">
+                                    <span class="label">Project Parameters</span>
+                                    <div class="value" style="background: rgba(255,255,255,0.02); padding: 15px; border-radius: 12px; border: 1px solid rgba(255,255,255,0.03);">${brief}</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="footer">
+                            &copy; ${new Date().getFullYear()} <span class="accent">ALCONIO</span> TECHNOLOGIES<br/>
+                            This encrypted transmission is intended for internal strategy analysis.
+                        </div>
+                    </div>
+                </body>
+                </html>
+            `
+        };
+        const emailHtml = mailOptions.html;
+
+        // 2. Email Relay (Decoupled background process via Gmail API)
+        setImmediate(async () => {
+            try {
+                const subject = `[LEAD] New Strategy Consultation: ${business}`;
+                const utf8Subject = `=?utf-8?B?${Buffer.from(subject).toString('base64')}?=`;
+                const messageParts = [
+                    `From: "Alconio Leads" <${credentials.client_email}>`,
+                    `To: hello@alconio.com`,
+                    `Content-Type: text/html; charset=utf-8`,
+                    `MIME-Version: 1.0`,
+                    `Subject: ${utf8Subject}`,
+                    '',
+                    emailHtml,
+                ];
+                const message = messageParts.join('\n');
+                const encodedMessage = Buffer.from(message)
+                    .toString('base64')
+                    .replace(/\+/g, '-')
+                    .replace(/\//g, '_')
+                    .replace(/=+$/, '');
+
+                await gmailAuth.authorize();
+                await gmail.users.messages.send({
+                    userId: 'me',
+                    requestBody: {
+                        raw: encodedMessage,
+                    },
+                });
+                console.log(`[LEAD] Gmail API dispatch success for ${business}`);
+            } catch (mailErr) {
+                console.error("[SERVER] Gmail API Relay failed (Lead is safe in leads.json):", mailErr.message);
+                
+                // Fallback attempt with SMTP if configured (optional)
+                try {
+                    const info = await transporter.sendMail({
+                        from: `"Alconio Leads" <${process.env.EMAIL_USER}>`,
+                        to: 'hello@alconio.com',
+                        replyTo: email,
+                        subject: `[LEAD] New Strategy Consultation: ${business}`,
+                        html: emailHtml
+                    });
+                    console.log(`[LEAD] SMTP Fallback success for ${business}. MessageID: ${info.messageId}`);
+                } catch (e) {
+                    console.error("[SERVER] SMTP Fallback also failed:", e);
+                }
+            }
+        });
+
+        return res.status(200).json({ success: true, message: "Success V3" });
+    } catch (err) {
+        console.error("[SERVER] Consultation core failure:", err);
+        res.status(500).json({ error: "Critical integration error", details: err.message });
     }
 });
 
