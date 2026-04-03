@@ -4,6 +4,7 @@
   "description": "",
   "main": "dashboard_data.js",
   "scripts": {
+    "build": "vite build",
     "dev": "node run_servers.js",
     "stop": "node force_restart.js",
     "restart": "npm run stop && npm run dev",

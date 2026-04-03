@@ -28,10 +28,10 @@
                         "primary-glow": "rgba(30, 81, 255, 0.4)",
                         "electric-blue": "#1E51FF",
                         "background-light": "#f6f5f8",
-                        "background-dark": "#05080e",
-                        "surface-dark": "#111620",
-                        "tech-blue": "#0A0C16", // Darker tech background
-                        "deep-purple": "#050614",
+                        "background-dark": "#000000",
+                        "surface-dark": "#0A0C16",
+                        "tech-blue": "#05080E",
+                        "deep-purple": "#02010A",
                         "glow-blue": "#1E51FF",
                         blue: {
                             50: "#E6EBFF",
@@ -57,20 +57,21 @@
                         "full": "9999px"
                     },
                     backgroundImage: {
-                        'hero-glow': "radial-gradient(circle at 70% 50%, rgba(30, 81, 255, 0.15) 0%, rgba(5, 8, 14, 0) 50%)",
+                        'hero-glow': "radial-gradient(circle at 70% 50%, rgba(30, 81, 255, 0.1) 0%, rgba(0, 0, 0, 0) 60%)",
                         'chrome-text': "linear-gradient(180deg, #FFFFFF 0%, #1E51FF 100%)",
                         'glass-gradient': "linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%)",
-                        'widget-gradient': "linear-gradient(180deg, rgba(30, 81, 255, 0.1) 0%, rgba(30, 81, 255, 0.02) 100%)",
-                        'obsidian-glass': "linear-gradient(145deg, rgba(5, 8, 14, 0.9), rgba(30, 81, 255, 0.1))",
-                        'glass-stroke': 'linear-gradient(to bottom, rgba(30, 81, 255, 0.5), rgba(0,0,0,0) 40%, rgba(30, 81, 255, 0.2))',
+                        'widget-gradient': "linear-gradient(180deg, rgba(30, 81, 255, 0.08) 0%, rgba(30, 81, 255, 0.02) 100%)",
+                        'obsidian-glass': "linear-gradient(145deg, rgba(0, 0, 0, 0.95), rgba(30, 81, 255, 0.05))",
+                        'glass-stroke': 'linear-gradient(to bottom, rgba(30, 81, 255, 0.4), rgba(0,0,0,0) 40%, rgba(30, 81, 255, 0.1))',
+                        'arch-grid': "radial-gradient(rgba(30, 81, 255, 0.15) 1px, transparent 1px)",
                     },
                     boxShadow: {
-                        'neon': '0 0 20px rgba(30, 81, 255, 0.5)',
-                        'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.5)',
-                        'crisp-glow': '0 0 15px rgba(30, 81, 255, 0.6), inset 0 0 10px rgba(30, 81, 255, 0.2)',
-                        'razor-edge': '0 0 0 1px rgba(30, 81, 255, 0.5), 0 0 15px rgba(30, 81, 255, 0.3)',
-                        'spotlight': '0 0 60px 20px rgba(30, 81, 255, 0.6)',
-                        'inner-blue': 'inset 0 0 20px rgba(30, 81, 255, 0.2)',
+                        'neon': '0 0 15px rgba(30, 81, 255, 0.4)',
+                        'glass': '0 8px 32px 0 rgba(0, 0, 0, 0.8)',
+                        'crisp-glow': '0 0 15px rgba(30, 81, 255, 0.5), inset 0 0 10px rgba(30, 81, 255, 0.15)',
+                        'razor-edge': '0 0 0 1px rgba(30, 81, 255, 0.4), 0 0 15px rgba(30, 81, 255, 0.2)',
+                        'spotlight': '0 0 60px 20px rgba(30, 81, 255, 0.4)',
+                        'inner-blue': 'inset 0 0 20px rgba(30, 81, 255, 0.15)',
                     },
                     animation: {
                         'star-btn': 'star-btn calc(var(--duration, 3) * 1s) linear infinite',
@@ -103,7 +104,18 @@
         }
 
         .hero-gradient {
-            background: radial-gradient(circle at 50% 50%, #140152 0%, #02010A 70%);
+            background: #000000;
+            position: relative;
+        }
+
+        .hero-gradient::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(30, 81, 255, 0.15) 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.4;
+            pointer-events: none;
         }
 
         .perspective-card {
@@ -128,15 +140,14 @@
         }
 
         .glass-card {
-            background: rgba(255, 255, 255, 0.03);
+            background: rgba(10, 12, 22, 0.4);
             backdrop-filter: blur(20px);
             -webkit-backdrop-filter: blur(20px);
-            border: 1px solid rgba(100, 200, 255, 0.1);
+            border: 1px solid rgba(30, 81, 255, 0.15);
             position: relative;
             overflow: hidden;
-            box-shadow:
-                0 0 0 1px rgba(0, 163, 255, 0.1), 0 20px 50px rgba(0, 0, 0, 0.5), inset 0 0 60px rgba(14, 0, 163, 0.1);
-            transition: all 0.4s ease-out;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
         .glass-card::before {
@@ -292,7 +303,7 @@
         }
 
         .conic-gradient-blue {
-            background: conic-gradient(from 0deg, #256af4 0%, #1E51FF 84%, rgba(30, 81, 255, 0.1) 100%);
+            background: conic-gradient(from 0deg, #1E51FF 0%, #1E51FF 84%, rgba(30, 81, 255, 0.1) 100%);
         }
 
         .icon-glow-container {
@@ -413,14 +424,14 @@
             <div class="flex items-center gap-4">
                 <a href="dashboard_signin.html">
                     <button
-                        class="rounded-full bg-white/10 px-5 py-2 text-[13px] font-bold text-white transition-all hover:bg-white/20 border border-white/10 hover:border-white/30">
+                        class="rounded-full bg-white/10 px-[20px] py-2 text-[13px] font-bold text-white transition-all hover:bg-white/20 border border-white/10 hover:border-white/30 whitespace-nowrap">
                         Client Dashboard
                     </button>
                 </a>
                 <a href="get-started.html">
                     <button
-                        class="rounded-full bg-primary px-6 py-2 text-[13px] font-bold text-white transition-all hover:bg-primary/80 hover:shadow-[0_0_20px_rgba(14,0,163,0.4)]">
-                        Book Consultation
+                        class="rounded-full bg-primary px-[24px] py-2 text-[13px] font-bold text-white transition-all hover:bg-primary/80 hover:shadow-[0_0_20px_rgba(14,0,163,0.4)] whitespace-nowrap">
+                        Get Started
                     </button>
                 </a>
                 <button class="md:hidden text-white" aria-label="Open menu">
@@ -437,13 +448,32 @@
     <style>
         /* ── Hero Layout ── */
         #hero-build {
-            background: #020510;
+            background: #000000;
+            cursor: pointer;
             position: relative;
             min-height: 100vh;
             display: flex;
             align-items: center;
             overflow: hidden;
         }
+
+        #hero-build::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(30, 81, 255, 0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        @media (max-width: 1024px) {
+            .nav-dashboard-link {
+                display: none !important;
+            }
+        }
+
 
         /* ── Geometric Canvas ── */
         #geo-canvas {
@@ -842,7 +872,7 @@
         .color-active .mock-nav-item { background: rgba(255,255,255,0.25); }
 
         .color-active .mock-hero-img {
-            background: linear-gradient(135deg, #0c1a3a 0%, #1E51FF 100%);
+            background: linear-gradient(135deg, #05080E 0%, #1E51FF 100%);
             border-color: rgba(30, 81, 255, 0.3);
         }
 
@@ -981,18 +1011,26 @@
             <!-- ══ LEFT: Typography ══ -->
             <div class="absolute z-20" style="left: clamp(2rem, 8vw, 10rem); top: 48%; transform: translateY(-50%); max-width: 600px;">
                 
-                <h1 class="hero-headline text-5xl md:text-7xl lg:text-8xl mb-6 font-bold tracking-tight text-white" id="main-headline" style="line-height: 0.9;">
-                    <span class="block mb-2">Architecting</span>
-                    <span class="block highlight italic">Digital</span>
-                    <span class="block">Excellence.</span>
+                <div class="hero-tag mb-4 hero-entrance-tag" style="opacity: 0; transform: translateY(20px);">Design & Engineering Bureau</div>
+                <h1 class="hero-headline text-5xl md:text-7xl lg:text-8xl mb-6 font-bold tracking-tight text-white hero-entrance-title" id="main-headline" style="line-height: 0.9;">
+                    <span class="block mb-2" style="opacity: 0; transform: translateY(40px);">Architecting</span>
+                    <span class="block highlight italic" style="opacity: 0; transform: translateY(40px);">Digital</span>
+                    <span class="block text-white" style="opacity: 0; transform: translateY(40px);">Excellence.</span>
                 </h1>
 
-                <p class="hero-sub mb-10 text-lg opacity-0 max-w-md text-white font-medium" style="line-height: 1.6;">
+                <p class="hero-sub mb-10 text-lg max-w-md text-white font-medium hero-entrance-sub" style="line-height: 1.6; opacity: 0; transform: translateY(20px);">
                     We engineer high-performance digital environments where code and aesthetics converge flawlessly.
                 </p>
 
-                <div class="hero-entrance-cta flex items-center gap-6">
-                    <div id="star-button-root"></div>
+                <div class="hero-entrance-cta flex items-center gap-6" style="opacity: 0; transform: translateY(20px);">
+                    <div id="star-button-root">
+                        <a href="get-started.html">
+                            <button class="hero-cta">
+                                <div class="cta-fill"></div>
+                                <span>Book Consultation</span>
+                            </button>
+                        </a>
+                    </div>
                 </div>
             </div>
 
@@ -1196,15 +1234,6 @@
             });
         });
 
-        // ── Left Side Entrance ──
-        const entranceTL = gsap.timeline({ defaults: { ease: "expo.out" }});
-        entranceTL
-            .to(".hero-entrance-tag", { opacity: 1, y: 0, duration: 1.2, delay: 0.3 })
-            .fromTo(".hero-entrance-title", { y: 40, opacity: 0 }, { y: 0, opacity: 1, duration: 1.8 }, "-=0.8")
-            .fromTo(".hero-entrance-sub", { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: 1.4 }, "-=1.2")
-            .fromTo(".hero-entrance-cta", { y: 20, opacity: 0 }, { y: 0, opacity: 1, duration: 1.2 }, "-=0.8")
-            .fromTo(".hero-entrance-mockup", { y: 50, opacity: 0 }, { y: 0, opacity: 1, duration: 2 }, "-=1.5");
-
         // ── Floating Code Snippets ──
         document.querySelectorAll('.floating-code').forEach((el, i) => {
             gsap.to(el, {
@@ -1402,37 +1431,46 @@
                 const headlineSpans = headline.querySelectorAll('span');
                 const mockupWrap = document.querySelector('.mockup-3d-wrap');
                 const heroSub = document.querySelector('.hero-sub');
-                const heroCTA = document.querySelector('.hero-entrance-cta');
-
+                const heroTag = document.querySelector('.hero-entrance-tag');
+                
                 // 1. Initial Entrance Reveal
                 const revealTL = gsap.timeline({ defaults: { ease: "expo.out", duration: 1.5 }});
                 
-                // Hide initially for clean reveal
-                gsap.set([strokeText, headlineSpans, heroSub, heroCTA, mockupWrap], { opacity: 0 });
-                gsap.set(mockupWrap, { x: 100, rotateY: -30 });
-
                 revealTL
-                    .to(strokeText, { opacity: 1, duration: 2.5, ease: "power2.inOut" })
-                    .to(headlineSpans, { 
-                        opacity: 1, 
-                        y: 0, 
-                        stagger: 0.25, 
-                        duration: 1.8,
-                        transformOrigin: "left center",
-                        filter: "blur(0px)"
-                    }, "-=1.8")
-                    .to(heroSub, { opacity: 1, y: 0, duration: 1.2 }, "-=1.2")
-                    .to(heroCTA, { opacity: 1, y: 0, duration: 1 }, "-=1")
-                    .to(mockupWrap, { 
-                        opacity: 1, 
-                        x: 0, 
-                        rotateY: -18,
-                        duration: 2.2, 
-                        ease: "power4.out",
-                        onComplete: () => {
-                            if (typeof createBuildTimeline === 'function') createBuildTimeline();
-                        }
-                    }, "-=1.8");
+                    .fromTo(".hero-entrance-tag", 
+                        { opacity: 0, y: 20 }, 
+                        { opacity: 1, y: 0, duration: 1.2, delay: 0.2 })
+                    .fromTo(strokeText, 
+                        { opacity: 0 }, 
+                        { opacity: 1, duration: 2.5, ease: "power2.inOut" }, "-=1.0")
+                    .fromTo(".hero-entrance-title span", 
+                        { opacity: 0, y: 40, filter: "blur(10px)" },
+                        { 
+                            opacity: 1, 
+                            y: 0, 
+                            stagger: 0.2, 
+                            duration: 1.5,
+                            filter: "blur(0px)",
+                            clearProps: "all"
+                        }, "-=2.2")
+                    .fromTo(".hero-entrance-sub", 
+                        { opacity: 0, y: 20 },
+                        { opacity: 1, y: 0, duration: 1.2 }, "-=1.4")
+                    .fromTo(".hero-entrance-cta", 
+                        { opacity: 0, y: 20 },
+                        { opacity: 1, y: 0, duration: 1 }, "-=1.2")
+                    .fromTo(mockupWrap, 
+                        { opacity: 0, x: 100, rotateY: -30 },
+                        { 
+                            opacity: 1, 
+                            x: 0, 
+                            rotateY: -18,
+                            duration: 2.0, 
+                            ease: "power4.out",
+                            onComplete: () => {
+                                if (typeof createBuildTimeline === 'function') createBuildTimeline();
+                            }
+                        }, "-=1.6");
 
                 // 2. Interactive Mouse Parallax
                 window.addEventListener('mousemove', (e) => {
@@ -1879,7 +1917,7 @@
                     <!-- Standardized Primary Button Structure: 
                          - Same padding and rounded-full pill shape across all pages
                          - Consistent hover:scale and shadow 
-                         - Base color is primary (#0e00a3) -->
+                         - Base color is primary (#1E51FF) -->
                     <a href="get-started.html">
                         <button
                             class="bg-primary hover:bg-blue-700 text-white px-6 py-2.5 rounded-full font-bold transition-all hover:scale-105 shadow-[0_0_20px_rgba(14,0,163,0.4)] hover:shadow-[0_0_30px_rgba(14,0,163,0.6)]">
@@ -1896,7 +1934,7 @@
     <!-- ═══════════════════════════════════════════════════════════════
          TYPOGRAPHY FOOTER
          ═══════════════════════════════════════════════════════════════ -->
-    <footer class="bg-[#02010A] pt-24 pb-12 px-6 font-display border-t border-white/5 relative z-10">
+    <footer class="bg-[#000000] pt-24 pb-12 px-6 font-display border-t border-white/5 relative z-10">
         <div class="max-w-7xl mx-auto w-[95%]">
             
             <!-- Top Section -->

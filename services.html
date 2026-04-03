@@ -32,10 +32,10 @@
                             950: "#050D21"
                         },
                         "primary": "#1E51FF",
-                        "accent-deep": "#0A1A42",
-                        "navy-dark": "#04052E",
+                        "accent-deep": "#05080E",
+                        "navy-dark": "#0A0C16",
                         "background-light": "#f6f5f8",
-                        "background-dark": "#02010A",
+                        "background-dark": "#000000",
                     },
                     fontFamily: {
                         "display": ["Space Grotesk", "sans-serif"]
@@ -66,11 +66,7 @@
             min-height: 100vh;
         }
 
-        .glass-header {
-            background: rgba(2, 1, 10, 0.8);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(14, 0, 163, 0.3);
-        }
+
 
         .glow-subtle {
             box-shadow: 0 0 20px rgba(14, 0, 163, 0.15);
@@ -82,7 +78,8 @@
         }
 
         .neural-bg {
-            background-image: radial-gradient(circle at 2px 2px, rgba(14, 0, 163, 0.15) 1px, transparent 0);
+            background-color: #000000;
+            background-image: radial-gradient(rgba(30, 81, 255, 0.15) 1px, transparent 1px);
             background-size: 40px 40px;
         }
     </style>
@@ -112,13 +109,13 @@
         }
 
         .px-6 {
-            padding-left: 1.5rem !important;
-            padding-right: 1.5rem !important;
+            padding-left: 3.5rem !important;
+            padding-right: 3.5rem !important;
         }
 
         .px-4 {
-            padding-left: 1rem !important;
-            padding-right: 1rem !important;
+            padding-left: 2rem !important;
+            padding-right: 2rem !important;
         }
     </style>
 
@@ -146,14 +143,14 @@
             <div class="flex items-center gap-4">
                 <a href="dashboard_signin.html">
                     <button
-                        class="rounded-full bg-white/10 px-5 py-2 text-[13px] font-bold text-white transition-all hover:bg-white/20 border border-white/10 hover:border-white/30">
+                        class="rounded-full bg-white/10 px-[20px] py-2 text-[13px] font-bold text-white transition-all hover:bg-white/20 border border-white/10 hover:border-white/30 whitespace-nowrap">
                         Client Dashboard
                     </button>
                 </a>
                 <a href="get-started.html">
                     <button
-                        class="rounded-full bg-primary px-6 py-2 text-[13px] font-bold text-white transition-all hover:bg-primary/80 hover:shadow-[0_0_20px_rgba(14,0,163,0.4)]">
-                        Book Consultation
+                        class="rounded-full bg-primary px-[24px] py-2 text-[13px] font-bold text-white transition-all hover:bg-primary/80 hover:shadow-[0_0_20px_rgba(14,0,163,0.4)] whitespace-nowrap">
+                        Get Started
                     </button>
                 </a>
                 <button class="md:hidden text-white" aria-label="Open menu">
@@ -163,7 +160,7 @@
         </div>
     </nav>
 
-    <main class="scroll-container">
+    <main class="scroll-container pt-32">
         <!-- Hero Section -->
         <!-- Deep-Dive 1: Web Development -->
         <section class="snap-section bg-navy-dark/30 flex flex-col md:flex-row items-center border-y border-white/5"
@@ -227,7 +224,10 @@
 
         <!-- Management & Hosting Extension -->
         <section class="snap-section bg-black py-24 px-6 relative overflow-hidden">
-            <div class="absolute inset-0 bg-[radial-gradient(circle_at_20%_30%,rgba(14,0,163,0.1),transparent_50%)]"></div>
+            <div class="absolute inset-0">
+                <div class="absolute inset-0 bg-neutral-bg opacity-30"></div>
+                <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[150px]"></div>
+            </div>
             <div class="max-w-7xl mx-auto relative z-10">
                 <div class="grid lg:grid-cols-2 gap-16 items-center">
                     <div>
@@ -284,7 +284,7 @@
             </div>
         </section>
         <!-- Website Tiers -->
-        <section class="snap-section bg-[#02010A] py-24 border-t border-white/5 relative z-10 overflow-hidden">
+        <section class="snap-section bg-[#000000] py-24 border-t border-white/5 relative z-10 overflow-hidden">
             <div class="max-w-6xl mx-auto px-6">
                 <div class="text-center mb-20">
                     <h2 class="text-4xl md:text-5xl font-bold mb-4">Website Tiers</h2>

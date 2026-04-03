@@ -110,5 +110,37 @@
     "business": "Alconio Launch",
     "tier": "Enterprise",
     "brief": "Checking final config: and.mcm123@gmail.com -> hello@alconio.com."
+  },
+  {
+    "timestamp": "2026-04-03T00:29:46.794Z",
+    "name": "John Doe",
+    "email": "john@example.com",
+    "business": "Acme Corp",
+    "tier": "Standard",
+    "brief": "Building a new digital platform for global scale."
+  },
+  {
+    "timestamp": "2026-04-03T00:37:48.866Z",
+    "name": "fs",
+    "email": "fsd@gmail.com",
+    "business": "fsd",
+    "tier": "Premium",
+    "brief": "fs"
+  },
+  {
+    "timestamp": "2026-04-03T01:19:51.140Z",
+    "name": "Jane Doe",
+    "email": "jane@example.com",
+    "business": "Alconio Test",
+    "tier": "Standard",
+    "brief": "Test."
+  },
+  {
+    "timestamp": "2026-04-03T01:33:09.198Z",
+    "name": "fs",
+    "email": "fe@gmail.com",
+    "business": "fd",
+    "tier": "Custom",
+    "brief": "fdsfsd"
   }
 ]

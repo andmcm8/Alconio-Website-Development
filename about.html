@@ -34,11 +34,11 @@
                             900: "#0A1A42",
                             950: "#050D21"
                         },
-                        "primary": "#0e00a3",
-                        "accent-deep": "#140152",
+                        "primary": "#1E51FF",
+                        "accent-deep": "#05080E",
                         "background-light": "#f6f5f8",
-                        "background-dark": "#02010A",
-                        "navy-dark": "#04052e",
+                        "background-dark": "#000000",
+                        "navy-dark": "#0A0C16",
                     },
                     fontFamily: {
                         "display": ["Space Grotesk", "sans-serif"]
@@ -65,7 +65,18 @@
         }
 
         .hero-gradient {
-            background: radial-gradient(circle at top right, #140152 0%, #02010a 60%);
+            background: #000000;
+            position: relative;
+        }
+
+        .hero-gradient::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background-image: radial-gradient(rgba(30, 81, 255, 0.1) 1px, transparent 1px);
+            background-size: 30px 30px;
+            opacity: 0.3;
+            pointer-events: none;
         }
 
         .diagonal-grid {
@@ -85,6 +96,53 @@
             z-index: 0;
             opacity: 0.1;
             pointer-events: none;
+        }
+
+        .blueprint-mark {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-color: rgba(30, 81, 255, 0.4);
+            pointer-events: none;
+        }
+
+        .blueprint-mark-tl { top: 20px; left: 20px; border-top: 2px solid; border-left: 2px solid; }
+        .blueprint-mark-tr { top: 20px; right: 20px; border-top: 2px solid; border-right: 2px solid; }
+        .blueprint-mark-bl { bottom: 20px; left: 20px; border-bottom: 2px solid; border-left: 2px solid; }
+        .blueprint-mark-br { bottom: 20px; right: 20px; border-bottom: 2px solid; border-right: 2px solid; }
+
+        .tech-line {
+            position: absolute;
+            background: linear-gradient(90deg, transparent, rgba(30, 81, 255, 0.2), transparent);
+            height: 1px;
+            width: 100%;
+            pointer-events: none;
+        }
+
+        .code-window {
+            background: rgba(5, 8, 14, 0.9);
+            border: 1px solid rgba(30, 81, 255, 0.2);
+            border-radius: 12px;
+            font-family: 'monospace';
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 20px rgba(30, 81, 255, 0.1);
+        }
+
+        .terminal-dot { width: 8px; height: 8px; border-radius: 50%; }
+
+        .system-node {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            border: 1px solid rgba(30, 81, 255, 0.4);
+            background: rgba(30, 81, 255, 0.05);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 10px;
+            font-weight: bold;
+            color: rgba(255, 255, 255, 0.4);
+            text-align: center;
+            backdrop-filter: blur(4px);
         }
     </style>
 
@@ -151,8 +209,8 @@
                 </a>
                 <a href="get-started.html">
                     <button
-                        class="rounded-full bg-primary px-6 py-2 text-[13px] font-bold text-white transition-all hover:bg-primary/80 hover:shadow-[0_0_20px_rgba(14,0,163,0.4)]">
-                        Book Consultation
+                        class="rounded-full bg-primary px-[24px] py-2 text-[13px] font-bold text-white transition-all hover:bg-primary/80 hover:shadow-[0_0_20px_rgba(14,0,163,0.4)] whitespace-nowrap">
+                        Get Started
                     </button>
                 </a>
                 <button class="md:hidden text-white" aria-label="Open menu">
@@ -163,133 +221,299 @@
     </nav>
 
     <main>
-        <!-- New Minimalist Header -->
-        <section class="relative pt-48 pb-24 hero-gradient overflow-hidden">
+        <!-- Section 1: History Timeline (At Top) -->
+        <section class="relative pt-48 pb-32 hero-gradient overflow-hidden">
             <div class="absolute inset-0 z-0">
                 <div class="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/10 rounded-full blur-[150px]"></div>
                 <div class="absolute bottom-0 left-0 w-[500px] h-[500px] bg-accent-deep/20 rounded-full blur-[150px]"></div>
             </div>
-            <div class="relative z-10 max-w-7xl mx-auto px-6">
-                <div class="max-w-3xl">
+            
+            <div class="relative z-10 max-w-5xl mx-auto px-6">
+                <!-- Header -->
+                <div class="text-center mb-24">
                     <div class="inline-block px-4 py-1 rounded-full border border-primary/30 bg-primary/10 text-primary text-[10px] font-bold tracking-[0.3em] uppercase mb-8">
-                        The Alconio Philosophy
+                        The Alconio Timeline
                     </div>
-                    <h1 class="text-7xl md:text-9xl font-bold tracking-tighter mb-12 text-white leading-[0.85]">
-                        Architects of <br/>
-                        <span class="text-primary italic">Innovation.</span>
+                    <h1 class="text-6xl md:text-8xl font-bold tracking-tighter mb-6 text-white leading-tight">
+                        Our <span class="text-primary italic">History.</span>
                     </h1>
                 </div>
-            </div>
-        </section>
-        <!-- Restructured Story Section -->
-        <section class="relative py-32 border-y border-white/5 bg-navy-dark/10">
-            <div class="max-w-7xl mx-auto px-6">
-                <div class="grid lg:grid-cols-12 gap-16 items-center">
-                    <div class="lg:col-span-7 space-y-12">
-                        <h2 class="text-5xl md:text-6xl font-bold tracking-tight leading-tight">
-                            Bridging the gap between <br/>
-                            <span class="text-slate-500">Complexity & Humanity.</span>
-                        </h2>
-                        <div class="grid md:grid-cols-2 gap-8 text-slate-400 leading-relaxed font-light">
-                            <p>
-                                Founded on the principles of architectural innovation, Alconio began as a vision to
-                                bridge the gap between complex engineering and human-centric design. Our journey is
-                                marked by a relentless pursuit of excellence.
-                            </p>
-                            <p>
-                                In an era where technology moves faster than the human experience, we provide the steady
-                                hand of craftsmanship. We don't just write code; we architect experiences that endure.
-                            </p>
-                        </div>
-                    </div>
-                    <div class="lg:col-span-5 relative">
-                        <div class="p-12 rounded-3xl bg-white/[0.02] border border-white/5 backdrop-blur-3xl relative overflow-hidden group">
-                            <div class="absolute top-0 right-0 w-32 h-32 bg-primary/20 rounded-full blur-3xl -mr-16 -mt-16 group-hover:bg-primary/40 transition-colors"></div>
-                            <span class="material-symbols-outlined text-primary text-6xl mb-6 block">format_quote</span>
-                            <h3 class="text-3xl font-medium italic leading-snug text-white mb-6">
-                                "Innovation is not just about tools; it's about the architects of the future."
-                            </h3>
-                            <footer class="text-slate-500 text-sm font-bold tracking-widest uppercase">— Founding Philosophy</footer>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <!-- Values Section (Modern Rhythmic Layout) -->
-        <section class="py-48 relative">
-            <div class="max-w-7xl mx-auto px-6 mb-32">
-                <div class="flex flex-col md:flex-row md:items-end justify-between gap-8">
-                    <div class="max-w-2xl">
-                        <h2 class="text-6xl font-bold tracking-tighter mb-6">Built on <span class="text-primary italic">Pillars</span> of Excellence.</h2>
-                        <p class="text-xl text-slate-400 font-light">The foundational values that guide our process and define our output.</p>
-                    </div>
-                    <div class="text-9xl font-bold text-white/[0.02] select-none leading-none">04</div>
-                </div>
-            </div>
-
-            <div class="max-w-7xl mx-auto px-6 space-y-32">
-                <!-- Value 1 -->
-                <div class="grid md:grid-cols-2 gap-16 items-center">
-                    <div class="space-y-6">
-                        <div class="text-primary font-bold text-sm tracking-[0.3em] uppercase">01 / Spirit</div>
-                        <h3 class="text-4xl font-bold">Innovation First</h3>
-                        <p class="text-xl text-slate-400 font-light leading-relaxed">
-                            We push the boundaries of what's possible, exploring uncharted technological territories to deliver breakthrough results that set new industry standards.
-                        </p>
-                    </div>
-                    <div class="h-px bg-gradient-to-r from-primary/50 to-transparent"></div>
-                </div>
-
-                <!-- Value 2 -->
-                <div class="grid md:grid-cols-2 gap-16 items-center direction-rtl">
-                    <div class="md:order-2 space-y-6 text-right">
-                        <div class="text-primary font-bold text-sm tracking-[0.3em] uppercase">02 / Outcome</div>
-                        <h3 class="text-4xl font-bold">Results Driven</h3>
-                        <p class="text-xl text-slate-400 font-light leading-relaxed">
-                            Our success is measured by the tangible impact we create for our partners. We don't just deliver projects; we deliver strategic growth.
-                        </p>
-                    </div>
-                    <div class="md:order-1 h-px bg-gradient-to-l from-primary/50 to-transparent"></div>
-                </div>
-
-                <!-- Value 3 -->
-                <div class="grid md:grid-cols-2 gap-16 items-center">
-                    <div class="space-y-6">
-                        <div class="text-primary font-bold text-sm tracking-[0.3em] uppercase">03 / Scale</div>
-                        <h3 class="text-4xl font-bold">Scalable Excellence</h3>
-                        <p class="text-xl text-slate-400 font-light leading-relaxed">
-                            Every solution is built to grow. We architect for the present with a rigorous focus on future-proof sustainability and technological longevity.
-                        </p>
-                    </div>
-                    <div class="h-px bg-gradient-to-r from-primary/50 to-transparent"></div>
-                </div>
-
-                <!-- Value 4 -->
-                <div class="grid md:grid-cols-2 gap-16 items-center">
-                    <div class="md:order-2 space-y-6 text-right">
-                        <div class="text-primary font-bold text-sm tracking-[0.3em] uppercase">04 / Focus</div>
-                        <h3 class="text-4xl font-bold">Human-Centric</h3>
-                        <p class="text-xl text-slate-400 font-light leading-relaxed">
-                            Technology is a tool for people. We prioritize the human experience in every interface and infrastructure we engineer.
-                        </p>
-                    </div>
-                    <div class="md:order-1 h-px bg-gradient-to-l from-primary/50 to-transparent"></div>
-                </div>
-            </div>
-        </section>
-        <!-- Premium CTA Section -->
-        <section class="py-48 relative overflow-hidden">
-            <div class="absolute inset-0 bg-primary/5 pointer-events-none"></div>
-            <div class="max-w-7xl mx-auto px-6">
-                <div class="relative p-20 rounded-[3rem] bg-white/[0.01] border border-white/5 backdrop-blur-xl overflow-hidden text-center">
-                    <div class="absolute -top-24 -left-24 w-96 h-96 bg-primary/10 rounded-full blur-[100px]"></div>
-                    <div class="absolute -bottom-24 -right-24 w-96 h-96 bg-accent-deep/10 rounded-full blur-[100px]"></div>
+                <!-- Timeline Body (Adapted from services.html) -->
+                <div class="relative pb-24">
+                    <!-- Central Vertical Line -->
+                    <div class="absolute left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-primary/5 via-primary/40 to-transparent -translate-x-1/2 z-0"></div>
                     
-                    <div class="relative z-10 max-w-3xl mx-auto">
-                        <h2 class="text-5xl md:text-7xl font-bold tracking-tighter mb-12">Ready to architect your <span class="text-primary italic">future</span>?</h2>
-                        <div class="flex justify-center">
-                            <div id="about-cta-root"></div>
+                    <div class="space-y-4 md:space-y-0">
+                        <!-- Step 1: Left -->
+                        <div class="group relative flex flex-col md:flex-row items-center justify-center min-h-[160px] mb-16 px-4 md:px-0">
+                            <div class="w-full md:w-1/2 md:pr-16 md:text-right flex flex-col md:items-end order-2 md:order-1 mt-6 md:mt-0">
+                                <h4 class="text-xs font-bold uppercase tracking-[0.3em] mb-2 text-white group-hover:text-primary transition-colors">2023 / The Foundation</h4>
+                                <p class="text-[14px] text-slate-400 max-w-xs leading-relaxed font-light">Launched as a specialized engineering boutique focusing on architectural website infrastructure and custom automation engines.</p>
+                            </div>
+                            <!-- Node -->
+                            <div class="absolute left-1/2 -translate-x-1/2 z-10 hidden md:block">
+                                <div class="size-3 rounded-full bg-navy-dark border border-primary/50 glow-primary transition-all group-hover:scale-150"></div>
+                                <div class="absolute top-1/2 right-3 w-12 h-px bg-primary/30"></div>
+                            </div>
+                            <div class="w-full md:w-1/2 order-1 md:order-2"></div>
+                        </div>
+                        
+                        <!-- Step 2: Right -->
+                        <div class="group relative flex flex-col md:flex-row items-center justify-center min-h-[160px] mb-16 px-4 md:px-0">
+                            <div class="w-full md:w-1/2 order-1"></div>
+                            <!-- Node -->
+                            <div class="absolute left-1/2 -translate-x-1/2 z-10 hidden md:block">
+                                <div class="size-3 rounded-full bg-navy-dark border border-primary/50 glow-primary transition-all group-hover:scale-150"></div>
+                                <div class="absolute top-1/2 left-3 w-12 h-px bg-primary/30"></div>
+                            </div>
+                            <div class="w-full md:w-1/2 md:pl-16 order-2 mt-6 md:mt-0">
+                                <h4 class="text-xs font-bold uppercase tracking-[0.3em] mb-2 text-white group-hover:text-primary transition-colors">2024 / Scale Integration</h4>
+                                <p class="text-[14px] text-slate-400 max-w-xs leading-relaxed font-light">Expanding our reach to mid-market partners, refining our 'concierge' deployment model and stabilizing our technical standards.</p>
+                            </div>
+                        </div>
+                        
+                        <!-- Step 3: Final Call -->
+                        <div class="group relative flex flex-col items-center pt-12">
+                            <div class="z-20 relative mb-8">
+                                <div class="size-16 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center glow-primary animate-pulse">
+                                    <span class="material-symbols-outlined text-primary text-3xl">insights</span>
+                                </div>
+                            </div>
+                            <div class="text-center">
+                                <h4 class="text-lg font-bold uppercase tracking-widest mb-3 text-primary">2025 / The Horizon</h4>
+                                <p class="text-[14px] text-slate-500 max-w-sm leading-relaxed mx-auto italic">Pioneering the next generation of digital architecture, where automation and intelligence meet human-centric excellence.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Purpose Section -->
+        <!-- Section 2: Purpose Section (Reorganized Grid - Text Left / Code Right) -->
+        <section class="py-48 border-y border-white/5 bg-navy-dark/10 relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-6 lg:px-12 grid grid-cols-1 lg:grid-cols-2 gap-24 items-center relative z-10">
+                
+                <!-- Left: Brand Narrative (Text Content) -->
+                <div class="text-left space-y-8 order-1">
+                    <div class="inline-block px-5 py-1.5 rounded-full border border-primary/30 bg-primary/10 text-primary text-[11px] font-bold tracking-[0.4em] uppercase">
+                        Our Core Purpose
+                    </div>
+                    <h2 class="text-4xl md:text-5xl xl:text-7xl font-bold tracking-tight leading-[1.1] text-white">
+                        We architect digital experiences that don't just <span class="text-primary italic">exist</span>—they <span class="text-white/30">endure.</span>
+                    </h2>
+                    <div class="w-24 h-px bg-gradient-to-r from-primary/50 to-transparent"></div>
+                    <p class="text-xl md:text-2xl text-slate-400 font-light leading-relaxed max-w-xl">
+                        Alconio was born from the belief that true digital innovation requires both the soul of craftsmanship and the precision of elite engineering. Our purpose is to provide businesses with high-performance infrastructure they need to build their future.
+                    </p>
+                </div>
+
+                <!-- Right: Philosophy Code Panel -->
+                <div class="flex flex-col items-center lg:items-end order-2">
+                    <div class="w-full max-w-[620px] animate-float">
+                        <div class="code-window overflow-hidden border-primary/20 shadow-[0_0_50px_rgba(30,81,255,0.1)]">
+                            <div class="px-5 py-4 bg-white/5 border-b border-white/10 flex items-center justify-between">
+                                <div class="flex items-center gap-2">
+                                    <div class="terminal-dot bg-[#FF5F56]"></div>
+                                    <div class="terminal-dot bg-[#FFBD2E]"></div>
+                                    <div class="terminal-dot bg-[#27C93F]"></div>
+                                    <span class="text-[11px] text-slate-400 ml-3 font-mono uppercase tracking-[0.2em]">Foundations.tsx</span>
+                                </div>
+                                <div class="text-[10px] font-mono text-primary/40 uppercase">v2.0.25</div>
+                            </div>
+                            <div class="p-10 text-[14px] font-mono leading-[1.8] bg-black/60 min-h-[600px] flex flex-col justify-center">
+                                <div class="text-primary italic">interface <span class="text-white">AlconioBase</span> {</div>
+                                <div class="pl-6 text-slate-400">craftsmanship: <span class="text-blue-300">Soul</span>;</div>
+                                <div class="pl-6 text-slate-400">precision: <span class="text-blue-300">EliteEngineering</span>;</div>
+                                <div class="pl-6 text-slate-400">persistence: <span class="text-blue-300">Endurance</span>;</div>
+                                <div class="pl-6 text-slate-400">scalability: <span class="text-blue-300">CloudNative</span>;</div>
+                                <div class="pl-6 text-slate-400">outcome: <span class="text-blue-300">DigitalArch</span>;</div>
+                                <div class="text-primary">}</div>
+                                
+                                <div class="mt-8 text-slate-500">// Initialize architectural protocols</div>
+                                <div class="text-primary">class <span class="text-white">Architecture</span> implements <span class="text-white">AlconioBase</span> {</div>
+                                <div class="pl-6 text-slate-400">constructor() {</div>
+                                <div class="pl-12 text-slate-400">this.initiate(<span class="text-blue-300">"PRIME"</span>);</div>
+                                <div class="pl-6 text-slate-400">}</div>
+                                <div class="pl-6 text-primary">async <span class="text-white">build</span>() {</div>
+                                <div class="pl-12 text-slate-400">return <span class="text-primary">await</span> <span class="text-white">System</span>.<span class="text-blue-300">deploy</span>({</div>
+                                <div class="pl-16 text-slate-400">mode: <span class="text-blue-300">"ELITE"</span>,</div>
+                                <div class="pl-16 text-slate-400">vision: <span class="text-blue-300">"ENDLESS"</span></div>
+                                <div class="pl-12 text-slate-400">});</div>
+                                <div class="pl-6 text-primary">}</div>
+                                <div class="text-primary">}</div>
+
+                                <div class="mt-8 text-primary font-bold">export const <span class="text-white">alconio</span> = <span class="text-primary">new</span> <span class="text-white">Architecture</span>().<span class="text-blue-300">build</span>();</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+
+        <!-- Section 3: Quote Section (Terminal Theme) -->
+        <section class="py-40 relative">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="relative rounded-[2rem] bg-black border border-white/10 shadow-2xl overflow-hidden group">
+                    <!-- Terminal Header -->
+                    <div class="px-6 py-4 bg-white/[0.03] border-b border-white/10 flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <div class="terminal-dot bg-[#FF5F56]/40 group-hover:bg-[#FF5F56] transition-colors"></div>
+                            <div class="terminal-dot bg-[#FFBD2E]/40 group-hover:bg-[#FFBD2E] transition-colors"></div>
+                            <div class="terminal-dot bg-[#27C93F]/40 group-hover:bg-[#27C93F] transition-colors"></div>
+                        </div>
+                        <div class="text-[11px] font-mono text-slate-500 uppercase tracking-widest">protocol_founding_philosophy.sh</div>
+                        <div class="w-12"></div> <!-- Spacer -->
+                    </div>
+
+                    <div class="relative p-10 md:py-16 text-center">
+                        <!-- Ambient Tech Glow -->
+                        <div class="absolute inset-0 bg-gradient-to-b from-primary/5 to-transparent pointer-events-none"></div>
+
+                        <div class="relative z-10 max-w-4xl mx-auto">
+                            <h3 class="text-3xl md:text-5xl font-medium italic leading-relaxed text-white mb-10 tracking-tight">
+                                "Innovation is not just about the tools we build; it's about the <span class="text-primary not-italic font-black">architects</span> of the future who use them."
+                            </h3>
+                            
+                            <div class="h-px w-full bg-gradient-to-r from-transparent via-white/10 to-transparent mb-8"></div>
+
+                            <footer class="flex flex-col items-center">
+                                <span class="text-primary text-[10px] font-black uppercase tracking-[0.4em] mb-2 animate-pulse">SUCCESS // PROTOCOL_ESTABLISHED</span>
+                                <span class="text-[9px] font-mono text-slate-600 tracking-widest uppercase">Verified System Signature // ALC.01.2023</span>
+                            </footer>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: The Aesthetic Pillars (Floating Nebula Redesign) -->
+        <section class="py-64 relative overflow-hidden bg-black">
+            <!-- Ambient Blue Nebula Glows -->
+            <div class="absolute top-0 left-1/4 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px] pointer-events-none animate-pulse"></div>
+            <div class="absolute bottom-0 right-1/4 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[100px] pointer-events-none"></div>
+
+            <div class="max-w-7xl mx-auto px-6 relative z-10">
+                <div class="text-center mb-40">
+                    <div class="flex items-center justify-center gap-4 mb-8">
+                        <div class="h-px w-8 bg-primary/40"></div>
+                        <span class="text-primary text-[10px] font-black uppercase tracking-[0.5em]">The Architectural Standard</span>
+                        <div class="h-px w-8 bg-primary/40"></div>
+                    </div>
+                    <h2 class="text-6xl md:text-8xl font-bold tracking-tighter mb-8 italic outline-text">
+                        The <span class="text-primary not-italic font-black relative">
+                            Pillars
+                            <span class="absolute -bottom-4 left-0 w-full h-1 bg-primary/20 blur-sm"></span>
+                        </span>
+                    </h2>
+                    <p class="text-xl text-slate-400 font-light max-w-2xl mx-auto leading-relaxed">
+                        Foundational principles refined for the next generation of digital infrastructure.
+                    </p>
+                </div>
+
+                <!-- Floating 5 Pillar Grid -->
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-6">
+                    <!-- Pillar 01: Innovation -->
+                    <div class="group relative p-10 rounded-[2.5rem] bg-white/[0.03] border border-white/10 backdrop-blur-3xl transition-all duration-700 hover:bg-white/[0.06] hover:border-primary/40 hover:-translate-y-4">
+                        <!-- Ghost Numbering -->
+                        <div class="absolute -top-4 -right-2 text-8xl font-black text-primary/5 group-hover:text-primary/10 transition-colors pointer-events-none select-none">01</div>
+                        
+                        <div class="relative z-10">
+                            <div class="size-16 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-12 shadow-[0_0_30px_rgba(30,81,255,0.1)] group-hover:shadow-[0_0_50px_rgba(30,81,255,0.3)] transition-all">
+                                <span class="material-symbols-outlined text-2xl text-primary">auto_awesome</span>
+                            </div>
+
+                            <h4 class="text-2xl font-bold tracking-tight mb-4">Innovation</h4>
+                            <p class="text-[11px] text-slate-500 leading-relaxed font-light uppercase tracking-[0.15em] mb-8">Boundary pushing engineering protocols.</p>
+                            
+                            <div class="w-full h-px bg-gradient-to-r from-primary/40 to-transparent"></div>
+                        </div>
+                    </div>
+
+                    <!-- Pillar 02: Precision -->
+                    <div class="group relative p-10 rounded-[2.5rem] bg-white/[0.03] border border-white/10 backdrop-blur-3xl transition-all duration-700 hover:bg-white/[0.06] hover:border-primary/40 hover:-translate-y-4 md:mt-12">
+                        <div class="absolute -top-4 -right-2 text-8xl font-black text-primary/5 group-hover:text-primary/10 transition-colors pointer-events-none select-none">02</div>
+                        
+                        <div class="relative z-10">
+                            <div class="size-16 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-12 shadow-[0_0_30px_rgba(30,81,255,0.1)] group-hover:shadow-[0_0_50px_rgba(30,81,255,0.3)] transition-all">
+                                <span class="material-symbols-outlined text-2xl text-primary">target</span>
+                            </div>
+
+                            <h4 class="text-2xl font-bold tracking-tight mb-4">Precision</h4>
+                            <p class="text-[11px] text-slate-500 leading-relaxed font-light uppercase tracking-[0.15em] mb-8">Pixel-perfect technical execution.</p>
+                            
+                            <div class="w-full h-px bg-gradient-to-r from-primary/40 to-transparent"></div>
+                        </div>
+                    </div>
+
+                    <!-- Pillar 03: Humanity -->
+                    <div class="group relative p-10 rounded-[2.5rem] bg-white/[0.03] border border-white/10 backdrop-blur-3xl transition-all duration-700 hover:bg-white/[0.06] hover:border-primary/40 hover:-translate-y-4 md:mt-24">
+                        <div class="absolute -top-4 -right-2 text-8xl font-black text-primary/5 group-hover:text-primary/10 transition-colors pointer-events-none select-none">03</div>
+                        
+                        <div class="relative z-10">
+                            <div class="size-16 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-12 shadow-[0_0_30px_rgba(30,81,255,0.1)] group-hover:shadow-[0_0_50px_rgba(30,81,255,0.3)] transition-all">
+                                <span class="material-symbols-outlined text-2xl text-primary">diversity_1</span>
+                            </div>
+
+                            <h4 class="text-2xl font-bold tracking-tight mb-4">Humanity</h4>
+                            <p class="text-[11px] text-slate-500 leading-relaxed font-light uppercase tracking-[0.15em] mb-8">Soul centric design thinking.</p>
+                            
+                            <div class="w-full h-px bg-gradient-to-r from-primary/40 to-transparent"></div>
+                        </div>
+                    </div>
+
+                    <!-- Pillar 04: Scalability -->
+                    <div class="group relative p-10 rounded-[2.5rem] bg-white/[0.03] border border-white/10 backdrop-blur-3xl transition-all duration-700 hover:bg-white/[0.06] hover:border-primary/40 hover:-translate-y-4 md:mt-12">
+                        <div class="absolute -top-4 -right-2 text-8xl font-black text-primary/5 group-hover:text-primary/10 transition-colors pointer-events-none select-none">04</div>
+                        
+                        <div class="relative z-10">
+                            <div class="size-16 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-12 shadow-[0_0_30px_rgba(30,81,255,0.1)] group-hover:shadow-[0_0_50px_rgba(30,81,255,0.3)] transition-all">
+                                <span class="material-symbols-outlined text-2xl text-primary">rebase</span>
+                            </div>
+
+                            <h4 class="text-2xl font-bold tracking-tight mb-4">Scalability</h4>
+                            <p class="text-[11px] text-slate-500 leading-relaxed font-light uppercase tracking-[0.15em] mb-8">Resilient future proof stacks.</p>
+                            
+                            <div class="w-full h-px bg-gradient-to-r from-primary/40 to-transparent"></div>
+                        </div>
+                    </div>
+
+                    <!-- Pillar 05: Integrity -->
+                    <div class="group relative p-10 rounded-[2.5rem] bg-white/[0.03] border border-white/10 backdrop-blur-3xl transition-all duration-700 hover:bg-white/[0.06] hover:border-primary/40 hover:-translate-y-4">
+                        <div class="absolute -top-4 -right-2 text-8xl font-black text-primary/5 group-hover:text-primary/10 transition-colors pointer-events-none select-none">05</div>
+                        
+                        <div class="relative z-10">
+                            <div class="size-16 rounded-2xl bg-primary/10 border border-primary/20 flex items-center justify-center mb-12 shadow-[0_0_30px_rgba(30,81,255,0.1)] group-hover:shadow-[0_0_50px_rgba(30,81,255,0.3)] transition-all">
+                                <span class="material-symbols-outlined text-2xl text-primary">verified_user</span>
+                            </div>
+
+                            <h4 class="text-2xl font-bold tracking-tight mb-4">Integrity</h4>
+                            <p class="text-[11px] text-slate-500 leading-relaxed font-light uppercase tracking-[0.15em] mb-8">Uncompromising technical standards.</p>
+                            
+                            <div class="w-full h-px bg-gradient-to-r from-primary/40 to-transparent"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Final Vision CTA -->
+        <section class="pt-24 pb-48 relative overflow-hidden">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="relative p-20 rounded-[4rem] bg-gradient-to-br from-primary/20 to-accent-deep/20 border border-white/10 backdrop-blur-xl text-center overflow-hidden">
+                    <div class="absolute inset-0 z-0">
+                        <div class="absolute top-0 right-0 w-96 h-96 bg-primary/20 rounded-full blur-[100px]"></div>
+                        <div class="absolute bottom-0 left-0 w-96 h-96 bg-accent-deep/20 rounded-full blur-[100px]"></div>
+                    </div>
+                    <div class="relative z-10">
+                        <h2 class="text-4xl md:text-6xl font-bold mb-12">Ready to architect your <span class="text-primary italic">future</span>?</h2>
+                        <div class="flex flex-wrap justify-center gap-6">
+                            <a href="get-started.html"
+                                class="bg-primary hover:bg-opacity-90 text-white px-12 py-5 rounded-full text-lg font-bold transition-all shadow-xl shadow-primary/40 uppercase tracking-widest">
+                                Get Started
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -334,7 +558,7 @@
                     <li><a class="hover:text-primary transition-colors" href="about.html">About Us</a></li>
                     <li><a class="hover:text-primary transition-colors" href="our-work.html">Our Work</a></li>
                     <li><a class="hover:text-primary transition-colors" href="pricing.html">Pricing</a></li>
-                    <li><a class="hover:text-primary transition-colors" href="get-started.html">Book Consultation</a></li>
+                    <li><a class="hover:text-primary transition-colors" href="get-started.html">Get Started</a></li>
                 </ul>
             </div>
             <div>

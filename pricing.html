@@ -23,7 +23,7 @@
                         "primary-glow": "rgba(30, 81, 255, 0.4)",
                         "electric-blue": "#1E51FF",
                         "background-light": "#f6f5f8",
-                        "background-dark": "#05080e",
+                        "background-dark": "#000000",
                         "surface-dark": "#111620",
                         "tech-blue": "#0A0C16", // Darker tech background
                         "deep-purple": "#050614",
@@ -52,7 +52,7 @@
                         "full": "9999px"
                     },
                     backgroundImage: {
-                        'hero-glow': "radial-gradient(circle at 70% 50%, rgba(30, 81, 255, 0.15) 0%, rgba(5, 8, 14, 0) 50%)",
+                        'hero-glow': "radial-gradient(rgba(30, 81, 255, 0.1) 1px, transparent 1px)",
                         'chrome-text': "linear-gradient(180deg, #FFFFFF 0%, #1E51FF 100%)",
                         'glass-gradient': "linear-gradient(135deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.01) 100%)",
                         'widget-gradient': "linear-gradient(180deg, rgba(30, 81, 255, 0.1) 0%, rgba(30, 81, 255, 0.02) 100%)",
@@ -73,20 +73,21 @@
     </script>
     <style>
         .glass-card {
-            background: rgba(11, 10, 26, 0.7);
+            background: rgba(255, 255, 255, 0.03);
             backdrop-filter: blur(12px);
-            border: 1px solid rgba(14, 0, 163, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.3s ease;
         }
 
         .glass-card:hover {
-            border-color: rgba(14, 0, 163, 0.6);
-            box-shadow: 0 0 30px rgba(14, 0, 163, 0.15);
+            border-color: #1E51FF;
+            box-shadow: 0 0 30px rgba(30, 81, 255, 0.15);
             transform: translateY(-4px);
         }
 
         .glow-bg {
-            background: radial-gradient(circle at 50% -20%, rgba(14, 0, 163, 0.15), transparent 70%);
+            background-image: radial-gradient(rgba(30, 81, 255, 0.1) 1px, transparent 1px);
+            background-size: 40px 40px;
         }
 
         .apple-table tr {
@@ -160,14 +161,14 @@
             <div class="flex items-center gap-4">
                 <a href="dashboard_signin.html">
                     <button
-                        class="rounded-full bg-white/10 px-5 py-2 text-[13px] font-bold text-white transition-all hover:bg-white/20 border border-white/10 hover:border-white/30">
+                        class="rounded-full bg-white/10 px-[20px] py-2 text-[13px] font-bold text-white transition-all hover:bg-white/20 border border-white/10 hover:border-white/30 whitespace-nowrap">
                         Client Dashboard
                     </button>
                 </a>
                 <a href="get-started.html">
                     <button
-                        class="rounded-full bg-primary px-6 py-2 text-[13px] font-bold text-white transition-all hover:bg-primary/80 hover:shadow-[0_0_20px_rgba(14,0,163,0.4)]">
-                        Book Consultation
+                        class="rounded-full bg-primary px-[24px] py-2 text-[13px] font-bold text-white transition-all hover:bg-primary/80 hover:shadow-[0_0_20px_rgba(14,0,163,0.4)] whitespace-nowrap">
+                        Get Started
                     </button>
                 </a>
                 <button class="md:hidden text-white" aria-label="Open menu">
@@ -514,7 +515,7 @@
     <!-- ═══════════════════════════════════════════════════════════════
          TYPOGRAPHY FOOTER
          ═══════════════════════════════════════════════════════════════ -->
-    <footer class="bg-[#02010A] pt-24 pb-12 px-6 font-display border-t border-white/5 relative z-10">
+    <footer class="bg-[#000000] pt-24 pb-12 px-6 font-display border-t border-white/5 relative z-10">
         <div class="max-w-7xl mx-auto w-[95%]">
             
             <!-- Top Section -->
